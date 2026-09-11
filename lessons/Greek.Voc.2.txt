@@ -1,0 +1,35 @@
+want:θελω 
+I have:εχω
+I buy:αγοραζω 
+I wait:περιμενω 
+I know:ξερω 
+I understand:καταλαβαινω
+I am:ειμαι
+make, do:κανω 
+I go/am going:παω 
+I speak/am speaking:μιλαω 
+I’m hungry:πειναω 
+I’m thirsty:διψαω 
+I hurt:ποναω 
+I drink/am drinking:πινω
+I eat/am eating:τρωω
+I read/am reading:διαβαζω
+I see/watch:βλεπω 
+I will see/watch:θα δω
+I arrive/am arriving:φτανω 
+I leave/am leaving:φευγω 
+I start/begin:αρχιζω
+I finish:τελειωνω 
+I can:μπορω
+I give:δινω
+I will give:Θα δωσω
+I take:παιρνω
+I will take:θα παρω 
+I want to buy:θελω να αγορασω 
+I will begin:θα αρχισω
+I can finish:μπορω να τελειωσω 
+I will arrive late:θα φτασω αργα
+I will leave:θα φυγω 
+I will take:Θα παρω
+Can I drink a beer now?:Μπορω να πιω μια μπυρα τωρα;
+I want to watch TV today.:Θελω να δω τηλεοραση σημερα. 

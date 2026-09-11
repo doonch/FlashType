@@ -1,0 +1,9 @@
+big (m.) : gadol
+clothes : bgadim
+love: ahava
+asleep (m.): yashen
+asleep (f.): yeshena
+see (m.): ro'e
+see (f.): ro'a
+to see: lir'ot
+movie: seret

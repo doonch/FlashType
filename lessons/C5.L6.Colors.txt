@@ -1,0 +1,15 @@
+red: hung4
+black: hak7
+purple: zi2
+grey: fui1
+brown: zung1 / fe1 / fei1
+white: baak9
+green: luk9
+yellow: wong4
+blue: laam4
+pink:fan2 hung4
+gold: gam1
+silver: ngan4
+orange:caang4/caang2
+light:cin2
+dark:sam1

@@ -1,0 +1,27 @@
+א:aleph
+ב:bet
+ג:gimel
+ד:dalet
+ה:heh
+ו:vav
+ז:zayin
+ח:chet
+ט:tet
+י:yod
+כ:kaf
+ך:kaf sofit
+ל:lamed
+מ:mem
+ם:mem sofit
+נ:nun
+ן:nun sofit
+ס:samech
+ע:ayin
+פ:pe
+ף:pe sofit
+צ:tsadi
+ץ:tsadi sofit
+ק:kof
+ר:resh
+ש:shin/sin
+ת:tav

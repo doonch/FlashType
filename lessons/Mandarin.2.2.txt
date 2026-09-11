@@ -1,0 +1,54 @@
+business man:sha1ng re2n
+chinese language:zho1ng we2n
+a person: yi2 ge re2n
+family, home:jia1
+how many, some, a few:ji3
+measure word for family members:ko3u
+two, a couple of:lia3ng
+and:he2
+eldest sister:da4jie3
+second oldest sister:e4rjie3
+to do:zuo4
+job, to work:go1ngzuo4
+lawyer:lu..4shi1
+english:yi1ngwe2n
+both, all:do1u
+college student:da4xue2she1ng
+university, college:da4xue2
+doctor:yi1she1ng
+engineer:go1ngche2ngshi1
+president (country):zo3ng to3ng
+president (company):zo3ng ca2i
+vp (company):fu4 zo3ng ca2i
+CEO:sho3u xi2 zhi2 xi2ng gua1n
+chairman of the board:do3ng shi4 zha3ng
+0:li2ng
+1000:qia1n
+100:ba3i
+10:shi2
+12:shi2e4r
+1:yi1
+2:e4r
+3:sa1n
+4:si4
+5:w3u
+6:liu4
+7:qi1
+8:ba1
+9:jiu3
+10,000:wan4
+100,000:shi2wan4
+1,000,000:yi1 bai3wan4
+10,000,000:yi1 qian1wan4
+where is igal: Igal za4i na3li3
+woman:nu..3 re2n
+man:na2n re2n
+russia:e2luo2
+hebrew:xi1bo2la2i we2n
+business/do business:ji1ngsha1ng
+soldier:ju1nre2n
+professor:jia4sho4u
+manager:ji1ngli3
+worker:go1ngre2n
+farmer:no2ngmi2n
+nurse:hu4shi

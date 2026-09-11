@@ -1,0 +1,45 @@
+.correct {
+    font-weight:bold;
+}
+
+.correct-fb {
+	-webkit-animation-name: correct;
+	-webkit-animation-duration: 0.5s;
+	animation-name: correct;
+	animation-duration: 0.5s;
+}
+
+.incorrect-fb {
+        -webkit-animation-name: incorrect;
+        -webkit-animation-duration: 0.5s;
+        animation-name: incorrect;
+        animation-duration: 0.5s;
+}
+
+@-webkit-keyframes incorrect {
+ 0% {color:black;}
+ 50% {color:red;font-size:20px;}
+ 100% {color:black;}
+}
+
+@keyframes incorrect {
+ 0% {color:black;}
+ 50% {color:red;font-size:20px;}
+ 100% {color:black;}
+}
+
+@-webkit-keyframes correct {
+ 0% {color:black;}
+ 50% {color:green;font-size:20px;}
+ 100% {color:black;}
+}
+
+@keyframes correct {
+ 0% {color:black;}
+ 50% {color:green;font-size:20px;}
+ 100% {color:black;}
+}
+
+.lesser-text {
+    font-size:60%;
+}

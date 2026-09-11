@@ -1,0 +1,42 @@
+last summer: zeszłego lata
+pretty: piękny
+ugly: brzydki
+new: nowy
+old: stary
+to eat (impf): jeść
+to eat (pf) : zjeść
+to drink (impf): pić
+to drink (pf): wypić / napić się
+something (NA): coś
+something (G): czegoś
+I live in (+L): mieszkam w
+I mean: mam na myśli
+In my opinion: uważam / moim zdaniem
+I believe: wierzę
+I don't care: nie interesuje mnie / nie zależy mi na tym
+you're right: masz rację
+you're wrong: nie masz racji / mylisz się
+comfortable (m): wygodny
+square: plac
+here:tutaj
+there: tam
+castle: zamek
+from Warsaw: z Warszawy
+from Krakow: z Krakowa
+from Lonon: z Londynu
+from Jerusalem: z Jerozolimy
+hungry: głodny
+warm: ciepły
+cool: chłodny
+cold: zimny
+morning (Nom. Sgl. Neut): rano
+but: lecz / ale
+maybe: może
+to buy: kupić
+that much: tyle
+We will see each other: zobaczymy się
+how much, how many: ile
+I will give you: dam ci
+time: czas
+I need: potrzebuję
+help, aid, assistance: pomoc

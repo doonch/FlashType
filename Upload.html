@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script src="data.js"></script>
+<script src="utils.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("#stage").hide();
+    $("#startbutton").click(function() {
+        $("#intro").hide();
+        $("#list").hide();
+        lines=$("#list")[0].value.split("\n");
+        lines = $.grep(lines, function (s) { return s.split(":").length == 2; });
+        seen = new set(lines.length);
+        $("#stage").show();
+        showNext();
+        presentYtping=false;
+        linkToDictionary=false;
+        updateList(lines);
+    });
+});
+</script>
+</head>
+<body>
+<br/>
+<div id="intro">
+<button type="button" id="startbutton">Start</button>
+Insert text here:
+<br />
+<textarea cols=40 rows=100 id="list" value="insert text here"></textarea>
+</div>
+<div id=stage>
+Q: <span id="question_txt">Ready?</span><br/>
+A: <input type="text" id="answer" onkeyup="checkPress(event)">
+<button type="button" onclick="checkAnswer()">Submit</button>
+<button type="button" onclick="skip()">Skip</button><br/>
+<div id="feedback"></div>
+<button id="toggleTable" type="button" onclick="toggleTable()">Hide List</button></br>
+<br/>
+<table id="vocabTable" border="1">
+</table>
+</div>
+</body>
+</html>

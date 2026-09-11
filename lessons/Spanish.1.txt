@@ -1,0 +1,10 @@
+I speak: hablo
+You speak: hablas
+He/she speaks: habla
+we speak: hablamos
+they speak: hablan
+I am: soy
+You are: eres
+He/she is: es
+We are: somos
+They are: son

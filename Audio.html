@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script src="data.js"></script>
+<script src="utils.js">
+</script>
+<script>
+$(document).ready(function(){
+    $("#list").hide();
+    $("#startbutton").hide();
+    $("#stage").hide();
+    $("#submitButton").hide();
+    $("#skipButton").hide();
+    $("#lesson").change(function(){
+        var lessonIdx = $("#lesson")[0].value;
+        $("#stage").hide();
+        if (lessonIdx == "0")
+        {
+            $("#startbutton").hide();
+        }
+        else
+        {
+            $("#list").load(lessonFiles[lessonIdx].file);
+            presentYtping=lessonFiles[lessonIdx].convertToYtping;
+            linkToDictionary=lessonFiles[lessonIdx].linkToDictionary;
+            $("#startbutton").show();
+        }
+    });
+    $("#startbutton").click(function() {
+        lines=$("#list")[0].innerHTML.split("\n").slice(0,-1);
+        lines = $.grep(lines, function (s) { return s.split(":").length == 2; });
+        seen = new set(lines.length);
+        $("#stage").show();
+        showNext();
+        updateList(lines);
+	autoLoop = true;
+	setTimeout(tellAnswerAndSkip, 4200);
+    });
+    populateLessons();
+
+    if (typeof QueryString.lessonId === "undefined") {
+        // Do nothing
+    } else {
+        var lessonIdx = QueryString.lessonId;
+        $("#lesson")[0].value = lessonIdx;
+        $("#list").load(lessonFiles[lessonIdx].file);
+        presentYtping=lessonFiles[lessonIdx].convertToYtping;
+        linkToDictionary=lessonFiles[lessonIdx].linkToDictionary;
+        $("#startbutton").show();
+        // $("#lesson")[0].trigger("change"); // Doesn't work as expected
+    }
+    if (typeof QueryString.forgiveTones === "undefined") {
+    } else {
+        forgiveTones=true;
+    }
+});
+</script>
+</head>
+<body>
+<select name="lesson" id="lesson">
+</select>
+<br/>
+<button type="button" id="startbutton">Start</button>
+<div id=stage>
+Q: <span id="question_txt">Ready?</span><br/>
+A: <input type="text" id="answer" onkeyup="checkPress(event)">
+<button id="submitButton" type="button" onclick="checkAnswer()">Submit</button>
+<button id="skipButton"  type="button" onclick="skip()">Skip</button><br/>
+<div id="feedback"></div>
+<div id="list">new:san1
+old (not young):lou5</div>
+<button id="toggleTable" type="button" onclick="toggleTable()">Hide List</button></br>
+<br/>
+<table id="vocabTable" border="1">
+</table>
+</div>
+<audio id="aud_question"><source src="audio/file.wav" type="audio/wav"></audio>
+<audio id="aud_answer"><source src="audio/file.wav" type="audio/wav"></audio>
+</body>
+</html>

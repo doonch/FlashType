@@ -1,0 +1,59 @@
+cooked:suk6
+delicious:hou2 sik6
+fresh:san1 sin1
+gone bad:bin3 wai6
+tasty:hou2 mei6
+alcohol:zau2
+beer:be1 zau2
+coffee:gaa3 fe1
+juice:zap1
+milk:nai5 / lai5
+water:seoi2
+wine:zau2
+red wine:hung4 zau2
+white wine:baak6 zau2
+tea:caa4
+cola:ho2 lok6
+dinner/supper:maan5 faan6
+lunch:ngaan3
+soup:tong1
+fruit:saang1 gwo2
+apple:ping4 gwo2
+banana:hoeng1 ziu1
+lemon:ling4 mung1 / ning4 mung1
+lychee:lai6 zi1
+strawberry:si6 do1 be1 lei2
+bok choy:baak6 coi3
+potato:syu4 zai2
+onion:joeng4 cung1
+rice:faan6
+fried rice:caau2 faan6
+bread:min6 bau1
+noodles:min6
+meat:juk6
+chicken:gai1 juk6
+egg:dan2
+pork:zyu1 juk6
+tofu:dau6 fu6
+fish:jyu2
+calamari:jau4 jyu2
+salmon:saam1 man4 jyu2
+shrimp:haa1
+sugar:tong4
+cake:daan6 gou1
+chocolate:zyu1 gu1 lik1
+honey:mat6 tong4
+butter:ngau4 jau4
+cheese:zi1 si2
+ice cream:syut3 gou1
+yoghurt:syun1 laai5 / syun1 naai5
+garlic:syun3
+oil:jau4
+pepper:wu4 ziu1 fan2
+salt:jim4
+boil:gwan2
+deep fry:zaa3
+microwave:mei4 bo1 lou4
+stir fry:caau2
+sweet:tim4
+sour:syun1

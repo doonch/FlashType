@@ -1,0 +1,28 @@
+only: tylko
+I must: muszę
+You (f) should: powinnaś
+You (m) should: powinieneś
+to wait: poczekać
+to stay: zostać
+towel: ręcznik
+tree: drzewo
+child: dziecko
+table: stół
+trees: drzewa
+name: imię
+pencils: ołówki
+streets: ulice
+face: twarz
+people: ludzie
+young (m): młody
+tired (these men): zmęczeni
+spring: wiosna
+bed: łóżko
+I see: widzę
+week: tydzień
+years: lata
+year: rok
+hands: ręce
+hand: ręka
+opinion: zdanie
+with me: ze mną

@@ -1,0 +1,212 @@
+a:ενα
+sandwich:σαντουϊτς 
+ouzo:ουζο 
+please:παρακαλω
+I:εγω
+want:θελω 
+and:και
+you:εσεις
+yes:ναι
+no:οχι
+not:δεν
+tea:τσαι 
+what?:τι;
+I have:εχω
+you have:εχετε
+it:το
+glass:ποτηρι 
+wine:κρασι
+bottle:μπουκαλι 
+water:νερό
+I buy:αγοραζω 
+market:αγορα
+you buy:αγοραζετε 
+I wait:περιμενω 
+you wait:περιμενετε 
+I know:ξερω 
+you know:ξερετε 
+I understand:καταλαβαινω
+you understand:καταλαβαινετε
+why/because:γιατι
+something:κατι 
+excuse me, sorry:συγγνωμη 
+but:αλλα
+now:τωρα 
+anything/nothing:τιποτα
+bar:μπαρ
+park:παρκο 
+underground:μετρο
+supermarket:σουπερμαρκετ 
+where?:που; 
+is:ειναι
+the (nom.sgl.neut):το
+near/nearby:κοντα
+far/far away:μακρια
+in/at:σε
+in the park:στο παρκο 
+I am:ειμαι
+you are:ειστε
+or:η
+beer:μπυρα 
+salad:σαλατα 
+a:μια
+the (nom.sgl.fem):η
+it (acc.sgl.fem):την
+I want it (f):την θελω
+he:αυτος
+she:αυτη
+he/she wants:θελει 
+he/she has:εχει
+he/she buys/is buying:αγοραζει 
+he/she understands:καταλαβαινει 
+make, do:κανω 
+you make/do:κανετε 
+he/she makes/does:κανει 
+well, fine:καλα
+how are you?:τι κανετε; 
+thank you:ευχαριστω
+I go/am going:παω 
+to:σε
+to the bar:στο μπαρ
+you go/are going:πατε 
+he/she goes/is going:παει 
+I speak/am speaking:μιλαω 
+Greek:ελληνικα
+Do you speak Greek?:Μιλατε εσεις ελληνικα; 
+he/she speaks:μιλαει 
+French:γαλλικα
+Spanish:ισπανικα
+very:πολυ
+very well:πολυ καλα
+a little:λιγο
+English:αγγλικα
+I’m hungry:πειναω 
+Are you very hungry?:πεινατε πολυ;
+I’m thirsty:διψαω 
+I hurt:ποναω 
+it hurts:ποναει 
+my:μου
+my ouzo:το ουζο μου 
+my beer:η μπυρα μου 
+stomach:στομαχι 
+Μy stomach hurts.:Το στομαχι μου ποναει. 
+tooth:δοντι
+foot:ποδι
+here:εδω
+‘will’:θα
+I will make/do:θα κανω 
+tomorrow:αυριο 
+there:εκει
+I won’t have it tomorrow.:Δεν θα το εχω αυριο.
+so:ετσι
+Is that not so?:Έτσι δεν ειναι;
+OK:ενταξει 
+who (masc):ποιος
+who (fem):ποια
+Who is he?:Ποιος ειναι αυτος;
+Who is she?:Ποια ειναι αυτη; 
+Englishman:Άγγλος
+Englishwoman:Αγγλιδα
+England:Αγγλια
+from:απο
+from England:απο την Αγγλια
+Greek man:Έλληνας
+Greek woman:Ελληνιδα
+Greece Elátha:Ελλαδα 
+from Greece:απο την Ελλαδα 
+this supermarket:αυτο το σουπερμαρκετ 
+this salad:αυτη η σαλατα 
+small:μικρο/μικρη
+big:μεγαλο/μεγαλη 
+open:ανοιχτο
+taverna:ταβερνα 
+closed:κλειστο/κλειστη
+when:ποτε
+good:καλο/καλη
+day:μερα
+good morning:καλημερα 
+today:σημερα 
+every day:καθεμερα
+always:παντα 
+often:συχνα
+I drink/am drinking:πινω
+I eat/am eating:τρωω
+I read/am reading:διαβαζω
+book:βιβλιο
+newspaper:εφημεριδα
+magazine:περιοδικο
+on:σε
+on the underground:στο μετρο
+I see/watch:βλεπω 
+television:τηλεοραση
+never:ποτε
+theatre:θεατρο 
+I arrive/am arriving:φτανω 
+late:αργα
+good:καλος
+at/in the taverna:στην ταβερνα 
+one:ενα/μια
+early:νωρις
+I leave/am leaving:φευγω 
+you leave/are leaving:φευγετε 
+he/she/it leaves:φευγει 
+train:τρενο 
+I start/begin:αρχιζω
+I finish:τελειωνω 
+life:ζωη
+we:εμεις
+_We_ wait/are waiting.:Εμεις περιμενουμε.
+_We_ don’t know why.:Εμεις δεν ξερουμε γιατι. 
+I can:μπορω
+you can:μπορειτε
+school:σχολειο
+must/have to/should:πρεπει να 
+I want to buy:θελω να αγορασω 
+I will begin:θα αρχισω
+I can finish:μπορω να τελειωσω 
+I will arrive late:θα φτασω αργα
+I will leave:θα φυγω 
+You mustn’t leave now.:Δεν πρεπει να φυγετε τωρα. 
+Costas has to leave early.:Κωστας πρεπει να φυγει νωρις.
+We can’t leave now.:Δεν μπορουμε να φυγουμε τωρα. 
+I give:δινω
+I will give:Θα δωσω
+I take:παιρνω
+I will take:θα παρω 
+I am not taking the train today.:Δεν παιρνω το τρενο σημερα. 
+I will take it tomorrow.:Θα το παρω αυριο.
+Can I drink a beer now?:Μπορω να πιω μια μπυρα τωρα;
+I will see/watch:θα δω
+I want to watch TV today.:Θελω να δω τηλεοραση σημερα. 
+yesterday:χθες/εχθες
+I was:ημουν
+you were:ησασταν
+he/she/it was:ηταν
+house, home:σπιτι
+we were:ημασταν
+like:αρεσει 
+to me:μου
+I like ouzo.:Μου αρεσει το ουζο. 
+I don’t like wine.:Δεν μου αρεσει το κρασι.
+to you:σας
+Do you like beer?:Σας αρεσει η μπυρα;
+He likes the theatre a lot:Του αρεσει το θεατρο πολυ. 
+She doesn’t like the cinema:Δεν της αρεσει το σινεμα. 
+music:μουσικη
+to us:μας
+We like this music.:Μας αρεσει αυτη η μουσικη. 
+Will you give me a book?:Θα μου δωσετε ενα βιβλιο;
+We’ll give him a bottle.:Θα του δωσουμε ενα μπουκαλι. 
+Maria doesn’t want to give us anything.:Η Μαρια δεν θελει να μας δωσει τιποτα.
+This ouzo is good.:Αυτο το ουζο ειναι καλο.
+This beer isn’t good.:Αυτη η μπυρα δεν ειναι καλη. 
+the menu/list:ο καταλογος 
+a coffee:ενας καφες
+the coffee:ο καφες 
+I like this coffee.:Αυτος ο καφες μου αρεσει. 
+a (acc.sgl.masc.):εναν
+I want a coffee.:Θελω εναν καφε. 
+the (acc.sgl.masc.):τον
+Have you got the menu?:Έχετε τον καταλογο; 
+the (acc.sgl.fem.):την
+I want the salad.:Θελω την σαλατα. 

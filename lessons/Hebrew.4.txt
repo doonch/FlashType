@@ -1,0 +1,10 @@
+home, house: bayit
+office: misrad
+in the park: bapark
+morning: boker
+night: layla
+make, do (M): ose
+make, do (F): osa
+what?: ma
+good: tov
+thanks: toda
