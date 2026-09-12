@@ -7,7 +7,7 @@ function lesson(name, file, category, convertToYtping, linkToDictionary) {
 }
 
 var lessonFiles = new Array();
-lessonFiles[0] = new lesson("Test", "test.txt", "TestCategory", false, true);
+lessonFiles[0] = new lesson("Test", "lessons/test.txt", "TestCategory", false, true);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1: 8-Oct-2013", "lessons/C4.L1.Dan.Jyutping.txt", "Cantonese 4", true, true);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 2: 15-Oct-2013", "lessons/C4.L2.Dan.Jyutping.txt", "Cantonese 4", true, true);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 3: 21-Oct-2013", "lessons/C4.L3.Dan.Jyutping.txt", "Cantonese 4", true, true);
@@ -43,7 +43,7 @@ lessonFiles[lessonFiles.length] = new lesson("Lesson 3: conjunctions", "lessons/
 lessonFiles[lessonFiles.length] = new lesson("Lesson 4: declensions", "lessons/Polish.4.txt", "Polish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 5: pronouns, conjunctions", "lessons/Polish.5.txt", "Polish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 6: adjectives, conjugation", "lessons/Polish.6.txt", "Polish", false, false);
-lessonFiles[lessonFiles.length] = new lesson("Lesson 7: idioms", "Polish.7.txt", "lessons/Polish", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 7: idioms", "lessons/Polish.7.txt", "Polish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 8: verbs, flights", "lessons/Polish.8.txt", "Polish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 9: Names", "lessons/Polish.9.txt", "Polish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 1: ser, hablar", "lessons/Spanish.1.txt", "Spanish", false, false);
@@ -80,7 +80,7 @@ lessonFiles[lessonFiles.length] = new lesson("LESSON 4.1: 17-Jul-2014", "lessons
 lessonFiles[lessonFiles.length] = new lesson("Lesson 1: adverbs", "lessons/Greek.1.txt", "Greek", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 2: verbs", "lessons/Greek.Voc.2.txt", "Greek", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 3: foundation", "lessons/Greek.MT.3.txt", "Greek", false, false);
-lessonFiles[lessonFiles.length] = new lesson("Test", "test.txt", "lessons/TestCategory", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Test", "lessons/test.txt", "TestCategory", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Civics 2008", "lessons/civics.txt", "Civics", false, false);
 
 function populateLessons() {

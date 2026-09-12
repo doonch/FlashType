@@ -19,8 +19,8 @@ function set(n)
     this.max = n;
 
     function add(k) { this.data[k] = true; }
-    function contains(k) { return this.data[k]; }
-    function size() { return this.data.reduce(function(a,b) { return a+(b?1:0); }); }
+    function contains(k) { return !!this.data[k]; }
+    function size() { return this.data.reduce(function(a,b) { return a+(b?1:0); }, 0); }
 }
 var seen = new set(2);
 
@@ -97,10 +97,24 @@ function playAudio(e, s)
          .replace(/\?/g, "")
          .replace(/^_/g, "")
          .replace(/_$/g, "");
-    $("#" + e + " source")[0].src="audio/" + s + ".wav";
-    $("#" + e)[0].load();
-    $("#" + e)[0].play();
-    return $("#" + e)[0].duration;
+    var audioEl = document.getElementById(e);
+    if (!audioEl) return 0;
+    var sourceEl = audioEl.querySelector("source");
+    if (sourceEl) {
+        sourceEl.src = "audio/" + s + ".wav";
+    }
+    try {
+        audioEl.load();
+        var playPromise = audioEl.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(function() {
+                // Audio file might not exist or autoplay policy blocked it
+            });
+        }
+        return audioEl.duration || 0;
+    } catch (err) {
+        return 0;
+    }
 }
 
 function checkAnswer()
@@ -188,7 +202,9 @@ function tellAnswerAndSkip()
 
 function showNext()
 {
-    if (lines.length <= 1) alert("Warning: Failed to load lesson. Please reload.");
+    if (lines.length <= 1) {
+        SetFeedback("<span class=\"incorrect-fb\">Notice: Lesson has 1 or fewer items.</span>");
+    }
     index=GetRandomIndex();
     setQuestion(index);
 }
@@ -212,6 +228,11 @@ function showNextUnseen()
 
 function GetRandomIndex()
 {
+    if (lines.length <= 1) {
+        lastIndex = 0;
+        if (typeof seen != "undefined") markSeen(0);
+        return 0;
+    }
     var newIndex=lastIndex;
     while (newIndex==lastIndex)
         newIndex=Math.floor(Math.random() * lines.length);

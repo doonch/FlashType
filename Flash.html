@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>FlashType</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
@@ -30,8 +31,9 @@ $(document).ready(function(){
         }
     });
     $("#startbutton").click(function() {
-        lines=$("#list")[0].innerHTML.split("\n").slice(0,-1);
-        lines = $.grep(lines, function (s) { return s.split(":").length == 2; });
+        var raw = $("#list").text() || $("#list")[0].innerHTML;
+        lines = raw.split(/\r?\n/);
+        lines = $.grep(lines, function (s) { return s.trim().split(":").length >= 2; });
         seen = new set(lines.length);
         $("#stage").show();
         showNext();

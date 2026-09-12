@@ -1,0 +1,15 @@
+{
+  "name": "flashtype",
+  "version": "1.0.0",
+  "description": "Language-learning tools where you must type the correct answer",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build successful')\"",
+    "lint": "node -c server.js utils.js data.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "FlashType",
+  "description": "Language-learning flashcard tool where you type answers with instant feedback and lesson sets",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
