@@ -43,3 +43,17 @@
 .lesser-text {
     font-size:60%;
 }
+
+.speaker-btn {
+    cursor: pointer;
+    margin-left: 6px;
+    font-size: 1.1em;
+    user-select: none;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.speaker-btn:hover {
+    opacity: 0.8;
+}

@@ -117,6 +117,152 @@ function playAudio(e, s)
     }
 }
 
+// Speech Synthesis Helpers
+function replaceJyutpingTones(text) {
+    if (typeof text !== "string") return text;
+    return text.replace(/7/g, "1")
+               .replace(/8/g, "3")
+               .replace(/9/g, "6");
+}
+
+function speakText(text, lang) {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+        return;
+    }
+    try {
+        window.speechSynthesis.cancel();
+        var cleanText = text.replace(/[\(\)]/g, "");
+        cleanText = replaceJyutpingTones(cleanText).trim();
+        if (!cleanText) return;
+        var utterance = new SpeechSynthesisUtterance(cleanText);
+        if (lang) {
+            utterance.lang = lang;
+        }
+        window.speechSynthesis.speak(utterance);
+    } catch (e) {
+        console.error("Speech synthesis error:", e);
+    }
+}
+
+function getLessonCategory() {
+    if (typeof lessonFiles === "undefined") return "";
+    var selectEl = document.getElementById("lesson");
+    if (!selectEl) return "";
+    var idx = selectEl.value;
+    if (idx && lessonFiles[idx]) {
+        return (lessonFiles[idx].category || "").toLowerCase();
+    }
+    return "";
+}
+
+function getQuestionLanguage(text) {
+    if (typeof text === "string") {
+        if (/[\u0370-\u03FF]/.test(text)) return "el-GR";
+        if (/[\u0590-\u05FF]/.test(text)) return "he-IL";
+        if (/[\u4E00-\u9FFF]/.test(text)) return "zh-CN";
+    }
+    return "en-US";
+}
+
+function getAnswerLanguage(text) {
+    if (typeof text === "string") {
+        if (/[\u0370-\u03FF]/.test(text)) return "el-GR";
+        if (/[\u0590-\u05FF]/.test(text)) return "he-IL";
+        if (/[\u4E00-\u9FFF]/.test(text)) return "zh-CN";
+    }
+    var cat = getLessonCategory();
+    if (cat.indexOf("polish") !== -1) return "pl-PL";
+    if (cat.indexOf("spanish") !== -1) return "es-ES";
+    if (cat.indexOf("greek") !== -1) return "el-GR";
+    if (cat.indexOf("hebrew") !== -1) return "he-IL";
+    if (cat.indexOf("mandarin") !== -1) return "zh-CN";
+    if (cat.indexOf("cantonese") !== -1) return "zh-HK";
+    return "en-US";
+}
+
+var lastQuestionSpeechTime = 0;
+function readQuestion(e) {
+    if (e && e.stopPropagation) {
+        e.stopPropagation();
+    }
+    var now = Date.now();
+    if (now - lastQuestionSpeechTime < 200) {
+        return;
+    }
+    lastQuestionSpeechTime = now;
+    if (typeof lines === "undefined" || typeof index === "undefined" || !lines || !lines[index]) {
+        return;
+    }
+    var question = lines[index].split(":")[0];
+    if (!question) return;
+    var textToSpeak = question.replace(/\//g, ", ").trim();
+    speakText(textToSpeak, getQuestionLanguage(question));
+}
+
+function speakAnswer(answerText) {
+    if (!answerText) return;
+    var cleanAns = answerText.replace(/\//g, ", ").trim();
+    speakText(cleanAns, getAnswerLanguage(cleanAns));
+}
+
+function escapeHtmlAttr(str) {
+    if (!str) return "";
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
+var lastVocabSpeechTime = 0;
+function readVocabAnswer(e, el) {
+    if (e && e.stopPropagation) {
+        e.stopPropagation();
+    }
+    if (e && e.preventDefault) {
+        e.preventDefault();
+    }
+    var now = Date.now();
+    if (now - lastVocabSpeechTime < 200) {
+        return;
+    }
+    lastVocabSpeechTime = now;
+    var answerText = "";
+    if (typeof el === "string") {
+        answerText = el;
+    } else if (el && el.getAttribute) {
+        answerText = el.getAttribute("data-answer") || "";
+    }
+    if (!answerText && el && el.parentElement) {
+        answerText = $(el.parentElement).clone().children(".speaker-btn").remove().end().text().trim();
+    }
+    if (answerText) {
+        speakAnswer(answerText);
+    }
+}
+
+if (typeof $ !== "undefined") {
+    $(document).on("click", "#speaker_question", function(e) {
+        readQuestion(e);
+    });
+    $(document).on("keydown", "#speaker_question", function(e) {
+        if (e.which === 13 || e.which === 32) {
+            e.preventDefault();
+            readQuestion(e);
+        }
+    });
+    $(document).on("click", ".speaker-vocab", function(e) {
+        readVocabAnswer(e, this);
+    });
+    $(document).on("keydown", ".speaker-vocab", function(e) {
+        if (e.which === 13 || e.which === 32) {
+            e.preventDefault();
+            readVocabAnswer(e, this);
+        }
+    });
+}
+
 function checkAnswer()
 {
     var answer=$("#answer")[0].value;
@@ -131,16 +277,16 @@ function checkAnswer()
     if (gotAnswer)
     {
         if (forgiveTones && correctAnswers.length==1)
-            SetFeedback("Correct! It's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>");
+            SetFeedback("Correct! It's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>", correctAnswers.join(", "));
         else if (correctAnswers.length==1)
             SetFeedback("<span class=\"correct-fb\">Correct!</span>");
         else
-            SetFeedback("<span class=\"correct-fb\">Correct!</span> Other options: "+correctAnswers.join("/"));
+            SetFeedback("<span class=\"correct-fb\">Correct!</span> Other options: "+correctAnswers.join("/"), correctAnswers.join(", "));
         showNext();
     }
     else
     {
-        SetFeedback("<span class=\"incorrect-fb\">Wrong!</span> Not \"" + answer + "\", it's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>. Try again!");
+        SetFeedback("<span class=\"incorrect-fb\">Wrong!</span> Not \"" + answer + "\", it's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>. Try again!", correctAnswers.join(", "));
     }
     $("#answer")[0].value = "";
 }
@@ -166,14 +312,17 @@ function updateList(lines)
     tableData="";
     for (var i=0;i<lines.length;i++)
     {
-        var value=transliterate(lines[i].split(":")[1]);
+        var rawAnswer = lines[i].split(":")[1] || "";
+        var value=transliterate(rawAnswer);
         if (linkToDictionary == true) {
             value = "<a href=\"http://www.cantonese.sheik.co.uk/dictionary/search/?searchtype=3&text="+getQueryText(lines[i].split(":")[1])+"\">"
                     +value
                     +"</a>";
         }
+        var speakerBtn = " <span class=\"speaker-btn speaker-vocab\" role=\"button\" tabindex=\"0\" title=\"Read answer out loud\" aria-label=\"Read answer out loud\" data-answer=\"" + escapeHtmlAttr(rawAnswer) + "\" onclick=\"readVocabAnswer(event, this)\">🔊</span>";
         tableData = tableData.concat("<tr><td>"+lines[i].split(":")[0]+"</td><td>"
                     + value
+                    + speakerBtn
                     +"</td></tr>"
         );
     }
@@ -183,8 +332,9 @@ function updateList(lines)
 
 function setQuestion(index)
 {
-    $("#question_txt")[0].innerHTML = "<span class=\"lesser-text\">["+index+"/"+seen.size()+"/"+lines.length+"]</span> " + lines[index].split(":")[0];
-    playAudio("aud_question", lines[index].split(":")[0].split("/")[0]);
+    var questionText = lines[index].split(":")[0];
+    $("#question_txt")[0].innerHTML = "<span class=\"lesser-text\">["+index+"/"+seen.size()+"/"+lines.length+"]</span> " + questionText + " <span id=\"speaker_question\" class=\"speaker-btn\" role=\"button\" tabindex=\"0\" title=\"Read question out loud\" aria-label=\"Read question out loud\" onclick=\"readQuestion(event)\">🔊</span>";
+    playAudio("aud_question", questionText.split("/")[0]);
     if (autoLoop) {
         setTimeout(tellAnswerAndSkip, 4200);
     }
@@ -247,9 +397,26 @@ function markSeen(n)
     $("#vocabTable tr").eq(n).css("color", "green");
 }
 
-function SetFeedback(s)
+function SetFeedback(s, answerToSpeak)
 {
     $("#feedback")[0].innerHTML = s;
+    if (answerToSpeak) {
+        speakAnswer(answerToSpeak);
+        return;
+    }
+    if (!s) return;
+    var correctSpan = $("#feedback .correct");
+    if (correctSpan.length > 0) {
+        var answerText = correctSpan.text().trim();
+        if (answerText) {
+            speakAnswer(answerText);
+        }
+    } else {
+        var optMatch = s.match(/Other options:\s*([^<]+)/i);
+        if (optMatch && optMatch[1]) {
+            speakAnswer(optMatch[1].trim());
+        }
+    }
 }
 
 function toggleTable()
