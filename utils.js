@@ -1,10 +1,200 @@
 var lines = new Array();
 var index=GetRandomIndex();
 var lastIndex=index;
-var presentYtping;
+var presentYtping = false;
 var linkToDictionary;
 var forgiveTones=false;
 var autoLoop=false;
+
+var appSettings = {
+    romanization: "jyutping",
+    speakQuestions: false,
+    speakAnswers: false,
+    passiveMode: false,
+    questionTimeoutSec: 3.5,
+    decayTimeoutSec: 2.5
+};
+
+var passiveQuestionTimer = null;
+var passiveDecayTimer = null;
+
+function loadSettings() {
+    try {
+        if (typeof localStorage !== "undefined") {
+            var rom = localStorage.getItem("flashtype_romanization");
+            if (rom === "yale" || rom === "jyutping") {
+                appSettings.romanization = rom;
+            }
+            if (localStorage.getItem("flashtype_speak_questions") !== null) {
+                appSettings.speakQuestions = localStorage.getItem("flashtype_speak_questions") === "true";
+            }
+            if (localStorage.getItem("flashtype_speak_answers") !== null) {
+                appSettings.speakAnswers = localStorage.getItem("flashtype_speak_answers") === "true";
+            }
+            if (localStorage.getItem("flashtype_passive_mode") !== null) {
+                appSettings.passiveMode = localStorage.getItem("flashtype_passive_mode") === "true";
+            }
+            var qTimeout = parseFloat(localStorage.getItem("flashtype_q_timeout"));
+            if (!isNaN(qTimeout) && qTimeout >= 1) {
+                appSettings.questionTimeoutSec = qTimeout;
+            }
+            var dTimeout = parseFloat(localStorage.getItem("flashtype_d_timeout"));
+            if (!isNaN(dTimeout) && dTimeout >= 0.5) {
+                appSettings.decayTimeoutSec = dTimeout;
+            }
+        }
+    } catch (e) {
+        console.warn("Could not load settings from localStorage", e);
+    }
+    presentYtping = (appSettings.romanization === "yale");
+}
+
+function saveSettings() {
+    try {
+        if (typeof localStorage !== "undefined") {
+            localStorage.setItem("flashtype_romanization", appSettings.romanization);
+            localStorage.setItem("flashtype_speak_questions", appSettings.speakQuestions);
+            localStorage.setItem("flashtype_speak_answers", appSettings.speakAnswers);
+            localStorage.setItem("flashtype_passive_mode", appSettings.passiveMode);
+            localStorage.setItem("flashtype_q_timeout", appSettings.questionTimeoutSec);
+            localStorage.setItem("flashtype_d_timeout", appSettings.decayTimeoutSec);
+        }
+    } catch (e) {
+        console.warn("Could not save settings to localStorage", e);
+    }
+}
+
+function clearPassiveTimers() {
+    if (passiveQuestionTimer) {
+        clearTimeout(passiveQuestionTimer);
+        passiveQuestionTimer = null;
+    }
+    if (passiveDecayTimer) {
+        clearTimeout(passiveDecayTimer);
+        passiveDecayTimer = null;
+    }
+}
+
+function updatePassiveModeUI() {
+    if (typeof $ === "undefined") return;
+    if (appSettings.passiveMode) {
+        $("#interactive_controls").hide();
+        $("#passive_indicator").show();
+    } else {
+        $("#passive_indicator").hide();
+        $("#interactive_controls").show();
+    }
+}
+
+function startPassiveQuestionTimer() {
+    clearPassiveTimers();
+    if (!appSettings.passiveMode) return;
+    if (typeof lines === "undefined" || !lines || lines.length === 0) return;
+    if (typeof $ !== "undefined") {
+        $("#passive_status").text("Thinking... (revealing answer soon)");
+    }
+    var qMs = Math.max(1000, (appSettings.questionTimeoutSec || 3.5) * 1000);
+    passiveQuestionTimer = setTimeout(function() {
+        handlePassiveAnswerReveal();
+    }, qMs);
+}
+
+function handlePassiveAnswerReveal() {
+    if (!appSettings.passiveMode || typeof lines === "undefined" || !lines || !lines[index]) return;
+    var correctAnswers = transliterate(lines[index]).split(":")[1].split("/");
+    var primaryAnswer = correctAnswers[0].trim();
+    if (typeof $ !== "undefined") {
+        $("#feedback")[0].innerHTML = "Answer: <span class=\"correct\">" + correctAnswers.join(" / ") + "</span>";
+        $("#answer").val(primaryAnswer);
+        $("#passive_status").text("Next question coming up...");
+    }
+    if (appSettings.speakAnswers) {
+        speakAnswer(primaryAnswer);
+    }
+    var decayMs = Math.max(500, (appSettings.decayTimeoutSec || 2.5) * 1000);
+    passiveDecayTimer = setTimeout(function() {
+        if (appSettings.passiveMode) {
+            showNext();
+        }
+    }, decayMs);
+}
+
+function applySettings() {
+    presentYtping = (appSettings.romanization === "yale");
+    if (typeof lines !== "undefined" && lines && lines.length > 0) {
+        updateList(lines);
+    }
+    updatePassiveModeUI();
+    if (appSettings.passiveMode) {
+        if (typeof $ !== "undefined" && $("#stage").is(":visible") && typeof index !== "undefined" && lines && lines[index]) {
+            startPassiveQuestionTimer();
+        }
+    } else {
+        clearPassiveTimers();
+    }
+}
+
+function syncSettingsUI() {
+    if (typeof $ === "undefined") return;
+    if (appSettings.romanization === "yale") {
+        $("#rom_yale").prop("checked", true);
+    } else {
+        $("#rom_jyutping").prop("checked", true);
+    }
+    $("#setting_speak_questions").prop("checked", appSettings.speakQuestions);
+    $("#setting_speak_answers").prop("checked", appSettings.speakAnswers);
+    $("#setting_passive_mode").prop("checked", appSettings.passiveMode);
+    $("#setting_q_timeout").val(appSettings.questionTimeoutSec);
+    $("#setting_d_timeout").val(appSettings.decayTimeoutSec);
+
+    if (appSettings.passiveMode) {
+        $("#passive_time_options").show();
+    } else {
+        $("#passive_time_options").hide();
+    }
+}
+
+function onSettingChange() {
+    if (typeof $ === "undefined") return;
+    var romVal = $("input[name='romanization_pref']:checked").val() || "jyutping";
+    appSettings.romanization = romVal;
+    appSettings.speakQuestions = $("#setting_speak_questions").is(":checked");
+    appSettings.speakAnswers = $("#setting_speak_answers").is(":checked");
+    appSettings.passiveMode = $("#setting_passive_mode").is(":checked");
+
+    var qVal = parseFloat($("#setting_q_timeout").val());
+    if (!isNaN(qVal) && qVal >= 1) {
+        appSettings.questionTimeoutSec = qVal;
+    }
+    var dVal = parseFloat($("#setting_d_timeout").val());
+    if (!isNaN(dVal) && dVal >= 0.5) {
+        appSettings.decayTimeoutSec = dVal;
+    }
+
+    if (appSettings.passiveMode) {
+        $("#passive_time_options").slideDown(150);
+    } else {
+        $("#passive_time_options").slideUp(150);
+    }
+
+    saveSettings();
+    applySettings();
+}
+
+function openSettingsModal() {
+    syncSettingsUI();
+    if (typeof $ !== "undefined") {
+        $("#settings_modal").fadeIn(150);
+    }
+}
+
+function closeSettingsModal() {
+    if (typeof $ !== "undefined") {
+        $("#settings_modal").fadeOut(150);
+    }
+}
+
+loadSettings();
 
 function set(n)
 {
@@ -261,6 +451,18 @@ if (typeof $ !== "undefined") {
             readVocabAnswer(e, this);
         }
     });
+    $(document).on("keydown", function(e) {
+        if (e.which === 27) { // Escape
+            if ($("#settings_modal").is(":visible")) {
+                closeSettingsModal();
+            }
+        }
+    });
+    $(document).on("click", "#settings_modal", function(e) {
+        if ($(e.target).is("#settings_modal")) {
+            closeSettingsModal();
+        }
+    });
 }
 
 function checkAnswer()
@@ -293,6 +495,7 @@ function checkAnswer()
 
 function skip()
 {
+    clearPassiveTimers();
     showNext();
     $("#answer")[0].value = "";
     SetFeedback("");
@@ -335,7 +538,16 @@ function setQuestion(index)
     var questionText = lines[index].split(":")[0];
     $("#question_txt")[0].innerHTML = "<span class=\"lesser-text\">["+index+"/"+seen.size()+"/"+lines.length+"]</span> " + questionText + " <span id=\"speaker_question\" class=\"speaker-btn\" role=\"button\" tabindex=\"0\" title=\"Read question out loud\" aria-label=\"Read question out loud\" onclick=\"readQuestion(event)\">🔊</span>";
     playAudio("aud_question", questionText.split("/")[0]);
-    if (autoLoop) {
+    
+    if (appSettings.speakQuestions) {
+        readQuestion();
+    }
+
+    if (appSettings.passiveMode) {
+        $("#feedback")[0].innerHTML = "";
+        $("#answer").val("");
+        startPassiveQuestionTimer();
+    } else if (autoLoop) {
         setTimeout(tellAnswerAndSkip, 4200);
     }
 }
@@ -352,6 +564,7 @@ function tellAnswerAndSkip()
 
 function showNext()
 {
+    clearPassiveTimers();
     if (lines.length <= 1) {
         SetFeedback("<span class=\"incorrect-fb\">Notice: Lesson has 1 or fewer items.</span>");
     }
@@ -361,6 +574,7 @@ function showNext()
 
 function showNextUnseen()
 {
+    clearPassiveTimers();
     SetFeedback("Skipping...");
     for (var localIndex=0; localIndex<lines.length; localIndex++)
     {
@@ -400,6 +614,9 @@ function markSeen(n)
 function SetFeedback(s, answerToSpeak)
 {
     $("#feedback")[0].innerHTML = s;
+    if (!appSettings.speakAnswers) {
+        return;
+    }
     if (answerToSpeak) {
         speakAnswer(answerToSpeak);
         return;
