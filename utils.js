@@ -12,7 +12,9 @@ var appSettings = {
     speakAnswers: false,
     passiveMode: false,
     questionTimeoutSec: 3.5,
-    decayTimeoutSec: 2.5
+    decayTimeoutSec: 2.5,
+    completedLessons: ["lessons/CP.1.txt"], // default to CP.1.txt if none selected
+    aiSentenceCount: 25
 };
 
 var passiveQuestionTimer = null;
@@ -42,6 +44,19 @@ function loadSettings() {
             if (!isNaN(dTimeout) && dTimeout >= 0.5) {
                 appSettings.decayTimeoutSec = dTimeout;
             }
+            var completed = localStorage.getItem("flashtype_completed_lessons");
+            if (completed) {
+                try {
+                    var parsed = JSON.parse(completed);
+                    if (Array.isArray(parsed)) {
+                        appSettings.completedLessons = parsed;
+                    }
+                } catch (pe) {}
+            }
+            var aiCnt = parseInt(localStorage.getItem("flashtype_ai_sentence_count"), 10);
+            if (!isNaN(aiCnt) && aiCnt >= 1 && aiCnt <= 50) {
+                appSettings.aiSentenceCount = aiCnt;
+            }
         }
     } catch (e) {
         console.warn("Could not load settings from localStorage", e);
@@ -58,6 +73,8 @@ function saveSettings() {
             localStorage.setItem("flashtype_passive_mode", appSettings.passiveMode);
             localStorage.setItem("flashtype_q_timeout", appSettings.questionTimeoutSec);
             localStorage.setItem("flashtype_d_timeout", appSettings.decayTimeoutSec);
+            localStorage.setItem("flashtype_completed_lessons", JSON.stringify(appSettings.completedLessons));
+            localStorage.setItem("flashtype_ai_sentence_count", appSettings.aiSentenceCount || 25);
         }
     } catch (e) {
         console.warn("Could not save settings to localStorage", e);
@@ -134,6 +151,69 @@ function applySettings() {
     }
 }
 
+function renderLessonChecklist() {
+    if (typeof $ === "undefined" || typeof lessonFiles === "undefined") return;
+    var container = $("#settings_lessons_list");
+    if (container.length === 0) return;
+
+    var html = "";
+    var currentGroup = "";
+
+    for (var i = 1; i < lessonFiles.length; i++) { // skip 0 (Test)
+        var l = lessonFiles[i];
+        var isChecked = (appSettings.completedLessons && appSettings.completedLessons.indexOf(l.file) !== -1);
+        html += '<label class="lesson-check-item">' +
+            '<input type="checkbox" class="lesson-chk" data-file="' + l.file + '" ' + (isChecked ? 'checked' : '') + ' onchange="onLessonCheckChange()">' +
+            '<span>' + l.name + '</span>' +
+            '<span class="lesson-check-category">' + l.category + '</span>' +
+            '</label>';
+    }
+    container.html(html);
+}
+
+function onLessonCheckChange() {
+    var checked = [];
+    $(".lesson-chk:checked").each(function() {
+        var f = $(this).attr("data-file");
+        if (f) checked.push(f);
+    });
+    appSettings.completedLessons = checked;
+    saveSettings();
+    updateAiGenStatusText();
+}
+
+function selectAllLessons(select) {
+    $(".lesson-chk").prop("checked", !!select);
+    onLessonCheckChange();
+}
+
+function selectCantoneseLessons() {
+    $(".lesson-chk").each(function() {
+        var cat = $(this).siblings(".lesson-check-category").text();
+        if (cat && cat.toLowerCase().indexOf("cantonese") !== -1) {
+            $(this).prop("checked", true);
+        } else {
+            $(this).prop("checked", false);
+        }
+    });
+    onLessonCheckChange();
+}
+
+function updateAiGenStatusText() {
+    var count = (appSettings.completedLessons || []).length;
+    var countText = count + " lesson" + (count === 1 ? "" : "s") + " selected";
+    $("#ai_selected_count").text(countText);
+    if ($("#ai_sentence_count").length) {
+        $("#ai_sentence_count").val(appSettings.aiSentenceCount || 25);
+    }
+}
+
+function onAiSentenceCountChange() {
+    var val = parseInt($("#ai_sentence_count").val(), 10) || 25;
+    appSettings.aiSentenceCount = val;
+    saveSettings();
+}
+
 function syncSettingsUI() {
     if (typeof $ === "undefined") return;
     if (appSettings.romanization === "yale") {
@@ -152,6 +232,8 @@ function syncSettingsUI() {
     } else {
         $("#passive_time_options").hide();
     }
+
+    renderLessonChecklist();
 }
 
 function onSettingChange() {
@@ -315,19 +397,85 @@ function replaceJyutpingTones(text) {
                .replace(/9/g, "6");
 }
 
-function speakText(text, lang) {
+var activeSessionLanguage = ""; // Track language when sentences are dynamically generated or loaded
+var sessionCharactersMap = {}; // Maps jyutping answer to Cantonese characters if available
+
+function isJyutpingOrYale(text) {
+    if (typeof text !== "string") return false;
+    var trimmed = text.trim();
+    // Check if text has Jyutping tones (1-6) or Yale tone markers
+    if (/[a-z]{1,6}[1-6]/i.test(trimmed)) return true;
+    // Common Cantonese syllable patterns
+    var commonSyllables = /\b(ngo5|nei5|keoi5|hai2|dou6|sik6|je5|m4|hou2|jiu3|soeng2|ge3|laa1|aa3|maa3|zou6|dim2|sin1|heoi3|lai4)\b/i;
+    return commonSyllables.test(trimmed);
+}
+
+function speakText(text, lang, speakSourceText) {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
         return;
     }
     try {
         window.speechSynthesis.cancel();
-        var cleanText = text.replace(/[\(\)]/g, "");
-        cleanText = replaceJyutpingTones(cleanText).trim();
+        var targetText = speakSourceText || text;
+        var cleanText = targetText.replace(/[\(\)]/g, "");
+        if (!speakSourceText) {
+            cleanText = replaceJyutpingTones(cleanText).trim();
+        } else {
+            cleanText = cleanText.trim();
+        }
         if (!cleanText) return;
+
         var utterance = new SpeechSynthesisUtterance(cleanText);
         if (lang) {
             utterance.lang = lang;
         }
+
+        // Voice selection: find matching Cantonese or target language voice
+        var voices = window.speechSynthesis.getVoices();
+        if (voices && voices.length > 0 && lang) {
+            var targetLangLower = lang.toLowerCase();
+            var targetLangPrefix = targetLangLower.split("-")[0];
+            var matchedVoice = null;
+
+            // Prioritize Cantonese voice (zh-HK, Cantonese, or Yue)
+            if (targetLangLower === "zh-hk" || targetLangLower.indexOf("cantonese") !== -1) {
+                for (var v = 0; v < voices.length; v++) {
+                    var vName = (voices[v].name || "").toLowerCase();
+                    var vLang = (voices[v].lang || "").replace(/_/g, "-").toLowerCase();
+                    if (vLang === "zh-hk" || vName.indexOf("cantonese") !== -1 || vName.indexOf("hong kong") !== -1 || vLang.indexOf("yue") !== -1) {
+                        matchedVoice = voices[v];
+                        break;
+                    }
+                }
+            }
+
+            // Exact language match (e.g. es-ES, pl-PL)
+            if (!matchedVoice) {
+                for (var i = 0; i < voices.length; i++) {
+                    var vLangExact = (voices[i].lang || "").replace(/_/g, "-").toLowerCase();
+                    if (vLangExact === targetLangLower) {
+                        matchedVoice = voices[i];
+                        break;
+                    }
+                }
+            }
+
+            // Prefix match (e.g. zh, es, pl)
+            if (!matchedVoice && targetLangPrefix) {
+                for (var k = 0; k < voices.length; k++) {
+                    var vLangPrefix = (voices[k].lang || "").replace(/_/g, "-").toLowerCase();
+                    if (vLangPrefix.indexOf(targetLangPrefix) === 0) {
+                        matchedVoice = voices[k];
+                        break;
+                    }
+                }
+            }
+
+            if (matchedVoice) {
+                utterance.voice = matchedVoice;
+            }
+        }
+
         window.speechSynthesis.speak(utterance);
     } catch (e) {
         console.error("Speech synthesis error:", e);
@@ -335,6 +483,9 @@ function speakText(text, lang) {
 }
 
 function getLessonCategory() {
+    if (activeSessionLanguage) {
+        return activeSessionLanguage.toLowerCase();
+    }
     if (typeof lessonFiles === "undefined") return "";
     var selectEl = document.getElementById("lesson");
     if (!selectEl) return "";
@@ -349,7 +500,7 @@ function getQuestionLanguage(text) {
     if (typeof text === "string") {
         if (/[\u0370-\u03FF]/.test(text)) return "el-GR";
         if (/[\u0590-\u05FF]/.test(text)) return "he-IL";
-        if (/[\u4E00-\u9FFF]/.test(text)) return "zh-CN";
+        if (/[\u4E00-\u9FFF]/.test(text)) return "zh-HK";
     }
     return "en-US";
 }
@@ -358,7 +509,7 @@ function getAnswerLanguage(text) {
     if (typeof text === "string") {
         if (/[\u0370-\u03FF]/.test(text)) return "el-GR";
         if (/[\u0590-\u05FF]/.test(text)) return "he-IL";
-        if (/[\u4E00-\u9FFF]/.test(text)) return "zh-CN";
+        if (/[\u4E00-\u9FFF]/.test(text)) return "zh-HK";
     }
     var cat = getLessonCategory();
     if (cat.indexOf("polish") !== -1) return "pl-PL";
@@ -367,6 +518,12 @@ function getAnswerLanguage(text) {
     if (cat.indexOf("hebrew") !== -1) return "he-IL";
     if (cat.indexOf("mandarin") !== -1) return "zh-CN";
     if (cat.indexOf("cantonese") !== -1) return "zh-HK";
+
+    // If text contains Romanized Cantonese (Jyutping / Yale tone digits)
+    if (isJyutpingOrYale(text)) {
+        return "zh-HK";
+    }
+
     return "en-US";
 }
 
@@ -391,8 +548,21 @@ function readQuestion(e) {
 
 function speakAnswer(answerText) {
     if (!answerText) return;
-    var cleanAns = answerText.replace(/\//g, ", ").trim();
-    speakText(cleanAns, getAnswerLanguage(cleanAns));
+    // Only read aloud one variant if there is more than one
+    var singleAns = answerText.split("/")[0].trim();
+    var lang = getAnswerLanguage(singleAns);
+
+    // If we have standard Cantonese characters mapped for this generated sentence,
+    // feeding the Hanzi directly into the Web Speech API (with lang: zh-HK) produces
+    // natural, native Cantonese speech rather than spelling out romanized letters.
+    var speakSrc = "";
+    var rawKey = clean(singleAns);
+    if (sessionCharactersMap && sessionCharactersMap[rawKey]) {
+        speakSrc = sessionCharactersMap[rawKey];
+        lang = "zh-HK";
+    }
+
+    speakText(singleAns, lang, speakSrc);
 }
 
 function escapeHtmlAttr(str) {
@@ -479,16 +649,16 @@ function checkAnswer()
     if (gotAnswer)
     {
         if (forgiveTones && correctAnswers.length==1)
-            SetFeedback("Correct! It's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>", correctAnswers.join(", "));
+            SetFeedback("Correct! It's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>", correctAnswers[0]);
         else if (correctAnswers.length==1)
-            SetFeedback("<span class=\"correct-fb\">Correct!</span>");
+            SetFeedback("<span class=\"correct-fb\">Correct!</span>", correctAnswers[0]);
         else
-            SetFeedback("<span class=\"correct-fb\">Correct!</span> Other options: "+correctAnswers.join("/"), correctAnswers.join(", "));
+            SetFeedback("<span class=\"correct-fb\">Correct!</span> Other options: "+correctAnswers.join("/"), correctAnswers[0]);
         showNext();
     }
     else
     {
-        SetFeedback("<span class=\"incorrect-fb\">Wrong!</span> Not \"" + answer + "\", it's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>. Try again!", correctAnswers.join(", "));
+        SetFeedback("<span class=\"incorrect-fb\">Wrong!</span> Not \"" + answer + "\", it's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>. Try again!", correctAnswers[0]);
     }
     $("#answer")[0].value = "";
 }
@@ -665,3 +835,149 @@ var QueryString = function () {
   } 
     return query_string;
 } ();
+
+// ==========================================
+// AI Sentence Synthesis Engine (Gemini API)
+// ==========================================
+var isGeneratingSentences = false;
+
+function generateSentencesFromCompletedLessons() {
+    if (isGeneratingSentences) return;
+
+    var selectedFiles = appSettings.completedLessons || [];
+    if (selectedFiles.length === 0) {
+        $("#ai_gen_status").html('<span class="ai-gen-error">Please select at least 1 completed lesson in Settings (⚙).</span>');
+        return;
+    }
+
+    isGeneratingSentences = true;
+    $("#ai_gen_btn").prop("disabled", true).text("Generating...");
+    $("#ai_gen_status").html('<span class="ai-gen-status">Fetching vocabulary from selected lesson(s)...</span>');
+
+    // Fetch and aggregate all vocabulary lines from the selected lesson files
+    var fetchPromises = selectedFiles.map(function(filePath) {
+        return $.ajax({
+            url: filePath,
+            dataType: "text"
+        }).then(function(content) {
+            return content;
+        }, function() {
+            console.warn("Could not load lesson file: " + filePath);
+            return "";
+        });
+    });
+
+    $.when.apply($, fetchPromises).done(function() {
+        var allContents = Array.prototype.slice.call(arguments);
+        // Handle single vs multiple arguments from $.when
+        if (selectedFiles.length === 1) {
+            allContents = [allContents[0]];
+        } else {
+            allContents = allContents.map(function(item) {
+                return Array.isArray(item) ? item[0] : item;
+            });
+        }
+
+        var combinedVocab = [];
+        var vocabSet = {};
+
+        allContents.forEach(function(content) {
+            if (!content || typeof content !== "string") return;
+            var fileLines = content.split(/\r?\n/);
+            fileLines.forEach(function(line) {
+                var trimmed = line.trim();
+                if (trimmed.length > 0 && trimmed.indexOf(":") !== -1 && !vocabSet[trimmed]) {
+                    vocabSet[trimmed] = true;
+                    combinedVocab.push(trimmed);
+                }
+            });
+        });
+
+        if (combinedVocab.length === 0) {
+            isGeneratingSentences = false;
+            $("#ai_gen_btn").prop("disabled", false).text("Generate Sentences ✨");
+            $("#ai_gen_status").html('<span class="ai-gen-error">No vocabulary found in the selected lessons.</span>');
+            return;
+        }
+
+        var requestedCount = appSettings.aiSentenceCount || 25;
+        if ($("#ai_sentence_count").length) {
+            var val = parseInt($("#ai_sentence_count").val(), 10);
+            if (!isNaN(val) && val > 0) requestedCount = val;
+        }
+
+        $("#ai_gen_status").html('<span class="ai-gen-status">Composing ' + requestedCount + ' sentences strictly from ' + combinedVocab.length + ' vocabulary items...</span>');
+
+        // Call our server-side Gemini route
+        $.ajax({
+            url: "/api/generate-sentences",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                vocabList: combinedVocab,
+                count: requestedCount,
+                lessonTitle: "AI Synthesized Practice"
+            }),
+            success: function(data) {
+                isGeneratingSentences = false;
+                $("#ai_gen_btn").prop("disabled", false).text("Generate Sentences ✨");
+
+                if (!data || !data.sentences || data.sentences.length === 0) {
+                    $("#ai_gen_status").html('<span class="ai-gen-error">No sentences generated. Try again or check API configuration.</span>');
+                    return;
+                }
+
+                // Format generated sentences into FlashType line syntax:
+                // "English prompt:primary_jyutping/alternative1/alternative2"
+                var generatedLines = data.sentences.map(function(item) {
+                    var ansList = [item.jyutping.trim()];
+                    if (Array.isArray(item.alternatives)) {
+                        item.alternatives.forEach(function(alt) {
+                            var a = alt.trim();
+                            if (a && ansList.indexOf(a) === -1) {
+                                ansList.push(a);
+                            }
+                        });
+                    }
+                    return item.english.trim() + ":" + ansList.join("/");
+                });
+
+                // Load into FlashType flashcard session
+                sessionCharactersMap = {};
+                data.sentences.forEach(function(item) {
+                    if (item.characters && item.jyutping) {
+                        var cKey = clean(item.jyutping.trim());
+                        sessionCharactersMap[cKey] = item.characters.trim();
+                        // Also map transliterated Yale version
+                        var yKey = clean(transliterate(item.jyutping.trim()));
+                        sessionCharactersMap[yKey] = item.characters.trim();
+                    }
+                });
+
+                activeSessionLanguage = "cantonese";
+                lines = generatedLines;
+                seen = new set(lines.length);
+                presentYtping = (appSettings.romanization === "yale");
+                clearPassiveTimers();
+
+                $("#stage").show();
+                updatePassiveModeUI();
+                showNext();
+                updateList(lines);
+
+                $("#ai_gen_status").html('<span class="ai-gen-status">✨ Loaded ' + generatedLines.length + ' practice sentences!</span>');
+            },
+            error: function(xhr, status, error) {
+                isGeneratingSentences = false;
+                $("#ai_gen_btn").prop("disabled", false).text("Generate Sentences ✨");
+                var errMsg = "Error connecting to sentence generator.";
+                try {
+                    var parsed = JSON.parse(xhr.responseText);
+                    if (parsed && parsed.error) errMsg = parsed.error;
+                } catch (e) {}
+                $("#ai_gen_status").html('<span class="ai-gen-error">Failed: ' + errMsg + '</span>');
+            }
+        });
+    });
+}
+

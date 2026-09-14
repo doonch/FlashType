@@ -17,7 +17,10 @@ $(document).ready(function(){
     $("#submitButton").hide();
     $("#skipButton").hide();
     applySettings();
+    updateAiGenStatusText();
     $("#lesson").change(function(){
+        activeSessionLanguage = "";
+        sessionCharactersMap = {};
         var lessonIdx = $("#lesson")[0].value;
         $("#stage").hide();
         clearPassiveTimers();
@@ -126,12 +129,52 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
+
+            <div class="setting-section">
+                <span class="setting-section-title">Completed Lessons (Active Vocab Pool)</span>
+                <div class="setting-desc" style="margin-left: 0; margin-bottom: 6px;">
+                    Select the lessons you have finished. AI sentence generation will use only vocabulary from these files.
+                </div>
+                <div class="batch-btn-row">
+                    <button type="button" class="btn-secondary-sm" onclick="selectCantoneseLessons()">Cantonese Only</button>
+                    <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(true)">Select All</button>
+                    <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(false)">Clear All</button>
+                </div>
+                <div id="settings_lessons_list" class="lesson-checklist-container">
+                    <!-- Checkboxes rendered dynamically -->
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="modal-btn-primary" onclick="closeSettingsModal()">Done</button>
         </div>
     </div>
 </div>
+
+<div id="ai_generator_box">
+    <div class="ai-gen-header">
+        <span>✨ Synthesize Practice Sentences</span>
+        <span id="ai_selected_count" class="lesson-check-category">1 lesson selected</span>
+    </div>
+    <div style="font-size: 0.84rem; color: #1e293b;">
+        Uses AI to compose natural conversational sentences strictly constrained to your selected completed lessons (e.g. CP.1.txt).
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <button type="button" id="ai_gen_btn" class="ai-gen-btn" onclick="generateSentencesFromCompletedLessons()">Generate Sentences ✨</button>
+        <label for="ai_sentence_count" style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #334155; font-weight: 500;">
+            Count:
+            <select id="ai_sentence_count" onchange="onAiSentenceCountChange()" style="padding: 4px 8px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.85rem; background: #ffffff; color: #1e293b; cursor: pointer;">
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25" selected>25</option>
+                <option value="30">30</option>
+            </select>
+        </label>
+        <span id="ai_gen_status"></span>
+    </div>
+</div>
+<br/>
+
 <select name="lesson" id="lesson">
 </select>
 <br/>

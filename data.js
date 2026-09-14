@@ -10,6 +10,7 @@ var lessonFiles = new Array();
 lessonFiles[0] = new lesson("Test", "lessons/test.txt", "TestCategory", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Food and drink", "lessons/CA.food.txt", "Cantonese.ca", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Introduction", "lessons/CP.1.txt", "Cantonese.ca", false, true);
+lessonFiles[lessonFiles.length] = new lesson("2026", "lessons/CP.2.txt", "Cantonese.ca", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Review List 1: 29-Mar-2013", "lessons/C1.ReviewList1.txt", "Cantonese 1", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Review List 2: 3-May-2013", "lessons/C1.ReviewList2.txt", "Cantonese 1", false, true);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1: 8-Oct-2013", "lessons/C4.L1.Dan.Jyutping.txt", "Cantonese 4", false, true);
