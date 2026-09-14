@@ -1,3 +1,6 @@
+hello:nei5 hou2
+I, me:ngo5
+you:nei5
 request, ask:cing2 man6
 understand:sik1 teng1
 English:jing1 man4
@@ -5,7 +8,8 @@ some, a bit:jat1 di1
 cantonese:gwong2 dung1 waa6
 American:mei5 gwok3 jan4
 is:hai6
-isn't: m4 hai6
+isn't:m4 hai6
+is it?:hai6 m4 hai6
 Chinese:zung1 gwok3
 good morning:zou2 san4
 sir:sin1 saang1
@@ -44,3 +48,13 @@ your place:nei5 dou6
 when:gei2 si4
 now:ji4 gaa1
 later:ci4 di1
+restaurant:zau2 lau4
+what?:mat1 je5
+lunch:ngaan3
+wine:zau2
+beer:be1 zau2
+dinner:maan5 faan6
+don't want:m4 soeng2
+to do:zou6
+Hong Kong dollar:gong2 bai6
+US dollar:mei5 gam1
