@@ -1,11 +1,24 @@
-Artificial intelligence:jan4 gung1 zi3 nang4
-machine learning:gei1 hei3 hok6 zaap6
-linguistics:jyu5 jin4 hok6
-software developer:din6 nou5 jip6 ze2
-search engine:sau2 saak3 jan5 king4/sau2 cam4 jan5 king4
-camera:sip3 jing2 gei1
-papa tiger does not have a dog for a son:fu2 fu6 mou4 hyun2 zi2
-a female dog:gau2 naa2
-a mixed-breed dog:wan6 zung2 gau2
-dog training:hyun2 zek3 fan3 lin6
-soft drink:hei3 seoi2
+at what time:gei2 dim2 zung1
+one o'clock:jat1 dim2 zung1
+two o'clock:loeng2 dim2 zung1
+three o'clock:saam1 dim2 zung1
+four o'clock:sei3 dim2 zung1
+five o'clock:ng5 dim2 zung1
+six o'clock:luk6 dim2 zung1
+seven o'clock:cat1 dim2 zung1
+eight:baat3
+nine o'clock:gau2 dim2 zung1
+or:waak6 ze5 / 	jik1 waak6
+cannot:m4 dak1
+will, would:wui5
+will you?:nei5 wui5 m4 wui5
+as for me:ngo5 aa3
+please:ceng2
+listen:ting2
+section, paragraph:dyun6
+dialog:deoi3 waa6
+in that case:gam5
+repeat:gan1 zyu6
+let's say:laa1
+this evening:gam1 maan5
+dinner:maan5 faan6

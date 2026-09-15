@@ -10,7 +10,10 @@ var lessonFiles = new Array();
 lessonFiles[0] = new lesson("Test", "lessons/test.txt", "TestCategory", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Food and drink", "lessons/CA.food.txt", "Cantonese.ca", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Basics", "lessons/CP.1.txt", "Cantonese.ca", false, true);
-lessonFiles[lessonFiles.length] = new lesson("2026", "lessons/CP.2.txt", "Cantonese.ca", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Time", "lessons/CP.2.txt", "Cantonese.ca", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Money", "lessons/CP.3.txt", "Cantonese.ca", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Life", "lessons/C.Dan.1.txt", "Cantonese.Dan", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Numbers", "lessons/CP.nums.txt", "Cantonese.Dan", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Review List 1: 29-Mar-2013", "lessons/C1.ReviewList1.txt", "Cantonese 1", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Review List 2: 3-May-2013", "lessons/C1.ReviewList2.txt", "Cantonese 1", false, true);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1: 8-Oct-2013", "lessons/C4.L1.Dan.Jyutping.txt", "Cantonese 4", false, true);
@@ -71,7 +74,7 @@ function populateLessons() {
 	var groups = [];
 	var query = window.location.pathname;
 	if (query.search("cantonese")>=0) {
-		groups = ["Cantonese 6", "Cantonese 5", "Cantonese 4", "Cantonese 1", "Cantonese.ca"];
+		groups = ["Cantonese.Dan", "Cantonesse.ca", "Cantonese 6", "Cantonese 5", "Cantonese 4", "Cantonese 1"];
 	}
 	else if (query.search("hebrew")>=0) {
 		groups = [ "Hebrew"];
@@ -86,7 +89,7 @@ function populateLessons() {
 		groups = [ "Polish"];
 	}
 	else {
-		groups = ["Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Cantonese.ca", "Hebrew", "Polish", "Spanish", "Mandarin", "Greek", "Civics"];
+		groups = ["Cantonese.Dan", "Cantonese.ca", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Hebrew", "Polish", "Spanish", "Mandarin", "Greek", "Civics"];
 	}
 	var i;
 	for (i=0; i<groups.length; i++) {

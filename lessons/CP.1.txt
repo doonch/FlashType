@@ -37,7 +37,7 @@ there:go2 dou6
 speak very well:gong2 dak1 hou2 hou2
 know:zi1 dou3
 don't know:m4 zi1 dou3
-want:soeng2 jiu3
+want:soeng2/jiu3
 eat:sik6
 drink:jam2
 something:je5
@@ -53,8 +53,10 @@ what?:mat1 je5
 lunch:ngaan3
 wine:zau2
 beer:be1 zau2
-dinner:maan5 faan6
+buy:maai5
+hotel:zau2 dim3
+who?:bin1 gou3
+with whom?:tung4 bin1 gou3
+two beers:loeng2 pui1 be1 zau2
 don't want:m4 soeng2
 to do:zou6
-Hong Kong dollar:gong2 bai6
-US dollar:mei5 gam1

@@ -1,0 +1,203 @@
+one: jat1
+two: ji6
+three: saam1
+four: sei3
+five: ng5
+six: luk6
+seven: cat1
+eight: baat3
+nine: gau2
+ten: sap6
+eleven: sap6 jat1
+twelve: sap6 ji6
+thirteen: sap6 saam1
+fourteen: sap6 sei3
+fifteen: sap6 ng5
+sixteen: sap6 luk6
+seventeen: sap6 cat1
+eighteen: sap6 baat3
+nineteen: sap6 gau2
+twenty: ji6 sap6
+twenty one: ji6 sap6 jat1
+twenty two: ji6 sap6 ji6
+twenty three: ji6 sap6 saam1
+twenty four: ji6 sap6 sei3
+twenty five: ji6 sap6 ng5
+twenty six: ji6 sap6 luk6
+twenty seven: ji6 sap6 cat1
+twenty eight: ji6 sap6 baat3
+twenty nine: ji6 sap6 gau2
+thirty: saam1 sap6
+thirty one: saam1 sap6 jat1
+thirty two: saam1 sap6 ji6
+thirty three: saam1 sap6 saam1
+thirty four: saam1 sap6 sei3
+thirty five: saam1 sap6 ng5
+thirty six: saam1 sap6 luk6
+thirty seven: saam1 sap6 cat1
+thirty eight: saam1 sap6 baat3
+thirty nine: saam1 sap6 gau2
+forty: sei3 sap6
+forty one: sei3 sap6 jat1
+forty two: sei3 sap6 ji6
+forty three: sei3 sap6 saam1
+forty four: sei3 sap6 sei3
+forty five: sei3 sap6 ng5
+forty six: sei3 sap6 luk6
+forty seven: sei3 sap6 cat1
+forty eight: sei3 sap6 baat3
+forty nine: sei3 sap6 gau2
+fifty: ng5 sap6
+fifty one: ng5 sap6 jat1
+fifty two: ng5 sap6 ji6
+fifty three: ng5 sap6 saam1
+fifty four: ng5 sap6 sei3
+fifty five: ng5 sap6 ng5
+fifty six: ng5 sap6 luk6
+fifty seven: ng5 sap6 cat1
+fifty eight: ng5 sap6 baat3
+fifty nine: ng5 sap6 gau2
+sixty: luk6 sap6
+sixty one: luk6 sap6 jat1
+sixty two: luk6 sap6 ji6
+sixty three: luk6 sap6 saam1
+sixty four: luk6 sap6 sei3
+sixty five: luk6 sap6 ng5
+sixty six: luk6 sap6 luk6
+sixty seven: luk6 sap6 cat1
+sixty eight: luk6 sap6 baat3
+sixty nine: luk6 sap6 gau2
+seventy: cat1 sap6
+seventy one: cat1 sap6 jat1
+seventy two: cat1 sap6 ji6
+seventy three: cat1 sap6 saam1
+seventy four: cat1 sap6 sei3
+seventy five: cat1 sap6 ng5
+seventy six: cat1 sap6 luk6
+seventy seven: cat1 sap6 cat1
+seventy eight: cat1 sap6 baat3
+seventy nine: cat1 sap6 gau2
+eighty: baat3 sap6
+eighty one: baat3 sap6 jat1
+eighty two: baat3 sap6 ji6
+eighty three: baat3 sap6 saam1
+eighty four: baat3 sap6 sei3
+eighty five: baat3 sap6 ng5
+eighty six: baat3 sap6 luk6
+eighty seven: baat3 sap6 cat1
+eighty eight: baat3 sap6 baat3
+eighty nine: baat3 sap6 gau2
+ninety: gau2 sap6
+ninety one: gau2 sap6 jat1
+ninety two: gau2 sap6 ji6
+ninety three: gau2 sap6 saam1
+ninety four: gau2 sap6 sei3
+ninety five: gau2 sap6 ng5
+ninety six: gau2 sap6 luk6
+ninety seven: gau2 sap6 cat1
+ninety eight: gau2 sap6 baat3
+ninety nine: gau2 sap6 gau2
+one hundred: jat1 baak3
+one hundred one: jat1 baak3 ling4 jat1
+one hundred two: jat1 baak3 ling4 ji6
+one hundred three: jat1 baak3 ling4 saam1
+one hundred four: jat1 baak3 ling4 sei3
+one hundred five: jat1 baak3 ling4 ng5
+one hundred six: jat1 baak3 ling4 luk6
+one hundred seven: jat1 baak3 ling4 cat1
+one hundred eight: jat1 baak3 ling4 baat3
+one hundred nine: jat1 baak3 ling4 gau2
+one hundred ten: jat1 baak3 jat1 sap6
+one hundred eleven: jat1 baak3 jat1 sap6 jat1
+one hundred twelve: jat1 baak3 jat1 sap6 ji6
+one hundred thirteen: jat1 baak3 jat1 sap6 saam1
+one hundred fourteen: jat1 baak3 jat1 sap6 sei3
+one hundred fifteen: jat1 baak3 jat1 sap6 ng5
+one hundred sixteen: jat1 baak3 jat1 sap6 luk6
+one hundred seventeen: jat1 baak3 jat1 sap6 cat1
+one hundred eighteen: jat1 baak3 jat1 sap6 baat3
+one hundred nineteen: jat1 baak3 jat1 sap6 gau2
+one hundred twenty: jat1 baak3 ji6 sap6
+one hundred twenty one: jat1 baak3 ji6 sap6 jat1
+one hundred twenty two: jat1 baak3 ji6 sap6 ji6
+one hundred twenty three: jat1 baak3 ji6 sap6 saam1
+one hundred twenty four: jat1 baak3 ji6 sap6 sei3
+one hundred twenty five: jat1 baak3 ji6 sap6 ng5
+one hundred twenty six: jat1 baak3 ji6 sap6 luk6
+one hundred twenty seven: jat1 baak3 ji6 sap6 cat1
+one hundred twenty eight: jat1 baak3 ji6 sap6 baat3
+one hundred twenty nine: jat1 baak3 ji6 sap6 gau2
+one hundred thirty: jat1 baak3 saam1 sap6
+one hundred thirty one: jat1 baak3 saam1 sap6 jat1
+one hundred thirty two: jat1 baak3 saam1 sap6 ji6
+one hundred thirty three: jat1 baak3 saam1 sap6 saam1
+one hundred thirty four: jat1 baak3 saam1 sap6 sei3
+one hundred thirty five: jat1 baak3 saam1 sap6 ng5
+one hundred thirty six: jat1 baak3 saam1 sap6 luk6
+one hundred thirty seven: jat1 baak3 saam1 sap6 cat1
+one hundred thirty eight: jat1 baak3 saam1 sap6 baat3
+one hundred thirty nine: jat1 baak3 saam1 sap6 gau2
+one hundred forty: jat1 baak3 sei3 sap6
+one hundred forty one: jat1 baak3 sei3 sap6 jat1
+one hundred forty two: jat1 baak3 sei3 sap6 ji6
+one hundred forty three: jat1 baak3 sei3 sap6 saam1
+one hundred forty four: jat1 baak3 sei3 sap6 sei3
+one hundred forty five: jat1 baak3 sei3 sap6 ng5
+one hundred forty six: jat1 baak3 sei3 sap6 luk6
+one hundred forty seven: jat1 baak3 sei3 sap6 cat1
+one hundred forty eight: jat1 baak3 sei3 sap6 baat3
+one hundred forty nine: jat1 baak3 sei3 sap6 gau2
+one hundred fifty: jat1 baak3 ng5 sap6
+one hundred fifty one: jat1 baak3 ng5 sap6 jat1
+one hundred fifty two: jat1 baak3 ng5 sap6 ji6
+one hundred fifty three: jat1 baak3 ng5 sap6 saam1
+one hundred fifty four: jat1 baak3 ng5 sap6 sei3
+one hundred fifty five: jat1 baak3 ng5 sap6 ng5
+one hundred fifty six: jat1 baak3 ng5 sap6 luk6
+one hundred fifty seven: jat1 baak3 ng5 sap6 cat1
+one hundred fifty eight: jat1 baak3 ng5 sap6 baat3
+one hundred fifty nine: jat1 baak3 ng5 sap6 gau2
+one hundred sixty: jat1 baak3 luk6 sap6
+one hundred sixty one: jat1 baak3 luk6 sap6 jat1
+one hundred sixty two: jat1 baak3 luk6 sap6 ji6
+one hundred sixty three: jat1 baak3 luk6 sap6 saam1
+one hundred sixty four: jat1 baak3 luk6 sap6 sei3
+one hundred sixty five: jat1 baak3 luk6 sap6 ng5
+one hundred sixty six: jat1 baak3 luk6 sap6 luk6
+one hundred sixty seven: jat1 baak3 luk6 sap6 cat1
+one hundred sixty eight: jat1 baak3 luk6 sap6 baat3
+one hundred sixty nine: jat1 baak3 luk6 sap6 gau2
+one hundred seventy: jat1 baak3 cat1 sap6
+one hundred seventy one: jat1 baak3 cat1 sap6 jat1
+one hundred seventy two: jat1 baak3 cat1 sap6 ji6
+one hundred seventy three: jat1 baak3 cat1 sap6 saam1
+one hundred seventy four: jat1 baak3 cat1 sap6 sei3
+one hundred seventy five: jat1 baak3 cat1 sap6 ng5
+one hundred seventy six: jat1 baak3 cat1 sap6 luk6
+one hundred seventy seven: jat1 baak3 cat1 sap6 cat1
+one hundred seventy eight: jat1 baak3 cat1 sap6 baat3
+one hundred seventy nine: jat1 baak3 cat1 sap6 gau2
+one hundred eighty: jat1 baak3 baat3 sap6
+one hundred eighty one: jat1 baak3 baat3 sap6 jat1
+one hundred eighty two: jat1 baak3 baat3 sap6 ji6
+one hundred eighty three: jat1 baak3 baat3 sap6 saam1
+one hundred eighty four: jat1 baak3 baat3 sap6 sei3
+one hundred eighty five: jat1 baak3 baat3 sap6 ng5
+one hundred eighty six: jat1 baak3 baat3 sap6 luk6
+one hundred eighty seven: jat1 baak3 baat3 sap6 cat1
+one hundred eighty eight: jat1 baak3 baat3 sap6 baat3
+one hundred eighty nine: jat1 baak3 baat3 sap6 gau2
+one hundred ninety: jat1 baak3 gau2 sap6
+one hundred ninety one: jat1 baak3 gau2 sap6 jat1
+one hundred ninety two: jat1 baak3 gau2 sap6 ji6
+one hundred ninety three: jat1 baak3 gau2 sap6 saam1
+one hundred ninety four: jat1 baak3 gau2 sap6 sei3
+one hundred ninety five: jat1 baak3 gau2 sap6 ng5
+one hundred ninety six: jat1 baak3 gau2 sap6 luk6
+one hundred ninety seven: jat1 baak3 gau2 sap6 cat1
+one hundred ninety eight: jat1 baak3 gau2 sap6 baat3
+one hundred ninety nine: jat1 baak3 gau2 sap6 gau2
+two hundred: loeng5 baak3
+one thousand: jat1 cin1
+three thousand: saam1 cin1
+ten thousand: jat1 maan6
