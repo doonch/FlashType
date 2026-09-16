@@ -36,6 +36,7 @@ lessonFiles[lessonFiles.length] = new lesson("LESSON 0: 7-Jul-2014 big list", "l
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1: 8-Jul-2014", "lessons/C6.L1.txt", "Cantonese 6", false, true);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1: 8-Jul-2014 Video 4", "lessons/C6.L1.Video4.txt", "Cantonese 6", false, true);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 2: 15-Jul-2014", "lessons/C6.L2.txt", "Cantonese 6", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 0: Numbers", "lessons/Hebrew.numbers.txt", "Hebrew", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 1: easy song", "lessons/Hebrew.1.txt", "Hebrew", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 2: basic vocabulary", "lessons/Hebrew.2.txt", "Hebrew", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 3: alphabet", "lessons/Hebrew.3.txt", "Hebrew", false, false);

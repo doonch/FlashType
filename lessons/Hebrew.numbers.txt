@@ -1,0 +1,2051 @@
+zero:אפס
+one:אחת
+two:שתיים
+three:שלוש
+four:ארבע
+five:חמש
+six:שש
+seven:שבע
+eight:שמונה
+nine:תשע
+ten:עשר
+eleven:אחת עשרה
+twelve:שתים עשרה
+thirteen:שלוש עשרה
+fourteen:ארבע עשרה
+fifteen:חמש עשרה
+sixteen:שש עשרה
+seventeen:שבע עשרה
+eighteen:שמונה עשרה
+nineteen:תשע עשרה
+twenty:עשרים
+twenty one:עשרים ואחת
+twenty two:עשרים ושתיים
+twenty three:עשרים ושלוש
+twenty four:עשרים וארבע
+twenty five:עשרים וחמש
+twenty six:עשרים ושש
+twenty seven:עשרים ושבע
+twenty eight:עשרים ושמונה
+twenty nine:עשרים ותשע
+thirty:שלושים
+thirty one:שלושים ואחת
+thirty two:שלושים ושתיים
+thirty three:שלושים ושלוש
+thirty four:שלושים וארבע
+thirty five:שלושים וחמש
+thirty six:שלושים ושש
+thirty seven:שלושים ושבע
+thirty eight:שלושים ושמונה
+thirty nine:שלושים ותשע
+forty:ארבעים
+forty one:ארבעים ואחת
+forty two:ארבעים ושתיים
+forty three:ארבעים ושלוש
+forty four:ארבעים וארבע
+forty five:ארבעים וחמש
+forty six:ארבעים ושש
+forty seven:ארבעים ושבע
+forty eight:ארבעים ושמונה
+forty nine:ארבעים ותשע
+fifty:חמישים
+fifty one:חמישים ואחת
+fifty two:חמישים ושתיים
+fifty three:חמישים ושלוש
+fifty four:חמישים וארבע
+fifty five:חמישים וחמש
+fifty six:חמישים ושש
+fifty seven:חמישים ושבע
+fifty eight:חמישים ושמונה
+fifty nine:חמישים ותשע
+sixty:שישים
+sixty one:שישים ואחת
+sixty two:שישים ושתיים
+sixty three:שישים ושלוש
+sixty four:שישים וארבע
+sixty five:שישים וחמש
+sixty six:שישים ושש
+sixty seven:שישים ושבע
+sixty eight:שישים ושמונה
+sixty nine:שישים ותשע
+seventy:שבעים
+seventy one:שבעים ואחת
+seventy two:שבעים ושתיים
+seventy three:שבעים ושלוש
+seventy four:שבעים וארבע
+seventy five:שבעים וחמש
+seventy six:שבעים ושש
+seventy seven:שבעים ושבע
+seventy eight:שבעים ושמונה
+seventy nine:שבעים ותשע
+eighty:שמונים
+eighty one:שמונים ואחת
+eighty two:שמונים ושתיים
+eighty three:שמונים ושלוש
+eighty four:שמונים וארבע
+eighty five:שמונים וחמש
+eighty six:שמונים ושש
+eighty seven:שמונים ושבע
+eighty eight:שמונים ושמונה
+eighty nine:שמונים ותשע
+ninety:תשעים
+ninety one:תשעים ואחת
+ninety two:תשעים ושתיים
+ninety three:תשעים ושלוש
+ninety four:תשעים וארבע
+ninety five:תשעים וחמש
+ninety six:תשעים ושש
+ninety seven:תשעים ושבע
+ninety eight:תשעים ושמונה
+ninety nine:תשעים ותשע
+one hundred:מאה
+one hundred one:מאה ואחת
+one hundred two:מאה ושתיים
+one hundred three:מאה ושלוש
+one hundred four:מאה וארבע
+one hundred five:מאה וחמש
+one hundred six:מאה ושש
+one hundred seven:מאה ושבע
+one hundred eight:מאה ושמונה
+one hundred nine:מאה ותשע
+one hundred ten:מאה ועשר
+one hundred eleven:מאה ואחת עשרה
+one hundred twelve:מאה ושתים עשרה
+one hundred thirteen:מאה ושלוש עשרה
+one hundred fourteen:מאה וארבע עשרה
+one hundred fifteen:מאה וחמש עשרה
+one hundred sixteen:מאה ושש עשרה
+one hundred seventeen:מאה ושבע עשרה
+one hundred eighteen:מאה ושמונה עשרה
+one hundred nineteen:מאה ותשע עשרה
+one hundred twenty:מאה ועשרים
+one hundred twenty one:מאה עשרים ואחת
+one hundred twenty two:מאה עשרים ושתיים
+one hundred twenty three:מאה עשרים ושלוש
+one hundred twenty four:מאה עשרים וארבע
+one hundred twenty five:מאה עשרים וחמש
+one hundred twenty six:מאה עשרים ושש
+one hundred twenty seven:מאה עשרים ושבע
+one hundred twenty eight:מאה עשרים ושמונה
+one hundred twenty nine:מאה עשרים ותשע
+one hundred thirty:מאה ושלושים
+one hundred thirty one:מאה שלושים ואחת
+one hundred thirty two:מאה שלושים ושתיים
+one hundred thirty three:מאה שלושים ושלוש
+one hundred thirty four:מאה שלושים וארבע
+one hundred thirty five:מאה שלושים וחמש
+one hundred thirty six:מאה שלושים ושש
+one hundred thirty seven:מאה שלושים ושבע
+one hundred thirty eight:מאה שלושים ושמונה
+one hundred thirty nine:מאה שלושים ותשע
+one hundred forty:מאה וארבעים
+one hundred forty one:מאה ארבעים ואחת
+one hundred forty two:מאה ארבעים ושתיים
+one hundred forty three:מאה ארבעים ושלוש
+one hundred forty four:מאה ארבעים וארבע
+one hundred forty five:מאה ארבעים וחמש
+one hundred forty six:מאה ארבעים ושש
+one hundred forty seven:מאה ארבעים ושבע
+one hundred forty eight:מאה ארבעים ושמונה
+one hundred forty nine:מאה ארבעים ותשע
+one hundred fifty:מאה וחמישים
+one hundred fifty one:מאה חמישים ואחת
+one hundred fifty two:מאה חמישים ושתיים
+one hundred fifty three:מאה חמישים ושלוש
+one hundred fifty four:מאה חמישים וארבע
+one hundred fifty five:מאה חמישים וחמש
+one hundred fifty six:מאה חמישים ושש
+one hundred fifty seven:מאה חמישים ושבע
+one hundred fifty eight:מאה חמישים ושמונה
+one hundred fifty nine:מאה חמישים ותשע
+one hundred sixty:מאה ושישים
+one hundred sixty one:מאה שישים ואחת
+one hundred sixty two:מאה שישים ושתיים
+one hundred sixty three:מאה שישים ושלוש
+one hundred sixty four:מאה שישים וארבע
+one hundred sixty five:מאה שישים וחמש
+one hundred sixty six:מאה שישים ושש
+one hundred sixty seven:מאה שישים ושבע
+one hundred sixty eight:מאה שישים ושמונה
+one hundred sixty nine:מאה שישים ותשע
+one hundred seventy:מאה ושבעים
+one hundred seventy one:מאה שבעים ואחת
+one hundred seventy two:מאה שבעים ושתיים
+one hundred seventy three:מאה שבעים ושלוש
+one hundred seventy four:מאה שבעים וארבע
+one hundred seventy five:מאה שבעים וחמש
+one hundred seventy six:מאה שבעים ושש
+one hundred seventy seven:מאה שבעים ושבע
+one hundred seventy eight:מאה שבעים ושמונה
+one hundred seventy nine:מאה שבעים ותשע
+one hundred eighty:מאה ושמונים
+one hundred eighty one:מאה שמונים ואחת
+one hundred eighty two:מאה שמונים ושתיים
+one hundred eighty three:מאה שמונים ושלוש
+one hundred eighty four:מאה שמונים וארבע
+one hundred eighty five:מאה שמונים וחמש
+one hundred eighty six:מאה שמונים ושש
+one hundred eighty seven:מאה שמונים ושבע
+one hundred eighty eight:מאה שמונים ושמונה
+one hundred eighty nine:מאה שמונים ותשע
+one hundred ninety:מאה ותשעים
+one hundred ninety one:מאה תשעים ואחת
+one hundred ninety two:מאה תשעים ושתיים
+one hundred ninety three:מאה תשעים ושלוש
+one hundred ninety four:מאה תשעים וארבע
+one hundred ninety five:מאה תשעים וחמש
+one hundred ninety six:מאה תשעים ושש
+one hundred ninety seven:מאה תשעים ושבע
+one hundred ninety eight:מאה תשעים ושמונה
+one hundred ninety nine:מאה תשעים ותשע
+two hundred:מאתיים
+two hundred one:מאתיים ואחת
+two hundred two:מאתיים ושתיים
+two hundred three:מאתיים ושלוש
+two hundred four:מאתיים וארבע
+two hundred five:מאתיים וחמש
+two hundred six:מאתיים ושש
+two hundred seven:מאתיים ושבע
+two hundred eight:מאתיים ושמונה
+two hundred nine:מאתיים ותשע
+two hundred ten:מאתיים ועשר
+two hundred eleven:מאתיים ואחת עשרה
+two hundred twelve:מאתיים ושתים עשרה
+two hundred thirteen:מאתיים ושלוש עשרה
+two hundred fourteen:מאתיים וארבע עשרה
+two hundred fifteen:מאתיים וחמש עשרה
+two hundred sixteen:מאתיים ושש עשרה
+two hundred seventeen:מאתיים ושבע עשרה
+two hundred eighteen:מאתיים ושמונה עשרה
+two hundred nineteen:מאתיים ותשע עשרה
+two hundred twenty:מאתיים ועשרים
+two hundred twenty one:מאתיים עשרים ואחת
+two hundred twenty two:מאתיים עשרים ושתיים
+two hundred twenty three:מאתיים עשרים ושלוש
+two hundred twenty four:מאתיים עשרים וארבע
+two hundred twenty five:מאתיים עשרים וחמש
+two hundred twenty six:מאתיים עשרים ושש
+two hundred twenty seven:מאתיים עשרים ושבע
+two hundred twenty eight:מאתיים עשרים ושמונה
+two hundred twenty nine:מאתיים עשרים ותשע
+two hundred thirty:מאתיים ושלושים
+two hundred thirty one:מאתיים שלושים ואחת
+two hundred thirty two:מאתיים שלושים ושתיים
+two hundred thirty three:מאתיים שלושים ושלוש
+two hundred thirty four:מאתיים שלושים וארבע
+two hundred thirty five:מאתיים שלושים וחמש
+two hundred thirty six:מאתיים שלושים ושש
+two hundred thirty seven:מאתיים שלושים ושבע
+two hundred thirty eight:מאתיים שלושים ושמונה
+two hundred thirty nine:מאתיים שלושים ותשע
+two hundred forty:מאתיים וארבעים
+two hundred forty one:מאתיים ארבעים ואחת
+two hundred forty two:מאתיים ארבעים ושתיים
+two hundred forty three:מאתיים ארבעים ושלוש
+two hundred forty four:מאתיים ארבעים וארבע
+two hundred forty five:מאתיים ארבעים וחמש
+two hundred forty six:מאתיים ארבעים ושש
+two hundred forty seven:מאתיים ארבעים ושבע
+two hundred forty eight:מאתיים ארבעים ושמונה
+two hundred forty nine:מאתיים ארבעים ותשע
+two hundred fifty:מאתיים וחמישים
+two hundred fifty one:מאתיים חמישים ואחת
+two hundred fifty two:מאתיים חמישים ושתיים
+two hundred fifty three:מאתיים חמישים ושלוש
+two hundred fifty four:מאתיים חמישים וארבע
+two hundred fifty five:מאתיים חמישים וחמש
+two hundred fifty six:מאתיים חמישים ושש
+two hundred fifty seven:מאתיים חמישים ושבע
+two hundred fifty eight:מאתיים חמישים ושמונה
+two hundred fifty nine:מאתיים חמישים ותשע
+two hundred sixty:מאתיים ושישים
+two hundred sixty one:מאתיים שישים ואחת
+two hundred sixty two:מאתיים שישים ושתיים
+two hundred sixty three:מאתיים שישים ושלוש
+two hundred sixty four:מאתיים שישים וארבע
+two hundred sixty five:מאתיים שישים וחמש
+two hundred sixty six:מאתיים שישים ושש
+two hundred sixty seven:מאתיים שישים ושבע
+two hundred sixty eight:מאתיים שישים ושמונה
+two hundred sixty nine:מאתיים שישים ותשע
+two hundred seventy:מאתיים ושבעים
+two hundred seventy one:מאתיים שבעים ואחת
+two hundred seventy two:מאתיים שבעים ושתיים
+two hundred seventy three:מאתיים שבעים ושלוש
+two hundred seventy four:מאתיים שבעים וארבע
+two hundred seventy five:מאתיים שבעים וחמש
+two hundred seventy six:מאתיים שבעים ושש
+two hundred seventy seven:מאתיים שבעים ושבע
+two hundred seventy eight:מאתיים שבעים ושמונה
+two hundred seventy nine:מאתיים שבעים ותשע
+two hundred eighty:מאתיים ושמונים
+two hundred eighty one:מאתיים שמונים ואחת
+two hundred eighty two:מאתיים שמונים ושתיים
+two hundred eighty three:מאתיים שמונים ושלוש
+two hundred eighty four:מאתיים שמונים וארבע
+two hundred eighty five:מאתיים שמונים וחמש
+two hundred eighty six:מאתיים שמונים ושש
+two hundred eighty seven:מאתיים שמונים ושבע
+two hundred eighty eight:מאתיים שמונים ושמונה
+two hundred eighty nine:מאתיים שמונים ותשע
+two hundred ninety:מאתיים ותשעים
+two hundred ninety one:מאתיים תשעים ואחת
+two hundred ninety two:מאתיים תשעים ושתיים
+two hundred ninety three:מאתיים תשעים ושלוש
+two hundred ninety four:מאתיים תשעים וארבע
+two hundred ninety five:מאתיים תשעים וחמש
+two hundred ninety six:מאתיים תשעים ושש
+two hundred ninety seven:מאתיים תשעים ושבע
+two hundred ninety eight:מאתיים תשעים ושמונה
+two hundred ninety nine:מאתיים תשעים ותשע
+three hundred:שלוש מאות
+three hundred one:שלוש מאות ואחת
+three hundred two:שלוש מאות ושתיים
+three hundred three:שלוש מאות ושלוש
+three hundred four:שלוש מאות וארבע
+three hundred five:שלוש מאות וחמש
+three hundred six:שלוש מאות ושש
+three hundred seven:שלוש מאות ושבע
+three hundred eight:שלוש מאות ושמונה
+three hundred nine:שלוש מאות ותשע
+three hundred ten:שלוש מאות ועשר
+three hundred eleven:שלוש מאות ואחת עשרה
+three hundred twelve:שלוש מאות ושתים עשרה
+three hundred thirteen:שלוש מאות ושלוש עשרה
+three hundred fourteen:שלוש מאות וארבע עשרה
+three hundred fifteen:שלוש מאות וחמש עשרה
+three hundred sixteen:שלוש מאות ושש עשרה
+three hundred seventeen:שלוש מאות ושבע עשרה
+three hundred eighteen:שלוש מאות ושמונה עשרה
+three hundred nineteen:שלוש מאות ותשע עשרה
+three hundred twenty:שלוש מאות ועשרים
+three hundred twenty one:שלוש מאות עשרים ואחת
+three hundred twenty two:שלוש מאות עשרים ושתיים
+three hundred twenty three:שלוש מאות עשרים ושלוש
+three hundred twenty four:שלוש מאות עשרים וארבע
+three hundred twenty five:שלוש מאות עשרים וחמש
+three hundred twenty six:שלוש מאות עשרים ושש
+three hundred twenty seven:שלוש מאות עשרים ושבע
+three hundred twenty eight:שלוש מאות עשרים ושמונה
+three hundred twenty nine:שלוש מאות עשרים ותשע
+three hundred thirty:שלוש מאות ושלושים
+three hundred thirty one:שלוש מאות שלושים ואחת
+three hundred thirty two:שלוש מאות שלושים ושתיים
+three hundred thirty three:שלוש מאות שלושים ושלוש
+three hundred thirty four:שלוש מאות שלושים וארבע
+three hundred thirty five:שלוש מאות שלושים וחמש
+three hundred thirty six:שלוש מאות שלושים ושש
+three hundred thirty seven:שלוש מאות שלושים ושבע
+three hundred thirty eight:שלוש מאות שלושים ושמונה
+three hundred thirty nine:שלוש מאות שלושים ותשע
+three hundred forty:שלוש מאות וארבעים
+three hundred forty one:שלוש מאות ארבעים ואחת
+three hundred forty two:שלוש מאות ארבעים ושתיים
+three hundred forty three:שלוש מאות ארבעים ושלוש
+three hundred forty four:שלוש מאות ארבעים וארבע
+three hundred forty five:שלוש מאות ארבעים וחמש
+three hundred forty six:שלוש מאות ארבעים ושש
+three hundred forty seven:שלוש מאות ארבעים ושבע
+three hundred forty eight:שלוש מאות ארבעים ושמונה
+three hundred forty nine:שלוש מאות ארבעים ותשע
+three hundred fifty:שלוש מאות וחמישים
+three hundred fifty one:שלוש מאות חמישים ואחת
+three hundred fifty two:שלוש מאות חמישים ושתיים
+three hundred fifty three:שלוש מאות חמישים ושלוש
+three hundred fifty four:שלוש מאות חמישים וארבע
+three hundred fifty five:שלוש מאות חמישים וחמש
+three hundred fifty six:שלוש מאות חמישים ושש
+three hundred fifty seven:שלוש מאות חמישים ושבע
+three hundred fifty eight:שלוש מאות חמישים ושמונה
+three hundred fifty nine:שלוש מאות חמישים ותשע
+three hundred sixty:שלוש מאות ושישים
+three hundred sixty one:שלוש מאות שישים ואחת
+three hundred sixty two:שלוש מאות שישים ושתיים
+three hundred sixty three:שלוש מאות שישים ושלוש
+three hundred sixty four:שלוש מאות שישים וארבע
+three hundred sixty five:שלוש מאות שישים וחמש
+three hundred sixty six:שלוש מאות שישים ושש
+three hundred sixty seven:שלוש מאות שישים ושבע
+three hundred sixty eight:שלוש מאות שישים ושמונה
+three hundred sixty nine:שלוש מאות שישים ותשע
+three hundred seventy:שלוש מאות ושבעים
+three hundred seventy one:שלוש מאות שבעים ואחת
+three hundred seventy two:שלוש מאות שבעים ושתיים
+three hundred seventy three:שלוש מאות שבעים ושלוש
+three hundred seventy four:שלוש מאות שבעים וארבע
+three hundred seventy five:שלוש מאות שבעים וחמש
+three hundred seventy six:שלוש מאות שבעים ושש
+three hundred seventy seven:שלוש מאות שבעים ושבע
+three hundred seventy eight:שלוש מאות שבעים ושמונה
+three hundred seventy nine:שלוש מאות שבעים ותשע
+three hundred eighty:שלוש מאות ושמונים
+three hundred eighty one:שלוש מאות שמונים ואחת
+three hundred eighty two:שלוש מאות שמונים ושתיים
+three hundred eighty three:שלוש מאות שמונים ושלוש
+three hundred eighty four:שלוש מאות שמונים וארבע
+three hundred eighty five:שלוש מאות שמונים וחמש
+three hundred eighty six:שלוש מאות שמונים ושש
+three hundred eighty seven:שלוש מאות שמונים ושבע
+three hundred eighty eight:שלוש מאות שמונים ושמונה
+three hundred eighty nine:שלוש מאות שמונים ותשע
+three hundred ninety:שלוש מאות ותשעים
+three hundred ninety one:שלוש מאות תשעים ואחת
+three hundred ninety two:שלוש מאות תשעים ושתיים
+three hundred ninety three:שלוש מאות תשעים ושלוש
+three hundred ninety four:שלוש מאות תשעים וארבע
+three hundred ninety five:שלוש מאות תשעים וחמש
+three hundred ninety six:שלוש מאות תשעים ושש
+three hundred ninety seven:שלוש מאות תשעים ושבע
+three hundred ninety eight:שלוש מאות תשעים ושמונה
+three hundred ninety nine:שלוש מאות תשעים ותשע
+four hundred:ארבע מאות
+four hundred one:ארבע מאות ואחת
+four hundred two:ארבע מאות ושתיים
+four hundred three:ארבע מאות ושלוש
+four hundred four:ארבע מאות וארבע
+four hundred five:ארבע מאות וחמש
+four hundred six:ארבע מאות ושש
+four hundred seven:ארבע מאות ושבע
+four hundred eight:ארבע מאות ושמונה
+four hundred nine:ארבע מאות ותשע
+four hundred ten:ארבע מאות ועשר
+four hundred eleven:ארבע מאות ואחת עשרה
+four hundred twelve:ארבע מאות ושתים עשרה
+four hundred thirteen:ארבע מאות ושלוש עשרה
+four hundred fourteen:ארבע מאות וארבע עשרה
+four hundred fifteen:ארבע מאות וחמש עשרה
+four hundred sixteen:ארבע מאות ושש עשרה
+four hundred seventeen:ארבע מאות ושבע עשרה
+four hundred eighteen:ארבע מאות ושמונה עשרה
+four hundred nineteen:ארבע מאות ותשע עשרה
+four hundred twenty:ארבע מאות ועשרים
+four hundred twenty one:ארבע מאות עשרים ואחת
+four hundred twenty two:ארבע מאות עשרים ושתיים
+four hundred twenty three:ארבע מאות עשרים ושלוש
+four hundred twenty four:ארבע מאות עשרים וארבע
+four hundred twenty five:ארבע מאות עשרים וחמש
+four hundred twenty six:ארבע מאות עשרים ושש
+four hundred twenty seven:ארבע מאות עשרים ושבע
+four hundred twenty eight:ארבע מאות עשרים ושמונה
+four hundred twenty nine:ארבע מאות עשרים ותשע
+four hundred thirty:ארבע מאות ושלושים
+four hundred thirty one:ארבע מאות שלושים ואחת
+four hundred thirty two:ארבע מאות שלושים ושתיים
+four hundred thirty three:ארבע מאות שלושים ושלוש
+four hundred thirty four:ארבע מאות שלושים וארבע
+four hundred thirty five:ארבע מאות שלושים וחמש
+four hundred thirty six:ארבע מאות שלושים ושש
+four hundred thirty seven:ארבע מאות שלושים ושבע
+four hundred thirty eight:ארבע מאות שלושים ושמונה
+four hundred thirty nine:ארבע מאות שלושים ותשע
+four hundred forty:ארבע מאות וארבעים
+four hundred forty one:ארבע מאות ארבעים ואחת
+four hundred forty two:ארבע מאות ארבעים ושתיים
+four hundred forty three:ארבע מאות ארבעים ושלוש
+four hundred forty four:ארבע מאות ארבעים וארבע
+four hundred forty five:ארבע מאות ארבעים וחמש
+four hundred forty six:ארבע מאות ארבעים ושש
+four hundred forty seven:ארבע מאות ארבעים ושבע
+four hundred forty eight:ארבע מאות ארבעים ושמונה
+four hundred forty nine:ארבע מאות ארבעים ותשע
+four hundred fifty:ארבע מאות וחמישים
+four hundred fifty one:ארבע מאות חמישים ואחת
+four hundred fifty two:ארבע מאות חמישים ושתיים
+four hundred fifty three:ארבע מאות חמישים ושלוש
+four hundred fifty four:ארבע מאות חמישים וארבע
+four hundred fifty five:ארבע מאות חמישים וחמש
+four hundred fifty six:ארבע מאות חמישים ושש
+four hundred fifty seven:ארבע מאות חמישים ושבע
+four hundred fifty eight:ארבע מאות חמישים ושמונה
+four hundred fifty nine:ארבע מאות חמישים ותשע
+four hundred sixty:ארבע מאות ושישים
+four hundred sixty one:ארבע מאות שישים ואחת
+four hundred sixty two:ארבע מאות שישים ושתיים
+four hundred sixty three:ארבע מאות שישים ושלוש
+four hundred sixty four:ארבע מאות שישים וארבע
+four hundred sixty five:ארבע מאות שישים וחמש
+four hundred sixty six:ארבע מאות שישים ושש
+four hundred sixty seven:ארבע מאות שישים ושבע
+four hundred sixty eight:ארבע מאות שישים ושמונה
+four hundred sixty nine:ארבע מאות שישים ותשע
+four hundred seventy:ארבע מאות ושבעים
+four hundred seventy one:ארבע מאות שבעים ואחת
+four hundred seventy two:ארבע מאות שבעים ושתיים
+four hundred seventy three:ארבע מאות שבעים ושלוש
+four hundred seventy four:ארבע מאות שבעים וארבע
+four hundred seventy five:ארבע מאות שבעים וחמש
+four hundred seventy six:ארבע מאות שבעים ושש
+four hundred seventy seven:ארבע מאות שבעים ושבע
+four hundred seventy eight:ארבע מאות שבעים ושמונה
+four hundred seventy nine:ארבע מאות שבעים ותשע
+four hundred eighty:ארבע מאות ושמונים
+four hundred eighty one:ארבע מאות שמונים ואחת
+four hundred eighty two:ארבע מאות שמונים ושתיים
+four hundred eighty three:ארבע מאות שמונים ושלוש
+four hundred eighty four:ארבע מאות שמונים וארבע
+four hundred eighty five:ארבע מאות שמונים וחמש
+four hundred eighty six:ארבע מאות שמונים ושש
+four hundred eighty seven:ארבע מאות שמונים ושבע
+four hundred eighty eight:ארבע מאות שמונים ושמונה
+four hundred eighty nine:ארבע מאות שמונים ותשע
+four hundred ninety:ארבע מאות ותשעים
+four hundred ninety one:ארבע מאות תשעים ואחת
+four hundred ninety two:ארבע מאות תשעים ושתיים
+four hundred ninety three:ארבע מאות תשעים ושלוש
+four hundred ninety four:ארבע מאות תשעים וארבע
+four hundred ninety five:ארבע מאות תשעים וחמש
+four hundred ninety six:ארבע מאות תשעים ושש
+four hundred ninety seven:ארבע מאות תשעים ושבע
+four hundred ninety eight:ארבע מאות תשעים ושמונה
+four hundred ninety nine:ארבע מאות תשעים ותשע
+five hundred:חמש מאות
+five hundred one:חמש מאות ואחת
+five hundred two:חמש מאות ושתיים
+five hundred three:חמש מאות ושלוש
+five hundred four:חמש מאות וארבע
+five hundred five:חמש מאות וחמש
+five hundred six:חמש מאות ושש
+five hundred seven:חמש מאות ושבע
+five hundred eight:חמש מאות ושמונה
+five hundred nine:חמש מאות ותשע
+five hundred ten:חמש מאות ועשר
+five hundred eleven:חמש מאות ואחת עשרה
+five hundred twelve:חמש מאות ושתים עשרה
+five hundred thirteen:חמש מאות ושלוש עשרה
+five hundred fourteen:חמש מאות וארבע עשרה
+five hundred fifteen:חמש מאות וחמש עשרה
+five hundred sixteen:חמש מאות ושש עשרה
+five hundred seventeen:חמש מאות ושבע עשרה
+five hundred eighteen:חמש מאות ושמונה עשרה
+five hundred nineteen:חמש מאות ותשע עשרה
+five hundred twenty:חמש מאות ועשרים
+five hundred twenty one:חמש מאות עשרים ואחת
+five hundred twenty two:חמש מאות עשרים ושתיים
+five hundred twenty three:חמש מאות עשרים ושלוש
+five hundred twenty four:חמש מאות עשרים וארבע
+five hundred twenty five:חמש מאות עשרים וחמש
+five hundred twenty six:חמש מאות עשרים ושש
+five hundred twenty seven:חמש מאות עשרים ושבע
+five hundred twenty eight:חמש מאות עשרים ושמונה
+five hundred twenty nine:חמש מאות עשרים ותשע
+five hundred thirty:חמש מאות ושלושים
+five hundred thirty one:חמש מאות שלושים ואחת
+five hundred thirty two:חמש מאות שלושים ושתיים
+five hundred thirty three:חמש מאות שלושים ושלוש
+five hundred thirty four:חמש מאות שלושים וארבע
+five hundred thirty five:חמש מאות שלושים וחמש
+five hundred thirty six:חמש מאות שלושים ושש
+five hundred thirty seven:חמש מאות שלושים ושבע
+five hundred thirty eight:חמש מאות שלושים ושמונה
+five hundred thirty nine:חמש מאות שלושים ותשע
+five hundred forty:חמש מאות וארבעים
+five hundred forty one:חמש מאות ארבעים ואחת
+five hundred forty two:חמש מאות ארבעים ושתיים
+five hundred forty three:חמש מאות ארבעים ושלוש
+five hundred forty four:חמש מאות ארבעים וארבע
+five hundred forty five:חמש מאות ארבעים וחמש
+five hundred forty six:חמש מאות ארבעים ושש
+five hundred forty seven:חמש מאות ארבעים ושבע
+five hundred forty eight:חמש מאות ארבעים ושמונה
+five hundred forty nine:חמש מאות ארבעים ותשע
+five hundred fifty:חמש מאות וחמישים
+five hundred fifty one:חמש מאות חמישים ואחת
+five hundred fifty two:חמש מאות חמישים ושתיים
+five hundred fifty three:חמש מאות חמישים ושלוש
+five hundred fifty four:חמש מאות חמישים וארבע
+five hundred fifty five:חמש מאות חמישים וחמש
+five hundred fifty six:חמש מאות חמישים ושש
+five hundred fifty seven:חמש מאות חמישים ושבע
+five hundred fifty eight:חמש מאות חמישים ושמונה
+five hundred fifty nine:חמש מאות חמישים ותשע
+five hundred sixty:חמש מאות ושישים
+five hundred sixty one:חמש מאות שישים ואחת
+five hundred sixty two:חמש מאות שישים ושתיים
+five hundred sixty three:חמש מאות שישים ושלוש
+five hundred sixty four:חמש מאות שישים וארבע
+five hundred sixty five:חמש מאות שישים וחמש
+five hundred sixty six:חמש מאות שישים ושש
+five hundred sixty seven:חמש מאות שישים ושבע
+five hundred sixty eight:חמש מאות שישים ושמונה
+five hundred sixty nine:חמש מאות שישים ותשע
+five hundred seventy:חמש מאות ושבעים
+five hundred seventy one:חמש מאות שבעים ואחת
+five hundred seventy two:חמש מאות שבעים ושתיים
+five hundred seventy three:חמש מאות שבעים ושלוש
+five hundred seventy four:חמש מאות שבעים וארבע
+five hundred seventy five:חמש מאות שבעים וחמש
+five hundred seventy six:חמש מאות שבעים ושש
+five hundred seventy seven:חמש מאות שבעים ושבע
+five hundred seventy eight:חמש מאות שבעים ושמונה
+five hundred seventy nine:חמש מאות שבעים ותשע
+five hundred eighty:חמש מאות ושמונים
+five hundred eighty one:חמש מאות שמונים ואחת
+five hundred eighty two:חמש מאות שמונים ושתיים
+five hundred eighty three:חמש מאות שמונים ושלוש
+five hundred eighty four:חמש מאות שמונים וארבע
+five hundred eighty five:חמש מאות שמונים וחמש
+five hundred eighty six:חמש מאות שמונים ושש
+five hundred eighty seven:חמש מאות שמונים ושבע
+five hundred eighty eight:חמש מאות שמונים ושמונה
+five hundred eighty nine:חמש מאות שמונים ותשע
+five hundred ninety:חמש מאות ותשעים
+five hundred ninety one:חמש מאות תשעים ואחת
+five hundred ninety two:חמש מאות תשעים ושתיים
+five hundred ninety three:חמש מאות תשעים ושלוש
+five hundred ninety four:חמש מאות תשעים וארבע
+five hundred ninety five:חמש מאות תשעים וחמש
+five hundred ninety six:חמש מאות תשעים ושש
+five hundred ninety seven:חמש מאות תשעים ושבע
+five hundred ninety eight:חמש מאות תשעים ושמונה
+five hundred ninety nine:חמש מאות תשעים ותשע
+six hundred:שש מאות
+six hundred one:שש מאות ואחת
+six hundred two:שש מאות ושתיים
+six hundred three:שש מאות ושלוש
+six hundred four:שש מאות וארבע
+six hundred five:שש מאות וחמש
+six hundred six:שש מאות ושש
+six hundred seven:שש מאות ושבע
+six hundred eight:שש מאות ושמונה
+six hundred nine:שש מאות ותשע
+six hundred ten:שש מאות ועשר
+six hundred eleven:שש מאות ואחת עשרה
+six hundred twelve:שש מאות ושתים עשרה
+six hundred thirteen:שש מאות ושלוש עשרה
+six hundred fourteen:שש מאות וארבע עשרה
+six hundred fifteen:שש מאות וחמש עשרה
+six hundred sixteen:שש מאות ושש עשרה
+six hundred seventeen:שש מאות ושבע עשרה
+six hundred eighteen:שש מאות ושמונה עשרה
+six hundred nineteen:שש מאות ותשע עשרה
+six hundred twenty:שש מאות ועשרים
+six hundred twenty one:שש מאות עשרים ואחת
+six hundred twenty two:שש מאות עשרים ושתיים
+six hundred twenty three:שש מאות עשרים ושלוש
+six hundred twenty four:שש מאות עשרים וארבע
+six hundred twenty five:שש מאות עשרים וחמש
+six hundred twenty six:שש מאות עשרים ושש
+six hundred twenty seven:שש מאות עשרים ושבע
+six hundred twenty eight:שש מאות עשרים ושמונה
+six hundred twenty nine:שש מאות עשרים ותשע
+six hundred thirty:שש מאות ושלושים
+six hundred thirty one:שש מאות שלושים ואחת
+six hundred thirty two:שש מאות שלושים ושתיים
+six hundred thirty three:שש מאות שלושים ושלוש
+six hundred thirty four:שש מאות שלושים וארבע
+six hundred thirty five:שש מאות שלושים וחמש
+six hundred thirty six:שש מאות שלושים ושש
+six hundred thirty seven:שש מאות שלושים ושבע
+six hundred thirty eight:שש מאות שלושים ושמונה
+six hundred thirty nine:שש מאות שלושים ותשע
+six hundred forty:שש מאות וארבעים
+six hundred forty one:שש מאות ארבעים ואחת
+six hundred forty two:שש מאות ארבעים ושתיים
+six hundred forty three:שש מאות ארבעים ושלוש
+six hundred forty four:שש מאות ארבעים וארבע
+six hundred forty five:שש מאות ארבעים וחמש
+six hundred forty six:שש מאות ארבעים ושש
+six hundred forty seven:שש מאות ארבעים ושבע
+six hundred forty eight:שש מאות ארבעים ושמונה
+six hundred forty nine:שש מאות ארבעים ותשע
+six hundred fifty:שש מאות וחמישים
+six hundred fifty one:שש מאות חמישים ואחת
+six hundred fifty two:שש מאות חמישים ושתיים
+six hundred fifty three:שש מאות חמישים ושלוש
+six hundred fifty four:שש מאות חמישים וארבע
+six hundred fifty five:שש מאות חמישים וחמש
+six hundred fifty six:שש מאות חמישים ושש
+six hundred fifty seven:שש מאות חמישים ושבע
+six hundred fifty eight:שש מאות חמישים ושמונה
+six hundred fifty nine:שש מאות חמישים ותשע
+six hundred sixty:שש מאות ושישים
+six hundred sixty one:שש מאות שישים ואחת
+six hundred sixty two:שש מאות שישים ושתיים
+six hundred sixty three:שש מאות שישים ושלוש
+six hundred sixty four:שש מאות שישים וארבע
+six hundred sixty five:שש מאות שישים וחמש
+six hundred sixty six:שש מאות שישים ושש
+six hundred sixty seven:שש מאות שישים ושבע
+six hundred sixty eight:שש מאות שישים ושמונה
+six hundred sixty nine:שש מאות שישים ותשע
+six hundred seventy:שש מאות ושבעים
+six hundred seventy one:שש מאות שבעים ואחת
+six hundred seventy two:שש מאות שבעים ושתיים
+six hundred seventy three:שש מאות שבעים ושלוש
+six hundred seventy four:שש מאות שבעים וארבע
+six hundred seventy five:שש מאות שבעים וחמש
+six hundred seventy six:שש מאות שבעים ושש
+six hundred seventy seven:שש מאות שבעים ושבע
+six hundred seventy eight:שש מאות שבעים ושמונה
+six hundred seventy nine:שש מאות שבעים ותשע
+six hundred eighty:שש מאות ושמונים
+six hundred eighty one:שש מאות שמונים ואחת
+six hundred eighty two:שש מאות שמונים ושתיים
+six hundred eighty three:שש מאות שמונים ושלוש
+six hundred eighty four:שש מאות שמונים וארבע
+six hundred eighty five:שש מאות שמונים וחמש
+six hundred eighty six:שש מאות שמונים ושש
+six hundred eighty seven:שש מאות שמונים ושבע
+six hundred eighty eight:שש מאות שמונים ושמונה
+six hundred eighty nine:שש מאות שמונים ותשע
+six hundred ninety:שש מאות ותשעים
+six hundred ninety one:שש מאות תשעים ואחת
+six hundred ninety two:שש מאות תשעים ושתיים
+six hundred ninety three:שש מאות תשעים ושלוש
+six hundred ninety four:שש מאות תשעים וארבע
+six hundred ninety five:שש מאות תשעים וחמש
+six hundred ninety six:שש מאות תשעים ושש
+six hundred ninety seven:שש מאות תשעים ושבע
+six hundred ninety eight:שש מאות תשעים ושמונה
+six hundred ninety nine:שש מאות תשעים ותשע
+seven hundred:שבע מאות
+seven hundred one:שבע מאות ואחת
+seven hundred two:שבע מאות ושתיים
+seven hundred three:שבע מאות ושלוש
+seven hundred four:שבע מאות וארבע
+seven hundred five:שבע מאות וחמש
+seven hundred six:שבע מאות ושש
+seven hundred seven:שבע מאות ושבע
+seven hundred eight:שבע מאות ושמונה
+seven hundred nine:שבע מאות ותשע
+seven hundred ten:שבע מאות ועשר
+seven hundred eleven:שבע מאות ואחת עשרה
+seven hundred twelve:שבע מאות ושתים עשרה
+seven hundred thirteen:שבע מאות ושלוש עשרה
+seven hundred fourteen:שבע מאות וארבע עשרה
+seven hundred fifteen:שבע מאות וחמש עשרה
+seven hundred sixteen:שבע מאות ושש עשרה
+seven hundred seventeen:שבע מאות ושבע עשרה
+seven hundred eighteen:שבע מאות ושמונה עשרה
+seven hundred nineteen:שבע מאות ותשע עשרה
+seven hundred twenty:שבע מאות ועשרים
+seven hundred twenty one:שבע מאות עשרים ואחת
+seven hundred twenty two:שבע מאות עשרים ושתיים
+seven hundred twenty three:שבע מאות עשרים ושלוש
+seven hundred twenty four:שבע מאות עשרים וארבע
+seven hundred twenty five:שבע מאות עשרים וחמש
+seven hundred twenty six:שבע מאות עשרים ושש
+seven hundred twenty seven:שבע מאות עשרים ושבע
+seven hundred twenty eight:שבע מאות עשרים ושמונה
+seven hundred twenty nine:שבע מאות עשרים ותשע
+seven hundred thirty:שבע מאות ושלושים
+seven hundred thirty one:שבע מאות שלושים ואחת
+seven hundred thirty two:שבע מאות שלושים ושתיים
+seven hundred thirty three:שבע מאות שלושים ושלוש
+seven hundred thirty four:שבע מאות שלושים וארבע
+seven hundred thirty five:שבע מאות שלושים וחמש
+seven hundred thirty six:שבע מאות שלושים ושש
+seven hundred thirty seven:שבע מאות שלושים ושבע
+seven hundred thirty eight:שבע מאות שלושים ושמונה
+seven hundred thirty nine:שבע מאות שלושים ותשע
+seven hundred forty:שבע מאות וארבעים
+seven hundred forty one:שבע מאות ארבעים ואחת
+seven hundred forty two:שבע מאות ארבעים ושתיים
+seven hundred forty three:שבע מאות ארבעים ושלוש
+seven hundred forty four:שבע מאות ארבעים וארבע
+seven hundred forty five:שבע מאות ארבעים וחמש
+seven hundred forty six:שבע מאות ארבעים ושש
+seven hundred forty seven:שבע מאות ארבעים ושבע
+seven hundred forty eight:שבע מאות ארבעים ושמונה
+seven hundred forty nine:שבע מאות ארבעים ותשע
+seven hundred fifty:שבע מאות וחמישים
+seven hundred fifty one:שבע מאות חמישים ואחת
+seven hundred fifty two:שבע מאות חמישים ושתיים
+seven hundred fifty three:שבע מאות חמישים ושלוש
+seven hundred fifty four:שבע מאות חמישים וארבע
+seven hundred fifty five:שבע מאות חמישים וחמש
+seven hundred fifty six:שבע מאות חמישים ושש
+seven hundred fifty seven:שבע מאות חמישים ושבע
+seven hundred fifty eight:שבע מאות חמישים ושמונה
+seven hundred fifty nine:שבע מאות חמישים ותשע
+seven hundred sixty:שבע מאות ושישים
+seven hundred sixty one:שבע מאות שישים ואחת
+seven hundred sixty two:שבע מאות שישים ושתיים
+seven hundred sixty three:שבע מאות שישים ושלוש
+seven hundred sixty four:שבע מאות שישים וארבע
+seven hundred sixty five:שבע מאות שישים וחמש
+seven hundred sixty six:שבע מאות שישים ושש
+seven hundred sixty seven:שבע מאות שישים ושבע
+seven hundred sixty eight:שבע מאות שישים ושמונה
+seven hundred sixty nine:שבע מאות שישים ותשע
+seven hundred seventy:שבע מאות ושבעים
+seven hundred seventy one:שבע מאות שבעים ואחת
+seven hundred seventy two:שבע מאות שבעים ושתיים
+seven hundred seventy three:שבע מאות שבעים ושלוש
+seven hundred seventy four:שבע מאות שבעים וארבע
+seven hundred seventy five:שבע מאות שבעים וחמש
+seven hundred seventy six:שבע מאות שבעים ושש
+seven hundred seventy seven:שבע מאות שבעים ושבע
+seven hundred seventy eight:שבע מאות שבעים ושמונה
+seven hundred seventy nine:שבע מאות שבעים ותשע
+seven hundred eighty:שבע מאות ושמונים
+seven hundred eighty one:שבע מאות שמונים ואחת
+seven hundred eighty two:שבע מאות שמונים ושתיים
+seven hundred eighty three:שבע מאות שמונים ושלוש
+seven hundred eighty four:שבע מאות שמונים וארבע
+seven hundred eighty five:שבע מאות שמונים וחמש
+seven hundred eighty six:שבע מאות שמונים ושש
+seven hundred eighty seven:שבע מאות שמונים ושבע
+seven hundred eighty eight:שבע מאות שמונים ושמונה
+seven hundred eighty nine:שבע מאות שמונים ותשע
+seven hundred ninety:שבע מאות ותשעים
+seven hundred ninety one:שבע מאות תשעים ואחת
+seven hundred ninety two:שבע מאות תשעים ושתיים
+seven hundred ninety three:שבע מאות תשעים ושלוש
+seven hundred ninety four:שבע מאות תשעים וארבע
+seven hundred ninety five:שבע מאות תשעים וחמש
+seven hundred ninety six:שבע מאות תשעים ושש
+seven hundred ninety seven:שבע מאות תשעים ושבע
+seven hundred ninety eight:שבע מאות תשעים ושמונה
+seven hundred ninety nine:שבע מאות תשעים ותשע
+eight hundred:שמונה מאות
+eight hundred one:שמונה מאות ואחת
+eight hundred two:שמונה מאות ושתיים
+eight hundred three:שמונה מאות ושלוש
+eight hundred four:שמונה מאות וארבע
+eight hundred five:שמונה מאות וחמש
+eight hundred six:שמונה מאות ושש
+eight hundred seven:שמונה מאות ושבע
+eight hundred eight:שמונה מאות ושמונה
+eight hundred nine:שמונה מאות ותשע
+eight hundred ten:שמונה מאות ועשר
+eight hundred eleven:שמונה מאות ואחת עשרה
+eight hundred twelve:שמונה מאות ושתים עשרה
+eight hundred thirteen:שמונה מאות ושלוש עשרה
+eight hundred fourteen:שמונה מאות וארבע עשרה
+eight hundred fifteen:שמונה מאות וחמש עשרה
+eight hundred sixteen:שמונה מאות ושש עשרה
+eight hundred seventeen:שמונה מאות ושבע עשרה
+eight hundred eighteen:שמונה מאות ושמונה עשרה
+eight hundred nineteen:שמונה מאות ותשע עשרה
+eight hundred twenty:שמונה מאות ועשרים
+eight hundred twenty one:שמונה מאות עשרים ואחת
+eight hundred twenty two:שמונה מאות עשרים ושתיים
+eight hundred twenty three:שמונה מאות עשרים ושלוש
+eight hundred twenty four:שמונה מאות עשרים וארבע
+eight hundred twenty five:שמונה מאות עשרים וחמש
+eight hundred twenty six:שמונה מאות עשרים ושש
+eight hundred twenty seven:שמונה מאות עשרים ושבע
+eight hundred twenty eight:שמונה מאות עשרים ושמונה
+eight hundred twenty nine:שמונה מאות עשרים ותשע
+eight hundred thirty:שמונה מאות ושלושים
+eight hundred thirty one:שמונה מאות שלושים ואחת
+eight hundred thirty two:שמונה מאות שלושים ושתיים
+eight hundred thirty three:שמונה מאות שלושים ושלוש
+eight hundred thirty four:שמונה מאות שלושים וארבע
+eight hundred thirty five:שמונה מאות שלושים וחמש
+eight hundred thirty six:שמונה מאות שלושים ושש
+eight hundred thirty seven:שמונה מאות שלושים ושבע
+eight hundred thirty eight:שמונה מאות שלושים ושמונה
+eight hundred thirty nine:שמונה מאות שלושים ותשע
+eight hundred forty:שמונה מאות וארבעים
+eight hundred forty one:שמונה מאות ארבעים ואחת
+eight hundred forty two:שמונה מאות ארבעים ושתיים
+eight hundred forty three:שמונה מאות ארבעים ושלוש
+eight hundred forty four:שמונה מאות ארבעים וארבע
+eight hundred forty five:שמונה מאות ארבעים וחמש
+eight hundred forty six:שמונה מאות ארבעים ושש
+eight hundred forty seven:שמונה מאות ארבעים ושבע
+eight hundred forty eight:שמונה מאות ארבעים ושמונה
+eight hundred forty nine:שמונה מאות ארבעים ותשע
+eight hundred fifty:שמונה מאות וחמישים
+eight hundred fifty one:שמונה מאות חמישים ואחת
+eight hundred fifty two:שמונה מאות חמישים ושתיים
+eight hundred fifty three:שמונה מאות חמישים ושלוש
+eight hundred fifty four:שמונה מאות חמישים וארבע
+eight hundred fifty five:שמונה מאות חמישים וחמש
+eight hundred fifty six:שמונה מאות חמישים ושש
+eight hundred fifty seven:שמונה מאות חמישים ושבע
+eight hundred fifty eight:שמונה מאות חמישים ושמונה
+eight hundred fifty nine:שמונה מאות חמישים ותשע
+eight hundred sixty:שמונה מאות ושישים
+eight hundred sixty one:שמונה מאות שישים ואחת
+eight hundred sixty two:שמונה מאות שישים ושתיים
+eight hundred sixty three:שמונה מאות שישים ושלוש
+eight hundred sixty four:שמונה מאות שישים וארבע
+eight hundred sixty five:שמונה מאות שישים וחמש
+eight hundred sixty six:שמונה מאות שישים ושש
+eight hundred sixty seven:שמונה מאות שישים ושבע
+eight hundred sixty eight:שמונה מאות שישים ושמונה
+eight hundred sixty nine:שמונה מאות שישים ותשע
+eight hundred seventy:שמונה מאות ושבעים
+eight hundred seventy one:שמונה מאות שבעים ואחת
+eight hundred seventy two:שמונה מאות שבעים ושתיים
+eight hundred seventy three:שמונה מאות שבעים ושלוש
+eight hundred seventy four:שמונה מאות שבעים וארבע
+eight hundred seventy five:שמונה מאות שבעים וחמש
+eight hundred seventy six:שמונה מאות שבעים ושש
+eight hundred seventy seven:שמונה מאות שבעים ושבע
+eight hundred seventy eight:שמונה מאות שבעים ושמונה
+eight hundred seventy nine:שמונה מאות שבעים ותשע
+eight hundred eighty:שמונה מאות ושמונים
+eight hundred eighty one:שמונה מאות שמונים ואחת
+eight hundred eighty two:שמונה מאות שמונים ושתיים
+eight hundred eighty three:שמונה מאות שמונים ושלוש
+eight hundred eighty four:שמונה מאות שמונים וארבע
+eight hundred eighty five:שמונה מאות שמונים וחמש
+eight hundred eighty six:שמונה מאות שמונים ושש
+eight hundred eighty seven:שמונה מאות שמונים ושבע
+eight hundred eighty eight:שמונה מאות שמונים ושמונה
+eight hundred eighty nine:שמונה מאות שמונים ותשע
+eight hundred ninety:שמונה מאות ותשעים
+eight hundred ninety one:שמונה מאות תשעים ואחת
+eight hundred ninety two:שמונה מאות תשעים ושתיים
+eight hundred ninety three:שמונה מאות תשעים ושלוש
+eight hundred ninety four:שמונה מאות תשעים וארבע
+eight hundred ninety five:שמונה מאות תשעים וחמש
+eight hundred ninety six:שמונה מאות תשעים ושש
+eight hundred ninety seven:שמונה מאות תשעים ושבע
+eight hundred ninety eight:שמונה מאות תשעים ושמונה
+eight hundred ninety nine:שמונה מאות תשעים ותשע
+nine hundred:תשע מאות
+nine hundred one:תשע מאות ואחת
+nine hundred two:תשע מאות ושתיים
+nine hundred three:תשע מאות ושלוש
+nine hundred four:תשע מאות וארבע
+nine hundred five:תשע מאות וחמש
+nine hundred six:תשע מאות ושש
+nine hundred seven:תשע מאות ושבע
+nine hundred eight:תשע מאות ושמונה
+nine hundred nine:תשע מאות ותשע
+nine hundred ten:תשע מאות ועשר
+nine hundred eleven:תשע מאות ואחת עשרה
+nine hundred twelve:תשע מאות ושתים עשרה
+nine hundred thirteen:תשע מאות ושלוש עשרה
+nine hundred fourteen:תשע מאות וארבע עשרה
+nine hundred fifteen:תשע מאות וחמש עשרה
+nine hundred sixteen:תשע מאות ושש עשרה
+nine hundred seventeen:תשע מאות ושבע עשרה
+nine hundred eighteen:תשע מאות ושמונה עשרה
+nine hundred nineteen:תשע מאות ותשע עשרה
+nine hundred twenty:תשע מאות ועשרים
+nine hundred twenty one:תשע מאות עשרים ואחת
+nine hundred twenty two:תשע מאות עשרים ושתיים
+nine hundred twenty three:תשע מאות עשרים ושלוש
+nine hundred twenty four:תשע מאות עשרים וארבע
+nine hundred twenty five:תשע מאות עשרים וחמש
+nine hundred twenty six:תשע מאות עשרים ושש
+nine hundred twenty seven:תשע מאות עשרים ושבע
+nine hundred twenty eight:תשע מאות עשרים ושמונה
+nine hundred twenty nine:תשע מאות עשרים ותשע
+nine hundred thirty:תשע מאות ושלושים
+nine hundred thirty one:תשע מאות שלושים ואחת
+nine hundred thirty two:תשע מאות שלושים ושתיים
+nine hundred thirty three:תשע מאות שלושים ושלוש
+nine hundred thirty four:תשע מאות שלושים וארבע
+nine hundred thirty five:תשע מאות שלושים וחמש
+nine hundred thirty six:תשע מאות שלושים ושש
+nine hundred thirty seven:תשע מאות שלושים ושבע
+nine hundred thirty eight:תשע מאות שלושים ושמונה
+nine hundred thirty nine:תשע מאות שלושים ותשע
+nine hundred forty:תשע מאות וארבעים
+nine hundred forty one:תשע מאות ארבעים ואחת
+nine hundred forty two:תשע מאות ארבעים ושתיים
+nine hundred forty three:תשע מאות ארבעים ושלוש
+nine hundred forty four:תשע מאות ארבעים וארבע
+nine hundred forty five:תשע מאות ארבעים וחמש
+nine hundred forty six:תשע מאות ארבעים ושש
+nine hundred forty seven:תשע מאות ארבעים ושבע
+nine hundred forty eight:תשע מאות ארבעים ושמונה
+nine hundred forty nine:תשע מאות ארבעים ותשע
+nine hundred fifty:תשע מאות וחמישים
+nine hundred fifty one:תשע מאות חמישים ואחת
+nine hundred fifty two:תשע מאות חמישים ושתיים
+nine hundred fifty three:תשע מאות חמישים ושלוש
+nine hundred fifty four:תשע מאות חמישים וארבע
+nine hundred fifty five:תשע מאות חמישים וחמש
+nine hundred fifty six:תשע מאות חמישים ושש
+nine hundred fifty seven:תשע מאות חמישים ושבע
+nine hundred fifty eight:תשע מאות חמישים ושמונה
+nine hundred fifty nine:תשע מאות חמישים ותשע
+nine hundred sixty:תשע מאות ושישים
+nine hundred sixty one:תשע מאות שישים ואחת
+nine hundred sixty two:תשע מאות שישים ושתיים
+nine hundred sixty three:תשע מאות שישים ושלוש
+nine hundred sixty four:תשע מאות שישים וארבע
+nine hundred sixty five:תשע מאות שישים וחמש
+nine hundred sixty six:תשע מאות שישים ושש
+nine hundred sixty seven:תשע מאות שישים ושבע
+nine hundred sixty eight:תשע מאות שישים ושמונה
+nine hundred sixty nine:תשע מאות שישים ותשע
+nine hundred seventy:תשע מאות ושבעים
+nine hundred seventy one:תשע מאות שבעים ואחת
+nine hundred seventy two:תשע מאות שבעים ושתיים
+nine hundred seventy three:תשע מאות שבעים ושלוש
+nine hundred seventy four:תשע מאות שבעים וארבע
+nine hundred seventy five:תשע מאות שבעים וחמש
+nine hundred seventy six:תשע מאות שבעים ושש
+nine hundred seventy seven:תשע מאות שבעים ושבע
+nine hundred seventy eight:תשע מאות שבעים ושמונה
+nine hundred seventy nine:תשע מאות שבעים ותשע
+nine hundred eighty:תשע מאות ושמונים
+nine hundred eighty one:תשע מאות שמונים ואחת
+nine hundred eighty two:תשע מאות שמונים ושתיים
+nine hundred eighty three:תשע מאות שמונים ושלוש
+nine hundred eighty four:תשע מאות שמונים וארבע
+nine hundred eighty five:תשע מאות שמונים וחמש
+nine hundred eighty six:תשע מאות שמונים ושש
+nine hundred eighty seven:תשע מאות שמונים ושבע
+nine hundred eighty eight:תשע מאות שמונים ושמונה
+nine hundred eighty nine:תשע מאות שמונים ותשע
+nine hundred ninety:תשע מאות ותשעים
+nine hundred ninety one:תשע מאות תשעים ואחת
+nine hundred ninety two:תשע מאות תשעים ושתיים
+nine hundred ninety three:תשע מאות תשעים ושלוש
+nine hundred ninety four:תשע מאות תשעים וארבע
+nine hundred ninety five:תשע מאות תשעים וחמש
+nine hundred ninety six:תשע מאות תשעים ושש
+nine hundred ninety seven:תשע מאות תשעים ושבע
+nine hundred ninety eight:תשע מאות תשעים ושמונה
+nine hundred ninety nine:תשע מאות תשעים ותשע
+one thousand:אלף
+one thousand one:אלף ואחת
+one thousand two:אלף ושתיים
+one thousand three:אלף ושלוש
+one thousand four:אלף וארבע
+one thousand five:אלף וחמש
+one thousand six:אלף ושש
+one thousand seven:אלף ושבע
+one thousand eight:אלף ושמונה
+one thousand nine:אלף ותשע
+one thousand ten:אלף ועשר
+one thousand eleven:אלף ואחת עשרה
+one thousand twelve:אלף ושתים עשרה
+one thousand thirteen:אלף ושלוש עשרה
+one thousand fourteen:אלף וארבע עשרה
+one thousand fifteen:אלף וחמש עשרה
+one thousand sixteen:אלף ושש עשרה
+one thousand seventeen:אלף ושבע עשרה
+one thousand eighteen:אלף ושמונה עשרה
+one thousand nineteen:אלף ותשע עשרה
+one thousand twenty:אלף ועשרים
+one thousand twenty one:אלף עשרים ואחת
+one thousand twenty two:אלף עשרים ושתיים
+one thousand twenty three:אלף עשרים ושלוש
+one thousand twenty four:אלף עשרים וארבע
+one thousand twenty five:אלף עשרים וחמש
+one thousand twenty six:אלף עשרים ושש
+one thousand twenty seven:אלף עשרים ושבע
+one thousand twenty eight:אלף עשרים ושמונה
+one thousand twenty nine:אלף עשרים ותשע
+one thousand thirty:אלף ושלושים
+one thousand thirty one:אלף שלושים ואחת
+one thousand thirty two:אלף שלושים ושתיים
+one thousand thirty three:אלף שלושים ושלוש
+one thousand thirty four:אלף שלושים וארבע
+one thousand thirty five:אלף שלושים וחמש
+one thousand thirty six:אלף שלושים ושש
+one thousand thirty seven:אלף שלושים ושבע
+one thousand thirty eight:אלף שלושים ושמונה
+one thousand thirty nine:אלף שלושים ותשע
+one thousand forty:אלף וארבעים
+one thousand forty one:אלף ארבעים ואחת
+one thousand forty two:אלף ארבעים ושתיים
+one thousand forty three:אלף ארבעים ושלוש
+one thousand forty four:אלף ארבעים וארבע
+one thousand forty five:אלף ארבעים וחמש
+one thousand forty six:אלף ארבעים ושש
+one thousand forty seven:אלף ארבעים ושבע
+one thousand forty eight:אלף ארבעים ושמונה
+one thousand forty nine:אלף ארבעים ותשע
+one thousand fifty:אלף וחמישים
+one thousand fifty one:אלף חמישים ואחת
+one thousand fifty two:אלף חמישים ושתיים
+one thousand fifty three:אלף חמישים ושלוש
+one thousand fifty four:אלף חמישים וארבע
+one thousand fifty five:אלף חמישים וחמש
+one thousand fifty six:אלף חמישים ושש
+one thousand fifty seven:אלף חמישים ושבע
+one thousand fifty eight:אלף חמישים ושמונה
+one thousand fifty nine:אלף חמישים ותשע
+one thousand sixty:אלף ושישים
+one thousand sixty one:אלף שישים ואחת
+one thousand sixty two:אלף שישים ושתיים
+one thousand sixty three:אלף שישים ושלוש
+one thousand sixty four:אלף שישים וארבע
+one thousand sixty five:אלף שישים וחמש
+one thousand sixty six:אלף שישים ושש
+one thousand sixty seven:אלף שישים ושבע
+one thousand sixty eight:אלף שישים ושמונה
+one thousand sixty nine:אלף שישים ותשע
+one thousand seventy:אלף ושבעים
+one thousand seventy one:אלף שבעים ואחת
+one thousand seventy two:אלף שבעים ושתיים
+one thousand seventy three:אלף שבעים ושלוש
+one thousand seventy four:אלף שבעים וארבע
+one thousand seventy five:אלף שבעים וחמש
+one thousand seventy six:אלף שבעים ושש
+one thousand seventy seven:אלף שבעים ושבע
+one thousand seventy eight:אלף שבעים ושמונה
+one thousand seventy nine:אלף שבעים ותשע
+one thousand eighty:אלף ושמונים
+one thousand eighty one:אלף שמונים ואחת
+one thousand eighty two:אלף שמונים ושתיים
+one thousand eighty three:אלף שמונים ושלוש
+one thousand eighty four:אלף שמונים וארבע
+one thousand eighty five:אלף שמונים וחמש
+one thousand eighty six:אלף שמונים ושש
+one thousand eighty seven:אלף שמונים ושבע
+one thousand eighty eight:אלף שמונים ושמונה
+one thousand eighty nine:אלף שמונים ותשע
+one thousand ninety:אלף ותשעים
+one thousand ninety one:אלף תשעים ואחת
+one thousand ninety two:אלף תשעים ושתיים
+one thousand ninety three:אלף תשעים ושלוש
+one thousand ninety four:אלף תשעים וארבע
+one thousand ninety five:אלף תשעים וחמש
+one thousand ninety six:אלף תשעים ושש
+one thousand ninety seven:אלף תשעים ושבע
+one thousand ninety eight:אלף תשעים ושמונה
+one thousand ninety nine:אלף תשעים ותשע
+one thousand one hundred:אלף מאה
+one thousand one hundred one:אלף מאה ואחת
+one thousand one hundred two:אלף מאה ושתיים
+one thousand one hundred three:אלף מאה ושלוש
+one thousand one hundred four:אלף מאה וארבע
+one thousand one hundred five:אלף מאה וחמש
+one thousand one hundred six:אלף מאה ושש
+one thousand one hundred seven:אלף מאה ושבע
+one thousand one hundred eight:אלף מאה ושמונה
+one thousand one hundred nine:אלף מאה ותשע
+one thousand one hundred ten:אלף מאה ועשר
+one thousand one hundred eleven:אלף מאה ואחת עשרה
+one thousand one hundred twelve:אלף מאה ושתים עשרה
+one thousand one hundred thirteen:אלף מאה ושלוש עשרה
+one thousand one hundred fourteen:אלף מאה וארבע עשרה
+one thousand one hundred fifteen:אלף מאה וחמש עשרה
+one thousand one hundred sixteen:אלף מאה ושש עשרה
+one thousand one hundred seventeen:אלף מאה ושבע עשרה
+one thousand one hundred eighteen:אלף מאה ושמונה עשרה
+one thousand one hundred nineteen:אלף מאה ותשע עשרה
+one thousand one hundred twenty:אלף מאה ועשרים
+one thousand one hundred twenty one:אלף מאה עשרים ואחת
+one thousand one hundred twenty two:אלף מאה עשרים ושתיים
+one thousand one hundred twenty three:אלף מאה עשרים ושלוש
+one thousand one hundred twenty four:אלף מאה עשרים וארבע
+one thousand one hundred twenty five:אלף מאה עשרים וחמש
+one thousand one hundred twenty six:אלף מאה עשרים ושש
+one thousand one hundred twenty seven:אלף מאה עשרים ושבע
+one thousand one hundred twenty eight:אלף מאה עשרים ושמונה
+one thousand one hundred twenty nine:אלף מאה עשרים ותשע
+one thousand one hundred thirty:אלף מאה ושלושים
+one thousand one hundred thirty one:אלף מאה שלושים ואחת
+one thousand one hundred thirty two:אלף מאה שלושים ושתיים
+one thousand one hundred thirty three:אלף מאה שלושים ושלוש
+one thousand one hundred thirty four:אלף מאה שלושים וארבע
+one thousand one hundred thirty five:אלף מאה שלושים וחמש
+one thousand one hundred thirty six:אלף מאה שלושים ושש
+one thousand one hundred thirty seven:אלף מאה שלושים ושבע
+one thousand one hundred thirty eight:אלף מאה שלושים ושמונה
+one thousand one hundred thirty nine:אלף מאה שלושים ותשע
+one thousand one hundred forty:אלף מאה וארבעים
+one thousand one hundred forty one:אלף מאה ארבעים ואחת
+one thousand one hundred forty two:אלף מאה ארבעים ושתיים
+one thousand one hundred forty three:אלף מאה ארבעים ושלוש
+one thousand one hundred forty four:אלף מאה ארבעים וארבע
+one thousand one hundred forty five:אלף מאה ארבעים וחמש
+one thousand one hundred forty six:אלף מאה ארבעים ושש
+one thousand one hundred forty seven:אלף מאה ארבעים ושבע
+one thousand one hundred forty eight:אלף מאה ארבעים ושמונה
+one thousand one hundred forty nine:אלף מאה ארבעים ותשע
+one thousand one hundred fifty:אלף מאה וחמישים
+one thousand one hundred fifty one:אלף מאה חמישים ואחת
+one thousand one hundred fifty two:אלף מאה חמישים ושתיים
+one thousand one hundred fifty three:אלף מאה חמישים ושלוש
+one thousand one hundred fifty four:אלף מאה חמישים וארבע
+one thousand one hundred fifty five:אלף מאה חמישים וחמש
+one thousand one hundred fifty six:אלף מאה חמישים ושש
+one thousand one hundred fifty seven:אלף מאה חמישים ושבע
+one thousand one hundred fifty eight:אלף מאה חמישים ושמונה
+one thousand one hundred fifty nine:אלף מאה חמישים ותשע
+one thousand one hundred sixty:אלף מאה ושישים
+one thousand one hundred sixty one:אלף מאה שישים ואחת
+one thousand one hundred sixty two:אלף מאה שישים ושתיים
+one thousand one hundred sixty three:אלף מאה שישים ושלוש
+one thousand one hundred sixty four:אלף מאה שישים וארבע
+one thousand one hundred sixty five:אלף מאה שישים וחמש
+one thousand one hundred sixty six:אלף מאה שישים ושש
+one thousand one hundred sixty seven:אלף מאה שישים ושבע
+one thousand one hundred sixty eight:אלף מאה שישים ושמונה
+one thousand one hundred sixty nine:אלף מאה שישים ותשע
+one thousand one hundred seventy:אלף מאה ושבעים
+one thousand one hundred seventy one:אלף מאה שבעים ואחת
+one thousand one hundred seventy two:אלף מאה שבעים ושתיים
+one thousand one hundred seventy three:אלף מאה שבעים ושלוש
+one thousand one hundred seventy four:אלף מאה שבעים וארבע
+one thousand one hundred seventy five:אלף מאה שבעים וחמש
+one thousand one hundred seventy six:אלף מאה שבעים ושש
+one thousand one hundred seventy seven:אלף מאה שבעים ושבע
+one thousand one hundred seventy eight:אלף מאה שבעים ושמונה
+one thousand one hundred seventy nine:אלף מאה שבעים ותשע
+one thousand one hundred eighty:אלף מאה ושמונים
+one thousand one hundred eighty one:אלף מאה שמונים ואחת
+one thousand one hundred eighty two:אלף מאה שמונים ושתיים
+one thousand one hundred eighty three:אלף מאה שמונים ושלוש
+one thousand one hundred eighty four:אלף מאה שמונים וארבע
+one thousand one hundred eighty five:אלף מאה שמונים וחמש
+one thousand one hundred eighty six:אלף מאה שמונים ושש
+one thousand one hundred eighty seven:אלף מאה שמונים ושבע
+one thousand one hundred eighty eight:אלף מאה שמונים ושמונה
+one thousand one hundred eighty nine:אלף מאה שמונים ותשע
+one thousand one hundred ninety:אלף מאה ותשעים
+one thousand one hundred ninety one:אלף מאה תשעים ואחת
+one thousand one hundred ninety two:אלף מאה תשעים ושתיים
+one thousand one hundred ninety three:אלף מאה תשעים ושלוש
+one thousand one hundred ninety four:אלף מאה תשעים וארבע
+one thousand one hundred ninety five:אלף מאה תשעים וחמש
+one thousand one hundred ninety six:אלף מאה תשעים ושש
+one thousand one hundred ninety seven:אלף מאה תשעים ושבע
+one thousand one hundred ninety eight:אלף מאה תשעים ושמונה
+one thousand one hundred ninety nine:אלף מאה תשעים ותשע
+one thousand two hundred:אלף מאתיים
+one thousand two hundred one:אלף מאתיים ואחת
+one thousand two hundred two:אלף מאתיים ושתיים
+one thousand two hundred three:אלף מאתיים ושלוש
+one thousand two hundred four:אלף מאתיים וארבע
+one thousand two hundred five:אלף מאתיים וחמש
+one thousand two hundred six:אלף מאתיים ושש
+one thousand two hundred seven:אלף מאתיים ושבע
+one thousand two hundred eight:אלף מאתיים ושמונה
+one thousand two hundred nine:אלף מאתיים ותשע
+one thousand two hundred ten:אלף מאתיים ועשר
+one thousand two hundred eleven:אלף מאתיים ואחת עשרה
+one thousand two hundred twelve:אלף מאתיים ושתים עשרה
+one thousand two hundred thirteen:אלף מאתיים ושלוש עשרה
+one thousand two hundred fourteen:אלף מאתיים וארבע עשרה
+one thousand two hundred fifteen:אלף מאתיים וחמש עשרה
+one thousand two hundred sixteen:אלף מאתיים ושש עשרה
+one thousand two hundred seventeen:אלף מאתיים ושבע עשרה
+one thousand two hundred eighteen:אלף מאתיים ושמונה עשרה
+one thousand two hundred nineteen:אלף מאתיים ותשע עשרה
+one thousand two hundred twenty:אלף מאתיים ועשרים
+one thousand two hundred twenty one:אלף מאתיים עשרים ואחת
+one thousand two hundred twenty two:אלף מאתיים עשרים ושתיים
+one thousand two hundred twenty three:אלף מאתיים עשרים ושלוש
+one thousand two hundred twenty four:אלף מאתיים עשרים וארבע
+one thousand two hundred twenty five:אלף מאתיים עשרים וחמש
+one thousand two hundred twenty six:אלף מאתיים עשרים ושש
+one thousand two hundred twenty seven:אלף מאתיים עשרים ושבע
+one thousand two hundred twenty eight:אלף מאתיים עשרים ושמונה
+one thousand two hundred twenty nine:אלף מאתיים עשרים ותשע
+one thousand two hundred thirty:אלף מאתיים ושלושים
+one thousand two hundred thirty one:אלף מאתיים שלושים ואחת
+one thousand two hundred thirty two:אלף מאתיים שלושים ושתיים
+one thousand two hundred thirty three:אלף מאתיים שלושים ושלוש
+one thousand two hundred thirty four:אלף מאתיים שלושים וארבע
+one thousand two hundred thirty five:אלף מאתיים שלושים וחמש
+one thousand two hundred thirty six:אלף מאתיים שלושים ושש
+one thousand two hundred thirty seven:אלף מאתיים שלושים ושבע
+one thousand two hundred thirty eight:אלף מאתיים שלושים ושמונה
+one thousand two hundred thirty nine:אלף מאתיים שלושים ותשע
+one thousand two hundred forty:אלף מאתיים וארבעים
+one thousand two hundred forty one:אלף מאתיים ארבעים ואחת
+one thousand two hundred forty two:אלף מאתיים ארבעים ושתיים
+one thousand two hundred forty three:אלף מאתיים ארבעים ושלוש
+one thousand two hundred forty four:אלף מאתיים ארבעים וארבע
+one thousand two hundred forty five:אלף מאתיים ארבעים וחמש
+one thousand two hundred forty six:אלף מאתיים ארבעים ושש
+one thousand two hundred forty seven:אלף מאתיים ארבעים ושבע
+one thousand two hundred forty eight:אלף מאתיים ארבעים ושמונה
+one thousand two hundred forty nine:אלף מאתיים ארבעים ותשע
+one thousand two hundred fifty:אלף מאתיים וחמישים
+one thousand two hundred fifty one:אלף מאתיים חמישים ואחת
+one thousand two hundred fifty two:אלף מאתיים חמישים ושתיים
+one thousand two hundred fifty three:אלף מאתיים חמישים ושלוש
+one thousand two hundred fifty four:אלף מאתיים חמישים וארבע
+one thousand two hundred fifty five:אלף מאתיים חמישים וחמש
+one thousand two hundred fifty six:אלף מאתיים חמישים ושש
+one thousand two hundred fifty seven:אלף מאתיים חמישים ושבע
+one thousand two hundred fifty eight:אלף מאתיים חמישים ושמונה
+one thousand two hundred fifty nine:אלף מאתיים חמישים ותשע
+one thousand two hundred sixty:אלף מאתיים ושישים
+one thousand two hundred sixty one:אלף מאתיים שישים ואחת
+one thousand two hundred sixty two:אלף מאתיים שישים ושתיים
+one thousand two hundred sixty three:אלף מאתיים שישים ושלוש
+one thousand two hundred sixty four:אלף מאתיים שישים וארבע
+one thousand two hundred sixty five:אלף מאתיים שישים וחמש
+one thousand two hundred sixty six:אלף מאתיים שישים ושש
+one thousand two hundred sixty seven:אלף מאתיים שישים ושבע
+one thousand two hundred sixty eight:אלף מאתיים שישים ושמונה
+one thousand two hundred sixty nine:אלף מאתיים שישים ותשע
+one thousand two hundred seventy:אלף מאתיים ושבעים
+one thousand two hundred seventy one:אלף מאתיים שבעים ואחת
+one thousand two hundred seventy two:אלף מאתיים שבעים ושתיים
+one thousand two hundred seventy three:אלף מאתיים שבעים ושלוש
+one thousand two hundred seventy four:אלף מאתיים שבעים וארבע
+one thousand two hundred seventy five:אלף מאתיים שבעים וחמש
+one thousand two hundred seventy six:אלף מאתיים שבעים ושש
+one thousand two hundred seventy seven:אלף מאתיים שבעים ושבע
+one thousand two hundred seventy eight:אלף מאתיים שבעים ושמונה
+one thousand two hundred seventy nine:אלף מאתיים שבעים ותשע
+one thousand two hundred eighty:אלף מאתיים ושמונים
+one thousand two hundred eighty one:אלף מאתיים שמונים ואחת
+one thousand two hundred eighty two:אלף מאתיים שמונים ושתיים
+one thousand two hundred eighty three:אלף מאתיים שמונים ושלוש
+one thousand two hundred eighty four:אלף מאתיים שמונים וארבע
+one thousand two hundred eighty five:אלף מאתיים שמונים וחמש
+one thousand two hundred eighty six:אלף מאתיים שמונים ושש
+one thousand two hundred eighty seven:אלף מאתיים שמונים ושבע
+one thousand two hundred eighty eight:אלף מאתיים שמונים ושמונה
+one thousand two hundred eighty nine:אלף מאתיים שמונים ותשע
+one thousand two hundred ninety:אלף מאתיים ותשעים
+one thousand two hundred ninety one:אלף מאתיים תשעים ואחת
+one thousand two hundred ninety two:אלף מאתיים תשעים ושתיים
+one thousand two hundred ninety three:אלף מאתיים תשעים ושלוש
+one thousand two hundred ninety four:אלף מאתיים תשעים וארבע
+one thousand two hundred ninety five:אלף מאתיים תשעים וחמש
+one thousand two hundred ninety six:אלף מאתיים תשעים ושש
+one thousand two hundred ninety seven:אלף מאתיים תשעים ושבע
+one thousand two hundred ninety eight:אלף מאתיים תשעים ושמונה
+one thousand two hundred ninety nine:אלף מאתיים תשעים ותשע
+one thousand three hundred:אלף שלוש מאות
+one thousand three hundred one:אלף שלוש מאות ואחת
+one thousand three hundred two:אלף שלוש מאות ושתיים
+one thousand three hundred three:אלף שלוש מאות ושלוש
+one thousand three hundred four:אלף שלוש מאות וארבע
+one thousand three hundred five:אלף שלוש מאות וחמש
+one thousand three hundred six:אלף שלוש מאות ושש
+one thousand three hundred seven:אלף שלוש מאות ושבע
+one thousand three hundred eight:אלף שלוש מאות ושמונה
+one thousand three hundred nine:אלף שלוש מאות ותשע
+one thousand three hundred ten:אלף שלוש מאות ועשר
+one thousand three hundred eleven:אלף שלוש מאות ואחת עשרה
+one thousand three hundred twelve:אלף שלוש מאות ושתים עשרה
+one thousand three hundred thirteen:אלף שלוש מאות ושלוש עשרה
+one thousand three hundred fourteen:אלף שלוש מאות וארבע עשרה
+one thousand three hundred fifteen:אלף שלוש מאות וחמש עשרה
+one thousand three hundred sixteen:אלף שלוש מאות ושש עשרה
+one thousand three hundred seventeen:אלף שלוש מאות ושבע עשרה
+one thousand three hundred eighteen:אלף שלוש מאות ושמונה עשרה
+one thousand three hundred nineteen:אלף שלוש מאות ותשע עשרה
+one thousand three hundred twenty:אלף שלוש מאות ועשרים
+one thousand three hundred twenty one:אלף שלוש מאות עשרים ואחת
+one thousand three hundred twenty two:אלף שלוש מאות עשרים ושתיים
+one thousand three hundred twenty three:אלף שלוש מאות עשרים ושלוש
+one thousand three hundred twenty four:אלף שלוש מאות עשרים וארבע
+one thousand three hundred twenty five:אלף שלוש מאות עשרים וחמש
+one thousand three hundred twenty six:אלף שלוש מאות עשרים ושש
+one thousand three hundred twenty seven:אלף שלוש מאות עשרים ושבע
+one thousand three hundred twenty eight:אלף שלוש מאות עשרים ושמונה
+one thousand three hundred twenty nine:אלף שלוש מאות עשרים ותשע
+one thousand three hundred thirty:אלף שלוש מאות ושלושים
+one thousand three hundred thirty one:אלף שלוש מאות שלושים ואחת
+one thousand three hundred thirty two:אלף שלוש מאות שלושים ושתיים
+one thousand three hundred thirty three:אלף שלוש מאות שלושים ושלוש
+one thousand three hundred thirty four:אלף שלוש מאות שלושים וארבע
+one thousand three hundred thirty five:אלף שלוש מאות שלושים וחמש
+one thousand three hundred thirty six:אלף שלוש מאות שלושים ושש
+one thousand three hundred thirty seven:אלף שלוש מאות שלושים ושבע
+one thousand three hundred thirty eight:אלף שלוש מאות שלושים ושמונה
+one thousand three hundred thirty nine:אלף שלוש מאות שלושים ותשע
+one thousand three hundred forty:אלף שלוש מאות וארבעים
+one thousand three hundred forty one:אלף שלוש מאות ארבעים ואחת
+one thousand three hundred forty two:אלף שלוש מאות ארבעים ושתיים
+one thousand three hundred forty three:אלף שלוש מאות ארבעים ושלוש
+one thousand three hundred forty four:אלף שלוש מאות ארבעים וארבע
+one thousand three hundred forty five:אלף שלוש מאות ארבעים וחמש
+one thousand three hundred forty six:אלף שלוש מאות ארבעים ושש
+one thousand three hundred forty seven:אלף שלוש מאות ארבעים ושבע
+one thousand three hundred forty eight:אלף שלוש מאות ארבעים ושמונה
+one thousand three hundred forty nine:אלף שלוש מאות ארבעים ותשע
+one thousand three hundred fifty:אלף שלוש מאות וחמישים
+one thousand three hundred fifty one:אלף שלוש מאות חמישים ואחת
+one thousand three hundred fifty two:אלף שלוש מאות חמישים ושתיים
+one thousand three hundred fifty three:אלף שלוש מאות חמישים ושלוש
+one thousand three hundred fifty four:אלף שלוש מאות חמישים וארבע
+one thousand three hundred fifty five:אלף שלוש מאות חמישים וחמש
+one thousand three hundred fifty six:אלף שלוש מאות חמישים ושש
+one thousand three hundred fifty seven:אלף שלוש מאות חמישים ושבע
+one thousand three hundred fifty eight:אלף שלוש מאות חמישים ושמונה
+one thousand three hundred fifty nine:אלף שלוש מאות חמישים ותשע
+one thousand three hundred sixty:אלף שלוש מאות ושישים
+one thousand three hundred sixty one:אלף שלוש מאות שישים ואחת
+one thousand three hundred sixty two:אלף שלוש מאות שישים ושתיים
+one thousand three hundred sixty three:אלף שלוש מאות שישים ושלוש
+one thousand three hundred sixty four:אלף שלוש מאות שישים וארבע
+one thousand three hundred sixty five:אלף שלוש מאות שישים וחמש
+one thousand three hundred sixty six:אלף שלוש מאות שישים ושש
+one thousand three hundred sixty seven:אלף שלוש מאות שישים ושבע
+one thousand three hundred sixty eight:אלף שלוש מאות שישים ושמונה
+one thousand three hundred sixty nine:אלף שלוש מאות שישים ותשע
+one thousand three hundred seventy:אלף שלוש מאות ושבעים
+one thousand three hundred seventy one:אלף שלוש מאות שבעים ואחת
+one thousand three hundred seventy two:אלף שלוש מאות שבעים ושתיים
+one thousand three hundred seventy three:אלף שלוש מאות שבעים ושלוש
+one thousand three hundred seventy four:אלף שלוש מאות שבעים וארבע
+one thousand three hundred seventy five:אלף שלוש מאות שבעים וחמש
+one thousand three hundred seventy six:אלף שלוש מאות שבעים ושש
+one thousand three hundred seventy seven:אלף שלוש מאות שבעים ושבע
+one thousand three hundred seventy eight:אלף שלוש מאות שבעים ושמונה
+one thousand three hundred seventy nine:אלף שלוש מאות שבעים ותשע
+one thousand three hundred eighty:אלף שלוש מאות ושמונים
+one thousand three hundred eighty one:אלף שלוש מאות שמונים ואחת
+one thousand three hundred eighty two:אלף שלוש מאות שמונים ושתיים
+one thousand three hundred eighty three:אלף שלוש מאות שמונים ושלוש
+one thousand three hundred eighty four:אלף שלוש מאות שמונים וארבע
+one thousand three hundred eighty five:אלף שלוש מאות שמונים וחמש
+one thousand three hundred eighty six:אלף שלוש מאות שמונים ושש
+one thousand three hundred eighty seven:אלף שלוש מאות שמונים ושבע
+one thousand three hundred eighty eight:אלף שלוש מאות שמונים ושמונה
+one thousand three hundred eighty nine:אלף שלוש מאות שמונים ותשע
+one thousand three hundred ninety:אלף שלוש מאות ותשעים
+one thousand three hundred ninety one:אלף שלוש מאות תשעים ואחת
+one thousand three hundred ninety two:אלף שלוש מאות תשעים ושתיים
+one thousand three hundred ninety three:אלף שלוש מאות תשעים ושלוש
+one thousand three hundred ninety four:אלף שלוש מאות תשעים וארבע
+one thousand three hundred ninety five:אלף שלוש מאות תשעים וחמש
+one thousand three hundred ninety six:אלף שלוש מאות תשעים ושש
+one thousand three hundred ninety seven:אלף שלוש מאות תשעים ושבע
+one thousand three hundred ninety eight:אלף שלוש מאות תשעים ושמונה
+one thousand three hundred ninety nine:אלף שלוש מאות תשעים ותשע
+one thousand four hundred:אלף ארבע מאות
+one thousand four hundred one:אלף ארבע מאות ואחת
+one thousand four hundred two:אלף ארבע מאות ושתיים
+one thousand four hundred three:אלף ארבע מאות ושלוש
+one thousand four hundred four:אלף ארבע מאות וארבע
+one thousand four hundred five:אלף ארבע מאות וחמש
+one thousand four hundred six:אלף ארבע מאות ושש
+one thousand four hundred seven:אלף ארבע מאות ושבע
+one thousand four hundred eight:אלף ארבע מאות ושמונה
+one thousand four hundred nine:אלף ארבע מאות ותשע
+one thousand four hundred ten:אלף ארבע מאות ועשר
+one thousand four hundred eleven:אלף ארבע מאות ואחת עשרה
+one thousand four hundred twelve:אלף ארבע מאות ושתים עשרה
+one thousand four hundred thirteen:אלף ארבע מאות ושלוש עשרה
+one thousand four hundred fourteen:אלף ארבע מאות וארבע עשרה
+one thousand four hundred fifteen:אלף ארבע מאות וחמש עשרה
+one thousand four hundred sixteen:אלף ארבע מאות ושש עשרה
+one thousand four hundred seventeen:אלף ארבע מאות ושבע עשרה
+one thousand four hundred eighteen:אלף ארבע מאות ושמונה עשרה
+one thousand four hundred nineteen:אלף ארבע מאות ותשע עשרה
+one thousand four hundred twenty:אלף ארבע מאות ועשרים
+one thousand four hundred twenty one:אלף ארבע מאות עשרים ואחת
+one thousand four hundred twenty two:אלף ארבע מאות עשרים ושתיים
+one thousand four hundred twenty three:אלף ארבע מאות עשרים ושלוש
+one thousand four hundred twenty four:אלף ארבע מאות עשרים וארבע
+one thousand four hundred twenty five:אלף ארבע מאות עשרים וחמש
+one thousand four hundred twenty six:אלף ארבע מאות עשרים ושש
+one thousand four hundred twenty seven:אלף ארבע מאות עשרים ושבע
+one thousand four hundred twenty eight:אלף ארבע מאות עשרים ושמונה
+one thousand four hundred twenty nine:אלף ארבע מאות עשרים ותשע
+one thousand four hundred thirty:אלף ארבע מאות ושלושים
+one thousand four hundred thirty one:אלף ארבע מאות שלושים ואחת
+one thousand four hundred thirty two:אלף ארבע מאות שלושים ושתיים
+one thousand four hundred thirty three:אלף ארבע מאות שלושים ושלוש
+one thousand four hundred thirty four:אלף ארבע מאות שלושים וארבע
+one thousand four hundred thirty five:אלף ארבע מאות שלושים וחמש
+one thousand four hundred thirty six:אלף ארבע מאות שלושים ושש
+one thousand four hundred thirty seven:אלף ארבע מאות שלושים ושבע
+one thousand four hundred thirty eight:אלף ארבע מאות שלושים ושמונה
+one thousand four hundred thirty nine:אלף ארבע מאות שלושים ותשע
+one thousand four hundred forty:אלף ארבע מאות וארבעים
+one thousand four hundred forty one:אלף ארבע מאות ארבעים ואחת
+one thousand four hundred forty two:אלף ארבע מאות ארבעים ושתיים
+one thousand four hundred forty three:אלף ארבע מאות ארבעים ושלוש
+one thousand four hundred forty four:אלף ארבע מאות ארבעים וארבע
+one thousand four hundred forty five:אלף ארבע מאות ארבעים וחמש
+one thousand four hundred forty six:אלף ארבע מאות ארבעים ושש
+one thousand four hundred forty seven:אלף ארבע מאות ארבעים ושבע
+one thousand four hundred forty eight:אלף ארבע מאות ארבעים ושמונה
+one thousand four hundred forty nine:אלף ארבע מאות ארבעים ותשע
+one thousand four hundred fifty:אלף ארבע מאות וחמישים
+one thousand four hundred fifty one:אלף ארבע מאות חמישים ואחת
+one thousand four hundred fifty two:אלף ארבע מאות חמישים ושתיים
+one thousand four hundred fifty three:אלף ארבע מאות חמישים ושלוש
+one thousand four hundred fifty four:אלף ארבע מאות חמישים וארבע
+one thousand four hundred fifty five:אלף ארבע מאות חמישים וחמש
+one thousand four hundred fifty six:אלף ארבע מאות חמישים ושש
+one thousand four hundred fifty seven:אלף ארבע מאות חמישים ושבע
+one thousand four hundred fifty eight:אלף ארבע מאות חמישים ושמונה
+one thousand four hundred fifty nine:אלף ארבע מאות חמישים ותשע
+one thousand four hundred sixty:אלף ארבע מאות ושישים
+one thousand four hundred sixty one:אלף ארבע מאות שישים ואחת
+one thousand four hundred sixty two:אלף ארבע מאות שישים ושתיים
+one thousand four hundred sixty three:אלף ארבע מאות שישים ושלוש
+one thousand four hundred sixty four:אלף ארבע מאות שישים וארבע
+one thousand four hundred sixty five:אלף ארבע מאות שישים וחמש
+one thousand four hundred sixty six:אלף ארבע מאות שישים ושש
+one thousand four hundred sixty seven:אלף ארבע מאות שישים ושבע
+one thousand four hundred sixty eight:אלף ארבע מאות שישים ושמונה
+one thousand four hundred sixty nine:אלף ארבע מאות שישים ותשע
+one thousand four hundred seventy:אלף ארבע מאות ושבעים
+one thousand four hundred seventy one:אלף ארבע מאות שבעים ואחת
+one thousand four hundred seventy two:אלף ארבע מאות שבעים ושתיים
+one thousand four hundred seventy three:אלף ארבע מאות שבעים ושלוש
+one thousand four hundred seventy four:אלף ארבע מאות שבעים וארבע
+one thousand four hundred seventy five:אלף ארבע מאות שבעים וחמש
+one thousand four hundred seventy six:אלף ארבע מאות שבעים ושש
+one thousand four hundred seventy seven:אלף ארבע מאות שבעים ושבע
+one thousand four hundred seventy eight:אלף ארבע מאות שבעים ושמונה
+one thousand four hundred seventy nine:אלף ארבע מאות שבעים ותשע
+one thousand four hundred eighty:אלף ארבע מאות ושמונים
+one thousand four hundred eighty one:אלף ארבע מאות שמונים ואחת
+one thousand four hundred eighty two:אלף ארבע מאות שמונים ושתיים
+one thousand four hundred eighty three:אלף ארבע מאות שמונים ושלוש
+one thousand four hundred eighty four:אלף ארבע מאות שמונים וארבע
+one thousand four hundred eighty five:אלף ארבע מאות שמונים וחמש
+one thousand four hundred eighty six:אלף ארבע מאות שמונים ושש
+one thousand four hundred eighty seven:אלף ארבע מאות שמונים ושבע
+one thousand four hundred eighty eight:אלף ארבע מאות שמונים ושמונה
+one thousand four hundred eighty nine:אלף ארבע מאות שמונים ותשע
+one thousand four hundred ninety:אלף ארבע מאות ותשעים
+one thousand four hundred ninety one:אלף ארבע מאות תשעים ואחת
+one thousand four hundred ninety two:אלף ארבע מאות תשעים ושתיים
+one thousand four hundred ninety three:אלף ארבע מאות תשעים ושלוש
+one thousand four hundred ninety four:אלף ארבע מאות תשעים וארבע
+one thousand four hundred ninety five:אלף ארבע מאות תשעים וחמש
+one thousand four hundred ninety six:אלף ארבע מאות תשעים ושש
+one thousand four hundred ninety seven:אלף ארבע מאות תשעים ושבע
+one thousand four hundred ninety eight:אלף ארבע מאות תשעים ושמונה
+one thousand four hundred ninety nine:אלף ארבע מאות תשעים ותשע
+one thousand five hundred:אלף חמש מאות
+one thousand five hundred one:אלף חמש מאות ואחת
+one thousand five hundred two:אלף חמש מאות ושתיים
+one thousand five hundred three:אלף חמש מאות ושלוש
+one thousand five hundred four:אלף חמש מאות וארבע
+one thousand five hundred five:אלף חמש מאות וחמש
+one thousand five hundred six:אלף חמש מאות ושש
+one thousand five hundred seven:אלף חמש מאות ושבע
+one thousand five hundred eight:אלף חמש מאות ושמונה
+one thousand five hundred nine:אלף חמש מאות ותשע
+one thousand five hundred ten:אלף חמש מאות ועשר
+one thousand five hundred eleven:אלף חמש מאות ואחת עשרה
+one thousand five hundred twelve:אלף חמש מאות ושתים עשרה
+one thousand five hundred thirteen:אלף חמש מאות ושלוש עשרה
+one thousand five hundred fourteen:אלף חמש מאות וארבע עשרה
+one thousand five hundred fifteen:אלף חמש מאות וחמש עשרה
+one thousand five hundred sixteen:אלף חמש מאות ושש עשרה
+one thousand five hundred seventeen:אלף חמש מאות ושבע עשרה
+one thousand five hundred eighteen:אלף חמש מאות ושמונה עשרה
+one thousand five hundred nineteen:אלף חמש מאות ותשע עשרה
+one thousand five hundred twenty:אלף חמש מאות ועשרים
+one thousand five hundred twenty one:אלף חמש מאות עשרים ואחת
+one thousand five hundred twenty two:אלף חמש מאות עשרים ושתיים
+one thousand five hundred twenty three:אלף חמש מאות עשרים ושלוש
+one thousand five hundred twenty four:אלף חמש מאות עשרים וארבע
+one thousand five hundred twenty five:אלף חמש מאות עשרים וחמש
+one thousand five hundred twenty six:אלף חמש מאות עשרים ושש
+one thousand five hundred twenty seven:אלף חמש מאות עשרים ושבע
+one thousand five hundred twenty eight:אלף חמש מאות עשרים ושמונה
+one thousand five hundred twenty nine:אלף חמש מאות עשרים ותשע
+one thousand five hundred thirty:אלף חמש מאות ושלושים
+one thousand five hundred thirty one:אלף חמש מאות שלושים ואחת
+one thousand five hundred thirty two:אלף חמש מאות שלושים ושתיים
+one thousand five hundred thirty three:אלף חמש מאות שלושים ושלוש
+one thousand five hundred thirty four:אלף חמש מאות שלושים וארבע
+one thousand five hundred thirty five:אלף חמש מאות שלושים וחמש
+one thousand five hundred thirty six:אלף חמש מאות שלושים ושש
+one thousand five hundred thirty seven:אלף חמש מאות שלושים ושבע
+one thousand five hundred thirty eight:אלף חמש מאות שלושים ושמונה
+one thousand five hundred thirty nine:אלף חמש מאות שלושים ותשע
+one thousand five hundred forty:אלף חמש מאות וארבעים
+one thousand five hundred forty one:אלף חמש מאות ארבעים ואחת
+one thousand five hundred forty two:אלף חמש מאות ארבעים ושתיים
+one thousand five hundred forty three:אלף חמש מאות ארבעים ושלוש
+one thousand five hundred forty four:אלף חמש מאות ארבעים וארבע
+one thousand five hundred forty five:אלף חמש מאות ארבעים וחמש
+one thousand five hundred forty six:אלף חמש מאות ארבעים ושש
+one thousand five hundred forty seven:אלף חמש מאות ארבעים ושבע
+one thousand five hundred forty eight:אלף חמש מאות ארבעים ושמונה
+one thousand five hundred forty nine:אלף חמש מאות ארבעים ותשע
+one thousand five hundred fifty:אלף חמש מאות וחמישים
+one thousand five hundred fifty one:אלף חמש מאות חמישים ואחת
+one thousand five hundred fifty two:אלף חמש מאות חמישים ושתיים
+one thousand five hundred fifty three:אלף חמש מאות חמישים ושלוש
+one thousand five hundred fifty four:אלף חמש מאות חמישים וארבע
+one thousand five hundred fifty five:אלף חמש מאות חמישים וחמש
+one thousand five hundred fifty six:אלף חמש מאות חמישים ושש
+one thousand five hundred fifty seven:אלף חמש מאות חמישים ושבע
+one thousand five hundred fifty eight:אלף חמש מאות חמישים ושמונה
+one thousand five hundred fifty nine:אלף חמש מאות חמישים ותשע
+one thousand five hundred sixty:אלף חמש מאות ושישים
+one thousand five hundred sixty one:אלף חמש מאות שישים ואחת
+one thousand five hundred sixty two:אלף חמש מאות שישים ושתיים
+one thousand five hundred sixty three:אלף חמש מאות שישים ושלוש
+one thousand five hundred sixty four:אלף חמש מאות שישים וארבע
+one thousand five hundred sixty five:אלף חמש מאות שישים וחמש
+one thousand five hundred sixty six:אלף חמש מאות שישים ושש
+one thousand five hundred sixty seven:אלף חמש מאות שישים ושבע
+one thousand five hundred sixty eight:אלף חמש מאות שישים ושמונה
+one thousand five hundred sixty nine:אלף חמש מאות שישים ותשע
+one thousand five hundred seventy:אלף חמש מאות ושבעים
+one thousand five hundred seventy one:אלף חמש מאות שבעים ואחת
+one thousand five hundred seventy two:אלף חמש מאות שבעים ושתיים
+one thousand five hundred seventy three:אלף חמש מאות שבעים ושלוש
+one thousand five hundred seventy four:אלף חמש מאות שבעים וארבע
+one thousand five hundred seventy five:אלף חמש מאות שבעים וחמש
+one thousand five hundred seventy six:אלף חמש מאות שבעים ושש
+one thousand five hundred seventy seven:אלף חמש מאות שבעים ושבע
+one thousand five hundred seventy eight:אלף חמש מאות שבעים ושמונה
+one thousand five hundred seventy nine:אלף חמש מאות שבעים ותשע
+one thousand five hundred eighty:אלף חמש מאות ושמונים
+one thousand five hundred eighty one:אלף חמש מאות שמונים ואחת
+one thousand five hundred eighty two:אלף חמש מאות שמונים ושתיים
+one thousand five hundred eighty three:אלף חמש מאות שמונים ושלוש
+one thousand five hundred eighty four:אלף חמש מאות שמונים וארבע
+one thousand five hundred eighty five:אלף חמש מאות שמונים וחמש
+one thousand five hundred eighty six:אלף חמש מאות שמונים ושש
+one thousand five hundred eighty seven:אלף חמש מאות שמונים ושבע
+one thousand five hundred eighty eight:אלף חמש מאות שמונים ושמונה
+one thousand five hundred eighty nine:אלף חמש מאות שמונים ותשע
+one thousand five hundred ninety:אלף חמש מאות ותשעים
+one thousand five hundred ninety one:אלף חמש מאות תשעים ואחת
+one thousand five hundred ninety two:אלף חמש מאות תשעים ושתיים
+one thousand five hundred ninety three:אלף חמש מאות תשעים ושלוש
+one thousand five hundred ninety four:אלף חמש מאות תשעים וארבע
+one thousand five hundred ninety five:אלף חמש מאות תשעים וחמש
+one thousand five hundred ninety six:אלף חמש מאות תשעים ושש
+one thousand five hundred ninety seven:אלף חמש מאות תשעים ושבע
+one thousand five hundred ninety eight:אלף חמש מאות תשעים ושמונה
+one thousand five hundred ninety nine:אלף חמש מאות תשעים ותשע
+one thousand six hundred:אלף שש מאות
+one thousand six hundred one:אלף שש מאות ואחת
+one thousand six hundred two:אלף שש מאות ושתיים
+one thousand six hundred three:אלף שש מאות ושלוש
+one thousand six hundred four:אלף שש מאות וארבע
+one thousand six hundred five:אלף שש מאות וחמש
+one thousand six hundred six:אלף שש מאות ושש
+one thousand six hundred seven:אלף שש מאות ושבע
+one thousand six hundred eight:אלף שש מאות ושמונה
+one thousand six hundred nine:אלף שש מאות ותשע
+one thousand six hundred ten:אלף שש מאות ועשר
+one thousand six hundred eleven:אלף שש מאות ואחת עשרה
+one thousand six hundred twelve:אלף שש מאות ושתים עשרה
+one thousand six hundred thirteen:אלף שש מאות ושלוש עשרה
+one thousand six hundred fourteen:אלף שש מאות וארבע עשרה
+one thousand six hundred fifteen:אלף שש מאות וחמש עשרה
+one thousand six hundred sixteen:אלף שש מאות ושש עשרה
+one thousand six hundred seventeen:אלף שש מאות ושבע עשרה
+one thousand six hundred eighteen:אלף שש מאות ושמונה עשרה
+one thousand six hundred nineteen:אלף שש מאות ותשע עשרה
+one thousand six hundred twenty:אלף שש מאות ועשרים
+one thousand six hundred twenty one:אלף שש מאות עשרים ואחת
+one thousand six hundred twenty two:אלף שש מאות עשרים ושתיים
+one thousand six hundred twenty three:אלף שש מאות עשרים ושלוש
+one thousand six hundred twenty four:אלף שש מאות עשרים וארבע
+one thousand six hundred twenty five:אלף שש מאות עשרים וחמש
+one thousand six hundred twenty six:אלף שש מאות עשרים ושש
+one thousand six hundred twenty seven:אלף שש מאות עשרים ושבע
+one thousand six hundred twenty eight:אלף שש מאות עשרים ושמונה
+one thousand six hundred twenty nine:אלף שש מאות עשרים ותשע
+one thousand six hundred thirty:אלף שש מאות ושלושים
+one thousand six hundred thirty one:אלף שש מאות שלושים ואחת
+one thousand six hundred thirty two:אלף שש מאות שלושים ושתיים
+one thousand six hundred thirty three:אלף שש מאות שלושים ושלוש
+one thousand six hundred thirty four:אלף שש מאות שלושים וארבע
+one thousand six hundred thirty five:אלף שש מאות שלושים וחמש
+one thousand six hundred thirty six:אלף שש מאות שלושים ושש
+one thousand six hundred thirty seven:אלף שש מאות שלושים ושבע
+one thousand six hundred thirty eight:אלף שש מאות שלושים ושמונה
+one thousand six hundred thirty nine:אלף שש מאות שלושים ותשע
+one thousand six hundred forty:אלף שש מאות וארבעים
+one thousand six hundred forty one:אלף שש מאות ארבעים ואחת
+one thousand six hundred forty two:אלף שש מאות ארבעים ושתיים
+one thousand six hundred forty three:אלף שש מאות ארבעים ושלוש
+one thousand six hundred forty four:אלף שש מאות ארבעים וארבע
+one thousand six hundred forty five:אלף שש מאות ארבעים וחמש
+one thousand six hundred forty six:אלף שש מאות ארבעים ושש
+one thousand six hundred forty seven:אלף שש מאות ארבעים ושבע
+one thousand six hundred forty eight:אלף שש מאות ארבעים ושמונה
+one thousand six hundred forty nine:אלף שש מאות ארבעים ותשע
+one thousand six hundred fifty:אלף שש מאות וחמישים
+one thousand six hundred fifty one:אלף שש מאות חמישים ואחת
+one thousand six hundred fifty two:אלף שש מאות חמישים ושתיים
+one thousand six hundred fifty three:אלף שש מאות חמישים ושלוש
+one thousand six hundred fifty four:אלף שש מאות חמישים וארבע
+one thousand six hundred fifty five:אלף שש מאות חמישים וחמש
+one thousand six hundred fifty six:אלף שש מאות חמישים ושש
+one thousand six hundred fifty seven:אלף שש מאות חמישים ושבע
+one thousand six hundred fifty eight:אלף שש מאות חמישים ושמונה
+one thousand six hundred fifty nine:אלף שש מאות חמישים ותשע
+one thousand six hundred sixty:אלף שש מאות ושישים
+one thousand six hundred sixty one:אלף שש מאות שישים ואחת
+one thousand six hundred sixty two:אלף שש מאות שישים ושתיים
+one thousand six hundred sixty three:אלף שש מאות שישים ושלוש
+one thousand six hundred sixty four:אלף שש מאות שישים וארבע
+one thousand six hundred sixty five:אלף שש מאות שישים וחמש
+one thousand six hundred sixty six:אלף שש מאות שישים ושש
+one thousand six hundred sixty seven:אלף שש מאות שישים ושבע
+one thousand six hundred sixty eight:אלף שש מאות שישים ושמונה
+one thousand six hundred sixty nine:אלף שש מאות שישים ותשע
+one thousand six hundred seventy:אלף שש מאות ושבעים
+one thousand six hundred seventy one:אלף שש מאות שבעים ואחת
+one thousand six hundred seventy two:אלף שש מאות שבעים ושתיים
+one thousand six hundred seventy three:אלף שש מאות שבעים ושלוש
+one thousand six hundred seventy four:אלף שש מאות שבעים וארבע
+one thousand six hundred seventy five:אלף שש מאות שבעים וחמש
+one thousand six hundred seventy six:אלף שש מאות שבעים ושש
+one thousand six hundred seventy seven:אלף שש מאות שבעים ושבע
+one thousand six hundred seventy eight:אלף שש מאות שבעים ושמונה
+one thousand six hundred seventy nine:אלף שש מאות שבעים ותשע
+one thousand six hundred eighty:אלף שש מאות ושמונים
+one thousand six hundred eighty one:אלף שש מאות שמונים ואחת
+one thousand six hundred eighty two:אלף שש מאות שמונים ושתיים
+one thousand six hundred eighty three:אלף שש מאות שמונים ושלוש
+one thousand six hundred eighty four:אלף שש מאות שמונים וארבע
+one thousand six hundred eighty five:אלף שש מאות שמונים וחמש
+one thousand six hundred eighty six:אלף שש מאות שמונים ושש
+one thousand six hundred eighty seven:אלף שש מאות שמונים ושבע
+one thousand six hundred eighty eight:אלף שש מאות שמונים ושמונה
+one thousand six hundred eighty nine:אלף שש מאות שמונים ותשע
+one thousand six hundred ninety:אלף שש מאות ותשעים
+one thousand six hundred ninety one:אלף שש מאות תשעים ואחת
+one thousand six hundred ninety two:אלף שש מאות תשעים ושתיים
+one thousand six hundred ninety three:אלף שש מאות תשעים ושלוש
+one thousand six hundred ninety four:אלף שש מאות תשעים וארבע
+one thousand six hundred ninety five:אלף שש מאות תשעים וחמש
+one thousand six hundred ninety six:אלף שש מאות תשעים ושש
+one thousand six hundred ninety seven:אלף שש מאות תשעים ושבע
+one thousand six hundred ninety eight:אלף שש מאות תשעים ושמונה
+one thousand six hundred ninety nine:אלף שש מאות תשעים ותשע
+one thousand seven hundred:אלף שבע מאות
+one thousand seven hundred one:אלף שבע מאות ואחת
+one thousand seven hundred two:אלף שבע מאות ושתיים
+one thousand seven hundred three:אלף שבע מאות ושלוש
+one thousand seven hundred four:אלף שבע מאות וארבע
+one thousand seven hundred five:אלף שבע מאות וחמש
+one thousand seven hundred six:אלף שבע מאות ושש
+one thousand seven hundred seven:אלף שבע מאות ושבע
+one thousand seven hundred eight:אלף שבע מאות ושמונה
+one thousand seven hundred nine:אלף שבע מאות ותשע
+one thousand seven hundred ten:אלף שבע מאות ועשר
+one thousand seven hundred eleven:אלף שבע מאות ואחת עשרה
+one thousand seven hundred twelve:אלף שבע מאות ושתים עשרה
+one thousand seven hundred thirteen:אלף שבע מאות ושלוש עשרה
+one thousand seven hundred fourteen:אלף שבע מאות וארבע עשרה
+one thousand seven hundred fifteen:אלף שבע מאות וחמש עשרה
+one thousand seven hundred sixteen:אלף שבע מאות ושש עשרה
+one thousand seven hundred seventeen:אלף שבע מאות ושבע עשרה
+one thousand seven hundred eighteen:אלף שבע מאות ושמונה עשרה
+one thousand seven hundred nineteen:אלף שבע מאות ותשע עשרה
+one thousand seven hundred twenty:אלף שבע מאות ועשרים
+one thousand seven hundred twenty one:אלף שבע מאות עשרים ואחת
+one thousand seven hundred twenty two:אלף שבע מאות עשרים ושתיים
+one thousand seven hundred twenty three:אלף שבע מאות עשרים ושלוש
+one thousand seven hundred twenty four:אלף שבע מאות עשרים וארבע
+one thousand seven hundred twenty five:אלף שבע מאות עשרים וחמש
+one thousand seven hundred twenty six:אלף שבע מאות עשרים ושש
+one thousand seven hundred twenty seven:אלף שבע מאות עשרים ושבע
+one thousand seven hundred twenty eight:אלף שבע מאות עשרים ושמונה
+one thousand seven hundred twenty nine:אלף שבע מאות עשרים ותשע
+one thousand seven hundred thirty:אלף שבע מאות ושלושים
+one thousand seven hundred thirty one:אלף שבע מאות שלושים ואחת
+one thousand seven hundred thirty two:אלף שבע מאות שלושים ושתיים
+one thousand seven hundred thirty three:אלף שבע מאות שלושים ושלוש
+one thousand seven hundred thirty four:אלף שבע מאות שלושים וארבע
+one thousand seven hundred thirty five:אלף שבע מאות שלושים וחמש
+one thousand seven hundred thirty six:אלף שבע מאות שלושים ושש
+one thousand seven hundred thirty seven:אלף שבע מאות שלושים ושבע
+one thousand seven hundred thirty eight:אלף שבע מאות שלושים ושמונה
+one thousand seven hundred thirty nine:אלף שבע מאות שלושים ותשע
+one thousand seven hundred forty:אלף שבע מאות וארבעים
+one thousand seven hundred forty one:אלף שבע מאות ארבעים ואחת
+one thousand seven hundred forty two:אלף שבע מאות ארבעים ושתיים
+one thousand seven hundred forty three:אלף שבע מאות ארבעים ושלוש
+one thousand seven hundred forty four:אלף שבע מאות ארבעים וארבע
+one thousand seven hundred forty five:אלף שבע מאות ארבעים וחמש
+one thousand seven hundred forty six:אלף שבע מאות ארבעים ושש
+one thousand seven hundred forty seven:אלף שבע מאות ארבעים ושבע
+one thousand seven hundred forty eight:אלף שבע מאות ארבעים ושמונה
+one thousand seven hundred forty nine:אלף שבע מאות ארבעים ותשע
+one thousand seven hundred fifty:אלף שבע מאות וחמישים
+one thousand seven hundred fifty one:אלף שבע מאות חמישים ואחת
+one thousand seven hundred fifty two:אלף שבע מאות חמישים ושתיים
+one thousand seven hundred fifty three:אלף שבע מאות חמישים ושלוש
+one thousand seven hundred fifty four:אלף שבע מאות חמישים וארבע
+one thousand seven hundred fifty five:אלף שבע מאות חמישים וחמש
+one thousand seven hundred fifty six:אלף שבע מאות חמישים ושש
+one thousand seven hundred fifty seven:אלף שבע מאות חמישים ושבע
+one thousand seven hundred fifty eight:אלף שבע מאות חמישים ושמונה
+one thousand seven hundred fifty nine:אלף שבע מאות חמישים ותשע
+one thousand seven hundred sixty:אלף שבע מאות ושישים
+one thousand seven hundred sixty one:אלף שבע מאות שישים ואחת
+one thousand seven hundred sixty two:אלף שבע מאות שישים ושתיים
+one thousand seven hundred sixty three:אלף שבע מאות שישים ושלוש
+one thousand seven hundred sixty four:אלף שבע מאות שישים וארבע
+one thousand seven hundred sixty five:אלף שבע מאות שישים וחמש
+one thousand seven hundred sixty six:אלף שבע מאות שישים ושש
+one thousand seven hundred sixty seven:אלף שבע מאות שישים ושבע
+one thousand seven hundred sixty eight:אלף שבע מאות שישים ושמונה
+one thousand seven hundred sixty nine:אלף שבע מאות שישים ותשע
+one thousand seven hundred seventy:אלף שבע מאות ושבעים
+one thousand seven hundred seventy one:אלף שבע מאות שבעים ואחת
+one thousand seven hundred seventy two:אלף שבע מאות שבעים ושתיים
+one thousand seven hundred seventy three:אלף שבע מאות שבעים ושלוש
+one thousand seven hundred seventy four:אלף שבע מאות שבעים וארבע
+one thousand seven hundred seventy five:אלף שבע מאות שבעים וחמש
+one thousand seven hundred seventy six:אלף שבע מאות שבעים ושש
+one thousand seven hundred seventy seven:אלף שבע מאות שבעים ושבע
+one thousand seven hundred seventy eight:אלף שבע מאות שבעים ושמונה
+one thousand seven hundred seventy nine:אלף שבע מאות שבעים ותשע
+one thousand seven hundred eighty:אלף שבע מאות ושמונים
+one thousand seven hundred eighty one:אלף שבע מאות שמונים ואחת
+one thousand seven hundred eighty two:אלף שבע מאות שמונים ושתיים
+one thousand seven hundred eighty three:אלף שבע מאות שמונים ושלוש
+one thousand seven hundred eighty four:אלף שבע מאות שמונים וארבע
+one thousand seven hundred eighty five:אלף שבע מאות שמונים וחמש
+one thousand seven hundred eighty six:אלף שבע מאות שמונים ושש
+one thousand seven hundred eighty seven:אלף שבע מאות שמונים ושבע
+one thousand seven hundred eighty eight:אלף שבע מאות שמונים ושמונה
+one thousand seven hundred eighty nine:אלף שבע מאות שמונים ותשע
+one thousand seven hundred ninety:אלף שבע מאות ותשעים
+one thousand seven hundred ninety one:אלף שבע מאות תשעים ואחת
+one thousand seven hundred ninety two:אלף שבע מאות תשעים ושתיים
+one thousand seven hundred ninety three:אלף שבע מאות תשעים ושלוש
+one thousand seven hundred ninety four:אלף שבע מאות תשעים וארבע
+one thousand seven hundred ninety five:אלף שבע מאות תשעים וחמש
+one thousand seven hundred ninety six:אלף שבע מאות תשעים ושש
+one thousand seven hundred ninety seven:אלף שבע מאות תשעים ושבע
+one thousand seven hundred ninety eight:אלף שבע מאות תשעים ושמונה
+one thousand seven hundred ninety nine:אלף שבע מאות תשעים ותשע
+one thousand eight hundred:אלף שמונה מאות
+one thousand eight hundred one:אלף שמונה מאות ואחת
+one thousand eight hundred two:אלף שמונה מאות ושתיים
+one thousand eight hundred three:אלף שמונה מאות ושלוש
+one thousand eight hundred four:אלף שמונה מאות וארבע
+one thousand eight hundred five:אלף שמונה מאות וחמש
+one thousand eight hundred six:אלף שמונה מאות ושש
+one thousand eight hundred seven:אלף שמונה מאות ושבע
+one thousand eight hundred eight:אלף שמונה מאות ושמונה
+one thousand eight hundred nine:אלף שמונה מאות ותשע
+one thousand eight hundred ten:אלף שמונה מאות ועשר
+one thousand eight hundred eleven:אלף שמונה מאות ואחת עשרה
+one thousand eight hundred twelve:אלף שמונה מאות ושתים עשרה
+one thousand eight hundred thirteen:אלף שמונה מאות ושלוש עשרה
+one thousand eight hundred fourteen:אלף שמונה מאות וארבע עשרה
+one thousand eight hundred fifteen:אלף שמונה מאות וחמש עשרה
+one thousand eight hundred sixteen:אלף שמונה מאות ושש עשרה
+one thousand eight hundred seventeen:אלף שמונה מאות ושבע עשרה
+one thousand eight hundred eighteen:אלף שמונה מאות ושמונה עשרה
+one thousand eight hundred nineteen:אלף שמונה מאות ותשע עשרה
+one thousand eight hundred twenty:אלף שמונה מאות ועשרים
+one thousand eight hundred twenty one:אלף שמונה מאות עשרים ואחת
+one thousand eight hundred twenty two:אלף שמונה מאות עשרים ושתיים
+one thousand eight hundred twenty three:אלף שמונה מאות עשרים ושלוש
+one thousand eight hundred twenty four:אלף שמונה מאות עשרים וארבע
+one thousand eight hundred twenty five:אלף שמונה מאות עשרים וחמש
+one thousand eight hundred twenty six:אלף שמונה מאות עשרים ושש
+one thousand eight hundred twenty seven:אלף שמונה מאות עשרים ושבע
+one thousand eight hundred twenty eight:אלף שמונה מאות עשרים ושמונה
+one thousand eight hundred twenty nine:אלף שמונה מאות עשרים ותשע
+one thousand eight hundred thirty:אלף שמונה מאות ושלושים
+one thousand eight hundred thirty one:אלף שמונה מאות שלושים ואחת
+one thousand eight hundred thirty two:אלף שמונה מאות שלושים ושתיים
+one thousand eight hundred thirty three:אלף שמונה מאות שלושים ושלוש
+one thousand eight hundred thirty four:אלף שמונה מאות שלושים וארבע
+one thousand eight hundred thirty five:אלף שמונה מאות שלושים וחמש
+one thousand eight hundred thirty six:אלף שמונה מאות שלושים ושש
+one thousand eight hundred thirty seven:אלף שמונה מאות שלושים ושבע
+one thousand eight hundred thirty eight:אלף שמונה מאות שלושים ושמונה
+one thousand eight hundred thirty nine:אלף שמונה מאות שלושים ותשע
+one thousand eight hundred forty:אלף שמונה מאות וארבעים
+one thousand eight hundred forty one:אלף שמונה מאות ארבעים ואחת
+one thousand eight hundred forty two:אלף שמונה מאות ארבעים ושתיים
+one thousand eight hundred forty three:אלף שמונה מאות ארבעים ושלוש
+one thousand eight hundred forty four:אלף שמונה מאות ארבעים וארבע
+one thousand eight hundred forty five:אלף שמונה מאות ארבעים וחמש
+one thousand eight hundred forty six:אלף שמונה מאות ארבעים ושש
+one thousand eight hundred forty seven:אלף שמונה מאות ארבעים ושבע
+one thousand eight hundred forty eight:אלף שמונה מאות ארבעים ושמונה
+one thousand eight hundred forty nine:אלף שמונה מאות ארבעים ותשע
+one thousand eight hundred fifty:אלף שמונה מאות וחמישים
+one thousand eight hundred fifty one:אלף שמונה מאות חמישים ואחת
+one thousand eight hundred fifty two:אלף שמונה מאות חמישים ושתיים
+one thousand eight hundred fifty three:אלף שמונה מאות חמישים ושלוש
+one thousand eight hundred fifty four:אלף שמונה מאות חמישים וארבע
+one thousand eight hundred fifty five:אלף שמונה מאות חמישים וחמש
+one thousand eight hundred fifty six:אלף שמונה מאות חמישים ושש
+one thousand eight hundred fifty seven:אלף שמונה מאות חמישים ושבע
+one thousand eight hundred fifty eight:אלף שמונה מאות חמישים ושמונה
+one thousand eight hundred fifty nine:אלף שמונה מאות חמישים ותשע
+one thousand eight hundred sixty:אלף שמונה מאות ושישים
+one thousand eight hundred sixty one:אלף שמונה מאות שישים ואחת
+one thousand eight hundred sixty two:אלף שמונה מאות שישים ושתיים
+one thousand eight hundred sixty three:אלף שמונה מאות שישים ושלוש
+one thousand eight hundred sixty four:אלף שמונה מאות שישים וארבע
+one thousand eight hundred sixty five:אלף שמונה מאות שישים וחמש
+one thousand eight hundred sixty six:אלף שמונה מאות שישים ושש
+one thousand eight hundred sixty seven:אלף שמונה מאות שישים ושבע
+one thousand eight hundred sixty eight:אלף שמונה מאות שישים ושמונה
+one thousand eight hundred sixty nine:אלף שמונה מאות שישים ותשע
+one thousand eight hundred seventy:אלף שמונה מאות ושבעים
+one thousand eight hundred seventy one:אלף שמונה מאות שבעים ואחת
+one thousand eight hundred seventy two:אלף שמונה מאות שבעים ושתיים
+one thousand eight hundred seventy three:אלף שמונה מאות שבעים ושלוש
+one thousand eight hundred seventy four:אלף שמונה מאות שבעים וארבע
+one thousand eight hundred seventy five:אלף שמונה מאות שבעים וחמש
+one thousand eight hundred seventy six:אלף שמונה מאות שבעים ושש
+one thousand eight hundred seventy seven:אלף שמונה מאות שבעים ושבע
+one thousand eight hundred seventy eight:אלף שמונה מאות שבעים ושמונה
+one thousand eight hundred seventy nine:אלף שמונה מאות שבעים ותשע
+one thousand eight hundred eighty:אלף שמונה מאות ושמונים
+one thousand eight hundred eighty one:אלף שמונה מאות שמונים ואחת
+one thousand eight hundred eighty two:אלף שמונה מאות שמונים ושתיים
+one thousand eight hundred eighty three:אלף שמונה מאות שמונים ושלוש
+one thousand eight hundred eighty four:אלף שמונה מאות שמונים וארבע
+one thousand eight hundred eighty five:אלף שמונה מאות שמונים וחמש
+one thousand eight hundred eighty six:אלף שמונה מאות שמונים ושש
+one thousand eight hundred eighty seven:אלף שמונה מאות שמונים ושבע
+one thousand eight hundred eighty eight:אלף שמונה מאות שמונים ושמונה
+one thousand eight hundred eighty nine:אלף שמונה מאות שמונים ותשע
+one thousand eight hundred ninety:אלף שמונה מאות ותשעים
+one thousand eight hundred ninety one:אלף שמונה מאות תשעים ואחת
+one thousand eight hundred ninety two:אלף שמונה מאות תשעים ושתיים
+one thousand eight hundred ninety three:אלף שמונה מאות תשעים ושלוש
+one thousand eight hundred ninety four:אלף שמונה מאות תשעים וארבע
+one thousand eight hundred ninety five:אלף שמונה מאות תשעים וחמש
+one thousand eight hundred ninety six:אלף שמונה מאות תשעים ושש
+one thousand eight hundred ninety seven:אלף שמונה מאות תשעים ושבע
+one thousand eight hundred ninety eight:אלף שמונה מאות תשעים ושמונה
+one thousand eight hundred ninety nine:אלף שמונה מאות תשעים ותשע
+one thousand nine hundred:אלף תשע מאות
+one thousand nine hundred one:אלף תשע מאות ואחת
+one thousand nine hundred two:אלף תשע מאות ושתיים
+one thousand nine hundred three:אלף תשע מאות ושלוש
+one thousand nine hundred four:אלף תשע מאות וארבע
+one thousand nine hundred five:אלף תשע מאות וחמש
+one thousand nine hundred six:אלף תשע מאות ושש
+one thousand nine hundred seven:אלף תשע מאות ושבע
+one thousand nine hundred eight:אלף תשע מאות ושמונה
+one thousand nine hundred nine:אלף תשע מאות ותשע
+one thousand nine hundred ten:אלף תשע מאות ועשר
+one thousand nine hundred eleven:אלף תשע מאות ואחת עשרה
+one thousand nine hundred twelve:אלף תשע מאות ושתים עשרה
+one thousand nine hundred thirteen:אלף תשע מאות ושלוש עשרה
+one thousand nine hundred fourteen:אלף תשע מאות וארבע עשרה
+one thousand nine hundred fifteen:אלף תשע מאות וחמש עשרה
+one thousand nine hundred sixteen:אלף תשע מאות ושש עשרה
+one thousand nine hundred seventeen:אלף תשע מאות ושבע עשרה
+one thousand nine hundred eighteen:אלף תשע מאות ושמונה עשרה
+one thousand nine hundred nineteen:אלף תשע מאות ותשע עשרה
+one thousand nine hundred twenty:אלף תשע מאות ועשרים
+one thousand nine hundred twenty one:אלף תשע מאות עשרים ואחת
+one thousand nine hundred twenty two:אלף תשע מאות עשרים ושתיים
+one thousand nine hundred twenty three:אלף תשע מאות עשרים ושלוש
+one thousand nine hundred twenty four:אלף תשע מאות עשרים וארבע
+one thousand nine hundred twenty five:אלף תשע מאות עשרים וחמש
+one thousand nine hundred twenty six:אלף תשע מאות עשרים ושש
+one thousand nine hundred twenty seven:אלף תשע מאות עשרים ושבע
+one thousand nine hundred twenty eight:אלף תשע מאות עשרים ושמונה
+one thousand nine hundred twenty nine:אלף תשע מאות עשרים ותשע
+one thousand nine hundred thirty:אלף תשע מאות ושלושים
+one thousand nine hundred thirty one:אלף תשע מאות שלושים ואחת
+one thousand nine hundred thirty two:אלף תשע מאות שלושים ושתיים
+one thousand nine hundred thirty three:אלף תשע מאות שלושים ושלוש
+one thousand nine hundred thirty four:אלף תשע מאות שלושים וארבע
+one thousand nine hundred thirty five:אלף תשע מאות שלושים וחמש
+one thousand nine hundred thirty six:אלף תשע מאות שלושים ושש
+one thousand nine hundred thirty seven:אלף תשע מאות שלושים ושבע
+one thousand nine hundred thirty eight:אלף תשע מאות שלושים ושמונה
+one thousand nine hundred thirty nine:אלף תשע מאות שלושים ותשע
+one thousand nine hundred forty:אלף תשע מאות וארבעים
+one thousand nine hundred forty one:אלף תשע מאות ארבעים ואחת
+one thousand nine hundred forty two:אלף תשע מאות ארבעים ושתיים
+one thousand nine hundred forty three:אלף תשע מאות ארבעים ושלוש
+one thousand nine hundred forty four:אלף תשע מאות ארבעים וארבע
+one thousand nine hundred forty five:אלף תשע מאות ארבעים וחמש
+one thousand nine hundred forty six:אלף תשע מאות ארבעים ושש
+one thousand nine hundred forty seven:אלף תשע מאות ארבעים ושבע
+one thousand nine hundred forty eight:אלף תשע מאות ארבעים ושמונה
+one thousand nine hundred forty nine:אלף תשע מאות ארבעים ותשע
+one thousand nine hundred fifty:אלף תשע מאות וחמישים
+one thousand nine hundred fifty one:אלף תשע מאות חמישים ואחת
+one thousand nine hundred fifty two:אלף תשע מאות חמישים ושתיים
+one thousand nine hundred fifty three:אלף תשע מאות חמישים ושלוש
+one thousand nine hundred fifty four:אלף תשע מאות חמישים וארבע
+one thousand nine hundred fifty five:אלף תשע מאות חמישים וחמש
+one thousand nine hundred fifty six:אלף תשע מאות חמישים ושש
+one thousand nine hundred fifty seven:אלף תשע מאות חמישים ושבע
+one thousand nine hundred fifty eight:אלף תשע מאות חמישים ושמונה
+one thousand nine hundred fifty nine:אלף תשע מאות חמישים ותשע
+one thousand nine hundred sixty:אלף תשע מאות ושישים
+one thousand nine hundred sixty one:אלף תשע מאות שישים ואחת
+one thousand nine hundred sixty two:אלף תשע מאות שישים ושתיים
+one thousand nine hundred sixty three:אלף תשע מאות שישים ושלוש
+one thousand nine hundred sixty four:אלף תשע מאות שישים וארבע
+one thousand nine hundred sixty five:אלף תשע מאות שישים וחמש
+one thousand nine hundred sixty six:אלף תשע מאות שישים ושש
+one thousand nine hundred sixty seven:אלף תשע מאות שישים ושבע
+one thousand nine hundred sixty eight:אלף תשע מאות שישים ושמונה
+one thousand nine hundred sixty nine:אלף תשע מאות שישים ותשע
+one thousand nine hundred seventy:אלף תשע מאות ושבעים
+one thousand nine hundred seventy one:אלף תשע מאות שבעים ואחת
+one thousand nine hundred seventy two:אלף תשע מאות שבעים ושתיים
+one thousand nine hundred seventy three:אלף תשע מאות שבעים ושלוש
+one thousand nine hundred seventy four:אלף תשע מאות שבעים וארבע
+one thousand nine hundred seventy five:אלף תשע מאות שבעים וחמש
+one thousand nine hundred seventy six:אלף תשע מאות שבעים ושש
+one thousand nine hundred seventy seven:אלף תשע מאות שבעים ושבע
+one thousand nine hundred seventy eight:אלף תשע מאות שבעים ושמונה
+one thousand nine hundred seventy nine:אלף תשע מאות שבעים ותשע
+one thousand nine hundred eighty:אלף תשע מאות ושמונים
+one thousand nine hundred eighty one:אלף תשע מאות שמונים ואחת
+one thousand nine hundred eighty two:אלף תשע מאות שמונים ושתיים
+one thousand nine hundred eighty three:אלף תשע מאות שמונים ושלוש
+one thousand nine hundred eighty four:אלף תשע מאות שמונים וארבע
+one thousand nine hundred eighty five:אלף תשע מאות שמונים וחמש
+one thousand nine hundred eighty six:אלף תשע מאות שמונים ושש
+one thousand nine hundred eighty seven:אלף תשע מאות שמונים ושבע
+one thousand nine hundred eighty eight:אלף תשע מאות שמונים ושמונה
+one thousand nine hundred eighty nine:אלף תשע מאות שמונים ותשע
+one thousand nine hundred ninety:אלף תשע מאות ותשעים
+one thousand nine hundred ninety one:אלף תשע מאות תשעים ואחת
+one thousand nine hundred ninety two:אלף תשע מאות תשעים ושתיים
+one thousand nine hundred ninety three:אלף תשע מאות תשעים ושלוש
+one thousand nine hundred ninety four:אלף תשע מאות תשעים וארבע
+one thousand nine hundred ninety five:אלף תשע מאות תשעים וחמש
+one thousand nine hundred ninety six:אלף תשע מאות תשעים ושש
+one thousand nine hundred ninety seven:אלף תשע מאות תשעים ושבע
+one thousand nine hundred ninety eight:אלף תשע מאות תשעים ושמונה
+one thousand nine hundred ninety nine:אלף תשע מאות תשעים ותשע
+two thousand:אלפיים
+two thousand one:אלפיים ואחת
+two thousand two:אלפיים ושתיים
+two thousand three:אלפיים ושלוש
+two thousand four:אלפיים וארבע
+two thousand five:אלפיים וחמש
+two thousand six:אלפיים ושש
+two thousand seven:אלפיים ושבע
+two thousand eight:אלפיים ושמונה
+two thousand nine:אלפיים ותשע
+two thousand ten:אלפיים ועשר
+two thousand eleven:אלפיים ואחת עשרה
+two thousand twelve:אלפיים ושתים עשרה
+two thousand thirteen:אלפיים ושלוש עשרה
+two thousand fourteen:אלפיים וארבע עשרה
+two thousand fifteen:אלפיים וחמש עשרה
+two thousand sixteen:אלפיים ושש עשרה
+two thousand seventeen:אלפיים ושבע עשרה
+two thousand eighteen:אלפיים ושמונה עשרה
+two thousand nineteen:אלפיים ותשע עשרה
+two thousand twenty:אלפיים ועשרים
+two thousand twenty one:אלפיים עשרים ואחת
+two thousand twenty two:אלפיים עשרים ושתיים
+two thousand twenty three:אלפיים עשרים ושלוש
+two thousand twenty four:אלפיים עשרים וארבע
+two thousand twenty five:אלפיים עשרים וחמש
+two thousand twenty six:אלפיים עשרים ושש
+two thousand twenty seven:אלפיים עשרים ושבע
+two thousand twenty eight:אלפיים עשרים ושמונה
+two thousand twenty nine:אלפיים עשרים ותשע
+two thousand thirty:אלפיים ושלושים
+two thousand thirty one:אלפיים שלושים ואחת
+two thousand thirty two:אלפיים שלושים ושתיים
+two thousand thirty three:אלפיים שלושים ושלוש
+two thousand thirty four:אלפיים שלושים וארבע
+two thousand thirty five:אלפיים שלושים וחמש
+two thousand thirty six:אלפיים שלושים ושש
+two thousand thirty seven:אלפיים שלושים ושבע
+two thousand thirty eight:אלפיים שלושים ושמונה
+two thousand thirty nine:אלפיים שלושים ותשע
+two thousand forty:אלפיים וארבעים
+two thousand forty one:אלפיים ארבעים ואחת
+two thousand forty two:אלפיים ארבעים ושתיים
+two thousand forty three:אלפיים ארבעים ושלוש
+two thousand forty four:אלפיים ארבעים וארבע
+two thousand forty five:אלפיים ארבעים וחמש
+two thousand forty six:אלפיים ארבעים ושש
+two thousand forty seven:אלפיים ארבעים ושבע
+two thousand forty eight:אלפיים ארבעים ושמונה
+two thousand forty nine:אלפיים ארבעים ותשע
+two thousand fifty:אלפיים וחמישים

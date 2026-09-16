@@ -8,6 +8,7 @@ six o'clock:luk6 dim2 zung1
 seven o'clock:cat1 dim2 zung1
 eight:baat3
 nine o'clock:gau2 dim2 zung1
+ten o'clock:sap6 dim2 zung1
 or:waak6 ze5 / 	jik1 waak6
 cannot:m4 dak1
 will, would:wui5
@@ -22,3 +23,7 @@ repeat:gan1 zyu6
 let's say:laa1
 this evening:gam1 maan5
 dinner:maan5 faan6
+tomorrow:ting1 jat6
+tomorrow evening:ting1 maan5
+see:gin3
+see you tomorrow:ting1 jat6 gin3
