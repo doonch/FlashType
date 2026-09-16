@@ -33,11 +33,20 @@ $(document).ready(function(){
         }
         else
         {
+            var cat = (lessonFiles[lessonIdx].category || "").toLowerCase();
+            var isCantonese = (cat.indexOf("cantonese") !== -1);
+            if (isCantonese) {
+                activeSessionLanguage = "cantonese";
+            } else if (cat.indexOf("hebrew") !== -1) {
+                activeSessionLanguage = "hebrew";
+            } else {
+                activeSessionLanguage = cat;
+            }
             $("#list").load(lessonFiles[lessonIdx].file, function() {
-                presentYtping = (appSettings.romanization === "yale");
+                presentYtping = (activeSessionLanguage === "cantonese" && appSettings.romanization === "yale");
             });
-            presentYtping = (appSettings.romanization === "yale");
-            linkToDictionary=lessonFiles[lessonIdx].linkToDictionary;
+            presentYtping = (activeSessionLanguage === "cantonese" && appSettings.romanization === "yale");
+            linkToDictionary = isCantonese && !!lessonFiles[lessonIdx].linkToDictionary;
             $("#startbutton").show();
         }
     });
@@ -140,6 +149,7 @@ $(document).ready(function(){
                 </div>
                 <div class="batch-btn-row">
                     <button type="button" class="btn-secondary-sm" onclick="selectCantoneseLessons()">Cantonese Only</button>
+                    <button type="button" class="btn-secondary-sm" onclick="selectHebrewLessons()">Hebrew Only</button>
                     <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(true)">Select All</button>
                     <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(false)">Clear All</button>
                 </div>

@@ -1,11 +1,23 @@
-I:ani
-You (m): ata
-You (f): at
-pretty (f): yafa
-want (m): rotse
-want (f): rotsa
-yes:ken
-no:lo
-tea:te
-tired (m): ayef
-tired (f): ayefa
+coffee:קפה
+tea:תה
+to drink:לשתות
+drink (m):שותה
+drink (f):שותה
+sugar:סוכר
+milk:חלב
+without:בלי
+a little:קצת
+a lot:הרבה
+water:מים
+come (m):בא
+come (f):באה
+to come:לבוא
+the united states:ארצות הברית
+in the united states:בארצות הברית
+Israel:ישראל
+in Israel:בישראל
+to israel:לישראל
+from Israel:מישראל
+in:ב-
+to:ל-
+from:מ-

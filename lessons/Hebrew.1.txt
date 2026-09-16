@@ -1,15 +1,29 @@
-Saturday:shabat
-Morning: boker
-Day: yom
-pretty (masc.): yafe
-mother: ima
-father: aba
-drink (present, sgl. fem.): shota
-a lot: hamon
-Coffee: cafe
-read (present, sgl., masc.): kore
-newspaper: iton
-buy (future, 3.pl): yiknu
-in the-: ba
-and: ve
-to me: li
+I, me:אני
+you (m):אתה
+you (f):את
+want (m):רוצה
+want (f):רוצה
+eat (m):אוכל
+eat (f):אוכלת
+go (m):הולך
+go (f):הולכת
+to sleep:לישון
+to eat:לאכול
+eggplant:חציל
+apple:תפוח
+pita bread:פיתה
+with:עם
+hummus:חומוס
+falafel:פלאפל
+shekel:שקל
+twenty:עשרים
+thirty:שלושים
+with me:איתי
+with you (m):איתך
+with you (f):איתך
+to the restaurant:למסעדה
+to a restaurant:למסעדה
+the restaurant:המסעדה
+restaurant:מסעדה
+costs:עולה
+what:מה

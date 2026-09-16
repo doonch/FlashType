@@ -1,0 +1,15 @@
+Saturday:shabat
+Morning: boker
+Day: yom
+pretty (masc.): yafe
+mother: ima
+father: aba
+drink (present, sgl. fem.): shota
+a lot: hamon
+Coffee: cafe
+read (present, sgl., masc.): kore
+newspaper: iton
+buy (future, 3.pl): yiknu
+in the-: ba
+and: ve
+to me: li

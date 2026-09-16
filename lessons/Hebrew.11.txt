@@ -1,0 +1,11 @@
+I:ani
+You (m): ata
+You (f): at
+pretty (f): yafa
+want (m): rotse
+want (f): rotsa
+yes:ken
+no:lo
+tea:te
+tired (m): ayef
+tired (f): ayefa

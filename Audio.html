@@ -30,11 +30,20 @@ $(document).ready(function(){
         }
         else
         {
+            var cat = (lessonFiles[lessonIdx].category || "").toLowerCase();
+            var isCantonese = (cat.indexOf("cantonese") !== -1);
+            if (isCantonese) {
+                activeSessionLanguage = "cantonese";
+            } else if (cat.indexOf("hebrew") !== -1) {
+                activeSessionLanguage = "hebrew";
+            } else {
+                activeSessionLanguage = cat;
+            }
             $("#list").load(lessonFiles[lessonIdx].file, function() {
-                presentYtping = (appSettings.romanization === "yale");
+                presentYtping = (activeSessionLanguage === "cantonese" && appSettings.romanization === "yale");
             });
-            presentYtping = (appSettings.romanization === "yale");
-            linkToDictionary=lessonFiles[lessonIdx].linkToDictionary;
+            presentYtping = (activeSessionLanguage === "cantonese" && appSettings.romanization === "yale");
+            linkToDictionary = isCantonese && !!lessonFiles[lessonIdx].linkToDictionary;
             $("#startbutton").show();
         }
     });
@@ -137,6 +146,7 @@ $(document).ready(function(){
                 </div>
                 <div class="batch-btn-row">
                     <button type="button" class="btn-secondary-sm" onclick="selectCantoneseLessons()">Cantonese Only</button>
+                    <button type="button" class="btn-secondary-sm" onclick="selectHebrewLessons()">Hebrew Only</button>
                     <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(true)">Select All</button>
                     <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(false)">Clear All</button>
                 </div>
@@ -157,7 +167,7 @@ $(document).ready(function(){
         <span id="ai_selected_count" class="lesson-check-category">1 lesson selected</span>
     </div>
     <div style="font-size: 0.84rem; color: #1e293b;">
-        Uses AI to compose natural conversational sentences strictly constrained to your selected completed lessons (e.g. CP.1.txt).
+        Uses AI to compose natural conversational sentences strictly constrained to your selected completed lessons.
     </div>
     <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
         <button type="button" id="ai_gen_btn" class="ai-gen-btn" onclick="generateSentencesFromCompletedLessons()">Generate Sentences ✨</button>
@@ -168,6 +178,7 @@ $(document).ready(function(){
                 <option value="20">20</option>
                 <option value="25" selected>25</option>
                 <option value="30">30</option>
+                <option value="50">50</option>
             </select>
         </label>
         <span id="ai_gen_status"></span>

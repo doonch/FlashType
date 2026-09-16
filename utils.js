@@ -199,6 +199,18 @@ function selectCantoneseLessons() {
     onLessonCheckChange();
 }
 
+function selectHebrewLessons() {
+    $(".lesson-chk").each(function() {
+        var cat = $(this).siblings(".lesson-check-category").text();
+        if (cat && cat.toLowerCase().indexOf("hebrew") !== -1) {
+            $(this).prop("checked", true);
+        } else {
+            $(this).prop("checked", false);
+        }
+    });
+    onLessonCheckChange();
+}
+
 function updateAiGenStatusText() {
     var count = (appSettings.completedLessons || []).length;
     var countText = count + " lesson" + (count === 1 ? "" : "s") + " selected";
@@ -683,11 +695,14 @@ function transliterate(s)
 function updateList(lines)
 {
     tableData="";
+    var cat = getLessonCategory();
+    var isCantonese = (activeSessionLanguage === "cantonese") || (cat.indexOf("cantonese") !== -1);
     for (var i=0;i<lines.length;i++)
     {
         var rawAnswer = lines[i].split(":")[1] || "";
         var value=transliterate(rawAnswer);
-        if (linkToDictionary == true) {
+        // This dictionary is only for Cantonese. Other languages should not have links.
+        if (linkToDictionary == true && isCantonese && !/[\u0590-\u05FF]/.test(rawAnswer)) {
             value = "<a href=\"http://www.cantonese.sheik.co.uk/dictionary/search/?searchtype=3&text="+getQueryText(lines[i].split(":")[1])+"\">"
                     +value
                     +"</a>";
@@ -906,7 +921,42 @@ function generateSentencesFromCompletedLessons() {
             if (!isNaN(val) && val > 0) requestedCount = val;
         }
 
-        $("#ai_gen_status").html('<span class="ai-gen-status">Composing ' + requestedCount + ' sentences strictly from ' + combinedVocab.length + ' vocabulary items...</span>');
+        // Determine language from selected lessons or vocabulary
+        var targetLanguage = "cantonese";
+        for (var i = 0; i < selectedFiles.length; i++) {
+            var f = (selectedFiles[i] || "").toLowerCase();
+            if (f.indexOf("hebrew") !== -1) {
+                targetLanguage = "hebrew";
+                break;
+            }
+            if (f.indexOf("cantonese") !== -1 || f.indexOf("cp.") !== -1 || f.indexOf("c.") !== -1 || f.indexOf("ca.") !== -1) {
+                targetLanguage = "cantonese";
+                break;
+            }
+            if (typeof lessonFiles !== "undefined") {
+                for (var j = 0; j < lessonFiles.length; j++) {
+                    if (lessonFiles[j].file === selectedFiles[i]) {
+                        var cat = (lessonFiles[j].category || "").toLowerCase();
+                        if (cat.indexOf("hebrew") !== -1) targetLanguage = "hebrew";
+                        else if (cat.indexOf("cantonese") !== -1) targetLanguage = "cantonese";
+                        else if (cat.indexOf("polish") !== -1) targetLanguage = "polish";
+                        else if (cat.indexOf("spanish") !== -1) targetLanguage = "spanish";
+                        else if (cat.indexOf("mandarin") !== -1) targetLanguage = "mandarin";
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Check if vocabulary content has Hebrew characters
+        var hasHebrewChars = combinedVocab.some(function(line) {
+            return /[\u0590-\u05FF]/.test(line);
+        });
+        if (hasHebrewChars) {
+            targetLanguage = "hebrew";
+        }
+
+        $("#ai_gen_status").html('<span class="ai-gen-status">Composing ' + requestedCount + ' ' + targetLanguage + ' sentences strictly from ' + combinedVocab.length + ' vocabulary items...</span>');
 
         // Call our server-side Gemini route
         $.ajax({
@@ -916,7 +966,8 @@ function generateSentencesFromCompletedLessons() {
             data: JSON.stringify({
                 vocabList: combinedVocab,
                 count: requestedCount,
-                lessonTitle: "AI Synthesized Practice"
+                language: targetLanguage,
+                lessonTitle: "AI Synthesized Practice (" + targetLanguage + ")"
             }),
             success: function(data) {
                 isGeneratingSentences = false;
@@ -928,12 +979,13 @@ function generateSentencesFromCompletedLessons() {
                 }
 
                 // Format generated sentences into FlashType line syntax:
-                // "English prompt:primary_jyutping/alternative1/alternative2"
+                // "English prompt:primary_target/alternative1/alternative2"
                 var generatedLines = data.sentences.map(function(item) {
-                    var ansList = [item.jyutping.trim()];
+                    var mainAns = (item.target || item.jyutping || item.hebrew || "").trim();
+                    var ansList = [mainAns];
                     if (Array.isArray(item.alternatives)) {
                         item.alternatives.forEach(function(alt) {
-                            var a = alt.trim();
+                            var a = (typeof alt === "string" ? alt : "").trim();
                             if (a && ansList.indexOf(a) === -1) {
                                 ansList.push(a);
                             }
@@ -942,22 +994,24 @@ function generateSentencesFromCompletedLessons() {
                     return item.english.trim() + ":" + ansList.join("/");
                 });
 
-                // Load into FlashType flashcard session
+                // Load characters map if Cantonese
                 sessionCharactersMap = {};
                 data.sentences.forEach(function(item) {
-                    if (item.characters && item.jyutping) {
-                        var cKey = clean(item.jyutping.trim());
+                    var targetText = (item.target || item.jyutping || "").trim();
+                    if (item.characters && targetText) {
+                        var cKey = clean(targetText);
                         sessionCharactersMap[cKey] = item.characters.trim();
                         // Also map transliterated Yale version
-                        var yKey = clean(transliterate(item.jyutping.trim()));
+                        var yKey = clean(transliterate(targetText));
                         sessionCharactersMap[yKey] = item.characters.trim();
                     }
                 });
 
-                activeSessionLanguage = "cantonese";
+                activeSessionLanguage = data.language || targetLanguage || "cantonese";
+                linkToDictionary = (activeSessionLanguage === "cantonese");
                 lines = generatedLines;
                 seen = new set(lines.length);
-                presentYtping = (appSettings.romanization === "yale");
+                presentYtping = (activeSessionLanguage === "cantonese" && appSettings.romanization === "yale");
                 clearPassiveTimers();
 
                 $("#stage").show();
