@@ -387,6 +387,23 @@ body {
     background: #e2e8f0;
 }
 
+.setting-select {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.84rem;
+    background: #ffffff;
+    color: #1e293b;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.setting-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
 /* AI Sentence Generator Toolbar in Main UI */
 #ai_generator_box {
     margin: 10px 0 14px 0;

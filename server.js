@@ -39,6 +39,7 @@ function detectLanguage(language, vocabList = [], lessonTitle = "") {
     const langLower = language.toLowerCase().trim();
     if (langLower.includes('hebrew') || langLower === 'he' || langLower === 'iw') return 'hebrew';
     if (langLower.includes('cantonese') || langLower.includes('yue') || langLower === 'zh-hk') return 'cantonese';
+    if (langLower.includes('greek') || langLower === 'el') return 'greek';
     if (langLower.includes('mandarin') || langLower.includes('chinese') || langLower === 'zh-cn') return 'mandarin';
     if (langLower.includes('polish') || langLower === 'pl') return 'polish';
     if (langLower.includes('spanish') || langLower === 'es') return 'spanish';
@@ -51,9 +52,17 @@ function detectLanguage(language, vocabList = [], lessonTitle = "") {
     return 'hebrew';
   }
 
-  // Check lesson title or vocab for Hebrew hints
+  // Check vocab content for Greek characters
+  if (/[\u0370-\u03FF]/.test(sample)) {
+    return 'greek';
+  }
+
+  // Check lesson title or vocab for Hebrew or Greek hints
   if (lessonTitle && /hebrew/i.test(lessonTitle)) {
     return 'hebrew';
+  }
+  if (lessonTitle && /greek/i.test(lessonTitle)) {
+    return 'greek';
   }
 
   // Check if sample has Jyutping tones (e.g., word + 1-6)
@@ -116,6 +125,21 @@ function buildPrompt({ language, vocabString, numSentences }) {
     "jyutping": "ngo5 soeng2 hai2 ngo5 dou6 sik6 je5",
     "characters": "我想要喺我度食嘢",
     "alternatives": ["ngo5 soeng2 jiu3 hai2 ngo5 dou6 sik6 je5"]
+  }
+]`;
+  } else if (normalizedLang.includes('greek') || normalizedLang === 'el') {
+    langTitle = 'Greek';
+    languageSpecificInstructions = `GREEK-SPECIFIC INSTRUCTIONS:
+1. Greek Characters Only: The output in the "target" property and all entries in the "alternatives" list MUST use standard modern Greek alphabet (Ελληνικό αλφάβητο) with monotonic stress accents (τόνοι), NOT any transliteration or Latin characters.
+2. Grammar & Agreement: Follow standard modern Greek grammar, including proper case (nominative, accusative, genitive), gender agreement, and verb conjugation.
+3. Natural Syntax: Follow natural modern Greek word order and phrasing.`;
+
+    jsonFormatExample = `Output JSON with an array of objects matching this exact structure:
+[
+  {
+    "english": "We want water",
+    "target": "Θέλουμε νερό",
+    "alternatives": ["Εμείς θέλουμε νερό"]
   }
 ]`;
   } else {

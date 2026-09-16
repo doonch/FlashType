@@ -7,6 +7,7 @@ var forgiveTones=false;
 var autoLoop=false;
 
 var appSettings = {
+    selectedLanguage: "Cantonese",
     romanization: "jyutping",
     speakQuestions: false,
     speakAnswers: false,
@@ -14,6 +15,7 @@ var appSettings = {
     questionTimeoutSec: 3.5,
     decayTimeoutSec: 2.5,
     completedLessons: ["lessons/CP.1.txt"], // default to CP.1.txt if none selected
+    completedLessonsByLang: {},
     aiSentenceCount: 25
 };
 
@@ -23,6 +25,10 @@ var passiveDecayTimer = null;
 function loadSettings() {
     try {
         if (typeof localStorage !== "undefined") {
+            var savedLang = localStorage.getItem("flashtype_language");
+            if (savedLang) {
+                appSettings.selectedLanguage = savedLang;
+            }
             var rom = localStorage.getItem("flashtype_romanization");
             if (rom === "yale" || rom === "jyutping") {
                 appSettings.romanization = rom;
@@ -53,6 +59,15 @@ function loadSettings() {
                     }
                 } catch (pe) {}
             }
+            var completedByLang = localStorage.getItem("flashtype_completed_lessons_by_lang");
+            if (completedByLang) {
+                try {
+                    var parsedMap = JSON.parse(completedByLang);
+                    if (parsedMap && typeof parsedMap === "object") {
+                        appSettings.completedLessonsByLang = parsedMap;
+                    }
+                } catch (pe) {}
+            }
             var aiCnt = parseInt(localStorage.getItem("flashtype_ai_sentence_count"), 10);
             if (!isNaN(aiCnt) && aiCnt >= 1 && aiCnt <= 50) {
                 appSettings.aiSentenceCount = aiCnt;
@@ -67,6 +82,7 @@ function loadSettings() {
 function saveSettings() {
     try {
         if (typeof localStorage !== "undefined") {
+            localStorage.setItem("flashtype_language", appSettings.selectedLanguage || "Cantonese");
             localStorage.setItem("flashtype_romanization", appSettings.romanization);
             localStorage.setItem("flashtype_speak_questions", appSettings.speakQuestions);
             localStorage.setItem("flashtype_speak_answers", appSettings.speakAnswers);
@@ -74,6 +90,7 @@ function saveSettings() {
             localStorage.setItem("flashtype_q_timeout", appSettings.questionTimeoutSec);
             localStorage.setItem("flashtype_d_timeout", appSettings.decayTimeoutSec);
             localStorage.setItem("flashtype_completed_lessons", JSON.stringify(appSettings.completedLessons));
+            localStorage.setItem("flashtype_completed_lessons_by_lang", JSON.stringify(appSettings.completedLessonsByLang || {}));
             localStorage.setItem("flashtype_ai_sentence_count", appSettings.aiSentenceCount || 25);
         }
     } catch (e) {
@@ -151,24 +168,158 @@ function applySettings() {
     }
 }
 
+function getLanguageFromLesson(l) {
+    if (!l) return "";
+    var cat = (l.category || "").trim();
+    var file = (l.file || "").trim();
+    if (cat === "TestCategory" || file === "lessons/test.txt") return "";
+    if (/^Cantonese/i.test(cat) || /cantonese/i.test(file) || /\/c[0-9p]/i.test(file) || /\/ca\./i.test(file)) return "Cantonese";
+    if (/^Hebrew/i.test(cat) || /hebrew/i.test(file)) return "Hebrew";
+    if (/^Greek/i.test(cat) || /greek/i.test(file)) return "Greek";
+    if (/^Polish/i.test(cat) || /polish/i.test(file)) return "Polish";
+    if (/^Spanish/i.test(cat) || /spanish/i.test(file)) return "Spanish";
+    if (/^Mandarin/i.test(cat) || /mandarin/i.test(file)) return "Mandarin";
+    if (/^Civics/i.test(cat) || /civics/i.test(file)) return "Civics";
+    if (cat) return cat.split(/[. -]/)[0];
+    return "";
+}
+
+function getAvailableLanguages() {
+    var langs = [];
+    var preferredOrder = ["Cantonese", "Hebrew", "Greek", "Polish", "Spanish", "Mandarin", "Civics"];
+    if (typeof lessonFiles !== "undefined") {
+        for (var i = 1; i < lessonFiles.length; i++) {
+            var lang = getLanguageFromLesson(lessonFiles[i]);
+            if (lang && langs.indexOf(lang) === -1) {
+                langs.push(lang);
+            }
+        }
+    }
+    langs.sort(function(a, b) {
+        var ia = preferredOrder.indexOf(a);
+        var ib = preferredOrder.indexOf(b);
+        if (ia !== -1 && ib !== -1) return ia - ib;
+        if (ia !== -1) return -1;
+        if (ib !== -1) return 1;
+        return a.localeCompare(b);
+    });
+    return langs;
+}
+
 function renderLessonChecklist() {
     if (typeof $ === "undefined" || typeof lessonFiles === "undefined") return;
     var container = $("#settings_lessons_list");
     if (container.length === 0) return;
 
-    var html = "";
-    var currentGroup = "";
+    var availableLangs = getAvailableLanguages();
+    if (!appSettings.selectedLanguage || availableLangs.indexOf(appSettings.selectedLanguage) === -1) {
+        appSettings.selectedLanguage = availableLangs.indexOf("Cantonese") !== -1 ? "Cantonese" : (availableLangs[0] || "Cantonese");
+    }
 
-    for (var i = 1; i < lessonFiles.length; i++) { // skip 0 (Test)
-        var l = lessonFiles[i];
-        var isChecked = (appSettings.completedLessons && appSettings.completedLessons.indexOf(l.file) !== -1);
-        html += '<label class="lesson-check-item">' +
-            '<input type="checkbox" class="lesson-chk" data-file="' + l.file + '" ' + (isChecked ? 'checked' : '') + ' onchange="onLessonCheckChange()">' +
-            '<span>' + l.name + '</span>' +
-            '<span class="lesson-check-category">' + l.category + '</span>' +
-            '</label>';
+    // Populate language selector in settings modal
+    var langSelect = $("#setting_language_select");
+    if (langSelect.length) {
+        var langOptionsHtml = "";
+        for (var lIdx = 0; lIdx < availableLangs.length; lIdx++) {
+            var langName = availableLangs[lIdx];
+            langOptionsHtml += '<option value="' + langName + '"' + (langName === appSettings.selectedLanguage ? ' selected' : '') + '>' + langName + '</option>';
+        }
+        langSelect.html(langOptionsHtml);
+        langSelect.val(appSettings.selectedLanguage);
+    }
+
+    var currentLang = appSettings.selectedLanguage;
+    var relevantLessons = [];
+    for (var i = 1; i < lessonFiles.length; i++) {
+        var item = lessonFiles[i];
+        if (getLanguageFromLesson(item) === currentLang) {
+            relevantLessons.push(item);
+        }
+    }
+
+    if (!appSettings.completedLessonsByLang) {
+        appSettings.completedLessonsByLang = {};
+    }
+
+    // Ensure active completedLessons only contains lessons from current language
+    var validCurrentCompleted = [];
+    if (Array.isArray(appSettings.completedLessons)) {
+        for (var cIdx = 0; cIdx < appSettings.completedLessons.length; cIdx++) {
+            var path = appSettings.completedLessons[cIdx];
+            var isRelevant = relevantLessons.some(function(rl) { return rl.file === path; });
+            if (isRelevant) {
+                validCurrentCompleted.push(path);
+            }
+        }
+    }
+
+    // If none currently valid for this language, check cached selections or default to the first lesson
+    if (validCurrentCompleted.length === 0) {
+        var cached = appSettings.completedLessonsByLang[currentLang];
+        if (Array.isArray(cached) && cached.length > 0) {
+            validCurrentCompleted = cached.filter(function(cp) {
+                return relevantLessons.some(function(rl) { return rl.file === cp; });
+            });
+        }
+        if (validCurrentCompleted.length === 0 && relevantLessons.length > 0) {
+            validCurrentCompleted = [relevantLessons[0].file];
+        }
+    }
+
+    appSettings.completedLessons = validCurrentCompleted;
+    appSettings.completedLessonsByLang[currentLang] = validCurrentCompleted.slice();
+
+    var html = "";
+    if (relevantLessons.length === 0) {
+        html = '<div style="padding: 10px; font-size: 0.8rem; color: #94a3b8; text-align: center;">No lessons found for ' + currentLang + '</div>';
+    } else {
+        for (var j = 0; j < relevantLessons.length; j++) {
+            var l = relevantLessons[j];
+            var isChecked = (appSettings.completedLessons.indexOf(l.file) !== -1);
+            html += '<label class="lesson-check-item">' +
+                '<input type="checkbox" class="lesson-chk" data-file="' + l.file + '" ' + (isChecked ? 'checked' : '') + ' onchange="onLessonCheckChange()">' +
+                '<span>' + l.name + '</span>' +
+                '<span class="lesson-check-category">' + l.category + '</span>' +
+                '</label>';
+        }
     }
     container.html(html);
+
+    $("#settings_lang_lesson_count").text(relevantLessons.length + " lesson" + (relevantLessons.length === 1 ? "" : "s"));
+
+    // Romanization is only applicable to Cantonese
+    if (currentLang === "Cantonese") {
+        $("#romanization_setting_section").show();
+    } else {
+        $("#romanization_setting_section").hide();
+    }
+}
+
+function onSettingLanguageChange() {
+    if (typeof $ === "undefined") return;
+    var newLang = $("#setting_language_select").val();
+    if (!newLang) return;
+
+    var prevLang = appSettings.selectedLanguage;
+    if (!appSettings.completedLessonsByLang) {
+        appSettings.completedLessonsByLang = {};
+    }
+    if (prevLang && Array.isArray(appSettings.completedLessons)) {
+        appSettings.completedLessonsByLang[prevLang] = appSettings.completedLessons.slice();
+    }
+
+    appSettings.selectedLanguage = newLang;
+
+    // Restore cached selection for new language if present
+    if (Array.isArray(appSettings.completedLessonsByLang[newLang]) && appSettings.completedLessonsByLang[newLang].length > 0) {
+        appSettings.completedLessons = appSettings.completedLessonsByLang[newLang].slice();
+    } else {
+        appSettings.completedLessons = [];
+    }
+
+    saveSettings();
+    renderLessonChecklist();
+    updateAiGenStatusText();
 }
 
 function onLessonCheckChange() {
@@ -178,6 +329,12 @@ function onLessonCheckChange() {
         if (f) checked.push(f);
     });
     appSettings.completedLessons = checked;
+    if (!appSettings.completedLessonsByLang) {
+        appSettings.completedLessonsByLang = {};
+    }
+    if (appSettings.selectedLanguage) {
+        appSettings.completedLessonsByLang[appSettings.selectedLanguage] = checked.slice();
+    }
     saveSettings();
     updateAiGenStatusText();
 }
@@ -188,32 +345,23 @@ function selectAllLessons(select) {
 }
 
 function selectCantoneseLessons() {
-    $(".lesson-chk").each(function() {
-        var cat = $(this).siblings(".lesson-check-category").text();
-        if (cat && cat.toLowerCase().indexOf("cantonese") !== -1) {
-            $(this).prop("checked", true);
-        } else {
-            $(this).prop("checked", false);
-        }
-    });
-    onLessonCheckChange();
+    appSettings.selectedLanguage = "Cantonese";
+    saveSettings();
+    renderLessonChecklist();
+    selectAllLessons(true);
 }
 
 function selectHebrewLessons() {
-    $(".lesson-chk").each(function() {
-        var cat = $(this).siblings(".lesson-check-category").text();
-        if (cat && cat.toLowerCase().indexOf("hebrew") !== -1) {
-            $(this).prop("checked", true);
-        } else {
-            $(this).prop("checked", false);
-        }
-    });
-    onLessonCheckChange();
+    appSettings.selectedLanguage = "Hebrew";
+    saveSettings();
+    renderLessonChecklist();
+    selectAllLessons(true);
 }
 
 function updateAiGenStatusText() {
+    var lang = appSettings.selectedLanguage || "Cantonese";
     var count = (appSettings.completedLessons || []).length;
-    var countText = count + " lesson" + (count === 1 ? "" : "s") + " selected";
+    var countText = count + " " + lang + " lesson" + (count === 1 ? "" : "s") + " selected";
     $("#ai_selected_count").text(countText);
     if ($("#ai_sentence_count").length) {
         $("#ai_sentence_count").val(appSettings.aiSentenceCount || 25);
@@ -921,42 +1069,25 @@ function generateSentencesFromCompletedLessons() {
             if (!isNaN(val) && val > 0) requestedCount = val;
         }
 
-        // Determine language from selected lessons or vocabulary
-        var targetLanguage = "cantonese";
-        for (var i = 0; i < selectedFiles.length; i++) {
-            var f = (selectedFiles[i] || "").toLowerCase();
-            if (f.indexOf("hebrew") !== -1) {
-                targetLanguage = "hebrew";
-                break;
-            }
-            if (f.indexOf("cantonese") !== -1 || f.indexOf("cp.") !== -1 || f.indexOf("c.") !== -1 || f.indexOf("ca.") !== -1) {
-                targetLanguage = "cantonese";
-                break;
-            }
-            if (typeof lessonFiles !== "undefined") {
-                for (var j = 0; j < lessonFiles.length; j++) {
-                    if (lessonFiles[j].file === selectedFiles[i]) {
-                        var cat = (lessonFiles[j].category || "").toLowerCase();
-                        if (cat.indexOf("hebrew") !== -1) targetLanguage = "hebrew";
-                        else if (cat.indexOf("cantonese") !== -1) targetLanguage = "cantonese";
-                        else if (cat.indexOf("polish") !== -1) targetLanguage = "polish";
-                        else if (cat.indexOf("spanish") !== -1) targetLanguage = "spanish";
-                        else if (cat.indexOf("mandarin") !== -1) targetLanguage = "mandarin";
-                        break;
-                    }
-                }
-            }
-        }
+        // Determine target language from chosen appSettings.selectedLanguage
+        var targetLanguage = (appSettings.selectedLanguage || "cantonese").toLowerCase();
 
-        // Check if vocabulary content has Hebrew characters
+        // Check if vocabulary content has Hebrew characters or Greek characters
         var hasHebrewChars = combinedVocab.some(function(line) {
             return /[\u0590-\u05FF]/.test(line);
         });
         if (hasHebrewChars) {
             targetLanguage = "hebrew";
         }
+        var hasGreekChars = combinedVocab.some(function(line) {
+            return /[\u0370-\u03FF]/.test(line);
+        });
+        if (hasGreekChars) {
+            targetLanguage = "greek";
+        }
 
-        $("#ai_gen_status").html('<span class="ai-gen-status">Composing ' + requestedCount + ' ' + targetLanguage + ' sentences strictly from ' + combinedVocab.length + ' vocabulary items...</span>');
+        var displayLang = targetLanguage.charAt(0).toUpperCase() + targetLanguage.slice(1);
+        $("#ai_gen_status").html('<span class="ai-gen-status">Composing ' + requestedCount + ' ' + displayLang + ' sentences strictly from ' + combinedVocab.length + ' vocabulary items...</span>');
 
         // Call our server-side Gemini route
         $.ajax({
@@ -967,7 +1098,7 @@ function generateSentencesFromCompletedLessons() {
                 vocabList: combinedVocab,
                 count: requestedCount,
                 language: targetLanguage,
-                lessonTitle: "AI Synthesized Practice (" + targetLanguage + ")"
+                lessonTitle: "AI Synthesized Practice (" + displayLang + ")"
             }),
             success: function(data) {
                 isGeneratingSentences = false;

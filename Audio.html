@@ -90,7 +90,7 @@ $(document).ready(function(){
             <button type="button" class="modal-close-btn" onclick="closeSettingsModal()" aria-label="Close settings">&times;</button>
         </div>
         <div class="modal-body">
-            <div class="setting-section">
+            <div class="setting-section" id="romanization_setting_section">
                 <span class="setting-section-title">Romanization</span>
                 <div class="setting-radio-group">
                     <label class="setting-radio-label">
@@ -141,17 +141,22 @@ $(document).ready(function(){
 
             <div class="setting-section">
                 <span class="setting-section-title">Completed Lessons (Active Vocab Pool)</span>
-                <div class="setting-desc" style="margin-left: 0; margin-bottom: 2px;">
-                    Select the lessons you have finished. AI sentence generation will use only vocabulary from these files.
+                <div class="setting-desc" style="margin-left: 0; margin-bottom: 4px;">
+                    Choose your target language to populate the active vocabulary pool:
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 4px 0 6px 0;">
+                    <label for="setting_language_select" style="font-size: 0.84rem; font-weight: 600; color: #334155;">Language:</label>
+                    <select id="setting_language_select" class="setting-select" onchange="onSettingLanguageChange()" style="flex: 1; max-width: 220px;">
+                        <!-- Options populated dynamically from available languages -->
+                    </select>
                 </div>
                 <div class="batch-btn-row">
-                    <button type="button" class="btn-secondary-sm" onclick="selectCantoneseLessons()">Cantonese Only</button>
-                    <button type="button" class="btn-secondary-sm" onclick="selectHebrewLessons()">Hebrew Only</button>
                     <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(true)">Select All</button>
                     <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(false)">Clear All</button>
+                    <span id="settings_lang_lesson_count" style="margin-left: auto; font-size: 0.72rem; color: #64748b; align-self: center;"></span>
                 </div>
                 <div id="settings_lessons_list" class="lesson-checklist-container">
-                    <!-- Checkboxes rendered dynamically -->
+                    <!-- Checkboxes rendered dynamically for chosen language only -->
                 </div>
             </div>
         </div>
