@@ -1,27 +1,13 @@
-א:a/e/)
-ב:b/v
-ג:g
-ד:d
-ה:h
-ו:o/u/w/v
-ז:z
-ח:ch
-ט:t
-י:y/i
-כ:k/ch
-ך:k/ch
-ל:L
-מ:m
-ם:m
-נ:n
-ן:n
-ס:s
-ע:a/e/(
-פ:p/f
-ף:f
-צ:ts
-ץ:ts
-ק:k
-ר:r
-ש:sh/s
-ת:t
+my name is / I'm called:קוראים לי
+how:איך
+you are called:קוראים לך
+why:למה
+where:איפה
+when:מתי
+pleasant:נעים
+very:מאוד
+nice to meet you:נעים מאוד
+Shlomo:שלמה
+Michal:מיכל
+Yoav:יואב
+Yael:יעל
