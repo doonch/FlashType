@@ -60,9 +60,12 @@ STRICT CONSTRAINTS:
 2. Grammar & Particles: You may use standard spoken Cantonese functional particles if grammatically required for natural sentences (e.g., question particles like aa3, maa3, or locative marker hai2, or aspect markers like zo2 / gwo3 if appropriate).
 3. Natural Spoken Cantonese Word Order: Follow standard colloquial Cantonese syntax (e.g., [Time] [Subject] [Modal] [Location: hai2 + Place] [Verb] [Object] [Particle]).
 4. Jyutping Format: Provide exact standard Jyutping with numeric tone markers 1-6 attached to each syllable (e.g., "ngo5 soeng2 hai2 ngo5 dou6 sik6 je5"). Do not use diacritics/tone marks.
-5. Alternative answers: Provide 1-3 valid variations in Jyutping (such as alternative word order like time at the beginning, or interchangeable phrasing like soeng2 vs soeng2 jiu3) if naturally acceptable.
+5. Alternative answers: Provide 1-2 valid variations in Jyutping (such as alternative word choice, or interchangeable phrasing) if naturally acceptable.
 6. English format: Natural, clear English sentence prompt for flashcard practice.
 7. Traditional Chinese Characters: Provide standard Cantonese written characters (Hanzi) for the primary sentence in the "characters" property (e.g. "我想要喺我度食嘢").
+8. Yes/No questions should strictly follow the Cantonese structure: "verb not verb", for example: do you want? "nei5 soeng2 m4 soeng2", do you have? "nei5 jau5 mou5".
+9. Prefer the question final particle "aa3", except specifically in "(nei5) hou2 maa3".
+10. "Or": use "waak6 ze5" when making a statement, "ding6 hai6"/"jik1 waak6" when asking questions. 
 
 Output JSON with an array of objects matching this exact structure:
 [

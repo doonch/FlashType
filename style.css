@@ -113,13 +113,14 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background: rgba(15, 23, 42, 0.5);
     backdrop-filter: blur(2px);
     z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 10px 8px;
     box-sizing: border-box;
 }
 
@@ -128,7 +129,11 @@ body {
     border-radius: 12px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 440px;
+    max-width: 420px;
+    max-height: calc(100vh - 20px);
+    max-height: calc(100dvh - 20px);
+    display: flex;
+    flex-direction: column;
     border: 1px solid #e2e8f0;
     overflow: hidden;
     animation: modalFadeIn 0.2s ease-out;
@@ -143,29 +148,30 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 20px;
+    padding: 8px 16px;
     border-bottom: 1px solid #f1f5f9;
+    flex-shrink: 0;
 }
 
 .modal-header h3 {
     margin: 0;
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #0f172a;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .modal-close-btn {
     background: transparent;
     border: none;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1;
     color: #64748b;
     cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 6px;
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 .modal-close-btn:hover {
@@ -174,43 +180,47 @@ body {
 }
 
 .modal-body {
-    padding: 18px 20px;
+    padding: 8px 16px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 8px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 .setting-section {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 2px;
 }
 
 .setting-section-title {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: #64748b;
-    margin-bottom: 2px;
+    margin-bottom: 0;
 }
 
 .setting-radio-group {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     align-items: center;
     background: #f8fafc;
-    padding: 10px 14px;
-    border-radius: 8px;
+    padding: 5px 10px;
+    border-radius: 6px;
     border: 1px solid #e2e8f0;
 }
 
 .setting-radio-label {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: #1e293b;
     user-select: none;
 }
@@ -218,72 +228,74 @@ body {
 .setting-checkbox-label {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: #1e293b;
     user-select: none;
-    padding: 2px 0;
+    padding: 1px 0;
 }
 
 .setting-checkbox-label input[type="checkbox"],
 .setting-radio-label input[type="radio"] {
     cursor: pointer;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
 }
 
 .setting-desc {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     color: #64748b;
-    margin-left: 26px;
-    margin-top: -2px;
+    margin-left: 22px;
+    margin-top: 0;
+    line-height: 1.25;
 }
 
 .setting-suboptions {
-    margin-left: 26px;
-    margin-top: 6px;
-    padding: 10px 12px;
+    margin-left: 22px;
+    margin-top: 2px;
+    padding: 5px 8px;
     background: #f8fafc;
     border-radius: 6px;
     border: 1px solid #e2e8f0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    font-size: 0.88rem;
+    gap: 3px;
+    font-size: 0.8rem;
 }
 
 .setting-timeout-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
 }
 
 .setting-timeout-input {
-    width: 60px;
-    padding: 4px 8px;
+    width: 50px;
+    padding: 2px 4px;
     border: 1px solid #cbd5e1;
     border-radius: 4px;
     text-align: right;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
 }
 
 .modal-footer {
-    padding: 12px 20px;
+    padding: 7px 16px;
     background: #f8fafc;
     border-top: 1px solid #f1f5f9;
     display: flex;
     justify-content: flex-end;
+    flex-shrink: 0;
 }
 
 .modal-btn-primary {
     background: #2563eb;
     color: #ffffff;
     border: none;
-    padding: 8px 20px;
+    padding: 5px 18px;
     border-radius: 6px;
-    font-size: 0.92rem;
+    font-size: 0.86rem;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.15s ease;
@@ -313,25 +325,25 @@ body {
 
 /* AI Sentence Generator & Completed Lessons in Settings */
 .lesson-checklist-container {
-    max-height: 180px;
+    max-height: 95px;
     overflow-y: auto;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 8px 10px;
+    border-radius: 6px;
+    padding: 4px 8px;
     background: #f8fafc;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 2px;
 }
 
 .lesson-check-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.88rem;
+    gap: 6px;
+    font-size: 0.8rem;
     cursor: pointer;
     user-select: none;
-    padding: 3px 4px;
+    padding: 1px 4px;
     border-radius: 4px;
 }
 
@@ -340,33 +352,33 @@ body {
 }
 
 .lesson-check-item input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
 }
 
 .lesson-check-category {
-    font-size: 0.72rem;
+    font-size: 0.65rem;
     font-weight: 600;
     color: #64748b;
     background: #e2e8f0;
-    padding: 1px 6px;
-    border-radius: 4px;
+    padding: 1px 5px;
+    border-radius: 3px;
     margin-left: auto;
 }
 
 .batch-btn-row {
     display: flex;
-    gap: 8px;
-    margin-top: 4px;
+    gap: 6px;
+    margin-top: 2px;
 }
 
 .btn-secondary-sm {
     background: #f1f5f9;
     border: 1px solid #cbd5e1;
     border-radius: 4px;
-    font-size: 0.78rem;
-    padding: 3px 8px;
+    font-size: 0.72rem;
+    padding: 2px 6px;
     cursor: pointer;
     color: #334155;
 }
@@ -429,5 +441,28 @@ body {
 .ai-gen-error {
     font-size: 0.85rem;
     color: #b91c1c;
+}
+
+@media (max-height: 640px), (max-width: 480px) {
+    .modal-overlay {
+        padding: 4px;
+    }
+    .settings-modal-card {
+        max-height: calc(100dvh - 8px);
+        max-width: 98vw;
+    }
+    .modal-header {
+        padding: 6px 12px;
+    }
+    .modal-body {
+        padding: 6px 12px;
+        gap: 6px;
+    }
+    .lesson-checklist-container {
+        max-height: 80px;
+    }
+    .modal-footer {
+        padding: 5px 12px;
+    }
 }
 
