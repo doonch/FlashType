@@ -160,7 +160,7 @@ $(document).ready(function(){
         <span id="ai_selected_count" class="lesson-check-category">1 lesson selected</span>
     </div>
     <div style="font-size: 0.84rem; color: #1e293b;">
-        Uses AI to compose natural conversational sentences strictly constrained to your selected completed lessons (e.g. CP.1.txt).
+        Uses AI to compose natural conversational sentences strictly constrained to your selected completed lessons.
     </div>
     <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
         <button type="button" id="ai_gen_btn" class="ai-gen-btn" onclick="generateSentencesFromCompletedLessons()">Generate Sentences ✨</button>
@@ -171,6 +171,7 @@ $(document).ready(function(){
                 <option value="20">20</option>
                 <option value="25" selected>25</option>
                 <option value="30">30</option>
+                <option value="50">50</option>
             </select>
         </label>
         <span id="ai_gen_status"></span>
