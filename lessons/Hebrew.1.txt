@@ -1,8 +1,8 @@
 I, me:אני
 you (m):אתה
 you (f):את
-want (m):רוצה
-want (f):רוצה
+want (m):רוצָה
+want (f):רוצֶה
 eat (m):אוכל
 eat (f):אוכלת
 go (m):הולך
@@ -12,15 +12,15 @@ to eat:לאכול
 eggplant:חציל
 apple:תפוח
 pita bread:פיתה
-with:עם
+with:עִם
 hummus:חומוס
 falafel:פלאפל
-shekel:שקל
+shekel:שֶקֶל
 twenty:עשרים
 thirty:שלושים
-with me:איתי
-with you (m):איתך
-with you (f):איתך
+with me:איתִי
+with you (m):איתְךָ
+with you (f):איתךְ
 to the restaurant:למסעדה
 to a restaurant:למסעדה
 the restaurant:המסעדה

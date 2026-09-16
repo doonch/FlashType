@@ -1,8 +1,8 @@
 coffee:קפה
 tea:תה
 to drink:לשתות
-drink (m):שותה
-drink (f):שותה
+drink (m):שותֶה
+drink (f):שותָה
 sugar:סוכר
 milk:חלב
 without:בלי

@@ -1,6 +1,7 @@
 my name is / I'm called:קוראים לי
 how:איך
-you are called:קוראים לך
+you (m) are called:קוראים לךָ
+you (f) are called:קוראים לךְ
 why:למה
 where:איפה
 when:מתי
