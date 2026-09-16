@@ -8,7 +8,7 @@ when:מתי
 pleasant:נעים
 very:מאוד
 nice to meet you:נעים מאוד
-Shlomo:שלמה
+Shlomo:שלֹמֹה
 Michal:מיכל
 Yoav:יואב
 Yael:יעל

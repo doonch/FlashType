@@ -1,6 +1,6 @@
 I, me:אני
 you (m):אתה
-you (f):את
+you (f):אַת
 want (m):רוצָה
 want (f):רוצֶה
 eat (m):אוכל
@@ -21,8 +21,8 @@ thirty:שלושים
 with me:איתִי
 with you (m):איתְךָ
 with you (f):איתךְ
-to the restaurant:למסעדה
-to a restaurant:למסעדה
+to the restaurant:לַמסעדה
+to a restaurant:לְמסעדה
 the restaurant:המסעדה
 restaurant:מסעדה
 costs:עולה
