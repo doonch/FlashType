@@ -1,40 +1,36 @@
-bread: lechem
-book: sefer
-name: shem
-the name / god: hashem
-dog: kelev
-saturday: shabat
-Poland: polin
-gold: zahav
-money/silver: kesef
-United States: artsot habrit
-water: mayim
-soup: marak
-to eat: le'echol
-eats (fem.): ochelet
-loves (fem.):  ohevet
-breakfast: aruchat boker
-minister: sar
-but : aval
-hundred: me'a
-pain: ke'ev
-here : po / kan
-head: rosh
-full: male
-terrible: nora
-cardamom: hel
-what? : ma
-mouth: pe
-there is: yesh
-there isn't: en
-egg: beytsa
-swamp: bitsa
-between: ben
-nothing: klum
-here is: hine
-to drink: lishtot
-heart: lev
-acquaintance (m.): makar
-how much? how many?: kama
-sick (masc.): chole
-sick (fem.): chola
+bread: לֶחֶם
+book: סֶפֶר
+name: שֵם
+the name / god: השם
+dog (m): כלב
+saturday: שבּת
+Poland: פולין
+gold: זהב
+money/silver: כסף
+water: מים
+soup: מרק
+loves (m):אוהב
+loves (f):אוהבת
+breakfast: ארוחת בוקר
+minister: שׂר
+but : אבל
+hundred: מאה
+pain: כאב
+here : פה/כאן
+head: ראש
+full: מלא
+terrible: נורא
+cardamom: הל
+mouth: פה
+there is: יש
+there isn't: אין
+swamp: בִּיצה
+between:בין
+nothing: כלום
+here is: הינה
+to drink: לשתות
+heart: לב
+acquaintance (m.): מכּר
+how much? how many?: כמה
+sick (m): חולֶה
+sick (f): חולָה
