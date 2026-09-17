@@ -1,32 +1,32 @@
-he/she:ta1
-his:ta1de
-multiple particle:me2n
-us:wo3me2n
-their:ta1me2de
-to be:shi4
-where:na3li3
-teacher:la3oshi1
+he/she:tā
+his:tā de
+multiple particle:men
+us:wǒmen
+their:tāmen de
+to be:shì
+where:nǎlǐ
+teacher:lǎoshī
 yes/no question particle:ma
-not/no:bu4
-student:xue2sheng
-too/also:ye3
-people/person:re2n
-china:zho1ngguo2
-beijing:be3iji1ng
-america:me3iguo2
-new-york:niu3yue1
-business man:sha1ng re2n
-israel:yi3se4lie4
-england:yi1ngguo2
-france:fa3guo2
-germany:de2guo2
-japan:ri4be3n
-south korea:ha2nguo2
-canada:jia1'na2da4
-mexico:mo4xi1ge1
-india:yi4ndu4
-vietnam:yue4na2n
-california:jia1zho1u
-hawaii:xia4we1iyi2
-shanghai:sha4ngha3i
-brazil:ba1xi1
+not/no:bù
+student:xuésheng
+too/also:yě
+people/person:rén
+china:zhōngguó
+beijing:běijīng
+america:měiguó
+new-york:niǔyuē
+business man:shāngrén
+israel:yǐsèliè
+england:yīngguó
+france:fǎguó
+germany:déguó
+japan:rìběn
+south korea:hánguó
+canada:jiānádà
+mexico:mòxīgē
+india:yìndù
+vietnam:yuènán
+california:jiāzhōu
+hawaii:xiàwēiyí
+shanghai:shànghǎi
+brazil:bāxī

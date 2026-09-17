@@ -1,22 +1,22 @@
-t:na4
-possesive:de
-photo:zha4opia4n
-this:zhe4
-father:ba4ba
-mother:ma1ma
-measure word:ge4
-female:nu..3
-child:ha2izi
-who:she2i
-she:ta1
-older sister:jie3jie
-male:na2n
-younger brother:di4di
-he:ta1
-eldest brother:da4ge1
-son:e2rzi
-to have:yo3u
-daughter:nu..3'e2r
-not:me2i
-older brother:ge1ge
-younger sister:me4imei
+that:nà
+possessive:de
+photo:zhàopiàn
+this:zhè
+father:bàba
+mother:māma
+measure word:gè
+female:nǚ
+child:háizi
+who:shéi/shuí
+she:tā
+older sister:jiějie
+male:nán
+younger brother:dìdi
+he:tā
+eldest brother:dàgē
+son:érzi
+to have:yǒu
+daughter:nǚ'ér
+not:méi
+older brother:gēge
+younger sister:mèimei

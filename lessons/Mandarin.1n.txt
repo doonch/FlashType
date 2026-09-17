@@ -1,13 +1,13 @@
-you:ni3
-fine:ha3o
-please:qi3ng
-ask:we4n
-honorable:gui4
-surname:xi4ng
-I:wo3
+you:nǐ
+fine:hǎo
+please:qǐng
+ask:wèn
+honorable:guì
+surname:xìng
+I:wǒ
 question word:ne
-Miss:xia3ojie3
-to be called:jia4o
-what:she2nme
-name:mi2ngzi
-Mr.:xia1nshen
+Miss:xiǎojiě
+to be called:jiào
+what:shénme
+name:míngzi
+Mr.:xiānsheng

@@ -9,8 +9,8 @@ var autoLoop=false;
 var appSettings = {
     selectedLanguage: "Cantonese",
     romanization: "jyutping",
-    speakQuestions: false,
-    speakAnswers: false,
+    speakQuestions: true,
+    speakAnswers: true,
     passiveMode: false,
     questionTimeoutSec: 3.5,
     decayTimeoutSec: 2.5,
@@ -37,11 +37,20 @@ function loadSettings() {
             if (rom === "yale" || rom === "jyutping") {
                 appSettings.romanization = rom;
             }
-            if (localStorage.getItem("flashtype_speak_questions") !== null) {
-                appSettings.speakQuestions = localStorage.getItem("flashtype_speak_questions") === "true";
-            }
-            if (localStorage.getItem("flashtype_speak_answers") !== null) {
-                appSettings.speakAnswers = localStorage.getItem("flashtype_speak_answers") === "true";
+            if (localStorage.getItem("flashtype_speech_default_v2") === null) {
+                // Initialize default to true for speaking questions and answers
+                appSettings.speakQuestions = true;
+                appSettings.speakAnswers = true;
+                localStorage.setItem("flashtype_speech_default_v2", "true");
+                localStorage.setItem("flashtype_speak_questions", "true");
+                localStorage.setItem("flashtype_speak_answers", "true");
+            } else {
+                if (localStorage.getItem("flashtype_speak_questions") !== null) {
+                    appSettings.speakQuestions = localStorage.getItem("flashtype_speak_questions") === "true";
+                }
+                if (localStorage.getItem("flashtype_speak_answers") !== null) {
+                    appSettings.speakAnswers = localStorage.getItem("flashtype_speak_answers") === "true";
+                }
             }
             if (localStorage.getItem("flashtype_passive_mode") !== null) {
                 appSettings.passiveMode = localStorage.getItem("flashtype_passive_mode") === "true";
@@ -1165,6 +1174,36 @@ function checkPress(e)
     }
 }
 
+var pinyinVowelMap = {
+    "ā": ["a", "1"], "á": ["a", "2"], "ǎ": ["a", "3"], "à": ["a", "4"],
+    "ē": ["e", "1"], "é": ["e", "2"], "ě": ["e", "3"], "è": ["e", "4"],
+    "ī": ["i", "1"], "í": ["i", "2"], "ǐ": ["i", "3"], "ì": ["i", "4"],
+    "ō": ["o", "1"], "ó": ["o", "2"], "ǒ": ["o", "3"], "ò": ["o", "4"],
+    "ū": ["u", "1"], "ú": ["u", "2"], "ǔ": ["u", "3"], "ù": ["u", "4"],
+    "ǖ": ["v", "1"], "ǘ": ["v", "2"], "ǚ": ["v", "3"], "ǜ": ["v", "4"],
+    "ü": ["v", ""]
+};
+
+function pinyinToNumbered(s) {
+    if (!s) return "";
+    var str = s.toLowerCase();
+    var sylRegex = /(zh|ch|sh|[bpmfdtnlgkhzcsryw]?)([aeiouüv\u00c0-\u024f]+)(ng|n|r)?/gi;
+    return str.replace(sylRegex, function(match, init, vow, fin) {
+        var tone = "";
+        var cleanVow = "";
+        for (var i = 0; i < vow.length; i++) {
+            var ch = vow[i];
+            if (pinyinVowelMap[ch]) {
+                cleanVow += pinyinVowelMap[ch][0];
+                if (pinyinVowelMap[ch][1]) tone = pinyinVowelMap[ch][1];
+            } else {
+                cleanVow += ch;
+            }
+        }
+        return (init || "") + cleanVow + (fin || "") + tone;
+    });
+}
+
 function clean(s)
 {
     if (s === undefined || s === null) return "";
@@ -1185,10 +1224,23 @@ function clean(s)
 
     if (forgiveTones)
     {
-        return res.replace(/[ 1-9\s]/g, "")
+        return res.normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/ü/gi, "u")
+                .replace(/v/gi, "u")
+                .replace(/[ 1-9\s]/g, "")
                 .toLowerCase();
     }
+
+    var cat = getLessonCategory();
+    var isMandarin = (typeof activeSessionLanguage !== "undefined" && activeSessionLanguage === "mandarin") || (cat.indexOf("mandarin") !== -1);
+    if (isMandarin || /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/i.test(res))
+    {
+        res = pinyinToNumbered(res);
+    }
+
     return res.replace(/\s+/g, "")
+            .replace(/ü/gi, "v")
             .replace(/7/g, "1")
             .replace(/8/g, "3")
             .replace(/9/g, "6")
@@ -1313,6 +1365,18 @@ function speakText(text, lang, speakSourceText) {
                     var vLang = (voices[v].lang || "").replace(/_/g, "-").toLowerCase();
                     if (vLang === "zh-hk" || vName.indexOf("cantonese") !== -1 || vName.indexOf("hong kong") !== -1 || vLang.indexOf("yue") !== -1) {
                         matchedVoice = voices[v];
+                        break;
+                    }
+                }
+            }
+
+            // Prioritize Mandarin voice (zh-CN, Mandarin, or Putonghua)
+            if (!matchedVoice && (targetLangLower === "zh-cn" || targetLangLower.indexOf("mandarin") !== -1)) {
+                for (var m = 0; m < voices.length; m++) {
+                    var mName = (voices[m].name || "").toLowerCase();
+                    var mLang = (voices[m].lang || "").replace(/_/g, "-").toLowerCase();
+                    if (mLang === "zh-cn" || mName.indexOf("mandarin") !== -1 || mName.indexOf("putonghua") !== -1 || mName.indexOf("mainland") !== -1 || mLang === "zh-sg") {
+                        matchedVoice = voices[m];
                         break;
                     }
                 }
