@@ -96,7 +96,8 @@ function buildPrompt({ language, vocabString, numSentences }) {
 1. Hebrew Characters Only: The output in the "target" property and all entries in the "alternatives" list MUST use Hebrew characters (אותיות עבריות), NOT any transliteration, Romanization, or Latin alphabet.
 2. Grammar & Agreement: Follow standard modern Hebrew grammar, including appropriate gender agreement (masculine/feminine) and number agreement (singular/plural).
 3. Natural Syntax: Follow natural modern Hebrew word order and syntax.
-4. Orthography: Use standard modern unvocalized spelling (Ktiv Male / כתיב מלא) without Niqqud.`;
+4. Orthography: Use standard modern unvocalized spelling (Ktiv Male / כתיב מלא). 
+5. Pronunciation: Retain Niqqud from input vocabulary. For example, the word רוצֶה if used in a sentence, should appear with this niqqud in the output. This is critical for correct pronunciation and speech synthesis.`;
 
     jsonFormatExample = `Output JSON with an array of objects matching this exact structure:
 [

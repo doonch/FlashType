@@ -1,10 +1,14 @@
-to the: la
-going (masc.): holech
-going (fem.): holechet
-seven: sheva
-(to-) home: habayta
-to sleep: lishon
-can, able (fem.): yechola
-can, able (masc.): yachol
-must, owe (fem.): chayevet
-must, owe (masc.): chayav
+cake:עוגה
+cheese:גבינה
+cheese cake:עוגת גבינה
+egg:בֵּיצה
+surprise:הפתעה
+kinder egg:ביצת הפתעה
+chocolate:שוקולד
+sweet (m):מתוק
+sweet (f):מתוקה
+vegetables:ירקות
+fruits:פירות
+juice:מיץ
+oranges:תפוזים
+tomatoes:עגבניות

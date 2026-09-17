@@ -8,3 +8,5 @@ make, do (F):עושָה
 what?:מָה
 good:טוב
 thanks:תודה
+tonight, this evening:הערב
+evening:עֶרֶב
