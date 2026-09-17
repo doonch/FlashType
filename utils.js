@@ -522,14 +522,28 @@ function checkPress(e)
 
 function clean(s)
 {
+    if (s === undefined || s === null) return "";
+    var str = String(s);
+
+    // Remove parenthesized annotations such as (masc.), (fem.), (sb), (not young), etc.
+    var res = str.replace(/\([^)]*\)/g, "");
+
+    // Forgive Hebrew Niqqud, vowel points, dagesh, and cantillation marks (U+0591 to U+05C7)
+    res = res.replace(/[\u0591-\u05C7]/g, "");
+
+    // Forgive any errors in punctuation (commas, periods, question marks, exclamation points, colons, quotes, etc.)
+    try {
+        res = res.replace(/[\p{P}\p{S}]/gu, "");
+    } catch (e) {
+        res = res.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"'״׳„“”‘’«»¿¡\u05BE\u05C0\u05C3\u05F3\u05F4，。！？；：、]/g, "");
+    }
+
     if (forgiveTones)
     {
-        return s.replace(/\([\w .]*\)/g, "")
-                .replace(/[ 1-9]/g, "")
+        return res.replace(/[ 1-9\s]/g, "")
                 .toLowerCase();
     }
-    return s.replace(/\([\w .]*\)/g, "")
-            .replace(/ /g, "")
+    return res.replace(/\s+/g, "")
             .replace(/7/g, "1")
             .replace(/8/g, "3")
             .replace(/9/g, "6")

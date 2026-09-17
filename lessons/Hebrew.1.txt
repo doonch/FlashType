@@ -19,11 +19,12 @@ shekel:שֶקֶל
 twenty:עשרים
 thirty:שלושים
 with me:איתִי
-with you (m):איתְךָ
-with you (f):איתךְ
+with you (m):אִיתְךָ
+with you (f):אִיתךְ
 to the restaurant:לַמסעדה
 to a restaurant:לְמסעדה
 the restaurant:המסעדה
 restaurant:מסעדה
-costs:עולה
+costs (m):עולֶה
+costs (f):עולָה
 what:מה
