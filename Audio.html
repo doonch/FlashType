@@ -85,6 +85,8 @@ $(document).ready(function(){
     <button type="button" id="settings_btn" class="top-icon-btn" title="Settings" aria-label="Settings" onclick="openSettingsModal()">⚙</button>
     <button type="button" id="passive_mode_btn" class="top-icon-btn" title="Passive Mode: Off (Click to Play)" aria-label="Toggle Passive Mode" onclick="togglePassiveMode()"><span id="passive_mode_icon">▶</span></button>
     <button type="button" id="ai_modal_btn" class="top-icon-btn" title="Synthesize Practice Sentences" aria-label="Synthesize Practice Sentences" onclick="openAiModal()">✨</button>
+    <button type="button" id="download_btn" class="top-action-btn" title="Download selected question:answer pairs" aria-label="Download Lesson" onclick="openDownloadModal()"><span class="top-action-icon">📥</span> Download</button>
+    <button type="button" id="upload_btn" class="top-action-btn" title="Upload custom lesson pairs" aria-label="Upload Lesson" onclick="openUploadModal()"><span class="top-action-icon">📤</span> Upload</button>
 </div>
 
 <div id="settings_modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="settings_title_audio">
@@ -209,6 +211,57 @@ $(document).ready(function(){
         <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
             <button type="button" class="btn-secondary-sm" onclick="closeAiModal()">Cancel</button>
             <button type="button" id="ai_gen_btn" class="ai-gen-btn" onclick="generateSentencesFromCompletedLessons()">Generate Sentences ✨</button>
+        </div>
+    </div>
+</div>
+
+<!-- Download Modal -->
+<div id="download_modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="download_modal_title">
+    <div class="settings-modal-card modal-card-wide" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 id="download_modal_title">📥 Download Lesson</h3>
+            <button type="button" class="modal-close-btn" onclick="closeDownloadModal()" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.84rem; color: #475569;">Selected question:answer pairs in standard lesson file format:</span>
+                <span id="download_count" class="lesson-check-category" style="margin: 0; font-size: 0.75rem;">0 pairs</span>
+            </div>
+            <textarea id="download_textarea" class="modal-textarea" rows="12" spellcheck="false" placeholder="No question:answer pairs loaded..."></textarea>
+            <div id="download_status" style="min-height: 20px; font-size: 0.82rem; color: #059669; font-weight: 500; margin-top: 6px;"></div>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="btn-secondary-sm" onclick="closeDownloadModal()">Close</button>
+            <div style="display: flex; gap: 8px;">
+                <button type="button" class="btn-secondary-sm" onclick="copyDownloadText()" title="Copy all text to clipboard">📋 Copy</button>
+                <button type="button" id="download_save_btn" class="ai-gen-btn" onclick="saveDownloadToFile()" style="padding: 6px 14px;">Save... 💾</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Upload Modal -->
+<div id="upload_modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="upload_modal_title">
+    <div class="settings-modal-card modal-card-wide" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 id="upload_modal_title">📤 Upload Lesson</h3>
+            <button type="button" class="modal-close-btn" onclick="closeUploadModal()" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.84rem; color: #475569;">Paste lesson text below or load from a file:</span>
+                <span id="upload_count_badge" class="lesson-check-category" style="margin: 0; font-size: 0.75rem;"></span>
+            </div>
+            <textarea id="upload_textarea" class="modal-textarea" rows="12" spellcheck="false" placeholder="Paste question:answer pairs here, one per line:&#10;hello:nei5 hou2&#10;thank you:do1 ze6&#10;&#10;Or drop a .txt file here..."></textarea>
+            <input type="file" id="upload_file_input" accept=".txt,text/plain" style="display: none;" onchange="handleUploadFileSelected(this)">
+            <div id="upload_status" style="min-height: 20px; font-size: 0.82rem; color: #0f172a; margin-top: 6px;"></div>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 8px;">
+                <button type="button" class="btn-secondary-sm" onclick="closeUploadModal()">Cancel</button>
+                <button type="button" id="upload_load_file_btn" class="btn-secondary-sm" onclick="triggerUploadFilePicker()" title="Pick a file from your computer">Load... 📂</button>
+            </div>
+            <button type="button" id="upload_apply_btn" class="ai-gen-btn" onclick="applyUploadedLesson()" style="padding: 6px 14px;">Practice Lesson ✨</button>
         </div>
     </div>
 </div>
