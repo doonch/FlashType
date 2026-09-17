@@ -72,6 +72,7 @@ body {
     align-items: center;
     gap: 8px;
     margin-bottom: 14px;
+    flex-wrap: wrap;
 }
 
 .top-icon-btn {
@@ -173,6 +174,13 @@ body {
 
 .top-action-btn:active {
     transform: scale(0.97);
+}
+
+.top-action-btn.is-active {
+    background-color: #eff6ff;
+    border-color: #3b82f6;
+    color: #1d4ed8;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.18);
 }
 
 .top-action-btn:focus-visible {
@@ -596,4 +604,326 @@ body {
         padding: 5px 12px;
     }
 }
+
+/* Flag Buttons Row */
+.flag-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0 12px 0;
+}
+
+.flag-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #1e293b;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.15s ease;
+    user-select: none;
+}
+
+.flag-btn:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.flag-btn:active {
+    transform: scale(0.97);
+}
+
+.flag-btn.is-active {
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #1d4ed8;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.flag-svg {
+    width: 24px;
+    height: 16px;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+/* Active lesson banner */
+.active-lesson-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
+    font-size: 0.86rem;
+    margin-bottom: 12px;
+}
+
+.active-lesson-banner .active-badge-label {
+    color: #64748b;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: 600;
+}
+
+.active-badge-flag {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Language Lessons Modal */
+.lang-lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 55vh;
+    max-height: 55dvh;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.lang-lesson-row-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+    gap: 12px;
+}
+
+.lang-lesson-row-btn:hover {
+    background: #f0f9ff;
+    border-color: #38bdf8;
+    transform: translateX(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.lang-lesson-row-btn:active {
+    transform: scale(0.99);
+}
+
+.lang-lesson-name {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #0f172a;
+}
+
+.lang-lesson-cat {
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+/* Vocabulary Table */
+#vocabTable {
+    width: 100%;
+    max-width: 680px;
+    margin-top: 14px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid #cbd5e1;
+}
+
+#vocabTable td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.92rem;
+    color: #1e293b;
+    vertical-align: middle;
+}
+
+#vocabTable tr:last-child td {
+    border-bottom: none;
+}
+
+#vocabTable tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+#vocabTable tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Help Modal Styles */
+.modal-card-help {
+    max-width: 580px;
+}
+
+.help-modal-body {
+    padding: 10px 16px;
+    gap: 10px;
+}
+
+.help-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+    padding: 10px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.help-card-highlight {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.help-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.help-section-title {
+    margin: 0;
+    font-size: 0.93rem;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.help-section-tag {
+    display: inline-block;
+    background: #16a34a;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.help-card-text {
+    margin: 0;
+    font-size: 0.84rem;
+    line-height: 1.48;
+    color: #334155;
+}
+
+.help-card-text strong {
+    color: #0f172a;
+}
+
+.help-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.help-feature-item {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    font-size: 0.82rem;
+    line-height: 1.42;
+    color: #334155;
+    padding: 2px 0;
+}
+
+.help-feature-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1e293b;
+    background: #f1f5f9;
+    padding: 2px 7px;
+    border-radius: 5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border: 1px solid #e2e8f0;
+}
+
+.help-feature-desc {
+    flex: 1;
+}
+
+.help-tip-box {
+    background: #fefce8;
+    border: 1px solid #fef08a;
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #854d0e;
+    margin: 3px 0;
+}
+
+.help-list {
+    margin: 0 0 0 18px;
+    padding: 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #334155;
+}
+
+.help-list li {
+    margin-bottom: 4px;
+}
+
+.help-card-footer-action {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.help-github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0f172a;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 7px;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.help-github-link:hover {
+    background: #1e293b;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.help-github-link:active {
+    transform: scale(0.98);
+}
+
+
 
