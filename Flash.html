@@ -18,6 +18,7 @@ $(document).ready(function(){
     $("#stage").hide();
     $("#vocabTable").hide();
     $("#toggleTable").hide();
+    $("#passive_mode_btn").hide();
     applySettings();
     updateAiGenStatusText();
 
@@ -53,10 +54,10 @@ $(document).ready(function(){
 <body>
 <div class="top-header-bar">
     <button type="button" id="settings_btn" class="top-icon-btn" title="Settings" aria-label="Settings" onclick="openSettingsModal()">⚙</button>
-    <button type="button" id="passive_mode_btn" class="top-icon-btn" title="Passive Mode: Off (Click to Play)" aria-label="Toggle Passive Mode" onclick="togglePassiveMode()"><span id="passive_mode_icon">▶</span></button>
+    <button type="button" id="passive_mode_btn" class="top-icon-btn" title="Passive Mode: Off (Click to Play)" aria-label="Toggle Passive Mode" onclick="togglePassiveMode()" style="display: none;"><span id="passive_mode_icon">▶</span></button>
+    <button type="button" id="toggleTable" class="top-action-btn" title="Show or Hide Vocabulary List" aria-label="Show or Hide Vocabulary List" onclick="toggleTable()" style="display: none;"><span class="top-action-icon">📜</span> <span>Show List</span></button>
     <button type="button" id="ai_modal_btn" class="top-icon-btn" title="Synthesize Practice Sentences" aria-label="Synthesize Practice Sentences" onclick="openAiModal()">✨</button>
     <button type="button" id="help_btn" class="top-action-btn" title="Help & Guide" aria-label="Help" onclick="openHelpModal()"><span class="top-action-icon">❓</span> <span>Help</span></button>
-    <button type="button" id="toggleTable" class="top-action-btn" title="Show or Hide Vocabulary List" aria-label="Show or Hide Vocabulary List" onclick="toggleTable()" style="display: none;"><span class="top-action-icon">📜</span> <span>Show List</span></button>
     <button type="button" id="download_btn" class="top-action-btn" title="Download selected question:answer pairs" aria-label="Download Lesson" onclick="openDownloadModal()"><span class="top-action-icon">📥</span> Download</button>
     <button type="button" id="upload_btn" class="top-action-btn" title="Upload custom lesson pairs" aria-label="Upload Lesson" onclick="openUploadModal()"><span class="top-action-icon">📤</span> Upload</button>
 </div>
@@ -275,10 +276,10 @@ $(document).ready(function(){
                     <span class="help-section-tag">Start Here</span>
                 </div>
                 <p class="help-card-text">
-                    <strong>1. Pick a language:</strong> Click any country flag in the toolbar at the top (Cantonese, Hebrew, Spanish, Polish, Greek, Mandarin, or Civics).
+                    <strong>1. Pick a language:</strong> Click any country flag in the toolbar at the top (Cantonese, Hebrew, Spanish, Polish, Greek, Mandarin, or Civics), and pick one of the lessons.
                 </p>
                 <p class="help-card-text">
-                    <strong>2. Press Play (▶):</strong> Click the <strong>Play</strong> button in the top toolbar to begin <em>Passive Mode</em> immediately, or choose any lesson from the menu to start interactive typing drills!
+                    <strong>2. Press Play (▶):</strong> Click the <strong>Play</strong> button in the top toolbar to begin <em>Passive Mode</em> immediately!
                 </p>
             </div>
 
@@ -382,22 +383,51 @@ $(document).ready(function(){
 <div id="active_lesson_banner" class="active-lesson-banner" style="display: none;"></div>
 
 <select name="lesson" id="lesson" style="display: none;" aria-hidden="true"></select>
-<div id=stage>
-Q: <span id="question_txt">Ready?</span><br/>
-<div id="interactive_controls">
-A: <input type="text" id="answer" size="50" onkeyup="checkPress(event)">
-<button type="button" onclick="checkAnswer()">Submit</button>
-<button type="button" onclick="skip()">Skip</button><br/>
-</div>
-<div id="passive_indicator" style="display: none; margin: 8px 0 10px 0;">
-    <span class="passive-badge">Passive Mode</span>
-    <span id="passive_status" class="passive-status">Thinking...</span>
-</div>
-<div id="feedback"></div>
-<div id="list">new:san1
+<div id="stage" class="stage-container">
+    <!-- Passive Mode Timer Widget (positioned above the Question prompt) -->
+    <div id="passive_indicator" class="passive-indicator-card" style="display: none;">
+        <div class="passive-timer-widget">
+            <div class="passive-circle-wrap" title="Timer before reveal / next question">
+                <svg class="passive-timer-svg" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true">
+                    <circle class="passive-circle-bg" cx="14" cy="14" r="11" />
+                    <circle id="passive_timer_circle" class="passive-circle-bar phase-question" cx="14" cy="14" r="11" transform="rotate(-90 14 14)" />
+                </svg>
+            </div>
+            <div class="passive-details">
+                <div class="passive-details-top">
+                    <span class="passive-badge">Passive Mode</span>
+                    <span id="passive_phase_label" class="passive-phase-label">Revealing answer soon</span>
+                </div>
+                <div id="passive_status" class="passive-status">Try to say the answer aloud!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Practice Drill Card (Question, Answer, Submit, Skip, Feedback) -->
+    <div class="stage-drill-card">
+        <div class="drill-row question-row">
+            <span class="prompt-badge question-badge" aria-label="Question">Q</span>
+            <div class="question-content">
+                <span id="question_txt" class="question-text">Ready?</span>
+            </div>
+        </div>
+
+        <div id="interactive_controls" class="interactive-controls-wrap">
+            <div class="drill-row answer-row">
+                <span class="prompt-badge answer-badge" aria-label="Answer">A</span>
+                <input type="text" id="answer" class="stage-input-answer" size="30" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Type answer here..." onkeyup="checkPress(event)">
+                <button type="button" id="submitButton" class="stage-btn stage-btn-submit" onclick="checkAnswer()">Submit</button>
+                <button type="button" id="skipButton" class="stage-btn stage-btn-skip" onclick="skip()">Skip</button>
+            </div>
+        </div>
+
+        <div id="feedback" class="stage-feedback"></div>
+    </div>
+
+    <div id="list" style="display: none;">new:san1
 old (not young):lou5</div>
-<table id="vocabTable">
-</table>
+    <table id="vocabTable">
+    </table>
 </div>
 <audio id="aud_question"><source src="audio/file.wav" type="audio/wav"></audio>
 <audio id="aud_answer"><source src="audio/file.wav" type="audio/wav"></audio>
