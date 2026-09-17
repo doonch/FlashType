@@ -109,14 +109,50 @@ function clearPassiveTimers() {
     }
 }
 
+function togglePassiveMode() {
+    appSettings.passiveMode = !appSettings.passiveMode;
+    saveSettings();
+    updatePassiveModeUI();
+    if (appSettings.passiveMode) {
+        if (typeof $ !== "undefined" && $("#stage").is(":visible") && typeof lines !== "undefined" && lines && lines.length > 0 && typeof index !== "undefined" && lines[index]) {
+            startPassiveQuestionTimer();
+        }
+    } else {
+        clearPassiveTimers();
+        if (typeof $ !== "undefined") {
+            $("#passive_status").text("Paused");
+        }
+    }
+}
+
 function updatePassiveModeUI() {
     if (typeof $ === "undefined") return;
+    var btn = $("#passive_mode_btn");
+    var icon = $("#passive_mode_icon");
     if (appSettings.passiveMode) {
         $("#interactive_controls").hide();
         $("#passive_indicator").show();
+        btn.addClass("is-active")
+           .attr("title", "Passive Mode: Active (Click to Pause)")
+           .attr("aria-label", "Pause Passive Mode");
+        if (icon.length) icon.text("⏸");
+        else btn.html('<span id="passive_mode_icon">⏸</span>');
+        if ($("#setting_passive_mode").length) {
+            $("#setting_passive_mode").prop("checked", true);
+        }
+        $("#passive_time_options").show();
     } else {
         $("#passive_indicator").hide();
         $("#interactive_controls").show();
+        btn.removeClass("is-active")
+           .attr("title", "Passive Mode: Off (Click to Play)")
+           .attr("aria-label", "Enable Passive Mode");
+        if (icon.length) icon.text("▶");
+        else btn.html('<span id="passive_mode_icon">▶</span>');
+        if ($("#setting_passive_mode").length) {
+            $("#setting_passive_mode").prop("checked", false);
+        }
+        $("#passive_time_options").hide();
     }
 }
 
@@ -363,8 +399,22 @@ function updateAiGenStatusText() {
     var count = (appSettings.completedLessons || []).length;
     var countText = count + " " + lang + " lesson" + (count === 1 ? "" : "s") + " selected";
     $("#ai_selected_count").text(countText);
+    $("#ai_modal_language_display").text(lang);
     if ($("#ai_sentence_count").length) {
         $("#ai_sentence_count").val(appSettings.aiSentenceCount || 25);
+    }
+}
+
+function openAiModal() {
+    updateAiGenStatusText();
+    if (typeof $ !== "undefined") {
+        $("#ai_modal").fadeIn(150);
+    }
+}
+
+function closeAiModal() {
+    if (typeof $ !== "undefined") {
+        $("#ai_modal").fadeOut(150);
     }
 }
 
@@ -786,11 +836,19 @@ if (typeof $ !== "undefined") {
             if ($("#settings_modal").is(":visible")) {
                 closeSettingsModal();
             }
+            if ($("#ai_modal").is(":visible")) {
+                closeAiModal();
+            }
         }
     });
     $(document).on("click", "#settings_modal", function(e) {
         if ($(e.target).is("#settings_modal")) {
             closeSettingsModal();
+        }
+    });
+    $(document).on("click", "#ai_modal", function(e) {
+        if ($(e.target).is("#ai_modal")) {
+            closeAiModal();
         }
     });
 }
@@ -1151,6 +1209,9 @@ function generateSentencesFromCompletedLessons() {
                 updateList(lines);
 
                 $("#ai_gen_status").html('<span class="ai-gen-status">✨ Loaded ' + generatedLines.length + ' practice sentences!</span>');
+                setTimeout(function() {
+                    closeAiModal();
+                }, 1000);
             },
             error: function(xhr, status, error) {
                 isGeneratingSentences = false;

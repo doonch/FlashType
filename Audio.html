@@ -81,7 +81,11 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<button type="button" id="settings_btn" title="Settings" aria-label="Settings" onclick="openSettingsModal()">⚙</button>
+<div class="top-header-bar">
+    <button type="button" id="settings_btn" class="top-icon-btn" title="Settings" aria-label="Settings" onclick="openSettingsModal()">⚙</button>
+    <button type="button" id="passive_mode_btn" class="top-icon-btn" title="Passive Mode: Off (Click to Play)" aria-label="Toggle Passive Mode" onclick="togglePassiveMode()"><span id="passive_mode_icon">▶</span></button>
+    <button type="button" id="ai_modal_btn" class="top-icon-btn" title="Synthesize Practice Sentences" aria-label="Synthesize Practice Sentences" onclick="openAiModal()">✨</button>
+</div>
 
 <div id="settings_modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="settings_title_audio">
     <div class="settings-modal-card" onclick="event.stopPropagation()">
@@ -120,22 +124,15 @@ $(document).ready(function(){
             </div>
 
             <div class="setting-section">
-                <span class="setting-section-title">Practice Mode</span>
-                <label class="setting-checkbox-label">
-                    <input type="checkbox" id="setting_passive_mode" onchange="onSettingChange()">
-                    <span>Enable Passive Mode</span>
-                </label>
-                <div class="setting-desc">Hands-free mode: auto-reveals answers and loads next question</div>
-
-                <div id="passive_time_options" class="setting-suboptions" style="display: none;">
-                    <div class="setting-timeout-row">
-                        <label for="setting_q_timeout">Question delay:</label>
-                        <span><input type="number" id="setting_q_timeout" min="1" max="20" step="0.5" value="3.5" class="setting-timeout-input" onchange="onSettingChange()"> s</span>
-                    </div>
-                    <div class="setting-timeout-row">
-                        <label for="setting_d_timeout">Answer decay delay:</label>
-                        <span><input type="number" id="setting_d_timeout" min="0.5" max="20" step="0.5" value="2.5" class="setting-timeout-input" onchange="onSettingChange()"> s</span>
-                    </div>
+                <span class="setting-section-title">Passive Mode Delays</span>
+                <div class="setting-desc" style="margin-left: 0; margin-bottom: 4px;">Delays used by the Play/Pause (▶/⏸) passive practice mode:</div>
+                <div class="setting-timeout-row">
+                    <label for="setting_q_timeout">Question delay:</label>
+                    <span><input type="number" id="setting_q_timeout" min="1" max="20" step="0.5" value="3.5" class="setting-timeout-input" onchange="onSettingChange()"> s</span>
+                </div>
+                <div class="setting-timeout-row">
+                    <label for="setting_d_timeout">Answer decay delay:</label>
+                    <span><input type="number" id="setting_d_timeout" min="0.5" max="20" step="0.5" value="2.5" class="setting-timeout-input" onchange="onSettingChange()"> s</span>
                 </div>
             </div>
 
@@ -166,27 +163,53 @@ $(document).ready(function(){
     </div>
 </div>
 
-<div id="ai_generator_box">
-    <div class="ai-gen-header">
-        <span>✨ Synthesize Practice Sentences</span>
-        <span id="ai_selected_count" class="lesson-check-category">1 lesson selected</span>
-    </div>
-    <div style="font-size: 0.84rem; color: #1e293b;">
-        Uses AI to compose natural conversational sentences strictly constrained to your selected completed lessons.
-    </div>
-    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-        <button type="button" id="ai_gen_btn" class="ai-gen-btn" onclick="generateSentencesFromCompletedLessons()">Generate Sentences ✨</button>
-        <label for="ai_sentence_count" style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #334155; font-weight: 500;">
-            Count:
-            <select id="ai_sentence_count" onchange="onAiSentenceCountChange()" style="padding: 4px 8px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.85rem; background: #ffffff; color: #1e293b; cursor: pointer;">
-                <option value="15">15</option>
-                <option value="20">20</option>
-                <option value="25" selected>25</option>
-                <option value="30">30</option>
-                <option value="50">50</option>
-            </select>
-        </label>
-        <span id="ai_gen_status"></span>
+<div id="ai_modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="ai_modal_title">
+    <div class="settings-modal-card" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 id="ai_modal_title">✨ Synthesize Practice Sentences</h3>
+            <button type="button" class="modal-close-btn" onclick="closeAiModal()" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="setting-desc" style="margin-left: 0; font-size: 0.85rem; color: #334155; line-height: 1.45;">
+                Uses AI to compose natural conversational sentences strictly constrained to vocabulary from your selected completed lessons.
+            </div>
+
+            <div class="setting-section" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; margin-top: 4px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                    <div>
+                        <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em;">Target Language</div>
+                        <div id="ai_modal_language_display" style="font-size: 0.95rem; font-weight: 600; color: #0f172a; margin-top: 2px;">Cantonese</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em;">Active Pool</div>
+                        <span id="ai_selected_count" class="lesson-check-category" style="margin: 2px 0 0 auto; display: inline-block;">1 lesson selected</span>
+                    </div>
+                </div>
+                <div style="margin-top: 8px; font-size: 0.76rem; color: #64748b; display: flex; align-items: center; justify-content: space-between;">
+                    <span>Need to choose different lessons?</span>
+                    <button type="button" class="btn-secondary-sm" onclick="closeAiModal(); openSettingsModal();" style="padding: 2px 8px;">Settings ⚙</button>
+                </div>
+            </div>
+
+            <div class="setting-section" style="margin-top: 6px;">
+                <label for="ai_sentence_count" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.86rem; font-weight: 600; color: #334155;">
+                    <span>Sentences to generate:</span>
+                    <select id="ai_sentence_count" class="setting-select" onchange="onAiSentenceCountChange()" style="min-width: 90px;">
+                        <option value="15">15 sentences</option>
+                        <option value="20">20 sentences</option>
+                        <option value="25" selected>25 sentences</option>
+                        <option value="30">30 sentences</option>
+                        <option value="50">50 sentences</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="ai_gen_status" style="min-height: 24px; margin-top: 4px;"></div>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+            <button type="button" class="btn-secondary-sm" onclick="closeAiModal()">Cancel</button>
+            <button type="button" id="ai_gen_btn" class="ai-gen-btn" onclick="generateSentencesFromCompletedLessons()">Generate Sentences ✨</button>
+        </div>
     </div>
 </div>
 <br/>
@@ -197,9 +220,15 @@ $(document).ready(function(){
 <button type="button" id="startbutton">Start</button>
 <div id=stage>
 Q: <span id="question_txt">Ready?</span><br/>
+<div id="interactive_controls">
 A: <input type="text" id="answer" onkeyup="checkPress(event)">
 <button id="submitButton" type="button" onclick="checkAnswer()">Submit</button>
 <button id="skipButton"  type="button" onclick="skip()">Skip</button><br/>
+</div>
+<div id="passive_indicator" style="display: none; margin: 8px 0 10px 0;">
+    <span class="passive-badge">Passive Mode</span>
+    <span id="passive_status" class="passive-status">Thinking...</span>
+</div>
 <div id="feedback"></div>
 <div id="list">new:san1
 old (not young):lou5</div>

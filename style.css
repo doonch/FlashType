@@ -60,19 +60,21 @@
 
 /* Page Layout & Top-Left Margins */
 body {
-    padding-left: 64px;
-    padding-top: 14px;
-    padding-right: 16px;
+    padding: 14px 18px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #1e293b;
     margin: 0;
 }
 
-/* Settings Gear Button (Top-Left Corner) */
-#settings_btn {
-    position: fixed;
-    top: 12px;
-    left: 12px;
+/* Top Toolbar & Header Controls (Settings, Play/Pause, AI Synthesize) */
+.top-header-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.top-icon-btn {
     width: 38px;
     height: 38px;
     border-radius: 8px;
@@ -80,30 +82,65 @@ body {
     background-color: #ffffff;
     color: #334155;
     cursor: pointer;
-    font-size: 20px;
-    display: flex;
+    font-size: 18px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.15s ease, transform 0.2s ease, border-color 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.15s ease, transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
     padding: 0;
     line-height: 1;
+    user-select: none;
+}
+
+.top-icon-btn:hover {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.top-icon-btn:active {
+    transform: scale(0.95);
+}
+
+.top-icon-btn:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
 }
 
 #settings_btn:hover {
-    background-color: #f8fafc;
-    border-color: #94a3b8;
-    transform: rotate(25deg);
+    transform: rotate(25deg) translateY(-1px);
 }
 
 #settings_btn:active {
     transform: scale(0.95) rotate(25deg);
 }
 
-#settings_btn:focus-visible {
-    outline: 2px solid #2563eb;
-    outline-offset: 2px;
+/* Passive Mode Play/Pause Button State */
+#passive_mode_btn {
+    font-size: 16px;
+}
+
+#passive_mode_btn.is-active {
+    background-color: #ecfdf5;
+    border-color: #10b981;
+    color: #047857;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+#passive_mode_btn.is-active:hover {
+    background-color: #d1fae5;
+    border-color: #059669;
+}
+
+#ai_modal_btn {
+    font-size: 17px;
+}
+
+#ai_modal_btn:hover {
+    background-color: #faf5ff;
+    border-color: #c084fc;
 }
 
 /* Settings Modal Overlay & Card */
