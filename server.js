@@ -288,11 +288,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'Flash.html'));
 });
 
-// Audio requests that do not exist return 404 without falling back to HTML
-app.get('/audio/*', (req, res) => {
-  res.status(404).send('Audio file not found');
-});
-
 // Fallback to Flash.html for unrecognized routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'Flash.html'));

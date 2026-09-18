@@ -1503,37 +1503,6 @@ function Ytping2Jyutping(s)
         .replace(/(^|\d|\s)y/g, "$1jy");
 }
 
-function playAnswer(s)
-{
-    return playAudio("aud_question", s);
-}
-
-function playAudio(e, s)
-{
-    s = s.replace(/ /g, "_")
-         .replace(/\?/g, "")
-         .replace(/^_/g, "")
-         .replace(/_$/g, "");
-    var audioEl = document.getElementById(e);
-    if (!audioEl) return 0;
-    var sourceEl = audioEl.querySelector("source");
-    if (sourceEl) {
-        sourceEl.src = "audio/" + s + ".wav";
-    }
-    try {
-        audioEl.load();
-        var playPromise = audioEl.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(function() {
-                // Audio file might not exist or autoplay policy blocked it
-            });
-        }
-        return audioEl.duration || 0;
-    } catch (err) {
-        return 0;
-    }
-}
-
 // Speech Synthesis Helpers
 function replaceJyutpingTones(text) {
     if (typeof text !== "string") return text;
@@ -1855,8 +1824,6 @@ function checkAnswer()
 {
     var answer=$("#answer")[0].value;
     var correctAnswers= transliterate(lines[index]).split(":")[1].split("/");
-    var answerIdx = Math.floor(Math.random() * correctAnswers.length);
-    playAnswer(correctAnswers[answerIdx]);
     var gotAnswer=false;
     for (var i=0;i<correctAnswers.length;i++)
     {
@@ -1953,7 +1920,6 @@ function setQuestion(index)
     }
     var questionText = lines[index].split(":")[0];
     $("#question_txt")[0].innerHTML = "<span class=\"lesser-text\">["+index+"/"+seen.size()+"/"+lines.length+"]</span> " + questionText + " <span id=\"speaker_question\" class=\"speaker-btn\" role=\"button\" tabindex=\"0\" title=\"Read question out loud\" aria-label=\"Read question out loud\" onclick=\"readQuestion(event)\">🔊</span>";
-    playAudio("aud_question", questionText.split("/")[0]);
     
     if (appSettings.speakQuestions) {
         readQuestion();
@@ -1972,9 +1938,10 @@ function tellAnswerAndSkip()
 {
     var correctAnswers= transliterate(lines[index]).split(":")[1].split("/");
     var answerIdx = Math.floor(Math.random() * correctAnswers.length);
-    var durationSec = playAnswer(correctAnswers[answerIdx]);
+    if (appSettings.speakAnswers) {
+        speakAnswer(correctAnswers[answerIdx]);
+    }
     $("#answer")[0].value = correctAnswers[answerIdx];
-    //setTimeout(showNext, 3000 + Math.floor(1000*$("#aud_question")[0].duration));
     setTimeout(showNext, 3500);
 }
 
