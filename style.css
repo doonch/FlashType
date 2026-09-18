@@ -346,7 +346,8 @@ body {
 
 .setting-radio-group {
     display: flex;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
     align-items: center;
     background: #f8fafc;
     padding: 5px 10px;

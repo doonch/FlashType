@@ -12,6 +12,7 @@ var appSettings = {
     romanization: "jyutping",
     speakQuestions: true,
     speakAnswers: true,
+    speechSpeed: "normal", // "slow" (0.4), "normal" (0.8), "fast" (1.0)
     passiveMode: false,
     questionTimeoutSec: 3.5,
     decayTimeoutSec: 2.5,
@@ -52,6 +53,12 @@ function loadSettings() {
                 if (localStorage.getItem("flashtype_speak_answers") !== null) {
                     appSettings.speakAnswers = localStorage.getItem("flashtype_speak_answers") === "true";
                 }
+            }
+            var savedSpeed = localStorage.getItem("flashtype_speech_speed");
+            if (savedSpeed === "slow" || savedSpeed === "normal" || savedSpeed === "fast") {
+                appSettings.speechSpeed = savedSpeed;
+            } else {
+                appSettings.speechSpeed = "normal";
             }
             if (localStorage.getItem("flashtype_passive_mode") !== null) {
                 appSettings.passiveMode = localStorage.getItem("flashtype_passive_mode") === "true";
@@ -100,6 +107,7 @@ function saveSettings() {
             localStorage.setItem("flashtype_romanization", appSettings.romanization);
             localStorage.setItem("flashtype_speak_questions", appSettings.speakQuestions);
             localStorage.setItem("flashtype_speak_answers", appSettings.speakAnswers);
+            localStorage.setItem("flashtype_speech_speed", appSettings.speechSpeed || "normal");
             localStorage.setItem("flashtype_passive_mode", appSettings.passiveMode);
             localStorage.setItem("flashtype_q_timeout", appSettings.questionTimeoutSec);
             localStorage.setItem("flashtype_d_timeout", appSettings.decayTimeoutSec);
@@ -1313,6 +1321,13 @@ function syncSettingsUI() {
     }
     $("#setting_speak_questions").prop("checked", appSettings.speakQuestions);
     $("#setting_speak_answers").prop("checked", appSettings.speakAnswers);
+    if (appSettings.speechSpeed === "slow") {
+        $("#speech_speed_slow").prop("checked", true);
+    } else if (appSettings.speechSpeed === "fast") {
+        $("#speech_speed_fast").prop("checked", true);
+    } else {
+        $("#speech_speed_normal").prop("checked", true);
+    }
     $("#setting_passive_mode").prop("checked", appSettings.passiveMode);
 
     var qSec = Math.max(1, Math.min(8, appSettings.questionTimeoutSec || 3.5));
@@ -1390,6 +1405,8 @@ function onSettingChange() {
     appSettings.romanization = romVal;
     appSettings.speakQuestions = $("#setting_speak_questions").is(":checked");
     appSettings.speakAnswers = $("#setting_speak_answers").is(":checked");
+    var speedVal = $("input[name='speech_speed_pref']:checked").val() || "normal";
+    appSettings.speechSpeed = speedVal;
     appSettings.passiveMode = $("#setting_passive_mode").is(":checked");
 
     var qVal = parseFloat($("#setting_q_timeout").val());
@@ -1600,7 +1617,14 @@ function isJyutpingOrYale(text) {
     return commonSyllables.test(trimmed);
 }
 
-function speakText(text, lang, speakSourceText) {
+function getSpeechRate() {
+    var speed = (appSettings && appSettings.speechSpeed) || "normal";
+    if (speed === "slow") return 0.4;
+    if (speed === "fast") return 1.0;
+    return 0.8; // normal (default)
+}
+
+function speakText(text, lang, speakSourceText, rate) {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
         return;
     }
@@ -1616,6 +1640,7 @@ function speakText(text, lang, speakSourceText) {
         if (!cleanText) return;
 
         var utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.rate = (typeof rate === "number" && !isNaN(rate)) ? rate : getSpeechRate();
         if (lang) {
             utterance.lang = lang;
         }
@@ -1746,7 +1771,7 @@ function readQuestion(e) {
     var question = lines[index].split(":")[0];
     if (!question) return;
     var textToSpeak = question.replace(/\//g, ", ").trim();
-    speakText(textToSpeak, getQuestionLanguage(question));
+    speakText(textToSpeak, getQuestionLanguage(question), null, 0.9); // Fixed rate for questions
 }
 
 function speakAnswer(answerText) {
@@ -1765,7 +1790,7 @@ function speakAnswer(answerText) {
         lang = "zh-HK";
     }
 
-    speakText(singleAns, lang, speakSrc);
+    speakText(singleAns, lang, speakSrc, getSpeechRate()); // Target language uses configured speed
 }
 
 function escapeHtmlAttr(str) {

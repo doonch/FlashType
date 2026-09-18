@@ -96,6 +96,24 @@ $(document).ready(function(){
                     <span>Speak out answers</span>
                 </label>
                 <div class="setting-desc">Automatically read answers aloud when revealed</div>
+
+                <div class="setting-suboptions" style="margin-top: 8px;">
+                    <div style="font-size: 0.8rem; font-weight: 500; color: #334155; margin-bottom: 4px;">Speech Speed (target language):</div>
+                    <div class="setting-radio-group" role="radiogroup" aria-label="Speech speed selection">
+                        <label class="setting-radio-label">
+                            <input type="radio" name="speech_speed_pref" value="slow" id="speech_speed_slow" onchange="onSettingChange()">
+                            <span>Slow</span>
+                        </label>
+                        <label class="setting-radio-label">
+                            <input type="radio" name="speech_speed_pref" value="normal" id="speech_speed_normal" checked onchange="onSettingChange()">
+                            <span>Normal</span>
+                        </label>
+                        <label class="setting-radio-label">
+                            <input type="radio" name="speech_speed_pref" value="fast" id="speech_speed_fast" onchange="onSettingChange()">
+                            <span>Fast</span>
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <div class="setting-section">
