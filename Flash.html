@@ -17,7 +17,9 @@ $(document).ready(function(){
     $("#list").hide();
     $("#stage").hide();
     $("#vocabTable").hide();
+    $("#vocabTableWrapper").hide();
     $("#toggleTable").hide();
+    $("#table_toggle_container").hide();
     $("#passive_mode_btn").hide();
     applySettings();
     updateAiGenStatusText();
@@ -55,7 +57,6 @@ $(document).ready(function(){
 <div class="top-header-bar">
     <button type="button" id="settings_btn" class="top-icon-btn" title="Settings" aria-label="Settings" onclick="openSettingsModal()">⚙</button>
     <button type="button" id="passive_mode_btn" class="top-icon-btn" title="Passive Mode: Off (Click to Play)" aria-label="Toggle Passive Mode" onclick="togglePassiveMode()" style="display: none;"><span id="passive_mode_icon">▶</span></button>
-    <button type="button" id="toggleTable" class="top-action-btn" title="Show or Hide Vocabulary List" aria-label="Show or Hide Vocabulary List" onclick="toggleTable()" style="display: none;"><span class="top-action-icon">📜</span> <span>Show List</span></button>
     <button type="button" id="ai_modal_btn" class="top-icon-btn" title="Synthesize Practice Sentences" aria-label="Synthesize Practice Sentences" onclick="openAiModal()">✨</button>
     <button type="button" id="help_btn" class="top-action-btn" title="Help & Guide" aria-label="Help" onclick="openHelpModal()"><span class="top-action-icon">❓</span> <span>Help</span></button>
     <button type="button" id="download_btn" class="top-action-btn" title="Download selected question:answer pairs" aria-label="Download Lesson" onclick="openDownloadModal()"><span class="top-action-icon">📥</span> Download</button>
@@ -382,8 +383,8 @@ $(document).ready(function(){
                         <div class="help-feature-desc">Questions and answers are read aloud with speech synthesis so you develop authentic pronunciation and listening comprehension.</div>
                     </div>
                     <div class="help-feature-item">
-                        <span class="help-feature-badge">📜 Show List</span>
-                        <div class="help-feature-desc">Expand or collapse the full vocabulary list of the current lesson to preview characters, romanizations, and meanings.</div>
+                        <span class="help-feature-badge">📜 Show Table</span>
+                        <div class="help-feature-desc">Open the vocabulary table below the stage to preview words, romanizations, and pronunciations. Click the top-right &times; to close it.</div>
                     </div>
                     <div class="help-feature-item">
                         <span class="help-feature-badge">⚙️ Settings</span>
@@ -493,8 +494,23 @@ $(document).ready(function(){
 
     <div id="list" style="display: none;">new:san1
 old (not young):lou5</div>
-    <table id="vocabTable">
-    </table>
+
+    <!-- Show Table button below the stage, where the table appears -->
+    <div id="table_toggle_container" class="table-toggle-container" style="display: none;">
+        <button type="button" id="toggleTable" class="stage-toggle-table-btn" title="Show Vocabulary Table" aria-label="Show Vocabulary Table" onclick="showTable()">
+            <span class="stage-btn-icon">📜</span> <span>Show Table</span>
+        </button>
+    </div>
+
+    <!-- Vocabulary Table with Top-Right X Close Button -->
+    <div id="vocabTableWrapper" class="vocab-table-wrapper" style="display: none;">
+        <div class="vocab-table-header">
+            <span class="vocab-table-title">📜 Vocabulary Table</span>
+            <button type="button" id="closeTableBtn" class="vocab-table-close-btn" title="Hide vocabulary table" aria-label="Hide vocabulary table" onclick="hideTable()">&times;</button>
+        </div>
+        <table id="vocabTable">
+        </table>
+    </div>
 </div>
 </body>
 </html>

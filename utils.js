@@ -943,12 +943,7 @@ function applyUploadedLesson() {
         category: langDisplayName
     }, detectedLangId);
 
-    $("#vocabTable").hide();
-    var $customTblBtn = $("#toggleTable");
-    if ($customTblBtn.length) {
-        $customTblBtn.html('<span class="top-action-icon">📜</span> <span>Show List</span>');
-        $customTblBtn.removeClass("is-active");
-    }
+    hideTable();
 
     $("#stage").show();
     updatePassiveModeUI();
@@ -1187,8 +1182,10 @@ function updateActiveLessonBanner(curLesson, langId) {
         currentLessonIndex = -1;
         if ($banner.length) $banner.hide().removeAttr("data-lang-id");
         $("#toggleTable").hide();
+        $("#table_toggle_container").hide();
         $("#passive_mode_btn").hide();
         $("#vocabTable").hide();
+        $("#vocabTableWrapper").hide();
         return;
     }
     var effectiveLangId = getActiveLanguageId(curLesson, langId);
@@ -1208,7 +1205,10 @@ function updateActiveLessonBanner(curLesson, langId) {
             ' <span class="active-badge-action" title="Click to choose lesson" aria-hidden="true">▾</span>'
         ).show();
     }
-    $("#toggleTable").show();
+    if (!$("#vocabTableWrapper").is(":visible")) {
+        $("#table_toggle_container").show();
+        $("#toggleTable").show();
+    }
     $("#passive_mode_btn").show();
 }
 
@@ -1238,12 +1238,7 @@ function selectAndStartLesson(lessonIdx) {
         $("#lesson").val(lessonIdx);
     }
 
-    $("#vocabTable").hide();
-    var $tblBtn = $("#toggleTable");
-    if ($tblBtn.length) {
-        $tblBtn.html('<span class="top-action-icon">📜</span> <span>Show List</span>');
-        $tblBtn.removeClass("is-active");
-    }
+    hideTable();
 
     var cat = (curLesson.category || "").toLowerCase();
     var isCantonese = (cat.indexOf("cantonese") !== -1);
@@ -1978,7 +1973,9 @@ function updateList(lines)
     if (!lines || lines.length === 0) {
         tableData = "";
         $("#vocabTable").empty().hide();
+        $("#vocabTableWrapper").hide();
         $("#toggleTable").hide();
+        $("#table_toggle_container").hide();
         $("#passive_mode_btn").hide();
         return;
     }
@@ -2013,9 +2010,16 @@ function updateList(lines)
     }
 
     if (lines && lines.length > 0) {
-        $("#toggleTable").show();
+        if ($("#vocabTableWrapper").is(":visible") || $("#vocabTable").is(":visible")) {
+            $("#table_toggle_container").hide();
+            $("#toggleTable").hide();
+        } else {
+            $("#table_toggle_container").show();
+            $("#toggleTable").show();
+        }
         $("#passive_mode_btn").show();
     } else {
+        $("#table_toggle_container").hide();
         $("#toggleTable").hide();
         $("#passive_mode_btn").hide();
     }
@@ -2140,26 +2144,33 @@ function SetFeedback(s, answerToSpeak)
     }
 }
 
+function showTable()
+{
+    $("#vocabTableWrapper").show();
+    $("#vocabTable").show();
+    $("#table_toggle_container").hide();
+    $("#toggleTable").hide();
+}
+
+function hideTable()
+{
+    $("#vocabTableWrapper").hide();
+    $("#vocabTable").hide();
+    if (typeof lines !== "undefined" && lines && lines.length > 0) {
+        $("#table_toggle_container").show();
+        $("#toggleTable").show();
+    } else {
+        $("#table_toggle_container").hide();
+        $("#toggleTable").hide();
+    }
+}
+
 function toggleTable()
 {
-    var ret = $("#vocabTable").toggle();
-    var isHidden = false;
-    if (ret.length && ret[0].style && ret[0].style["display"] === "none") {
-        isHidden = true;
-    } else if (!$("#vocabTable").is(":visible")) {
-        isHidden = true;
-    }
-    var label = isHidden ? "Show List" : "Hide List";
-    var $btn = $("#toggleTable");
-    if ($btn.length) {
-        $btn.html('<span class="top-action-icon">📜</span> <span>' + label + '</span>');
-        $btn.attr("title", label + " (Vocabulary Pool)");
-        $btn.attr("aria-label", label + " (Vocabulary Pool)");
-        if (!isHidden) {
-            $btn.addClass("is-active");
-        } else {
-            $btn.removeClass("is-active");
-        }
+    if ($("#vocabTableWrapper").is(":visible") || $("#vocabTable").is(":visible")) {
+        hideTable();
+    } else {
+        showTable();
     }
 }
 
@@ -2398,12 +2409,7 @@ function generateSentencesFromCompletedLessons() {
                     $("#lesson").val(aiLessonValue);
                 }
 
-                $("#vocabTable").hide();
-                var $aiTblBtn = $("#toggleTable");
-                if ($aiTblBtn.length) {
-                    $aiTblBtn.html('<span class="top-action-icon">📜</span> <span>Show List</span>');
-                    $aiTblBtn.removeClass("is-active");
-                }
+                hideTable();
 
                 $("#stage").show();
                 updatePassiveModeUI();
