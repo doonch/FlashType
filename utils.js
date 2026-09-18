@@ -1368,19 +1368,23 @@ loadSettings();
 
 function set(n)
 {
-    this.data = new Array();
-    for (var i=0; i<n; i++)
-    {
-       this.data[i] = false;
-    }
-    this.add = add;
-    this.contains = contains;
-    this.size = size;
-    this.max = n;
+    var len = n || 0;
+    this.data = new Uint8Array(len);
+    this.count = 0;
+    this.max = len;
 
-    function add(k) { this.data[k] = true; }
-    function contains(k) { return !!this.data[k]; }
-    function size() { return this.data.reduce(function(a,b) { return a+(b?1:0); }, 0); }
+    this.add = function(k) {
+        if (k >= 0 && k < this.max && !this.data[k]) {
+            this.data[k] = 1;
+            this.count++;
+        }
+    };
+    this.contains = function(k) {
+        return (k >= 0 && k < this.max) ? (this.data[k] === 1) : false;
+    };
+    this.size = function() {
+        return this.count;
+    };
 }
 var seen = new set(2);
 
@@ -1865,43 +1869,41 @@ function transliterate(s)
 
 function updateList(lines)
 {
-    tableData="";
+    if (!lines || lines.length === 0) {
+        tableData = "";
+        $("#vocabTable").empty().hide();
+        $("#toggleTable").hide();
+        $("#passive_mode_btn").hide();
+        return;
+    }
+
     var cat = getLessonCategory();
     var isCantonese = (activeSessionLanguage === "cantonese") || (cat.indexOf("cantonese") !== -1);
-    for (var i=0;i<lines.length;i++)
+    var rows = [];
+    for (var i = 0; i < lines.length; i++)
     {
         var rawAnswer = lines[i].split(":")[1] || "";
-        var value=transliterate(rawAnswer);
+        var value = transliterate(rawAnswer);
         // This dictionary is only for Cantonese. Other languages should not have links.
         if (linkToDictionary == true && isCantonese && !/[\u0590-\u05FF]/.test(rawAnswer)) {
-            value = "<a href=\"http://www.cantonese.sheik.co.uk/dictionary/search/?searchtype=3&text="+getQueryText(lines[i].split(":")[1])+"\">"
-                    +value
-                    +"</a>";
+            value = "<a href=\"http://www.cantonese.sheik.co.uk/dictionary/search/?searchtype=3&text=" + getQueryText(rawAnswer) + "\">"
+                    + value
+                    + "</a>";
         }
         var speakerBtn = " <span class=\"speaker-btn speaker-vocab\" role=\"button\" tabindex=\"0\" title=\"Read answer out loud\" aria-label=\"Read answer out loud\" data-answer=\"" + escapeHtmlAttr(rawAnswer) + "\" onclick=\"readVocabAnswer(event, this)\">🔊</span>";
         var isSeen = (typeof seen !== "undefined" && seen && typeof seen.contains === "function" && seen.contains(i));
         var rowClass = isSeen ? ' class="seen"' : '';
         var rowStyle = isSeen ? ' style="color: #16a34a;"' : ' style="color: #000000;"';
-        tableData = tableData.concat("<tr" + rowClass + rowStyle + "><td>"+lines[i].split(":")[0]+"</td><td>"
+        rows.push("<tr" + rowClass + rowStyle + "><td>" + lines[i].split(":")[0] + "</td><td>"
                     + value
                     + speakerBtn
-                    +"</td></tr>"
+                    + "</td></tr>"
         );
     }
-    $("#vocabTable")[0].innerHTML = tableData;
-
-    // Apply green color to presented questions and black to unseen questions
-    if (typeof seen !== "undefined" && seen && typeof seen.contains === "function") {
-        for (var s = 0; s < lines.length; s++) {
-            var $row = $("#vocabTable tr").eq(s);
-            if (seen.contains(s)) {
-                $row.addClass("seen").css("color", "#16a34a");
-                $row.find("td").css("color", "#16a34a");
-            } else {
-                $row.removeClass("seen").css("color", "#000000");
-                $row.find("td").css("color", "#000000");
-            }
-        }
+    tableData = rows.join("");
+    var tableEl = document.getElementById("vocabTable");
+    if (tableEl) {
+        tableEl.innerHTML = tableData;
     }
 
     if (lines && lines.length > 0) {
@@ -1993,10 +1995,17 @@ function markSeen(n)
     if (typeof seen !== "undefined" && seen && typeof seen.add === "function") {
         seen.add(n);
     }
-    var $row = $("#vocabTable tr").eq(n);
-    if ($row.length) {
-        $row.addClass("seen").css("color", "#16a34a");
-        $row.find("td").css("color", "#16a34a");
+    var tableEl = document.getElementById("vocabTable");
+    if (tableEl && tableEl.rows && tableEl.rows[n]) {
+        var row = tableEl.rows[n];
+        row.className = "seen";
+        row.style.color = "#16a34a";
+        var cells = row.cells;
+        if (cells) {
+            for (var c = 0; c < cells.length; c++) {
+                cells[c].style.color = "#16a34a";
+            }
+        }
     }
 }
 
