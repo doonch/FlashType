@@ -5,6 +5,7 @@ var presentYtping = false;
 var linkToDictionary;
 var forgiveTones=false;
 var autoLoop=false;
+var currentLessonIndex = -1;
 
 var appSettings = {
     selectedLanguage: "Cantonese",
@@ -368,6 +369,88 @@ function getAvailableLanguages() {
     return langs;
 }
 
+function getActiveLessonLanguage() {
+    var $banner = $("#active_lesson_banner");
+    var isBannerVisible = $banner.length && $banner.is(":visible") && $banner.css("display") !== "none";
+    var hasActiveLines = (typeof lines !== "undefined" && lines && lines.length > 0);
+    var lessonVal = $("#lesson").length ? $("#lesson").val() : "";
+    var hasValidLessonSelect = (lessonVal && lessonVal !== "0");
+
+    if (!isBannerVisible && !hasActiveLines && !hasValidLessonSelect) {
+        return "";
+    }
+
+    // 1. Check data-lang-id on the active lesson banner
+    var bannerLangId = $banner.attr("data-lang-id");
+    if (bannerLangId) {
+        var cfgBanner = getLanguageFlagConfig(bannerLangId);
+        if (cfgBanner && cfgBanner.name) {
+            return cfgBanner.name;
+        }
+    }
+
+    // 2. Check currentLessonIndex
+    if (typeof currentLessonIndex !== "undefined" && currentLessonIndex > 0 && typeof lessonFiles !== "undefined" && lessonFiles[currentLessonIndex]) {
+        var curL = lessonFiles[currentLessonIndex];
+        var langFromL = (typeof getLanguageFromLesson === "function") ? getLanguageFromLesson(curL) : "";
+        if (langFromL) return langFromL;
+        var lid = getActiveLanguageId(curL);
+        var cfgl = getLanguageFlagConfig(lid);
+        if (cfgl && cfgl.name) return cfgl.name;
+    }
+
+    // 3. Check activeSessionLanguage
+    if (typeof activeSessionLanguage !== "undefined" && activeSessionLanguage) {
+        var langIdFromActive = getLanguageIdForCategory(activeSessionLanguage);
+        var cfgFromActive = getLanguageFlagConfig(langIdFromActive);
+        if (cfgFromActive && cfgFromActive.name) return cfgFromActive.name;
+    }
+
+    // 4. Check #lesson element value
+    if (hasValidLessonSelect && typeof lessonFiles !== "undefined") {
+        var lIdx = parseInt(lessonVal, 10);
+        if (!isNaN(lIdx) && lessonFiles[lIdx]) {
+            var selLang = (typeof getLanguageFromLesson === "function") ? getLanguageFromLesson(lessonFiles[lIdx]) : "";
+            if (selLang) return selLang;
+            var lId = getActiveLanguageId(lessonFiles[lIdx]);
+            var cfgSel = getLanguageFlagConfig(lId);
+            if (cfgSel && cfgSel.name) return cfgSel.name;
+        }
+    }
+
+    return "";
+}
+
+function selectAiModalLanguage(newLang) {
+    if (!newLang) return;
+    var prevLang = appSettings.selectedLanguage;
+    if (prevLang === newLang) {
+        renderLessonChecklist();
+        updateAiGenStatusText();
+        return;
+    }
+
+    if (!appSettings.completedLessonsByLang) {
+        appSettings.completedLessonsByLang = {};
+    }
+    if (prevLang && Array.isArray(appSettings.completedLessons)) {
+        appSettings.completedLessonsByLang[prevLang] = appSettings.completedLessons.slice();
+    }
+
+    appSettings.selectedLanguage = newLang;
+
+    // Restore cached selection for new language if present
+    if (Array.isArray(appSettings.completedLessonsByLang[newLang]) && appSettings.completedLessonsByLang[newLang].length > 0) {
+        appSettings.completedLessons = appSettings.completedLessonsByLang[newLang].slice();
+    } else {
+        appSettings.completedLessons = [];
+    }
+
+    saveSettings();
+    renderLessonChecklist();
+    updateAiGenStatusText();
+}
+
 function renderLessonChecklist() {
     if (typeof $ === "undefined" || typeof lessonFiles === "undefined") return;
     var container = $("#settings_lessons_list");
@@ -378,7 +461,37 @@ function renderLessonChecklist() {
         appSettings.selectedLanguage = availableLangs.indexOf("Cantonese") !== -1 ? "Cantonese" : (availableLangs[0] || "Cantonese");
     }
 
-    // Populate language selector in settings modal
+    // Populate flag buttons in AI modal (row of flag buttons, no text, just flags)
+    var $flagsRow = $("#ai_language_flags");
+    if ($flagsRow.length) {
+        $flagsRow.empty();
+        for (var f = 0; f < LANGUAGE_FLAGS.length; f++) {
+            var fLang = LANGUAGE_FLAGS[f];
+            var isSelected = (fLang.name.toLowerCase() === appSettings.selectedLanguage.toLowerCase());
+            var $flagBtn = $('<button>', {
+                type: "button",
+                id: "ai_flag_btn_" + fLang.id,
+                class: "ai-flag-btn" + (isSelected ? " is-active" : ""),
+                "data-lang-name": fLang.name,
+                "data-lang-id": fLang.id,
+                title: fLang.name + " (" + fLang.country + ")",
+                "aria-label": fLang.name + " (" + fLang.country + ")",
+                role: "radio",
+                "aria-checked": isSelected ? "true" : "false"
+            });
+            // Strictly flags only, no text
+            $flagBtn.html(fLang.svg);
+            (function(targetName) {
+                $flagBtn.on("click", function(e) {
+                    e.preventDefault();
+                    selectAiModalLanguage(targetName);
+                });
+            })(fLang.name);
+            $flagsRow.append($flagBtn);
+        }
+    }
+
+    // Populate language selector in settings modal (if present)
     var langSelect = $("#setting_language_select");
     if (langSelect.length) {
         var langOptionsHtml = "";
@@ -424,7 +537,9 @@ function renderLessonChecklist() {
             });
         }
         if (validCurrentCompleted.length === 0 && relevantLessons.length > 0) {
-            validCurrentCompleted = [relevantLessons[0].file];
+            var activeFile = (typeof currentLessonIndex !== "undefined" && currentLessonIndex > 0 && lessonFiles[currentLessonIndex]) ? lessonFiles[currentLessonIndex].file : "";
+            var activeInRelevant = relevantLessons.some(function(rl) { return rl.file === activeFile; });
+            validCurrentCompleted = [activeInRelevant ? activeFile : relevantLessons[0].file];
         }
     }
 
@@ -460,28 +575,9 @@ function renderLessonChecklist() {
 function onSettingLanguageChange() {
     if (typeof $ === "undefined") return;
     var newLang = $("#setting_language_select").val();
-    if (!newLang) return;
-
-    var prevLang = appSettings.selectedLanguage;
-    if (!appSettings.completedLessonsByLang) {
-        appSettings.completedLessonsByLang = {};
+    if (newLang) {
+        selectAiModalLanguage(newLang);
     }
-    if (prevLang && Array.isArray(appSettings.completedLessons)) {
-        appSettings.completedLessonsByLang[prevLang] = appSettings.completedLessons.slice();
-    }
-
-    appSettings.selectedLanguage = newLang;
-
-    // Restore cached selection for new language if present
-    if (Array.isArray(appSettings.completedLessonsByLang[newLang]) && appSettings.completedLessonsByLang[newLang].length > 0) {
-        appSettings.completedLessons = appSettings.completedLessonsByLang[newLang].slice();
-    } else {
-        appSettings.completedLessons = [];
-    }
-
-    saveSettings();
-    renderLessonChecklist();
-    updateAiGenStatusText();
 }
 
 function onLessonCheckChange() {
@@ -532,7 +628,13 @@ function updateAiGenStatusText() {
 }
 
 function openAiModal() {
-    updateAiGenStatusText();
+    var activeLang = getActiveLessonLanguage();
+    if (activeLang) {
+        selectAiModalLanguage(activeLang);
+    } else {
+        renderLessonChecklist();
+        updateAiGenStatusText();
+    }
     if (typeof $ !== "undefined") {
         $("#ai_modal").fadeIn(150);
     }
@@ -957,29 +1059,95 @@ function closeLanguageLessonsModal() {
     }
 }
 
+function getActiveLanguageId(curLesson, fallbackLangId) {
+    if (fallbackLangId) {
+        var fromFb = getLanguageIdForCategory(fallbackLangId);
+        if (fromFb) return fromFb;
+    }
+    if (curLesson) {
+        if (typeof getLanguageFromLesson === "function") {
+            var lName = getLanguageFromLesson(curLesson);
+            if (lName) {
+                var fromName = getLanguageIdForCategory(lName);
+                if (fromName) return fromName;
+            }
+        }
+        if (curLesson.category) {
+            var fromCat = getLanguageIdForCategory(curLesson.category);
+            if (fromCat) return fromCat;
+        }
+    }
+    if (typeof activeSessionLanguage !== "undefined" && activeSessionLanguage) {
+        var fromActive = getLanguageIdForCategory(activeSessionLanguage);
+        if (fromActive) return fromActive;
+    }
+    if (typeof appSettings !== "undefined" && appSettings.selectedLanguage) {
+        var fromSettings = getLanguageIdForCategory(appSettings.selectedLanguage);
+        if (fromSettings) return fromSettings;
+    }
+    return "cantonese";
+}
+
+function openActiveLanguageLessonsModal() {
+    var $banner = $("#active_lesson_banner");
+    var langId = $banner.attr("data-lang-id");
+    if (!langId && typeof currentLessonIndex !== "undefined" && typeof lessonFiles !== "undefined" && lessonFiles[currentLessonIndex]) {
+        langId = getActiveLanguageId(lessonFiles[currentLessonIndex]);
+    }
+    if (!langId && typeof activeSessionLanguage !== "undefined" && activeSessionLanguage) {
+        langId = getLanguageIdForCategory(activeSessionLanguage);
+    }
+    if (!langId && typeof appSettings !== "undefined" && appSettings.selectedLanguage) {
+        langId = getLanguageIdForCategory(appSettings.selectedLanguage);
+    }
+    if (!langId) {
+        langId = "cantonese";
+    }
+    openLanguageLessonsModal(langId);
+}
+
 function updateActiveLessonBanner(curLesson, langId) {
     if (typeof $ === "undefined") return;
     var $banner = $("#active_lesson_banner");
     if (!curLesson) {
-        if ($banner.length) $banner.hide();
+        currentLessonIndex = -1;
+        if ($banner.length) $banner.hide().removeAttr("data-lang-id");
         $("#toggleTable").hide();
         $("#passive_mode_btn").hide();
         $("#vocabTable").hide();
         return;
     }
-    var flagObj = getLanguageFlagConfig(langId) || (typeof appSettings !== "undefined" ? getLanguageFlagConfig(appSettings.selectedLanguage) : null);
+    var effectiveLangId = getActiveLanguageId(curLesson, langId);
+    var flagObj = getLanguageFlagConfig(effectiveLangId) || (typeof appSettings !== "undefined" ? getLanguageFlagConfig(appSettings.selectedLanguage) : null);
     var flagHtml = flagObj ? flagObj.svg : "";
     if ($banner.length) {
+        $banner.attr("data-lang-id", effectiveLangId);
+        $banner.attr("role", "button");
+        $banner.attr("tabindex", "0");
+        $banner.attr("title", "Click to select a different lesson for " + (flagObj ? flagObj.name : "active language"));
+        $banner.attr("aria-label", "Active lesson: " + curLesson.name + ". Click to choose lesson.");
         $banner.html(
-            '<span class="active-badge-label">Active:</span> ' +
+            '<span class="active-badge-label" title="Click to choose a lesson">Active:</span> ' +
             (flagHtml ? '<span class="active-badge-flag">' + flagHtml + '</span> ' : '') +
             '<strong>' + curLesson.name + '</strong>' +
-            (curLesson.category ? '<span style="color: #64748b; font-size: 0.8rem; margin-left: 4px;">(' + curLesson.category + ')</span>' : '')
+            (curLesson.category ? '<span style="color: #64748b; font-size: 0.8rem; margin-left: 4px;">(' + curLesson.category + ')</span>' : '') +
+            ' <span class="active-badge-action" title="Click to choose lesson" aria-hidden="true">▾</span>'
         ).show();
     }
     $("#toggleTable").show();
     $("#passive_mode_btn").show();
 }
+
+$(document).on("click", "#active_lesson_banner, .active-badge-label", function(e) {
+    e.preventDefault();
+    openActiveLanguageLessonsModal();
+});
+$(document).on("keydown", "#active_lesson_banner", function(e) {
+    if (e.which === 13 || e.which === 32) {
+        e.preventDefault();
+        openActiveLanguageLessonsModal();
+    }
+});
 
 function selectAndStartLesson(lessonIdx) {
     closeLanguageLessonsModal();
@@ -987,6 +1155,7 @@ function selectAndStartLesson(lessonIdx) {
     var curLesson = lessonFiles[lessonIdx];
     if (!curLesson) return;
 
+    currentLessonIndex = lessonIdx;
     activeSessionLanguage = "";
     sessionCharactersMap = {};
     clearPassiveTimers();
@@ -1688,14 +1857,31 @@ function updateList(lines)
                     +"</a>";
         }
         var speakerBtn = " <span class=\"speaker-btn speaker-vocab\" role=\"button\" tabindex=\"0\" title=\"Read answer out loud\" aria-label=\"Read answer out loud\" data-answer=\"" + escapeHtmlAttr(rawAnswer) + "\" onclick=\"readVocabAnswer(event, this)\">🔊</span>";
-        tableData = tableData.concat("<tr><td>"+lines[i].split(":")[0]+"</td><td>"
+        var isSeen = (typeof seen !== "undefined" && seen && typeof seen.contains === "function" && seen.contains(i));
+        var rowClass = isSeen ? ' class="seen"' : '';
+        var rowStyle = isSeen ? ' style="color: #16a34a;"' : ' style="color: #000000;"';
+        tableData = tableData.concat("<tr" + rowClass + rowStyle + "><td>"+lines[i].split(":")[0]+"</td><td>"
                     + value
                     + speakerBtn
                     +"</td></tr>"
         );
     }
     $("#vocabTable")[0].innerHTML = tableData;
-    $("#vocabTable tr").css("color", "");
+
+    // Apply green color to presented questions and black to unseen questions
+    if (typeof seen !== "undefined" && seen && typeof seen.contains === "function") {
+        for (var s = 0; s < lines.length; s++) {
+            var $row = $("#vocabTable tr").eq(s);
+            if (seen.contains(s)) {
+                $row.addClass("seen").css("color", "#16a34a");
+                $row.find("td").css("color", "#16a34a");
+            } else {
+                $row.removeClass("seen").css("color", "#000000");
+                $row.find("td").css("color", "#000000");
+            }
+        }
+    }
+
     if (lines && lines.length > 0) {
         $("#toggleTable").show();
         $("#passive_mode_btn").show();
@@ -1707,6 +1893,9 @@ function updateList(lines)
 
 function setQuestion(index)
 {
+    if (typeof markSeen === "function") {
+        markSeen(index);
+    }
     var questionText = lines[index].split(":")[0];
     $("#question_txt")[0].innerHTML = "<span class=\"lesser-text\">["+index+"/"+seen.size()+"/"+lines.length+"]</span> " + questionText + " <span id=\"speaker_question\" class=\"speaker-btn\" role=\"button\" tabindex=\"0\" title=\"Read question out loud\" aria-label=\"Read question out loud\" onclick=\"readQuestion(event)\">🔊</span>";
     playAudio("aud_question", questionText.split("/")[0]);
@@ -1779,8 +1968,14 @@ function GetRandomIndex()
 
 function markSeen(n)
 {
-    seen.add(n);
-    $("#vocabTable tr").eq(n).css("color", "green");
+    if (typeof seen !== "undefined" && seen && typeof seen.add === "function") {
+        seen.add(n);
+    }
+    var $row = $("#vocabTable tr").eq(n);
+    if ($row.length) {
+        $row.addClass("seen").css("color", "#16a34a");
+        $row.find("td").css("color", "#16a34a");
+    }
 }
 
 function SetFeedback(s, answerToSpeak)
@@ -1865,7 +2060,7 @@ function generateSentencesFromCompletedLessons() {
 
     var selectedFiles = appSettings.completedLessons || [];
     if (selectedFiles.length === 0) {
-        $("#ai_gen_status").html('<span class="ai-gen-error">Please select at least 1 completed lesson in Settings (⚙).</span>');
+        $("#ai_gen_status").html('<span class="ai-gen-error">Please select at least 1 completed lesson above.</span>');
         return;
     }
 

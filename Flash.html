@@ -110,27 +110,6 @@ $(document).ready(function(){
                     <span><input type="number" id="setting_d_timeout" min="0.5" max="20" step="0.5" value="2.5" class="setting-timeout-input" onchange="onSettingChange()"> s</span>
                 </div>
             </div>
-
-            <div class="setting-section">
-                <span class="setting-section-title">Completed Lessons (Active Vocab Pool)</span>
-                <div class="setting-desc" style="margin-left: 0; margin-bottom: 4px;">
-                    Choose your target language to populate the active vocabulary pool:
-                </div>
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 4px 0 6px 0;">
-                    <label for="setting_language_select" style="font-size: 0.84rem; font-weight: 600; color: #334155;">Language:</label>
-                    <select id="setting_language_select" class="setting-select" onchange="onSettingLanguageChange()" style="flex: 1; max-width: 220px;">
-                        <!-- Options populated dynamically from available languages -->
-                    </select>
-                </div>
-                <div class="batch-btn-row">
-                    <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(true)">Select All</button>
-                    <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(false)">Clear All</button>
-                    <span id="settings_lang_lesson_count" style="margin-left: auto; font-size: 0.72rem; color: #64748b; align-self: center;"></span>
-                </div>
-                <div id="settings_lessons_list" class="lesson-checklist-container">
-                    <!-- Checkboxes rendered dynamically for chosen language only -->
-                </div>
-            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="modal-btn-primary" onclick="closeSettingsModal()">Done</button>
@@ -149,20 +128,24 @@ $(document).ready(function(){
                 Uses AI to compose natural conversational sentences strictly constrained to vocabulary from your selected completed lessons.
             </div>
 
-            <div class="setting-section" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; margin-top: 4px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
-                    <div>
-                        <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em;">Target Language</div>
-                        <div id="ai_modal_language_display" style="font-size: 0.95rem; font-weight: 600; color: #0f172a; margin-top: 2px;">Cantonese</div>
-                    </div>
-                    <div style="text-align: right;">
-                        <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em;">Active Pool</div>
-                        <span id="ai_selected_count" class="lesson-check-category" style="margin: 2px 0 0 auto; display: inline-block;">1 lesson selected</span>
+            <div class="setting-section" style="margin-top: 6px;">
+                <span class="setting-section-title">Vocab Pool Selection</span>
+                <div class="setting-desc" style="margin-left: 0; margin-bottom: 4px;">
+                    Choose your target language and completed lessons to source vocabulary from:
+                </div>
+                <div class="ai-language-flags-container">
+                    <span class="ai-language-flags-label">Language:</span>
+                    <div id="ai_language_flags" class="ai-language-flags-row" role="radiogroup" aria-label="Target language selection">
+                        <!-- Flag buttons rendered dynamically (no text, just flags) -->
                     </div>
                 </div>
-                <div style="margin-top: 8px; font-size: 0.76rem; color: #64748b; display: flex; align-items: center; justify-content: space-between;">
-                    <span>Need to choose different lessons?</span>
-                    <button type="button" class="btn-secondary-sm" onclick="closeAiModal(); openSettingsModal();" style="padding: 2px 8px;">Settings ⚙</button>
+                <div class="batch-btn-row">
+                    <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(true)">Select All</button>
+                    <button type="button" class="btn-secondary-sm" onclick="selectAllLessons(false)">Clear All</button>
+                    <span id="settings_lang_lesson_count" style="margin-left: auto; font-size: 0.72rem; color: #64748b; align-self: center;"></span>
+                </div>
+                <div id="settings_lessons_list" class="lesson-checklist-container">
+                    <!-- Checkboxes rendered dynamically for chosen language only -->
                 </div>
             </div>
 
@@ -276,10 +259,13 @@ $(document).ready(function(){
                     <span class="help-section-tag">Start Here</span>
                 </div>
                 <p class="help-card-text">
-                    <strong>1. Pick a language:</strong> Click any country flag in the toolbar at the top (Cantonese, Hebrew, Spanish, Polish, Greek, Mandarin, or Civics), and pick one of the lessons.
+                    <strong>1. Pick language and lesson:</strong> Click any country flag in the toolbar at the top (or click the active lesson banner) and choose a lesson to practice.
                 </p>
                 <p class="help-card-text">
-                    <strong>2. Press Play (▶):</strong> Click the <strong>Play</strong> button in the top toolbar to begin <em>Passive Mode</em> immediately!
+                    <strong>2. Start typing in answers:</strong> Type your answer in the text box and press Enter (or click Submit) to test yourself and build muscle memory.
+                </p>
+                <p class="help-card-text">
+                    <strong>3. When you're ready, press the play button (▶):</strong> Switch to hands-free Passive Mode anytime to listen to questions and answers spoken out loud on an automated audio loop!
                 </p>
             </div>
 
@@ -320,11 +306,11 @@ $(document).ready(function(){
                     </div>
                     <div class="help-feature-item">
                         <span class="help-feature-badge">⚙️ Settings</span>
-                        <div class="help-feature-desc">Select Cantonese romanization (Jyutping vs. Yale), toggle speech reading for questions and answers, customize Passive Mode timers, and select completed lessons.</div>
+                        <div class="help-feature-desc">Select Cantonese romanization (Jyutping vs. Yale), toggle speech reading for questions and answers, and customize Passive Mode timers.</div>
                     </div>
                     <div class="help-feature-item">
                         <span class="help-feature-badge">✨ AI Sentences</span>
-                        <div class="help-feature-desc">Synthesize original practice sentences using Gemini AI, strictly constrained to words from your selected completed lessons.</div>
+                        <div class="help-feature-desc">Synthesize original practice sentences using Gemini AI, with options to select your language and completed lesson vocabulary pool.</div>
                     </div>
                     <div class="help-feature-item">
                         <span class="help-feature-badge">📥 / 📤 Download & Upload</span>
@@ -380,7 +366,7 @@ $(document).ready(function(){
 
 <div id="flag_buttons_bar" class="flag-buttons-container" role="toolbar" aria-label="Language selection"></div>
 
-<div id="active_lesson_banner" class="active-lesson-banner" style="display: none;"></div>
+<div id="active_lesson_banner" class="active-lesson-banner" style="display: none;" role="button" tabindex="0" title="Click to choose a lesson" onclick="openActiveLanguageLessonsModal()"></div>
 
 <select name="lesson" id="lesson" style="display: none;" aria-hidden="true"></select>
 <div id="stage" class="stage-container">
