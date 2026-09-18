@@ -58,6 +58,14 @@ lessonFiles[lessonFiles.length] = new lesson("Lesson 2: 30 common verbs", "lesso
 lessonFiles[lessonFiles.length] = new lesson("Lesson 3: Conjunctions, objects", "lessons/Spanish.3.txt", "Spanish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 4: poner, tomar, prepositions", "lessons/Spanish.4.txt", "Spanish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 5: estar, places", "lessons/Spanish.5.txt", "Spanish", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 1: Greetings & identity", "lessons/Italian.1.txt", "Italian", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 2: Orientation & travel", "lessons/Italian.2.txt", "Italian", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 3: Descriptions & objects", "lessons/Italian.3.txt", "Italian", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 4: Food & dining", "lessons/Italian.4.txt", "Italian", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 5: Numbers, time & calendar", "lessons/Italian.5.txt", "Italian", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 6: People & socializing", "lessons/Italian.6.txt", "Italian", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 7: Verbs & daily questions", "lessons/Italian.7.txt", "Italian", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 8: Shopping & emergencies", "lessons/Italian.8.txt", "Italian", false, false);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1: 12-May-2014", "lessons/Mandarin.1n.txt", "Mandarin", false, false);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1 (pinyin): 12-May-2014", "lessons/Mandarin.1.txt", "Mandarin", false, false);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1.2: 19-May-2014", "lessons/Mandarin.1.2n.txt", "Mandarin", false, false);
@@ -92,8 +100,11 @@ function populateLessons() {
 	else if (query.search("polish")>=0) {
 		groups = [ "Polish"];
 	}
+	else if (query.search("italian")>=0) {
+		groups = [ "Italian"];
+	}
 	else {
-		groups = ["Cantonese.Dan", "Cantonese.ca", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Hebrew", "Polish", "Spanish", "Mandarin", "Greek", "Civics"];
+		groups = ["Cantonese.Dan", "Cantonese.ca", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Hebrew", "Polish", "Spanish", "Italian", "Mandarin", "Greek", "Civics"];
 	}
 	var i;
 	for (i=0; i<groups.length; i++) {

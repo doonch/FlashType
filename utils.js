@@ -341,6 +341,7 @@ function getLanguageFromLesson(l) {
     if (/^Greek/i.test(cat) || /greek/i.test(file)) return "Greek";
     if (/^Polish/i.test(cat) || /polish/i.test(file)) return "Polish";
     if (/^Spanish/i.test(cat) || /spanish/i.test(file)) return "Spanish";
+    if (/^Italian/i.test(cat) || /italian/i.test(file)) return "Italian";
     if (/^Mandarin/i.test(cat) || /mandarin/i.test(file)) return "Mandarin";
     if (/^Civics/i.test(cat) || /civics/i.test(file)) return "Civics";
     if (cat) return cat.split(/[. -]/)[0];
@@ -349,7 +350,7 @@ function getLanguageFromLesson(l) {
 
 function getAvailableLanguages() {
     var langs = [];
-    var preferredOrder = ["Cantonese", "Hebrew", "Greek", "Polish", "Spanish", "Mandarin", "Civics"];
+    var preferredOrder = ["Cantonese", "Hebrew", "Greek", "Polish", "Spanish", "Italian", "Mandarin", "Civics"];
     if (typeof lessonFiles !== "undefined") {
         for (var i = 1; i < lessonFiles.length; i++) {
             var lang = getLanguageFromLesson(lessonFiles[i]);
@@ -878,6 +879,7 @@ function applyUploadedLesson() {
         // 3. Inspect uploaded filename
         var fn = lastUploadedFileName.toLowerCase();
         if (fn.indexOf("spanish") !== -1) detectedLangId = "spanish";
+        else if (fn.indexOf("italian") !== -1) detectedLangId = "italian";
         else if (fn.indexOf("polish") !== -1) detectedLangId = "polish";
         else if (fn.indexOf("greek") !== -1) detectedLangId = "greek";
         else if (fn.indexOf("hebrew") !== -1) detectedLangId = "hebrew";
@@ -966,6 +968,14 @@ var LANGUAGE_FLAGS = [
         svg: '<svg viewBox="0 0 30 20" class="flag-svg" aria-hidden="true"><rect width="30" height="5" fill="#AA151B"/><rect y="5" width="30" height="10" fill="#F1BF00"/><rect y="15" width="30" height="5" fill="#AA151B"/><g transform="translate(7, 7) scale(0.35)"><rect width="10" height="15" rx="3" fill="#AA151B"/><rect x="2" y="2" width="6" height="11" fill="#F1BF00"/><circle cx="5" cy="0" r="3" fill="#F1BF00"/></g></svg>'
     },
     {
+        id: "italian",
+        name: "Italian",
+        country: "Italy",
+        flagEmoji: "🇮🇹",
+        categories: ["Italian"],
+        svg: '<svg viewBox="0 0 30 20" class="flag-svg" aria-hidden="true"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#ffffff"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg>'
+    },
+    {
         id: "hebrew",
         name: "Hebrew",
         country: "Israel",
@@ -1028,6 +1038,7 @@ function getLanguageIdForCategory(category) {
     if (c.indexOf("greek") !== -1) return "greek";
     if (c.indexOf("polish") !== -1) return "polish";
     if (c.indexOf("spanish") !== -1) return "spanish";
+    if (c.indexOf("italian") !== -1) return "italian";
     if (c.indexOf("civics") !== -1) return "civics";
     return "";
 }
@@ -1247,6 +1258,9 @@ function selectAndStartLesson(lessonIdx) {
     } else if (cat.indexOf("spanish") !== -1) {
         activeSessionLanguage = "spanish";
         langId = "spanish";
+    } else if (cat.indexOf("italian") !== -1) {
+        activeSessionLanguage = "italian";
+        langId = "italian";
     } else if (cat.indexOf("civics") !== -1) {
         activeSessionLanguage = "civics";
         langId = "civics";
@@ -1644,6 +1658,7 @@ function getAnswerLanguage(text) {
     var cat = getLessonCategory();
     if (cat.indexOf("polish") !== -1) return "pl-PL";
     if (cat.indexOf("spanish") !== -1) return "es-ES";
+    if (cat.indexOf("italian") !== -1) return "it-IT";
     if (cat.indexOf("greek") !== -1) return "el-GR";
     if (cat.indexOf("hebrew") !== -1) return "he-IL";
     if (cat.indexOf("mandarin") !== -1) return "zh-CN";

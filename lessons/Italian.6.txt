@@ -1,0 +1,27 @@
+What is your name?:Come ti chiami?
+My name is...:Mi chiamo...
+How are you?:Come stai?
+I am fine:Sto bene
+How old are you?:Quanti anni hai?
+years old:anni
+person:persona
+people:persone/gente
+man:uomo
+woman:donna
+boy:ragazzo
+girl:ragazza
+child:bambino
+friend:amico/amica
+family:famiglia
+father:padre/papà
+mother:madre/mamma
+brother:fratello
+sister:sorella
+husband:marito
+wife:moglie
+son:figlio
+daughter:figlia
+student:studente
+teacher:insegnante/professore
+doctor:dottore/medico
+worker:lavoratore/operaio

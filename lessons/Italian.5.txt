@@ -1,0 +1,30 @@
+zero:zero
+one:uno
+two:due
+three:tre
+four:quattro
+five:cinque
+six:sei
+seven:sette
+eight:otto
+nine:nove
+ten:dieci
+twenty:venti
+fifty:cinquanta
+hundred:cento
+thousand:mille
+time:tempo/ora
+What time is it?:Che ore sono?
+hour:ora
+minute:minuto
+now:ora/adesso
+later:dopo/più tardi
+today:oggi
+tomorrow:domani
+yesterday:ieri
+morning:mattina
+afternoon:pomeriggio
+evening:sera
+night:notte
+day:giorno
+week:settimana

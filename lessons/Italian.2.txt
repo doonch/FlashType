@@ -1,0 +1,26 @@
+to come:venire
+I come:vengo
+to go:andare
+I go:vado
+to arrive:arrivare
+to leave:partire
+hotel:hotel/albergo
+restaurant:ristorante
+airport:aeroporto
+train station:stazione/stazione ferroviaria
+bus stop:fermata dell'autobus
+subway:metropolitana/metro
+taxi:taxi
+ticket:biglietto
+Where is...?:Dov'è...?/Dove si trova...?
+street:via/strada
+city:città
+center:centro
+entrance:entrata/ingresso
+exit:uscita
+bathroom:bagno
+passport:passaporto
+suitcase:valigia
+Colosseum:Colosseo
+Trevi Fountain:Fontana di Trevi
+Pantheon:Pantheon

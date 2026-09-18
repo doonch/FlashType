@@ -1,0 +1,30 @@
+to want:volere
+I want:voglio
+I would like:vorrei
+to eat:mangiare
+to drink:bere
+to pay:pagare
+The check, please:Il conto, per favore
+menu:menu/menù
+delicious:delizioso/buonissimo
+coffee:caffè
+tea:tè
+water:acqua
+beer:birra
+wine:vino
+milk:latte
+juice:succo
+bread:pane
+meat:carne
+chicken:pollo
+fish:pesce
+pasta:pasta
+pizza:pizza
+soup:zuppa
+salad:insalata
+fruit:frutta
+vegetables:verdura
+cheese:formaggio
+a little:un po'
+a lot:molto
+with:con

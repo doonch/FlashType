@@ -1,0 +1,430 @@
+================================================================================
+FLASHTYPE: NEW LANGUAGE CREATION GUIDE & LESSON CURRICULUM TEMPLATE
+================================================================================
+
+This document provides complete instructions and standard lesson templates for 
+generating new language courses for the FlashType application. 
+
+You can provide this document directly to any LLM (Gemini, Claude, GPT, etc.) 
+as a system prompt or instruction sheet to produce consistent, high-quality, 
+standardized language lessons.
+
+--------------------------------------------------------------------------------
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+1. File Format & Technical Rules
+2. Standard 8-Lesson Curriculum Template
+   - Lesson 1: Greetings, Identity & Fundamentals
+   - Lesson 2: Orientation, Travel & Capital Landmarks
+   - Lesson 3: Descriptions, Space & Core Objects
+   - Lesson 4: Food, Dining & Ordering
+   - Lesson 5: Numbers, Time & Calendar
+   - Lesson 6: People, Family & Socializing
+   - Lesson 7: Core Verbs, Daily Activities & Questions
+   - Lesson 8: Commerce, Shopping & Emergencies
+3. Integration Steps in FlashType Codebase
+4. Ready-to-Use LLM Generation Prompt
+
+================================================================================
+1. FILE FORMAT & TECHNICAL RULES
+================================================================================
+
+1.1 File Format
+   - Plain text file (.txt) encoded in UTF-8 (without BOM).
+   - One item pair per line using the colon separator:
+       question:answer
+     Example:
+       Hello:Hola
+       good morning:buenos días
+   - To provide multiple accepted target answers for a single question, separate
+     them with a forward slash (/):
+       goodbye:adiós/chao
+       here:aquí/acá
+   - Do NOT include line numbers, bullet points, headers, or markdown formatting 
+     inside the .txt lesson files.
+   - Avoid trailing spaces or empty blank lines.
+
+1.2 Size & Scope Limits
+   - MAXIMUM 30 words/entries per lesson file (1 to 30 lines maximum).
+   - Focus on high-frequency, natural, everyday conversational vocabulary.
+   - For inflected or conjugated forms, keep translations clear and contextualized
+     (e.g., "I speak:hablo", "you speak:hablas").
+   - Non-Latin script languages (e.g., Hebrew, Greek, Mandarin, Russian, Arabic):
+     - Answers must use the native target script (with optional standard vowel
+       points / diacritics where appropriate for beginner learners).
+     - If Romanization is used instead (like Jyutping or Pinyin), use standardized
+       numbered or accented tone notation consistent with existing lessons.
+
+1.3 File Naming Convention
+   - Stored in the `lessons/` folder.
+   - Format: `lessons/<Language>.<LessonNumber>.txt`
+   - Capitalize the language name.
+     Examples:
+       lessons/Italian.1.txt
+       lessons/German.1.txt
+       lessons/Japanese.1.txt
+
+================================================================================
+2. STANDARD 8-LESSON CURRICULUM TEMPLATE
+================================================================================
+
+Every new language must follow this progressive 8-lesson curriculum structure.
+Each lesson MUST NOT exceed 30 items.
+
+--------------------------------------------------------------------------------
+LESSON 1: Greetings, Identity & Fundamentals (Max 30 items)
+--------------------------------------------------------------------------------
+Objective: Essential courtesies, language identity, pronouns, and comprehension.
+Contents to include:
+  1. Core Greetings & Courtesies:
+     - "Hello"
+     - "Nice to meet you"
+     - "Goodbye"
+     - "Please"
+     - "Thank you"
+     - "You're welcome"
+     - "Yes"
+     - "No"
+     - "Excuse me / Sorry"
+  2. Language & Nationality Identifiers:
+     - "English"
+     - "America / American"
+     - The target language name (e.g., "Spanish", "French", "Japanese")
+     - The target country name (e.g., "Spain", "France", "Japan")
+  3. Personal Subject Pronouns:
+     - "I"
+     - "you" (informal and/or formal)
+     - "he"
+     - "she"
+     - "we"
+     - "they"
+  4. Core Communication Verbs & Phrases:
+     - "to speak"
+     - "I speak"
+     - "Do you speak...?"
+     - "to understand"
+     - "I understand"
+     - "I don't understand"
+     - "Do you understand?"
+
+--------------------------------------------------------------------------------
+LESSON 2: Orientation, Travel & Capital Landmarks (Max 30 items)
+--------------------------------------------------------------------------------
+Objective: Wayfinding, movement, transit hubs, and cultural capital landmarks.
+Contents to include:
+  1. Movement & Direction Verbs:
+     - "to come / I come"
+     - "to go / I go"
+     - "to arrive"
+     - "to leave"
+  2. Travel & Transit Facilities:
+     - "hotel"
+     - "restaurant"
+     - "airport"
+     - "train station"
+     - "bus stop"
+     - "subway / metro"
+     - "taxi"
+     - "ticket"
+  3. Navigation & Wayfinding:
+     - "Where is...?"
+     - "street / avenue"
+     - "city"
+     - "center / downtown"
+     - "entrance"
+     - "exit"
+     - "bathroom / restroom"
+     - "passport"
+     - "luggage / suitcase"
+  4. Capital City Landmarks:
+     - 1 to 2 major iconic landmarks in the target country's capital city.
+       Examples:
+         - France / Paris: "Eiffel Tower", "Louvre Museum"
+         - Japan / Tokyo: "Tokyo Tower", "Senso-ji Temple"
+         - Italy / Rome: "Colosseum", "Trevi Fountain"
+         - Germany / Berlin: "Brandenburg Gate", "Museum Island"
+         - Spain / Madrid: "Prado Museum", "Royal Palace"
+         - UK / London: "Big Ben", "Tower Bridge"
+
+--------------------------------------------------------------------------------
+LESSON 3: Descriptions, Space & Core Objects (Max 30 items)
+--------------------------------------------------------------------------------
+Objective: Spatial orientation, descriptive adjective pairs, and everyday objects.
+Contents to include:
+  1. Spatial Positions & Proximity:
+     - "near"
+     - "far"
+     - "here"
+     - "there"
+     - "left"
+     - "right"
+     - "straight ahead"
+     - "inside"
+     - "outside"
+  2. Essential Contrasting Adjectives:
+     - "big / large"
+     - "small / little"
+     - "fast / quick"
+     - "slow"
+     - "good"
+     - "bad"
+     - "hot"
+     - "cold"
+     - "open"
+     - "closed"
+     - "easy"
+     - "difficult"
+  3. Common Everyday Nouns:
+     - "water"
+     - "car"
+     - "house / home"
+     - "room"
+     - "door"
+     - "table"
+     - "phone"
+     - "bag"
+     - "key"
+
+--------------------------------------------------------------------------------
+LESSON 4: Food, Dining & Ordering (Max 30 items)
+--------------------------------------------------------------------------------
+Objective: Navigating cafes/restaurants, ordering food and drinks, expressing desire.
+Contents to include:
+  1. Dining Actions & Requests:
+     - "to want / I want"
+     - "I would like" (polite order)
+     - "to eat"
+     - "to drink"
+     - "to pay"
+     - "The check / bill, please"
+     - "menu"
+     - "delicious"
+  2. Common Drinks:
+     - "coffee"
+     - "tea"
+     - "water"
+     - "beer"
+     - "wine"
+     - "milk"
+     - "juice"
+  3. Common Foods:
+     - "bread"
+     - "meat"
+     - "chicken"
+     - "fish"
+     - "rice"
+     - "soup"
+     - "salad"
+     - "fruit"
+     - "vegetables"
+     - "cheese"
+  4. Quantities & Requests:
+     - "a little"
+     - "a lot / many"
+     - "more"
+     - "less"
+     - "with"
+     - "without"
+
+--------------------------------------------------------------------------------
+LESSON 5: Numbers, Time & Calendar (Max 30 items)
+--------------------------------------------------------------------------------
+Objective: Numerical fluency, telling time, schedules, and days of the week.
+Contents to include:
+  1. Cardinal Numbers:
+     - "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", 
+       "nine", "ten", "twenty", "fifty", "hundred", "thousand"
+  2. Time Units & Questions:
+     - "time"
+     - "What time is it?"
+     - "hour"
+     - "minute"
+     - "now"
+     - "later"
+     - "today"
+     - "tomorrow"
+     - "yesterday"
+  3. Periods of Day & Days:
+     - "morning"
+     - "afternoon"
+     - "evening / night"
+     - "day"
+     - "week"
+     - "weekend"
+     - 1 to 2 key days (e.g., "Monday", "Friday")
+
+--------------------------------------------------------------------------------
+LESSON 6: People, Family & Socializing (Max 30 items)
+--------------------------------------------------------------------------------
+Objective: Introducing oneself, discussing family, occupations, and age.
+Contents to include:
+  1. Social Inquiries & Self-Introduction:
+     - "What is your name?"
+     - "My name is..."
+     - "How are you?"
+     - "I am fine"
+     - "How old are you?"
+     - "years old"
+  2. People & Relationships:
+     - "person / people"
+     - "man"
+     - "woman"
+     - "child / boy / girl"
+     - "friend"
+     - "family"
+     - "father / dad"
+     - "mother / mom"
+     - "brother"
+     - "sister"
+     - "husband"
+     - "wife"
+     - "son / daughter"
+  3. Common Occupations / Roles:
+     - "student"
+     - "teacher"
+     - "doctor"
+     - "worker"
+
+--------------------------------------------------------------------------------
+LESSON 7: Core Verbs, Daily Activities & Questions (Max 30 items)
+--------------------------------------------------------------------------------
+Objective: Essential question words and high-utility everyday action verbs.
+Contents to include:
+  1. Universal Question Words (Interrogatives):
+     - "who"
+     - "what"
+     - "where"
+     - "when"
+     - "why"
+     - "how"
+     - "how much / how many"
+     - "which"
+  2. Fundamental Action Verbs:
+     - "to do / to make"
+     - "to have / I have"
+     - "to see"
+     - "to know (facts)"
+     - "to know (people)"
+     - "to think"
+     - "to buy"
+     - "to work"
+     - "to live / reside"
+     - "to sleep"
+     - "can / to be able to"
+     - "must / to have to"
+  3. Common Needs & Queries:
+     - "I need..."
+     - "Can you help me?"
+     - "Why not?"
+     - "Everything"
+     - "Nothing"
+
+--------------------------------------------------------------------------------
+LESSON 8: Commerce, Shopping & Emergencies (Max 30 items)
+--------------------------------------------------------------------------------
+Objective: Buying goods, handling prices, solving problems, and emergency aid.
+Contents to include:
+  1. Shopping & Commerce:
+     - "store / shop"
+     - "supermarket / market"
+     - "pharmacy"
+     - "price"
+     - "How much is this?"
+     - "expensive"
+     - "cheap"
+     - "cash"
+     - "credit card"
+     - "receipt"
+     - "bag"
+  2. Basic Goods & Colors:
+     - "shirt / clothes"
+     - "shoes"
+     - "red", "blue", "white", "black"
+  3. Problems & Urgent Assistance:
+     - "problem"
+     - "I am lost"
+     - "broken / doesn't work"
+     - "help"
+     - "danger"
+     - "doctor"
+     - "hospital"
+     - "police"
+     - "police station"
+     - "medicine"
+     - "emergency"
+
+================================================================================
+3. INTEGRATION STEPS IN FLASHTYPE CODEBASE
+================================================================================
+
+When a new language is created, complete these steps to register it in FlashType:
+
+1. Save Lesson Files:
+   Place the 8 files in the `lessons/` folder:
+     lessons/<Language>.1.txt
+     lessons/<Language>.2.txt
+     ...
+     lessons/<Language>.8.txt
+
+2. Update `files.list`:
+   Add each new lesson filename on its own line in `files.list`:
+     <Language>.1.txt
+     <Language>.2.txt
+     ...
+
+3. Update `data.js`:
+   - Register each lesson in the `lessonFiles` array:
+     lessonFiles[lessonFiles.length] = new lesson("Lesson 1: Greetings & identity", "lessons/<Language>.1.txt", "<Language>", false, false);
+     lessonFiles[lessonFiles.length] = new lesson("Lesson 2: Orientation & travel", "lessons/<Language>.2.txt", "<Language>", false, false);
+     ...
+   - Add "<Language>" to the `groups` array in `data.js` so it appears in category pickers.
+
+4. Update `utils.js`:
+   - Add the language configuration to `LANGUAGE_FLAGS`:
+     {
+         id: "<language_id>",          // e.g. "italian", "german", "japanese"
+         name: "<Language>",           // e.g. "Italian", "German", "Japanese"
+         country: "<Country>",         // e.g. "Italy", "Germany", "Japan"
+         flagEmoji: "<flag_emoji>",    // e.g. "🇮🇹", "🇩🇪", "🇯🇵"
+         categories: ["<Language>"],
+         svg: '<svg viewBox="0 0 30 20" class="flag-svg" ...>...</svg>'
+     }
+   - Update `getLanguageIdForCategory(category)`:
+     Add: if (c.indexOf("<language_id>") !== -1) return "<language_id>";
+   - Update `getAnswerLanguage(text)` for Web Speech Synthesis:
+     Add the appropriate BCP 47 speech language code:
+     if (cat.indexOf("<language_id>") !== -1) return "<bcp47_code>";
+     (e.g., "it-IT" for Italian, "de-DE" for German, "fr-FR" for French, "ja-JP" for Japanese).
+
+================================================================================
+4. READY-TO-USE LLM GENERATION PROMPT
+================================================================================
+
+Copy and paste the prompt below into any LLM to generate lessons for a target language:
+
+"""
+You are an expert language curriculum designer. 
+Generate lessons 1 through 8 for [INSERT TARGET LANGUAGE HERE] following the 
+specifications in the FLASHTYPE NEW LANGUAGE CREATION GUIDE.
+
+STRICT REQUIREMENTS:
+1. Each lesson must have AT MOST 30 items (maximum 30 lines).
+2. Output ONLY plain text pairs in exact 'question:answer' format, one per line.
+3. If multiple correct translations exist, separate them with '/' (e.g. 'here:aquí/acá').
+4. Do NOT include markdown code blocks, line numbers, headings, or commentary inside the lesson content.
+5. Use proper diacritics and native script for the target language.
+6. Strictly follow the designated thematic contents for lessons 1 through 8:
+   - Lesson 1: Greetings, identity, pronouns, speak/understand.
+   - Lesson 2: Orientation, travel, airport, hotel, restaurant, and 1-2 landmarks in the capital.
+   - Lesson 3: Descriptions (near, far, big, small, fast, slow), spatial terms, core objects.
+   - Lesson 4: Food, beverages, dining, ordering, quantities.
+   - Lesson 5: Numbers, telling time, periods of day, calendar terms.
+   - Lesson 6: People, family members, socializing, basic occupations.
+   - Lesson 7: Core question words (who, what, where...), fundamental action verbs, daily needs.
+   - Lesson 8: Shopping, commerce, prices, problems, emergencies, medical/police.
+
+Produce the lessons clearly labeled by filename:
+=== lessons/[Language].1.txt ===
+...
+=== lessons/[Language].8.txt ===
+"""

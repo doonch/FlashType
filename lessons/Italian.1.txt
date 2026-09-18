@@ -1,0 +1,29 @@
+Hello:ciao/buongiorno
+Nice to meet you:piacere/piacere di conoscerti
+Goodbye:arrivederci/ciao
+Please:per favore/per cortesia
+Thank you:grazie
+You're welcome:prego
+Yes:sì
+No:no
+Excuse me:scusa/scusi
+Sorry:mi dispiace
+English:inglese
+America:America
+American:americano
+Italian:italiano
+Italy:Italia
+I:io
+you:tu
+he:lui
+she:lei
+we:noi
+you all:voi
+they:loro
+to speak:parlare
+I speak:parlo
+Do you speak...?:parli...?/parla...?
+to understand:capire
+I understand:capisco
+I don't understand:non capisco
+Do you understand?:capisci?/capisce?

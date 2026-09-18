@@ -1,0 +1,26 @@
+store:negozio
+supermarket:supermercato
+pharmacy:farmacia
+price:prezzo
+How much is this?:Quanto costa questo?
+expensive:costoso/caro
+cheap:economico
+cash:contanti
+credit card:carta di credito
+receipt:scontrino
+shirt:camicia
+shoes:scarpe
+red:rosso
+blue:blu
+white:bianco
+black:nero
+problem:problema
+I am lost:Mi sono perso/Mi sono persa
+broken:rotto
+help:aiuto
+danger:pericolo
+hospital:ospedale
+police:polizia
+police station:questura/commissariato
+medicine:medicina/farmaco
+emergency:emergenza

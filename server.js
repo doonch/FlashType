@@ -43,6 +43,7 @@ function detectLanguage(language, vocabList = [], lessonTitle = "") {
     if (langLower.includes('mandarin') || langLower.includes('chinese') || langLower === 'zh-cn') return 'mandarin';
     if (langLower.includes('polish') || langLower === 'pl') return 'polish';
     if (langLower.includes('spanish') || langLower === 'es') return 'spanish';
+    if (langLower.includes('italian') || langLower === 'it') return 'italian';
     return langLower;
   }
 
