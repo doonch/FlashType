@@ -8,7 +8,7 @@ Poland: פולין
 gold: זהב
 money/silver: כסף
 water: מים
-soup: מרק
+soup: מָרָק
 loves (m):אוהב
 loves (f):אוהבת
 breakfast: ארוחת בוקר
@@ -16,18 +16,18 @@ minister: שׂר
 but : אבל
 hundred: מאה
 pain: כאב
-here : פה/כאן
+here : פֹּה/כאן
 head: ראש
 full: מלא
 terrible: נורא
 cardamom: הל
-mouth: פה
+mouth: פֶּה
 there is: יש
 there isn't: אין
 swamp: בִּיצה
 between:בין
 nothing: כלום
-here is: הינה
+here is: הינֵה
 to drink: לשתות
 heart: לב
 acquaintance (m.): מכּר
