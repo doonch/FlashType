@@ -768,8 +768,11 @@ function saveDownloadToFile() {
     }
 }
 
+var lastUploadedFileName = "";
+
 function openUploadModal() {
     if (typeof $ === "undefined") return;
+    lastUploadedFileName = "";
     $("#upload_status").text("");
     updateUploadStatusCount();
     $("#upload_modal").fadeIn(150);
@@ -802,6 +805,7 @@ function handleUploadFileSelected(input) {
 
 function readUploadFile(file) {
     if (!file) return;
+    lastUploadedFileName = file.name || "";
     var reader = new FileReader();
     reader.onload = function(e) {
         var content = e.target.result || "";
@@ -845,38 +849,89 @@ function applyUploadedLesson() {
         return;
     }
 
+    // Capture the active lesson language before resetting any state
+    var activeLang = getActiveLessonLanguage(); // e.g. "Spanish", "Cantonese", "Hebrew", etc.
+    var activeLangId = activeLang ? getLanguageIdForCategory(activeLang) : "";
+
     lines = validLines;
     seen = new set(lines.length);
     $("#list").text(lines.join("\n"));
 
     var combinedAnswers = lines.map(function(l) { return l.split(":")[1] || ""; }).join(" ");
+    var detectedLangId = "";
+
+    // 1. Script checks for unambiguous alphabets
     if (/[\u0590-\u05FF]/.test(combinedAnswers)) {
-        activeSessionLanguage = "hebrew";
+        detectedLangId = "hebrew";
+    } else if (/[\u0370-\u03FF]/.test(combinedAnswers)) {
+        detectedLangId = "greek";
     } else if (/[\u4e00-\u9fa5]/.test(combinedAnswers)) {
-        activeSessionLanguage = "cantonese";
-    } else {
-        activeSessionLanguage = "other";
+        if (activeLangId === "mandarin" || (lastUploadedFileName && /mandarin/i.test(lastUploadedFileName))) {
+            detectedLangId = "mandarin";
+        } else {
+            detectedLangId = "cantonese";
+        }
+    } else if (activeLangId) {
+        // 2. If there's an active lesson, assume the uploaded file is in that lesson's language!
+        detectedLangId = activeLangId;
+    } else if (lastUploadedFileName) {
+        // 3. Inspect uploaded filename
+        var fn = lastUploadedFileName.toLowerCase();
+        if (fn.indexOf("spanish") !== -1) detectedLangId = "spanish";
+        else if (fn.indexOf("polish") !== -1) detectedLangId = "polish";
+        else if (fn.indexOf("greek") !== -1) detectedLangId = "greek";
+        else if (fn.indexOf("hebrew") !== -1) detectedLangId = "hebrew";
+        else if (fn.indexOf("mandarin") !== -1) detectedLangId = "mandarin";
+        else if (fn.indexOf("cantonese") !== -1 || /\bca\b|\bcp\b|\bc\d/i.test(fn)) detectedLangId = "cantonese";
+        else if (fn.indexOf("civics") !== -1) detectedLangId = "civics";
     }
 
+    // 4. Content character markers if still undetermined
+    if (!detectedLangId) {
+        if (/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(combinedAnswers)) {
+            detectedLangId = "polish";
+        } else if (/[¿¡áéíóúüñÁÉÍÓÚÜÑ]/.test(combinedAnswers)) {
+            detectedLangId = "spanish";
+        } else if (isJyutpingOrYale(combinedAnswers)) {
+            detectedLangId = "cantonese";
+        }
+    }
+
+    // 5. Fallback to app settings or default
+    if (!detectedLangId) {
+        if (appSettings.selectedLanguage) {
+            detectedLangId = getLanguageIdForCategory(appSettings.selectedLanguage) || "spanish";
+        } else {
+            detectedLangId = "spanish";
+        }
+    }
+
+    activeSessionLanguage = detectedLangId;
+    var flagCfg = getLanguageFlagConfig(detectedLangId);
+    var langDisplayName = flagCfg ? flagCfg.name : (detectedLangId.charAt(0).toUpperCase() + detectedLangId.slice(1));
+    appSettings.selectedLanguage = langDisplayName;
+    saveSettings();
+
+    currentLessonIndex = -1;
     presentYtping = (activeSessionLanguage === "cantonese" && appSettings.romanization === "yale");
     linkToDictionary = (activeSessionLanguage === "cantonese");
 
     var customVal = "custom_upload_" + Date.now();
-    var customLabel = "Custom Upload (" + lines.length + " pairs)";
+    var customLabel = lastUploadedFileName ? ("Uploaded: " + lastUploadedFileName) : ("Uploaded Lesson (" + lines.length + " pairs)");
     if ($("#lesson").length) {
         $("#lesson").append($("<option>", { value: customVal, text: customLabel, selected: true }));
         $("#lesson").val(customVal);
     }
 
-    var uploadLangId = getLanguageIdForCategory(activeSessionLanguage) || activeSessionLanguage;
     $(".flag-btn").removeClass("is-active");
-    if (uploadLangId && uploadLangId !== "other") {
-        $("#flag_btn_" + uploadLangId).addClass("is-active");
+    if (detectedLangId) {
+        $("#flag_btn_" + detectedLangId).addClass("is-active");
     }
+
     updateActiveLessonBanner({
         name: customLabel,
-        category: (uploadLangId && uploadLangId !== "other" ? (uploadLangId.charAt(0).toUpperCase() + uploadLangId.slice(1)) : "Custom Upload")
-    }, uploadLangId !== "other" ? uploadLangId : null);
+        category: langDisplayName
+    }, detectedLangId);
 
     $("#vocabTable").hide();
     var $customTblBtn = $("#toggleTable");
