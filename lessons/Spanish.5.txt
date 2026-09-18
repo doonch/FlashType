@@ -1,0 +1,24 @@
+I am:estoy
+you are:estás
+he/she is:está
+we are:estamos
+you all are:estáis
+they are:están
+near:cerca
+far:lejos
+here:aquí
+there:allí
+outside:afuera
+inside:adentro
+home:casa
+office:oficina
+kitchen:cocina
+station:estación
+hotel:hotel
+restaurant:restaurante
+airport:aeropuerto
+bank:banco
+school:escuela
+hospital:hospital
+park:parque
+store:tienda
