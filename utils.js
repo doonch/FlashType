@@ -58,11 +58,11 @@ function loadSettings() {
             }
             var qTimeout = parseFloat(localStorage.getItem("flashtype_q_timeout"));
             if (!isNaN(qTimeout) && qTimeout >= 1) {
-                appSettings.questionTimeoutSec = qTimeout;
+                appSettings.questionTimeoutSec = Math.min(8, Math.max(1, qTimeout));
             }
             var dTimeout = parseFloat(localStorage.getItem("flashtype_d_timeout"));
-            if (!isNaN(dTimeout) && dTimeout >= 0.5) {
-                appSettings.decayTimeoutSec = dTimeout;
+            if (!isNaN(dTimeout) && dTimeout >= 1) {
+                appSettings.decayTimeoutSec = Math.min(8, Math.max(1, dTimeout));
             }
             var completed = localStorage.getItem("flashtype_completed_lessons");
             if (completed) {
@@ -300,7 +300,7 @@ function handlePassiveAnswerReveal() {
     if (appSettings.speakAnswers) {
         speakAnswer(primaryAnswer);
     }
-    var decayMs = Math.max(500, (appSettings.decayTimeoutSec || 2.5) * 1000);
+    var decayMs = Math.max(1000, (appSettings.decayTimeoutSec || 2.5) * 1000);
 
     var completed = false;
     function finishDecayPhase() {
@@ -1314,8 +1314,21 @@ function syncSettingsUI() {
     $("#setting_speak_questions").prop("checked", appSettings.speakQuestions);
     $("#setting_speak_answers").prop("checked", appSettings.speakAnswers);
     $("#setting_passive_mode").prop("checked", appSettings.passiveMode);
-    $("#setting_q_timeout").val(appSettings.questionTimeoutSec);
-    $("#setting_d_timeout").val(appSettings.decayTimeoutSec);
+
+    var qSec = Math.max(1, Math.min(8, appSettings.questionTimeoutSec || 3.5));
+    var dSec = Math.max(1, Math.min(8, appSettings.decayTimeoutSec || 2.5));
+    appSettings.questionTimeoutSec = qSec;
+    appSettings.decayTimeoutSec = dSec;
+
+    $("#setting_q_timeout").val(qSec);
+    $("#setting_q_timeout_val").text(qSec.toFixed(1) + " s");
+    $("#popup_q_timeout").val(qSec);
+    $("#popup_q_timeout_val").text(qSec.toFixed(1) + " s");
+
+    $("#setting_d_timeout").val(dSec);
+    $("#setting_d_timeout_val").text(dSec.toFixed(1) + " s");
+    $("#popup_d_timeout").val(dSec);
+    $("#popup_d_timeout_val").text(dSec.toFixed(1) + " s");
 
     if (appSettings.passiveMode) {
         $("#passive_time_options").show();
@@ -1324,6 +1337,51 @@ function syncSettingsUI() {
     }
 
     renderLessonChecklist();
+}
+
+function onTimerSliderChange(which, val) {
+    var num = parseFloat(val);
+    if (isNaN(num)) return;
+    num = Math.max(1, Math.min(8, Math.round(num * 10) / 10));
+
+    if (which === "q") {
+        appSettings.questionTimeoutSec = num;
+        if (typeof $ !== "undefined") {
+            $("#setting_q_timeout").val(num);
+            $("#setting_q_timeout_val").text(num.toFixed(1) + " s");
+            $("#popup_q_timeout").val(num);
+            $("#popup_q_timeout_val").text(num.toFixed(1) + " s");
+        }
+    } else if (which === "d") {
+        appSettings.decayTimeoutSec = num;
+        if (typeof $ !== "undefined") {
+            $("#setting_d_timeout").val(num);
+            $("#setting_d_timeout_val").text(num.toFixed(1) + " s");
+            $("#popup_d_timeout").val(num);
+            $("#popup_d_timeout_val").text(num.toFixed(1) + " s");
+        }
+    }
+
+    saveSettings();
+}
+
+function openTimerRingModal(e) {
+    if (e && typeof e.stopPropagation === "function") {
+        e.stopPropagation();
+    }
+    syncSettingsUI();
+    if (typeof $ !== "undefined") {
+        $("#timer_ring_modal").fadeIn(150);
+    }
+}
+
+function closeTimerRingModal(e) {
+    if (e && e.target && e.currentTarget && e.target !== e.currentTarget && !$(e.target).hasClass("modal-close-btn") && !$(e.target).hasClass("modal-btn-primary")) {
+        return;
+    }
+    if (typeof $ !== "undefined") {
+        $("#timer_ring_modal").fadeOut(150);
+    }
 }
 
 function onSettingChange() {
@@ -1335,12 +1393,12 @@ function onSettingChange() {
     appSettings.passiveMode = $("#setting_passive_mode").is(":checked");
 
     var qVal = parseFloat($("#setting_q_timeout").val());
-    if (!isNaN(qVal) && qVal >= 1) {
-        appSettings.questionTimeoutSec = qVal;
+    if (!isNaN(qVal)) {
+        appSettings.questionTimeoutSec = Math.max(1, Math.min(8, qVal));
     }
     var dVal = parseFloat($("#setting_d_timeout").val());
-    if (!isNaN(dVal) && dVal >= 0.5) {
-        appSettings.decayTimeoutSec = dVal;
+    if (!isNaN(dVal)) {
+        appSettings.decayTimeoutSec = Math.max(1, Math.min(8, dVal));
     }
 
     if (appSettings.passiveMode) {
@@ -1768,6 +1826,9 @@ if (typeof $ !== "undefined") {
     });
     $(document).on("keydown", function(e) {
         if (e.which === 27) { // Escape
+            if ($("#timer_ring_modal").is(":visible")) {
+                closeTimerRingModal();
+            }
             if ($("#settings_modal").is(":visible")) {
                 closeSettingsModal();
             }
@@ -1786,6 +1847,11 @@ if (typeof $ !== "undefined") {
             if ($("#help_modal").is(":visible")) {
                 closeHelpModal();
             }
+        }
+    });
+    $(document).on("click", "#timer_ring_modal", function(e) {
+        if ($(e.target).is("#timer_ring_modal")) {
+            closeTimerRingModal();
         }
     });
     $(document).on("click", "#settings_modal", function(e) {

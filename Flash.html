@@ -100,19 +100,82 @@ $(document).ready(function(){
 
             <div class="setting-section">
                 <span class="setting-section-title">Passive Mode Delays</span>
-                <div class="setting-desc" style="margin-left: 0; margin-bottom: 4px;">Delays used by the Play/Pause (▶/⏸) passive practice mode:</div>
-                <div class="setting-timeout-row">
-                    <label for="setting_q_timeout">Question delay:</label>
-                    <span><input type="number" id="setting_q_timeout" min="1" max="20" step="0.5" value="3.5" class="setting-timeout-input" onchange="onSettingChange()"> s</span>
+                <div class="setting-desc" style="margin-left: 0; margin-bottom: 8px;">Delays used by the Play/Pause (▶/⏸) passive practice mode (1 to 8 seconds):</div>
+                
+                <div class="timer-slider-group" style="margin-bottom: 12px;">
+                    <div class="timer-slider-header">
+                        <label for="setting_q_timeout" class="timer-slider-label">Question delay:</label>
+                        <span id="setting_q_timeout_val" class="slider-val-badge">3.5 s</span>
+                    </div>
+                    <input type="range" id="setting_q_timeout" min="1" max="8" step="0.5" value="3.5" class="timer-range-slider" oninput="onTimerSliderChange('q', this.value)" onchange="onTimerSliderChange('q', this.value)">
+                    <div class="timer-slider-ticks">
+                        <span>1s (faster)</span>
+                        <span>8s (slower)</span>
+                    </div>
                 </div>
-                <div class="setting-timeout-row">
-                    <label for="setting_d_timeout">Answer decay delay:</label>
-                    <span><input type="number" id="setting_d_timeout" min="0.5" max="20" step="0.5" value="2.5" class="setting-timeout-input" onchange="onSettingChange()"> s</span>
+
+                <div class="timer-slider-group">
+                    <div class="timer-slider-header">
+                        <label for="setting_d_timeout" class="timer-slider-label">Answer decay delay:</label>
+                        <span id="setting_d_timeout_val" class="slider-val-badge">2.5 s</span>
+                    </div>
+                    <input type="range" id="setting_d_timeout" min="1" max="8" step="0.5" value="2.5" class="timer-range-slider" oninput="onTimerSliderChange('d', this.value)" onchange="onTimerSliderChange('d', this.value)">
+                    <div class="timer-slider-ticks">
+                        <span>1s (faster)</span>
+                        <span>8s (slower)</span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="modal-btn-primary" onclick="closeSettingsModal()">Done</button>
+        </div>
+    </div>
+</div>
+
+<div id="timer_ring_modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="timer_ring_title" onclick="closeTimerRingModal(event)">
+    <div class="settings-modal-card timer-ring-card" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <div class="timer-popup-header-title" style="display: flex; align-items: center; gap: 8px;">
+                <svg class="passive-timer-svg" viewBox="0 0 28 28" width="20" height="20" aria-hidden="true">
+                    <circle class="passive-circle-bg" cx="14" cy="14" r="11" />
+                    <circle class="passive-circle-bar phase-question" cx="14" cy="14" r="11" transform="rotate(-90 14 14)" />
+                </svg>
+                <h3 id="timer_ring_title" style="margin: 0; font-size: 1rem; font-weight: 600; color: #0f172a;">Passive Mode Timers</h3>
+            </div>
+            <button type="button" class="modal-close-btn" onclick="closeTimerRingModal()" aria-label="Close timer settings">&times;</button>
+        </div>
+        <div class="modal-body" style="padding: 14px 18px;">
+            <div class="setting-desc" style="margin-left: 0; margin-bottom: 12px; font-size: 0.83rem; color: #475569; line-height: 1.45;">
+                Adjust how long questions remain before revealing the answer, and how long the answer displays before advancing to the next card:
+            </div>
+
+            <div class="timer-slider-group" style="margin-bottom: 14px;">
+                <div class="timer-slider-header">
+                    <label for="popup_q_timeout" class="timer-slider-label">Question delay:</label>
+                    <span id="popup_q_timeout_val" class="slider-val-badge">3.5 s</span>
+                </div>
+                <input type="range" id="popup_q_timeout" min="1" max="8" step="0.5" value="3.5" class="timer-range-slider" oninput="onTimerSliderChange('q', this.value)" onchange="onTimerSliderChange('q', this.value)">
+                <div class="timer-slider-ticks">
+                    <span>1s (faster)</span>
+                    <span>8s (slower)</span>
+                </div>
+            </div>
+
+            <div class="timer-slider-group">
+                <div class="timer-slider-header">
+                    <label for="popup_d_timeout" class="timer-slider-label">Answer decay delay:</label>
+                    <span id="popup_d_timeout_val" class="slider-val-badge">2.5 s</span>
+                </div>
+                <input type="range" id="popup_d_timeout" min="1" max="8" step="0.5" value="2.5" class="timer-range-slider" oninput="onTimerSliderChange('d', this.value)" onchange="onTimerSliderChange('d', this.value)">
+                <div class="timer-slider-ticks">
+                    <span>1s (faster)</span>
+                    <span>8s (slower)</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="modal-btn-primary" onclick="closeTimerRingModal()">Done</button>
         </div>
     </div>
 </div>
@@ -373,7 +436,7 @@ $(document).ready(function(){
     <!-- Passive Mode Timer Widget (positioned above the Question prompt) -->
     <div id="passive_indicator" class="passive-indicator-card" style="display: none;">
         <div class="passive-timer-widget">
-            <div class="passive-circle-wrap" title="Timer before reveal / next question">
+            <div id="passive_timer_ring_btn" class="passive-circle-wrap" role="button" tabindex="0" title="Click timer ring to adjust delays (1s - 8s)" aria-label="Adjust passive mode timer delays" onclick="openTimerRingModal(event)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTimerRingModal(event);}">
                 <svg class="passive-timer-svg" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true">
                     <circle class="passive-circle-bg" cx="14" cy="14" r="11" />
                     <circle id="passive_timer_circle" class="passive-circle-bar phase-question" cx="14" cy="14" r="11" transform="rotate(-90 14 14)" />
