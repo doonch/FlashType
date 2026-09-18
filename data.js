@@ -56,6 +56,7 @@ lessonFiles[lessonFiles.length] = new lesson("Lesson 9: Names", "lessons/Polish.
 lessonFiles[lessonFiles.length] = new lesson("Lesson 1: ser, hablar", "lessons/Spanish.1.txt", "Spanish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 2: 30 common verbs", "lessons/Spanish.2.txt", "Spanish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 3: Conjunctions, objects", "lessons/Spanish.3.txt", "Spanish", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 4: poner, tomar, prepositions", "lessons/Spanish.4.txt", "Spanish", false, false);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1: 12-May-2014", "lessons/Mandarin.1n.txt", "Mandarin", false, false);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1 (pinyin): 12-May-2014", "lessons/Mandarin.1.txt", "Mandarin", false, false);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1.2: 19-May-2014", "lessons/Mandarin.1.2n.txt", "Mandarin", false, false);

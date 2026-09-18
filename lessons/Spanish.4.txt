@@ -1,0 +1,30 @@
+I put:pongo
+you put:pones
+he/she puts:pone
+we put:ponemos
+you all put:ponéis
+they put:ponen
+I take:tomo
+you take:tomas
+he/she takes:toma
+we take:tomamos
+you all take:tomáis
+they take:toman
+to:a
+before:ante
+under:bajo
+with:con
+against:contra
+of:de
+since:desde
+during:durante
+in:en
+between:entre
+towards:hacia
+until:hasta
+through:por
+for:para
+according to:según
+without:sin
+about:sobre
+after:tras
