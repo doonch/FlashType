@@ -8,7 +8,7 @@ FlashType is an interactive, voice-enabled language-learning application designe
 
 * **GitHub Pages**: [https://doonch.github.io/FlashType](https://doonch.github.io/FlashType)  
   *(Client-side static deployment. Features typing drills, Web Speech audio synthesis, and passive mode.)*
-* **Google AI Studio App**: [https://ais-pre-npa66crhfhw725c7lgm4mu-487464250671.us-east1.run.app](https://ais-pre-npa66crhfhw725c7lgm4mu-487464250671.us-east1.run.app)  
+* **Google AI Studio App**: [https://flash-type.ai.studio](https://flash-type.ai.studio)  
   *(Full-stack deployment supporting all core drills plus Gemini AI sentence generation.)*
 
 ---
