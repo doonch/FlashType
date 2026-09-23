@@ -1771,8 +1771,12 @@ function readQuestion(e) {
 
 function speakAnswer(answerText) {
     if (!answerText) return;
-    // Only read aloud one variant if there is more than one
-    var singleAns = answerText.split("/")[0].trim();
+    // If there is more than one variant separated by slashes, pick one randomly
+    var variants = answerText.split("/");
+    var singleAns = variants[0].trim();
+    if (variants.length > 1) {
+        singleAns = variants[Math.floor(Math.random() * variants.length)].trim();
+    }
     var lang = getAnswerLanguage(singleAns);
 
     // If we have standard Cantonese characters mapped for this generated sentence,
@@ -1946,7 +1950,12 @@ function checkAnswer()
     }
     else
     {
-        SetFeedback("<span class=\"incorrect-fb\">Wrong!</span> Not \"" + answer + "\", it's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>. Try again!", correctAnswers[0]);
+        var wrongAnswerToSpeak = correctAnswers[0].trim();
+        if (correctAnswers.length > 1) {
+            var randIdx = Math.floor(Math.random() * correctAnswers.length);
+            wrongAnswerToSpeak = correctAnswers[randIdx].trim();
+        }
+        SetFeedback("<span class=\"incorrect-fb\">Wrong!</span> Not \"" + answer + "\", it's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>. Try again!", wrongAnswerToSpeak);
     }
     $("#answer")[0].value = "";
 }
