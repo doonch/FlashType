@@ -298,6 +298,7 @@ function startPassiveQuestionTimer() {
 
 function handlePassiveAnswerReveal() {
     if (!appSettings.passiveMode || typeof lines === "undefined" || !lines || !lines[index]) return;
+    currentQuestionAnswerRevealed = true;
     var correctAnswers = transliterate(lines[index]).split(":")[1].split("/");
     var primaryAnswer = correctAnswers[0].trim();
     if (typeof $ !== "undefined") {
@@ -864,6 +865,7 @@ function applyUploadedLesson() {
 
     lines = validLines;
     seen = new set(lines.length);
+    resetFirstTryTracker(lines.length);
     $("#list").text(lines.join("\n"));
 
     var combinedAnswers = lines.map(function(l) { return l.split(":")[1] || ""; }).join(" ");
@@ -1290,6 +1292,7 @@ function selectAndStartLesson(lessonIdx) {
         lines = raw.split(/\r?\n/);
         lines = $.grep(lines, function(s) { return s.trim().split(":").length >= 2; });
         seen = new set(lines.length);
+        resetFirstTryTracker(lines.length);
         presentYtping = (appSettings.romanization === "yale");
         $("#stage").show();
         updatePassiveModeUI();
@@ -1471,6 +1474,164 @@ function set(n)
     };
 }
 var seen = new set(2);
+var currentQuestionAnswerRevealed = false;
+
+/* Mastery Tracker:
+ * Counts every question the user has, at any time in the session,
+ * answered correctly without an on-screen answer available.
+ * Does not disqualify any question, and clicking the badge restarts the counter.
+ */
+var firstTryTracker = {
+    totalQuestions: 0,
+    mastered: {},
+    masteryAchieved: false,
+    splashShown: false
+};
+
+function resetFirstTryTracker(total) {
+    firstTryTracker = {
+        totalQuestions: total || (typeof lines !== "undefined" && lines ? lines.length : 0),
+        mastered: {},
+        masteryAchieved: false,
+        splashShown: false
+    };
+    currentQuestionAnswerRevealed = false;
+    updateMasteryProgressUI();
+}
+
+function updateMasteryProgressUI() {
+    if (typeof $ === "undefined") return;
+    var total = (typeof lines !== "undefined" && lines) ? lines.length : (firstTryTracker.totalQuestions || 0);
+    var masteredCount = Object.keys(firstTryTracker.mastered || {}).length;
+    var $badge = $("#first_try_badge");
+    var $score = $("#first_try_score");
+    if ($badge.length && $score.length) {
+        if (total <= 0) {
+            $badge.hide();
+            return;
+        }
+        $score.text(masteredCount + "/" + total);
+        $badge.show();
+
+        if (masteredCount === total && total > 0) {
+            $badge.addClass("is-mastered");
+            $badge.attr("title", "Lesson Mastered! All " + total + " questions answered without on-screen help. Click to restart counter.");
+        } else {
+            $badge.removeClass("is-mastered");
+            $badge.attr("title", "Mastery: " + masteredCount + "/" + total + " answered correctly without on-screen answer. Click to restart counter.");
+        }
+    }
+}
+
+function checkMasteryCompletion() {
+    if (!lines || lines.length === 0) return false;
+    var total = lines.length;
+    var masteredCount = Object.keys(firstTryTracker.mastered || {}).length;
+    if (masteredCount >= total && !firstTryTracker.splashShown) {
+        firstTryTracker.masteryAchieved = true;
+        firstTryTracker.splashShown = true;
+        return true;
+    }
+    return false;
+}
+
+function showReadySplashModal() {
+    if (typeof $ === "undefined") return;
+    var total = (typeof lines !== "undefined" && lines) ? lines.length : 0;
+    var lessonName = "Lesson";
+    var langName = getActiveLessonLanguage() || "";
+    if (typeof currentLessonIndex !== "undefined" && currentLessonIndex > 0 && typeof lessonFiles !== "undefined" && lessonFiles[currentLessonIndex]) {
+        lessonName = lessonFiles[currentLessonIndex].name;
+        if (!langName) langName = lessonFiles[currentLessonIndex].category || "";
+    } else {
+        var bannerText = $("#active_lesson_banner strong").text();
+        if (bannerText) lessonName = bannerText;
+    }
+
+    $("#ready_splash_lesson_badge").text("🏆 " + lessonName + (langName ? " (" + langName + ")" : ""));
+    $("#ready_stat_total").text(total + " / " + total);
+    $("#ready_stat_count").text("100%");
+    $("#ready_splash_desc").text("You answered every question (" + total + " total) correctly without needing the on-screen answer.");
+
+    $("#ready_splash_modal").fadeIn(200);
+}
+
+function closeReadySplashModal() {
+    if (typeof $ !== "undefined") {
+        $("#ready_splash_modal").fadeOut(150);
+    }
+}
+
+function onMasteryBadgeClick() {
+    resetFirstTryTracker();
+}
+
+function restartCurrentLesson() {
+    closeReadySplashModal();
+    if (typeof currentLessonIndex !== "undefined" && currentLessonIndex > 0 && typeof lessonFiles !== "undefined" && lessonFiles[currentLessonIndex]) {
+        selectAndStartLesson(currentLessonIndex);
+    } else if (typeof lines !== "undefined" && lines && lines.length > 0) {
+        seen = new set(lines.length);
+        resetFirstTryTracker(lines.length);
+        $("#feedback").empty();
+        $("#answer").val("");
+        showNext();
+        updateList(lines);
+    }
+}
+
+function openAiSentenceGenWithPrepopulatedLessons() {
+    closeReadySplashModal();
+
+    var activeLang = getActiveLessonLanguage() || appSettings.selectedLanguage || "Cantonese";
+    var relevantLessons = [];
+    if (typeof lessonFiles !== "undefined") {
+        for (var i = 1; i < lessonFiles.length; i++) {
+            var item = lessonFiles[i];
+            if (getLanguageFromLesson(item) === activeLang) {
+                relevantLessons.push(item);
+            }
+        }
+    }
+
+    var currentFile = "";
+    if (typeof currentLessonIndex !== "undefined" && currentLessonIndex > 0 && typeof lessonFiles !== "undefined" && lessonFiles[currentLessonIndex]) {
+        currentFile = lessonFiles[currentLessonIndex].file;
+    }
+
+    var currentIdxInRelevant = -1;
+    for (var r = 0; r < relevantLessons.length; r++) {
+        if (relevantLessons[r].file === currentFile) {
+            currentIdxInRelevant = r;
+            break;
+        }
+    }
+
+    var preselectedFiles = [];
+    if (currentIdxInRelevant >= 0) {
+        // Pre-populate with the current lesson and all preceding lessons in that language
+        for (var k = 0; k <= currentIdxInRelevant; k++) {
+            preselectedFiles.push(relevantLessons[k].file);
+        }
+    } else if (relevantLessons.length > 0) {
+        preselectedFiles = [relevantLessons[0].file];
+    }
+
+    appSettings.selectedLanguage = activeLang;
+    appSettings.completedLessons = preselectedFiles;
+    if (!appSettings.completedLessonsByLang) {
+        appSettings.completedLessonsByLang = {};
+    }
+    appSettings.completedLessonsByLang[activeLang] = preselectedFiles.slice();
+    saveSettings();
+
+    renderLessonChecklist();
+    updateAiGenStatusText();
+
+    if (typeof $ !== "undefined") {
+        $("#ai_modal").fadeIn(200);
+    }
+}
 
 
 function checkPress(e)
@@ -1871,6 +2032,9 @@ if (typeof $ !== "undefined") {
             if ($("#help_modal").is(":visible")) {
                 closeHelpModal();
             }
+            if ($("#ready_splash_modal").is(":visible")) {
+                closeReadySplashModal();
+            }
         }
     });
     $(document).on("click", "#timer_ring_modal", function(e) {
@@ -1908,6 +2072,11 @@ if (typeof $ !== "undefined") {
             closeHelpModal();
         }
     });
+    $(document).on("click", "#ready_splash_modal", function(e) {
+        if ($(e.target).is("#ready_splash_modal")) {
+            closeReadySplashModal();
+        }
+    });
     $(document).on("dragover", "#upload_textarea", function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -1940,6 +2109,14 @@ function checkAnswer()
     }
     if (gotAnswer)
     {
+        if (typeof firstTryTracker !== "undefined") {
+            if (!currentQuestionAnswerRevealed) {
+                firstTryTracker.mastered[index] = true;
+            }
+            updateMasteryProgressUI();
+        }
+        var masteredAll = (typeof checkMasteryCompletion === "function") ? checkMasteryCompletion() : false;
+
         if (forgiveTones && correctAnswers.length==1)
             SetFeedback("Correct! It's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>", correctAnswers[0]);
         else if (correctAnswers.length==1)
@@ -1947,9 +2124,17 @@ function checkAnswer()
         else
             SetFeedback("<span class=\"correct-fb\">Correct!</span> Other options: "+correctAnswers.join("/"), correctAnswers[0]);
         showNext();
+
+        if (masteredAll) {
+            setTimeout(function() {
+                showReadySplashModal();
+            }, 500);
+        }
     }
     else
     {
+        currentQuestionAnswerRevealed = true;
+
         var wrongAnswerToSpeak = correctAnswers[0].trim();
         if (correctAnswers.length > 1) {
             var randIdx = Math.floor(Math.random() * correctAnswers.length);
@@ -2036,8 +2221,12 @@ function updateList(lines)
 
 function setQuestion(index)
 {
+    currentQuestionAnswerRevealed = false;
     if (typeof markSeen === "function") {
         markSeen(index);
+    }
+    if (typeof updateMasteryProgressUI === "function") {
+        updateMasteryProgressUI();
     }
     var questionText = lines[index].split(":")[0];
     $("#question_txt")[0].innerHTML = "<span class=\"lesser-text\">["+index+"/"+seen.size()+"/"+lines.length+"]</span> " + questionText + " <span id=\"speaker_question\" class=\"speaker-btn\" role=\"button\" tabindex=\"0\" title=\"Read question out loud\" aria-label=\"Read question out loud\" onclick=\"readQuestion(event)\">🔊</span>";
@@ -2057,6 +2246,7 @@ function setQuestion(index)
 
 function tellAnswerAndSkip()
 {
+    currentQuestionAnswerRevealed = true;
     var correctAnswers= transliterate(lines[index]).split(":")[1].split("/");
     var answerIdx = Math.floor(Math.random() * correctAnswers.length);
     if (appSettings.speakAnswers) {
@@ -2379,6 +2569,7 @@ function generateSentencesFromCompletedLessons() {
                 linkToDictionary = (activeSessionLanguage === "cantonese");
                 lines = generatedLines;
                 seen = new set(lines.length);
+                resetFirstTryTracker(lines.length);
                 presentYtping = (activeSessionLanguage === "cantonese" && appSettings.romanization === "yale");
                 clearPassiveTimers();
 

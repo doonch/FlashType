@@ -446,6 +446,54 @@ $(document).ready(function(){
     </div>
 </div>
 
+<!-- Ready! Lesson Mastery Splash Screen Modal -->
+<div id="ready_splash_modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="ready_splash_title">
+    <div class="ready-splash-card" onclick="event.stopPropagation()">
+        <button type="button" class="ready-splash-close" onclick="closeReadySplashModal()" aria-label="Close">&times;</button>
+        
+        <div class="ready-splash-hero">
+            <div class="ready-splash-icon-ring" aria-hidden="true">🎉</div>
+            <h2 id="ready_splash_title" class="ready-splash-title">You are ready!</h2>
+            <div class="ready-splash-badge" id="ready_splash_lesson_badge">🏆 Lesson Mastered</div>
+        </div>
+        
+        <div class="ready-splash-body">
+            <p class="ready-splash-main-text">
+                You've mastered this lesson!
+            </p>
+            <p class="ready-splash-sub-text" id="ready_splash_desc">
+                You typed every question correctly without needing to see the answers on screen.
+            </p>
+            
+            <div class="ready-splash-stats-box">
+                <div class="ready-stat-item">
+                    <span class="ready-stat-val" id="ready_stat_count">100%</span>
+                    <span class="ready-stat-lbl">Mastery Score</span>
+                </div>
+                <div class="ready-stat-item">
+                    <span class="ready-stat-val" id="ready_stat_total">0 / 0</span>
+                    <span class="ready-stat-lbl">Questions Mastered</span>
+                </div>
+            </div>
+
+            <div class="ready-splash-cta-section">
+                <div class="ready-splash-cta-desc">
+                    Ready to practice full sentences? Generate natural practice sentences pre-populated with this lesson and all preceding lessons!
+                </div>
+                <button type="button" id="ready_splash_cta_btn" class="ready-splash-cta-btn" onclick="openAiSentenceGenWithPrepopulatedLessons()">
+                    <span>✨ Practice Full Sentences with AI</span>
+                    <span class="ready-cta-arrow" aria-hidden="true">➔</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="ready-splash-footer">
+            <button type="button" class="ready-splash-secondary-btn" onclick="restartCurrentLesson()">🔄 Restart Lesson</button>
+            <button type="button" class="ready-splash-secondary-btn" onclick="closeReadySplashModal()">Continue Practicing</button>
+        </div>
+    </div>
+</div>
+
 <div id="flag_buttons_bar" class="flag-buttons-container" role="toolbar" aria-label="Language selection"></div>
 
 <div id="active_lesson_banner" class="active-lesson-banner" style="display: none;" role="button" tabindex="0" title="Click to choose a lesson" onclick="openActiveLanguageLessonsModal()"></div>
@@ -477,6 +525,10 @@ $(document).ready(function(){
             <span class="prompt-badge question-badge" aria-label="Question">Q</span>
             <div class="question-content">
                 <span id="question_txt" class="question-text">Ready?</span>
+            </div>
+            <div id="first_try_badge" class="first-try-badge" role="button" tabindex="0" title="Mastery counter: answered correctly without on-screen answer. Click to restart counter." onclick="onMasteryBadgeClick()" style="display: none;">
+                <span class="first-try-icon" aria-hidden="true">🎯</span>
+                <span id="first_try_score">0/0</span>
             </div>
         </div>
 
