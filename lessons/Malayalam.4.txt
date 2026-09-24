@@ -1,0 +1,30 @@
+to want:venam
+I want:enikku venam
+I would like:enikku venamayirunnu
+to eat:kazhikkuka/thinnuka
+to drink:kudikkuka
+to pay:panam kodukkuka/pay cheyyuka
+The check, please:bill tharu/bill please
+menu:menu
+delicious:ruchikaramaya/adipoli
+coffee:kaapi
+tea:chaaya
+water:vellam
+beer:beer
+wine:wine
+milk:paal
+juice:juice
+bread:appam/bread
+meat:irachi
+chicken:kozhiyirachi/chicken
+fish:meen
+rice:choru/ari
+soup:soup
+salad:salad
+fruit:pazham
+vegetables:pachakkari
+cheese:cheese
+a little:kurachu
+a lot:orupaadu/dharalam
+more:kooduthal
+less:kuravu

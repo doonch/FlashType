@@ -1,0 +1,25 @@
+to come:varika
+I come:njan varunnu
+to go:pokuka
+I go:njan pokunnu
+to arrive:ethuka
+to leave:purappaduka
+hotel:lodge/hotel
+restaurant:bhakshanashala/restaurant
+airport:vimananthavalam/airport
+train station:theevandi station/railway station
+bus stop:bus stand/bus stop
+subway:adipaatha/metro
+taxi:vaadakavandi/taxi
+ticket:yathrachittu/ticket
+Where is...?:evideyannu...?/evideyanu...?
+street:theruvu
+city:nagaram
+center:kendram/nagarakendram
+entrance:praveshanam
+exit:purathekku
+bathroom:bathroom/shouchalayam
+passport:passport
+suitcase:petti/suitcase
+Padmanabhaswamy Temple:padmanabhaswamy kshethram
+India Gate:india gate

@@ -351,6 +351,7 @@ function getLanguageFromLesson(l) {
     if (/^Polish/i.test(cat) || /polish/i.test(file)) return "Polish";
     if (/^Spanish/i.test(cat) || /spanish/i.test(file)) return "Spanish";
     if (/^Italian/i.test(cat) || /italian/i.test(file)) return "Italian";
+    if (/^Malayalam/i.test(cat) || /malayalam/i.test(file)) return "Malayalam";
     if (/^Mandarin/i.test(cat) || /mandarin/i.test(file)) return "Mandarin";
     if (/^Civics/i.test(cat) || /civics/i.test(file)) return "Civics";
     if (cat) return cat.split(/[. -]/)[0];
@@ -359,7 +360,7 @@ function getLanguageFromLesson(l) {
 
 function getAvailableLanguages() {
     var langs = [];
-    var preferredOrder = ["Cantonese", "Hebrew", "Greek", "Polish", "Spanish", "Italian", "Mandarin", "Civics"];
+    var preferredOrder = ["Cantonese", "Hebrew", "Greek", "Polish", "Spanish", "Italian", "Malayalam", "Mandarin", "Civics"];
     if (typeof lessonFiles !== "undefined") {
         for (var i = 1; i < lessonFiles.length; i++) {
             var lang = getLanguageFromLesson(lessonFiles[i]);
@@ -890,6 +891,7 @@ function applyUploadedLesson() {
         var fn = lastUploadedFileName.toLowerCase();
         if (fn.indexOf("spanish") !== -1) detectedLangId = "spanish";
         else if (fn.indexOf("italian") !== -1) detectedLangId = "italian";
+        else if (fn.indexOf("malayalam") !== -1) detectedLangId = "malayalam";
         else if (fn.indexOf("polish") !== -1) detectedLangId = "polish";
         else if (fn.indexOf("greek") !== -1) detectedLangId = "greek";
         else if (fn.indexOf("hebrew") !== -1) detectedLangId = "hebrew";
@@ -900,7 +902,9 @@ function applyUploadedLesson() {
 
     // 4. Content character markers if still undetermined
     if (!detectedLangId) {
-        if (/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(combinedAnswers)) {
+        if (/[\u0D00-\u0D7F]/.test(combinedAnswers)) {
+            detectedLangId = "malayalam";
+        } else if (/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(combinedAnswers)) {
             detectedLangId = "polish";
         } else if (/[¿¡áéíóúüñÁÉÍÓÚÜÑ]/.test(combinedAnswers)) {
             detectedLangId = "spanish";
@@ -981,6 +985,14 @@ var LANGUAGE_FLAGS = [
         svg: '<svg viewBox="0 0 30 20" class="flag-svg" aria-hidden="true"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#ffffff"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg>'
     },
     {
+        id: "malayalam",
+        name: "Malayalam",
+        country: "Kerala",
+        flagEmoji: "🌴",
+        categories: ["Malayalam"],
+        svg: '<svg viewBox="0 0 30 20" class="flag-svg" aria-hidden="true"><rect width="30" height="20" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.5"/><circle cx="15" cy="11" r="3.2" fill="#0b3b60"/><circle cx="15" cy="11" r="2.6" fill="#d97706"/><path d="M14.3,12.2 C14.1,11.3 14.3,10.2 15,9.6 C15.7,10.2 15.9,11.3 15.7,12.2 C15.3,12.6 14.7,12.6 14.3,12.2 Z" fill="#ffffff"/><path d="M14.2,6.8 L15.8,6.8 L15.4,8.2 L14.6,8.2 Z" fill="#d97706"/><circle cx="15" cy="6.2" r="0.8" fill="#d97706"/><path d="M9.5,14 L10.5,14 L10.5,11.5 L11.8,11.5 L11.8,14 L12.8,14 L12.8,9.5 C13.5,9.5 14,8.5 13.8,7.2 C13.2,7.2 12.8,7.8 12.5,8.5 C12,7 10.5,6.5 9,6.5 C7.8,6.5 7,7.2 7,8.8 C7,10 7.8,11 8.5,11.5 L8.5,14 Z" fill="#334155"/><path d="M13.2,8.6 L14.2,8.4 L13.6,9.2 Z" fill="#ffffff"/><path d="M20.5,14 L19.5,14 L19.5,11.5 L18.2,11.5 L18.2,14 L17.2,14 L17.2,9.5 C16.5,9.5 16,8.5 16.2,7.2 C16.8,7.2 17.2,7.8 17.5,8.5 C18,7 19.5,6.5 21,6.5 C22.2,6.5 23,7.2 23,8.8 C23,10 22.2,11 21.5,11.5 L21.5,14 Z" fill="#334155"/><path d="M16.8,8.6 L15.8,8.4 L16.4,9.2 Z" fill="#ffffff"/><path d="M8.5,15 C11.5,16.5 18.5,16.5 21.5,15 C20,16.8 10,16.8 8.5,15 Z" fill="#15803d"/></svg>'
+    },
+    {
         id: "hebrew",
         name: "Hebrew",
         country: "Israel",
@@ -1044,6 +1056,7 @@ function getLanguageIdForCategory(category) {
     if (c.indexOf("polish") !== -1) return "polish";
     if (c.indexOf("spanish") !== -1) return "spanish";
     if (c.indexOf("italian") !== -1) return "italian";
+    if (c.indexOf("malayalam") !== -1) return "malayalam";
     if (c.indexOf("civics") !== -1) return "civics";
     return "";
 }
@@ -1266,6 +1279,9 @@ function selectAndStartLesson(lessonIdx) {
     } else if (cat.indexOf("italian") !== -1) {
         activeSessionLanguage = "italian";
         langId = "italian";
+    } else if (cat.indexOf("malayalam") !== -1) {
+        activeSessionLanguage = "malayalam";
+        langId = "malayalam";
     } else if (cat.indexOf("civics") !== -1) {
         activeSessionLanguage = "civics";
         langId = "civics";
@@ -1881,6 +1897,7 @@ function getLessonCategory() {
 
 function getQuestionLanguage(text) {
     if (typeof text === "string") {
+        if (/[\u0D00-\u0D7F]/.test(text)) return "ml-IN";
         if (/[\u0370-\u03FF]/.test(text)) return "el-GR";
         if (/[\u0590-\u05FF]/.test(text)) return "he-IL";
         if (/[\u4E00-\u9FFF]/.test(text)) return "zh-HK";
@@ -1890,11 +1907,13 @@ function getQuestionLanguage(text) {
 
 function getAnswerLanguage(text) {
     if (typeof text === "string") {
+        if (/[\u0D00-\u0D7F]/.test(text)) return "ml-IN";
         if (/[\u0370-\u03FF]/.test(text)) return "el-GR";
         if (/[\u0590-\u05FF]/.test(text)) return "he-IL";
         if (/[\u4E00-\u9FFF]/.test(text)) return "zh-HK";
     }
     var cat = getLessonCategory();
+    if (cat.indexOf("malayalam") !== -1) return "ml-IN";
     if (cat.indexOf("polish") !== -1) return "pl-PL";
     if (cat.indexOf("spanish") !== -1) return "es-ES";
     if (cat.indexOf("italian") !== -1) return "it-IT";
@@ -2508,6 +2527,12 @@ function generateSentencesFromCompletedLessons() {
         });
         if (hasGreekChars) {
             targetLanguage = "greek";
+        }
+        var hasMalayalamChars = combinedVocab.some(function(line) {
+            return /[\u0D00-\u0D7F]/.test(line);
+        });
+        if (hasMalayalamChars) {
+            targetLanguage = "malayalam";
         }
 
         var displayLang = targetLanguage.charAt(0).toUpperCase() + targetLanguage.slice(1);

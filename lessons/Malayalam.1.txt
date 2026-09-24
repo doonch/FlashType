@@ -1,0 +1,29 @@
+Hello:namaskaram/namaste
+Nice to meet you:kandathil santhosham
+Goodbye:poyivaram/vida/bye
+Please:dayavayi
+Thank you:nandi/thanks
+You're welcome:swagatham/welcome
+Yes:athe/uvvu
+No:alla/illa
+Excuse me:kshamikanam
+Sorry:kshamikanam/sorry
+English:english
+America:america
+American:american
+Malayalam:malayalam
+India:india
+Kerala:kerala/keralam
+I:njan
+you:nee/ningal
+he:avan/addeham
+she:aval/avar
+we:njangal/nammal
+they:avar
+to speak:samsarikuka
+I speak:njan samsarikkum/njan samsarikkunnu
+Do you speak...?:samsarikkumo...?
+to understand:manassilakkuka
+I understand:manassilayi/enikku manassilayi
+I don't understand:manassilayilla/enikku manassilayilla
+Do you understand?:manassilayo?

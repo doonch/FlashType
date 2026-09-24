@@ -1,0 +1,26 @@
+store:kada
+supermarket:supermarket
+pharmacy:pharmacy/medical store
+price:vila
+How much is this?:ithinu ethrayanu?
+expensive:vilayeriya/chelaveriya
+cheap:vilakuranja
+cash:panam/cash
+credit card:credit card
+receipt:receipt
+shirt:shirt/kuppayam
+shoes:cheruppu
+red:chuvappu
+blue:neela
+white:vella
+black:karuppu
+problem:prashnam
+I am lost:enikku vazhithetti
+broken:thakaraarilayi/thakarnnu
+help:sahayam
+danger:apadukaram/apadham
+hospital:hospital/ashupathri
+police:police
+police station:police station
+medicine:marunnu
+emergency:athyahitham/emergency

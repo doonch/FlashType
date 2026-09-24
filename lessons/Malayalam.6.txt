@@ -1,0 +1,25 @@
+What is your name?:ningalude perenthanu?/ninte perenthanu?
+My name is...:ente peru...
+How are you?:sukhamano?
+I am fine:enikku sukhamanu
+How old are you?:ethra vayassayi?
+years old:vayassu
+person:vyakthi
+people:aalukal
+man:purushan
+woman:sthree
+child:kutti
+friend:suhruthu/koottukaran
+family:kudumbam
+father:achhan
+mother:amma
+brother:sahodaran/chetta/aniyan
+sister:sahodari/chechi/aniyathi
+husband:bharthavu
+wife:bharya
+son:makan
+daughter:makal
+student:vidyarthi
+teacher:adhyapakan/teacher
+doctor:doctor
+worker:thozhilali

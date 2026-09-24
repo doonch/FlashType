@@ -44,11 +44,17 @@ function detectLanguage(language, vocabList = [], lessonTitle = "") {
     if (langLower.includes('polish') || langLower === 'pl') return 'polish';
     if (langLower.includes('spanish') || langLower === 'es') return 'spanish';
     if (langLower.includes('italian') || langLower === 'it') return 'italian';
+    if (langLower.includes('malayalam') || langLower === 'ml') return 'malayalam';
     return langLower;
   }
 
-  // Check vocab content for Hebrew characters
+  // Check vocab content for Malayalam characters
   const sample = vocabList.slice(0, 50).join(' ');
+  if (/[\u0D00-\u0D7F]/.test(sample)) {
+    return 'malayalam';
+  }
+
+  // Check vocab content for Hebrew characters
   if (/[\u0590-\u05FF]/.test(sample)) {
     return 'hebrew';
   }
@@ -59,6 +65,9 @@ function detectLanguage(language, vocabList = [], lessonTitle = "") {
   }
 
   // Check lesson title or vocab for Hebrew or Greek hints
+  if (lessonTitle && /malayalam/i.test(lessonTitle)) {
+    return 'malayalam';
+  }
   if (lessonTitle && /hebrew/i.test(lessonTitle)) {
     return 'hebrew';
   }
@@ -142,6 +151,21 @@ function buildPrompt({ language, vocabString, numSentences }) {
     "english": "We want water",
     "target": "Θέλουμε νερό",
     "alternatives": ["Εμείς θέλουμε νερό"]
+  }
+]`;
+  } else if (normalizedLang.includes('malayalam') || normalizedLang === 'ml') {
+    langTitle = 'Malayalam';
+    languageSpecificInstructions = `MALAYALAM-SPECIFIC INSTRUCTIONS:
+1. Colloquial Romanization (Manglish): The output in the "target" property and all entries in the "alternatives" list MUST use natural, colloquial Romanized Malayalam (Manglish) without diacritics, exactly as used in everyday text messaging (e.g. "enikku vellam venam", "njan pokunnu"). Do NOT use Malayalam script or diacritics.
+2. Grammar & Agreement: Follow natural colloquial Malayalam grammar, case forms, and natural word order (SOV).
+3. Natural Syntax: Provide natural colloquial Malayalam phrasing suitable for everyday conversation.`;
+
+    jsonFormatExample = `Output JSON with an array of objects matching this exact structure:
+[
+  {
+    "english": "I want water",
+    "target": "enikku vellam venam",
+    "alternatives": ["enikku kudikkan vellam venam"]
   }
 ]`;
   } else {

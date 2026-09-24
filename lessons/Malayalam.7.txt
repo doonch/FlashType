@@ -1,0 +1,25 @@
+who:aaru
+what:enthu/entha
+where:evide
+when:eppol
+why:enthukondu/enthina
+how:engane
+how much:ethra
+which:eathu
+to do:cheyyuka
+to have:undayirikuka
+I have:enikkundu
+to see:kaanuka
+to know:ariyuka
+to think:chinthikkuka/karuthuka
+to buy:vaanguka
+to work:joli cheyyuka
+to live:jeevikkuka/thaamasikkuka
+to sleep:uranguka
+can:kazhiyum
+must:venam/theerchayayum cheyyanam
+I need...:enikku venam...
+Can you help me?:enne sahayikkamo?
+Why not?:enthukondu aayikooda?
+everything:ellam
+nothing:onnumilla

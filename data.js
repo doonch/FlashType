@@ -66,6 +66,14 @@ lessonFiles[lessonFiles.length] = new lesson("Lesson 5: Numbers, time & calendar
 lessonFiles[lessonFiles.length] = new lesson("Lesson 6: People & socializing", "lessons/Italian.6.txt", "Italian", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 7: Verbs & daily questions", "lessons/Italian.7.txt", "Italian", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Lesson 8: Shopping & emergencies", "lessons/Italian.8.txt", "Italian", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 1: Greetings & identity", "lessons/Malayalam.1.txt", "Malayalam", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 2: Orientation & travel", "lessons/Malayalam.2.txt", "Malayalam", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 3: Descriptions & objects", "lessons/Malayalam.3.txt", "Malayalam", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 4: Food & dining", "lessons/Malayalam.4.txt", "Malayalam", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 5: Numbers, time & calendar", "lessons/Malayalam.5.txt", "Malayalam", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 6: People & socializing", "lessons/Malayalam.6.txt", "Malayalam", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 7: Verbs & daily questions", "lessons/Malayalam.7.txt", "Malayalam", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 8: Shopping & emergencies", "lessons/Malayalam.8.txt", "Malayalam", false, false);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1: 12-May-2014", "lessons/Mandarin.1n.txt", "Mandarin", false, false);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1 (pinyin): 12-May-2014", "lessons/Mandarin.1.txt", "Mandarin", false, false);
 lessonFiles[lessonFiles.length] = new lesson("LESSON 1.2: 19-May-2014", "lessons/Mandarin.1.2n.txt", "Mandarin", false, false);
@@ -103,8 +111,11 @@ function populateLessons() {
 	else if (query.search("italian")>=0) {
 		groups = [ "Italian"];
 	}
+	else if (query.search("malayalam")>=0) {
+		groups = [ "Malayalam"];
+	}
 	else {
-		groups = ["Cantonese.Dan", "Cantonese.ca", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Hebrew", "Polish", "Spanish", "Italian", "Mandarin", "Greek", "Civics"];
+		groups = ["Cantonese.Dan", "Cantonese.ca", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Hebrew", "Polish", "Spanish", "Italian", "Mandarin", "Greek", "Malayalam", "Civics"];
 	}
 	var i;
 	for (i=0; i<groups.length; i++) {
