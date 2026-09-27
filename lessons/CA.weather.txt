@@ -1,0 +1,22 @@
+weather:tin1 hei3
+cloud:wan4
+rain:jyu5
+snow:syut3
+raining:lok6 jyu5 / haa6 jyu5 / haa5 jyu5
+snowing:lok6 syut3 / haa6 syut3 / haa5 syut3
+thunder:leoi4 / leoi4 gung1
+fog:mou6
+foggy:daai6 mou6
+frost:soeng1
+ice:bing1
+hot:jit6
+cold:dung3
+wet:sap1
+dry:gon1
+wind:fung1
+cool:laang5
+dew:lou6
+It is raining this morning:gam1 ziu1 zou2 lok6 jyu5 / gam1 tin1 zou2 soeng5 haa5 jyu5
+Today, the weather is nice:gam1 jat6 tin1 hei3 hou2 hou2 / gam1 tin1 tin1 hei3 hou2 hou2
+Still wet:zung6 sap1
+Not yet dry:mei6 gon1

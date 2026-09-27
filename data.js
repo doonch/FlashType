@@ -9,6 +9,14 @@ function lesson(name, file, category, convertToYtping, linkToDictionary) {
 var lessonFiles = new Array();
 lessonFiles[0] = new lesson("Test", "lessons/test.txt", "TestCategory", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Food and drink", "lessons/CA.food.txt", "Cantonese.ca", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Machines and vehicles", "lessons/CA.machines.txt", "Sheik", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Adjectives 1", "lessons/CA.adjectives1.txt", "Sheik", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Animals", "lessons/CA.animals.txt", "Sheik", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Basic conversation", "lessons/CA.conversation1.txt", "Sheik", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Parts of the body", "lessons/CA.body.txt", "Sheik", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Weather", "lessons/CA.weather.txt", "Sheik", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Buildings and places", "lessons/CA.buildings.txt", "Sheik", false, true);
+lessonFiles[lessonFiles.length] = new lesson("Colours", "lessons/CA.colours.txt", "Sheik", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Basics", "lessons/CP.1.txt", "Cantonese.ca", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Time", "lessons/CP.2.txt", "Cantonese.ca", false, true);
 lessonFiles[lessonFiles.length] = new lesson("Money", "lessons/CP.3.txt", "Cantonese.ca", false, true);
@@ -94,7 +102,7 @@ function populateLessons() {
 	var groups = [];
 	var query = window.location.pathname;
 	if (query.search("cantonese")>=0) {
-		groups = ["Cantonese.Dan", "Cantonesse.ca", "Cantonese 6", "Cantonese 5", "Cantonese 4", "Cantonese 1"];
+		groups = ["Cantonese.Dan", "Cantonese.ca", "Sheik", "Cantonese 6", "Cantonese 5", "Cantonese 4", "Cantonese 1"];
 	}
 	else if (query.search("hebrew")>=0) {
 		groups = [ "Hebrew"];
@@ -115,7 +123,7 @@ function populateLessons() {
 		groups = [ "Malayalam"];
 	}
 	else {
-		groups = ["Cantonese.Dan", "Cantonese.ca", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Hebrew", "Polish", "Spanish", "Italian", "Mandarin", "Greek", "Malayalam", "Civics"];
+		groups = ["Cantonese.Dan", "Cantonese.ca", "Sheik", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Hebrew", "Polish", "Spanish", "Italian", "Mandarin", "Greek", "Malayalam", "Civics"];
 	}
 	var i;
 	for (i=0; i<groups.length; i++) {

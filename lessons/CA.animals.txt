@@ -1,0 +1,20 @@
+bird (long tail):niu5
+bird (short tail):zoek3
+cat:maau1
+chicken:gai1
+cow:ngau4
+dog:gau2
+dragon:lung4
+duck:aap3 / ngaap3
+eagle:jing1
+elephant:zoeng6
+fish:jyu4
+horse:ma5
+lion:si1
+pig:zyu1
+phoenix:fung6
+rabbit:tou3
+sheep:joeng4
+snake:se4 / ji4
+tiger:fu2
+wolf:long4

@@ -345,7 +345,7 @@ function getLanguageFromLesson(l) {
     var cat = (l.category || "").trim();
     var file = (l.file || "").trim();
     if (cat === "TestCategory" || file === "lessons/test.txt") return "";
-    if (/^Cantonese/i.test(cat) || /cantonese/i.test(file) || /\/c[0-9p]/i.test(file) || /\/ca\./i.test(file)) return "Cantonese";
+    if (/^Cantonese/i.test(cat) || cat === "Sheik" || /cantonese/i.test(file) || /\/c[0-9p]/i.test(file) || /\/ca\./i.test(file)) return "Cantonese";
     if (/^Hebrew/i.test(cat) || /hebrew/i.test(file)) return "Hebrew";
     if (/^Greek/i.test(cat) || /greek/i.test(file)) return "Greek";
     if (/^Polish/i.test(cat) || /polish/i.test(file)) return "Polish";
@@ -965,7 +965,7 @@ var LANGUAGE_FLAGS = [
         name: "Cantonese",
         country: "Hong Kong",
         flagEmoji: "🇭🇰",
-        categories: ["Cantonese.ca", "Cantonese.Dan", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6"],
+        categories: ["Cantonese.ca", "Cantonese.Dan", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Sheik"],
         svg: '<svg viewBox="0 0 30 20" class="flag-svg" aria-hidden="true"><rect width="30" height="20" fill="#DE2910"/><g fill="#fff" transform="translate(15,10) scale(0.65)"><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(0)"/><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(72)"/><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(144)"/><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(216)"/><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(288)"/><circle r="1.5" fill="#DE2910"/></g></svg>'
     },
     {
@@ -1049,7 +1049,7 @@ function getLanguageFlagConfig(langId) {
 function getLanguageIdForCategory(category) {
     if (!category) return "";
     var c = category.toLowerCase();
-    if (c.indexOf("cantonese") !== -1) return "cantonese";
+    if (c.indexOf("cantonese") !== -1 || c === "sheik") return "cantonese";
     if (c.indexOf("hebrew") !== -1) return "hebrew";
     if (c.indexOf("mandarin") !== -1) return "mandarin";
     if (c.indexOf("greek") !== -1) return "greek";
@@ -1256,7 +1256,7 @@ function selectAndStartLesson(lessonIdx) {
     hideTable();
 
     var cat = (curLesson.category || "").toLowerCase();
-    var isCantonese = (cat.indexOf("cantonese") !== -1);
+    var isCantonese = (cat.indexOf("cantonese") !== -1 || cat === "sheik");
     var langId = "";
     if (isCantonese) {
         activeSessionLanguage = "cantonese";
@@ -1920,7 +1920,7 @@ function getAnswerLanguage(text) {
     if (cat.indexOf("greek") !== -1) return "el-GR";
     if (cat.indexOf("hebrew") !== -1) return "he-IL";
     if (cat.indexOf("mandarin") !== -1) return "zh-CN";
-    if (cat.indexOf("cantonese") !== -1) return "zh-HK";
+    if (cat.indexOf("cantonese") !== -1 || cat === "sheik") return "zh-HK";
 
     // If text contains Romanized Cantonese (Jyutping / Yale tone digits)
     if (isJyutpingOrYale(text)) {

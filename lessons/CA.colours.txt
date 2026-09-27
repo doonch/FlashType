@@ -1,0 +1,17 @@
+black:hak1
+blue:laam4
+brown:fe1 / fei1
+gold:gam1
+green:luk6
+cyan / light green:cing1 / ceng1
+dark green (vegetable coloured):coi3 cing1 / coi3 ceng1
+grey:fui1
+orange:caang2 / caang4
+purple:zi2
+red:hung4
+silver:ngan4
+white:baak6
+yellow:wong4
+light:cin2
+dark:sam1
+colour:ngaan4 sik1
