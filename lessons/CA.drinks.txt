@@ -1,6 +1,6 @@
 tea:ca4
 coffee:gaa3 fei1
-english tea:sai1 ca4 / sai ca4
+english tea:sai1 ca4
 coke:ho2 lok6
 milk:naai5
 cows milk:ngau4 naai5
