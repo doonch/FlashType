@@ -1182,6 +1182,22 @@ body {
     padding-right: 4px;
 }
 
+.lang-modal-category-header {
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #475569;
+    padding: 10px 4px 4px 4px;
+    margin-top: 6px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.lang-modal-category-header:first-child {
+    margin-top: 0;
+    padding-top: 2px;
+}
+
 .lang-lesson-row-btn {
     display: flex;
     align-items: center;

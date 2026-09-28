@@ -1,0 +1,26 @@
+Africa:fei1 zau1
+Asia:aa3 zau1
+Australia:ou3 zau1
+Brazil:ba1 sai1
+Canada:gaa1 naa4 daai6 / ga1 na4 daai6
+China:zung1 gwok3
+Denmark:daan1 mak6
+England:jing1 gwok3
+England (phonetic):jing1 gaak3 laan4
+Europe:au1 zau1
+France:faat3 gwok3
+Germany:dak1 gwok3
+Hong Kong:hoeng1 gong2
+Ireland:oi3 ji5 laan4
+Italy:ji3 daai6 lei6
+Japan:jat6 bun2
+Malaysia:maa5 loi4 sai1 aa3 / ma5 loi4 sai1 aa3
+Norway:no4 wai1
+Portugal:pou4 gwok3
+Russia:ngo4 lo4 si1
+Scotland:so1 gaak3 laan4
+Spain:sai1 baan1 aa3
+Sweden:seoi6 din2
+USA:mei5 gwok3
+USSR:sou1 lyun4
+Wales:wai1 ji5 si1

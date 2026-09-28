@@ -1,0 +1,17 @@
+badminton:jyu5 mou4 kau4
+baseball:paang5 kau4
+basketball:laam4 kau4
+cricket:baan2 kau4
+fencing:gik1 gim3
+fishing:diu3 jyu4*2 / diu3 jyu4
+football:zuk1 kau4
+gymnastics:tai2 cou1
+hockey:kuk1 gwan3 kau4
+horseriding:kei4 maa5
+ice skating:waat6 bing1
+martial arts:gung1 fu1
+skiing:waat6 syut3
+rugby:gam3 laam2 kau4
+swimming:jau4 seoi2
+water polo:seoi2 kau4
+water skiing:waat6 seoi2

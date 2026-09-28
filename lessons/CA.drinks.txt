@@ -1,0 +1,20 @@
+tea:ca4
+coffee:gaa3 fei1
+english tea:sai1 ca4 / sai ca4
+coke:ho2 lok6
+milk:naai5
+cows milk:ngau4 naai5
+fruit juice:gwo2 zap1
+orange juice:caang2 zap1
+soft drink (fizzy):hei3 seoi2
+white coffee:ngau4 naai5 gaa3 fei1
+wine:zau2
+red wine:hung4 zau2
+white wine:baak6 zau2
+rice wine:mai5 zau2
+beer:be1 zau2
+spirits:siu1 zau2
+cup/glass:bui1
+tea cup:ca4 bui1
+wine glass:zau2 bui1
+bottle:zeon1

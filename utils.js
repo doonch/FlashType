@@ -965,7 +965,7 @@ var LANGUAGE_FLAGS = [
         name: "Cantonese",
         country: "Hong Kong",
         flagEmoji: "🇭🇰",
-        categories: ["Cantonese.ca", "Cantonese.Dan", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Sheik"],
+        categories: ["Cantonese.Dan", "Cantonese.ca", "Sheik", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6"],
         svg: '<svg viewBox="0 0 30 20" class="flag-svg" aria-hidden="true"><rect width="30" height="20" fill="#DE2910"/><g fill="#fff" transform="translate(15,10) scale(0.65)"><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(0)"/><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(72)"/><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(144)"/><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(216)"/><path d="M0,-8 C2,-4 5,-4 5,-1 C5,2 2,3 0,4 C-2,3 -5,2 -5,-1 C-5,-4 -2,-4 0,-8" transform="rotate(288)"/><circle r="1.5" fill="#DE2910"/></g></svg>'
     },
     {
@@ -1113,8 +1113,35 @@ function openLanguageLessonsModal(langId) {
     if (matchingLessons.length === 0) {
         $list.html('<div style="padding: 12px; color: #64748b; font-size: 0.9rem;">No lessons found for ' + lang.name + '.</div>');
     } else {
+        // Sort matching lessons by category according to category order, then by index
+        var categoryOrder = (lang && lang.categories) ? lang.categories : [];
+        matchingLessons.sort(function(a, b) {
+            var catA = (a.lesson && a.lesson.category) || "";
+            var catB = (b.lesson && b.lesson.category) || "";
+            var idxA = categoryOrder.indexOf(catA);
+            var idxB = categoryOrder.indexOf(catB);
+            if (idxA === -1) idxA = 9999;
+            if (idxB === -1) idxB = 9999;
+            if (idxA !== idxB) {
+                return idxA - idxB;
+            }
+            return a.idx - b.idx;
+        });
+
+        var lastCategory = null;
         for (var k = 0; k < matchingLessons.length; k++) {
             var item = matchingLessons[k];
+            var curCategory = (item.lesson && item.lesson.category) || "";
+
+            // If language has multiple categories, render a section header on category change
+            if (categoryOrder.length > 1 && curCategory && curCategory !== lastCategory) {
+                lastCategory = curCategory;
+                var catHeader = $('<div>', {
+                    class: "lang-modal-category-header"
+                }).text(curCategory);
+                $list.append(catHeader);
+            }
+
             var rowBtn = $('<button>', {
                 type: "button",
                 class: "lang-lesson-row-btn",

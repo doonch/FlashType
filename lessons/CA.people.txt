@@ -1,0 +1,17 @@
+person:jan4
+adult:daai6 jan4 / daai jan4
+man:naam4 jan4
+woman:neoi5 jan4
+friend:pang4 jau5
+Mr.:sin1 saang1
+boyfriend:naam4 pang4 jau5
+girlfriend:neoi5 pang4 jau5
+boy:naam4 zai2
+girl:neoi5 zai2
+teenager:hau6 saang1 zai2
+husband:lou5 gung1
+wife:lou5 po4
+mother:maa4 maa1
+father:baa4 baa1 / ba1 ba1
+daughter:neoi5 / neoi2
+son:zai2

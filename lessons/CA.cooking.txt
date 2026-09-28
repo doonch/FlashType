@@ -1,0 +1,16 @@
+cook:zyu2
+roasted:siu1
+stir fried:caau2
+deep fried:zaa3
+shallow fried:zin1
+baked:guk6
+boiled:gwan2
+steamed:zing1
+boiled (alt):bou1
+steamed (sealed):dan6
+meat:juk6
+lamb:joeng4 juk6
+beef:ngau4 juk6
+pork:zyu1 juk6
+vegetables:coi3
+beansprouts:ngaa4 coi3

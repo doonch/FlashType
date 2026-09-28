@@ -1,0 +1,15 @@
+happy:hoi1 sam1
+sad:soeng1 sam1
+depressed:fai3
+scared:geng1
+melancholy, sorrow, woe:sau4
+gloomy:ham2
+ashamed:cau2
+angry:nau1
+love:oi3
+worried:daam1 sam1
+well:hou2
+Are you scared?:nei5 geng1 m4 geng1 aa3
+He is very sad:keoi5 hou2 soeng1 sam1
+I am not very happy:ngo5 m4 hai6 hou2 hoi1 sam1
+I love you:ngo5 oi3 nei5
