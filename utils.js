@@ -2265,6 +2265,17 @@ function updateList(lines)
     }
 }
 
+function isDebugMode() {
+    try {
+        if (typeof window !== "undefined" && window.location) {
+            if (/(?:[?&])debug=1(?:&|$)/.test(window.location.search || window.location.href)) {
+                return true;
+            }
+        }
+    } catch (e) {}
+    return (typeof QueryString !== "undefined" && QueryString && QueryString.debug === "1");
+}
+
 function setQuestion(index)
 {
     currentQuestionAnswerRevealed = false;
@@ -2275,7 +2286,8 @@ function setQuestion(index)
         updateMasteryProgressUI();
     }
     var questionText = lines[index].split(":")[0];
-    $("#question_txt")[0].innerHTML = "<span class=\"lesser-text\">["+index+"/"+seen.size()+"/"+lines.length+"]</span> " + questionText + " <span id=\"speaker_question\" class=\"speaker-btn\" role=\"button\" tabindex=\"0\" title=\"Read question out loud\" aria-label=\"Read question out loud\" onclick=\"readQuestion(event)\">🔊</span>";
+    var debugSpan = isDebugMode() ? "<span class=\"lesser-text\">["+index+"/"+seen.size()+"/"+lines.length+"]</span> " : "";
+    $("#question_txt")[0].innerHTML = debugSpan + questionText + " <span id=\"speaker_question\" class=\"speaker-btn\" role=\"button\" tabindex=\"0\" title=\"Read question out loud\" aria-label=\"Read question out loud\" onclick=\"readQuestion(event)\">🔊</span>";
     
     if (appSettings.speakQuestions) {
         readQuestion();
