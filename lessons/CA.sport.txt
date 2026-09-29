@@ -3,7 +3,7 @@ baseball:paang5 kau4
 basketball:laam4 kau4
 cricket:baan2 kau4
 fencing:gik1 gim3
-fishing:diu3 jyu4*2 / diu3 jyu4
+fishing:diu3 jyu2 / diu3 jyu4
 football:zuk1 kau4
 gymnastics:tai2 cou1
 hockey:kuk1 gwan3 kau4

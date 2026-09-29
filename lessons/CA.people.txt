@@ -1,5 +1,5 @@
 person:jan4
-adult:daai6 jan4 / daai jan4
+adult:daai6 jan4
 man:naam4 jan4
 woman:neoi5 jan4
 friend:pang4 jau5

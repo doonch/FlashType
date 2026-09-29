@@ -1,8 +1,7 @@
 body:san1
 back:bui3 zek3
 ear:ji5
-eye:ngaan5
-pupil, eyes:zing1
+eyes:ngaan5 / ngaan5 zing1
 hand:sau2
 hair:tau4 faat3
 head:tau4

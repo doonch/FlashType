@@ -12,7 +12,7 @@ love:oi3
 play:waan2
 run:paau2
 sit:co5
-stand:laap6
+stand:kei5
 want, need:jiu1 / jiu3
 walk:haang4
 I go up the mountain:ngo5 heoi3 soeng5 saan1

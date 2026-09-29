@@ -9,12 +9,12 @@ duck:aap3 / ngaap3
 eagle:jing1
 elephant:zoeng6
 fish:jyu4
-horse:ma5
+horse:maa5
 lion:si1
 pig:zyu1
 phoenix:fung6
 rabbit:tou3
 sheep:joeng4
-snake:se4 / ji4
+snake:se4
 tiger:fu2
 wolf:long4

@@ -1,11 +1,11 @@
 bowl:wun2
 cup:bui1
 chopsticks:faai3 zi2
-mug:daai6 bui1 / daai bui1
+mug:daai6 bui1
 plate:dip6
-plate (general term):nga5 dip6 / nga5 dip
+plate (general term):nga5 dip6
 pot:wu4
-tea pot:ca4 wu4
+tea pot:caa4 wu4
 paper:zi2
 plastic:gaau1
 fork:caa1

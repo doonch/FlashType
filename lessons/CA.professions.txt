@@ -1,15 +1,15 @@
 teacher:lou5 si1
 lecturer:gong2 si1
 master:si1 fu6
-student:hok6 saang1 / hok saang
-trainee:tou4 dai6 / to dai
-engineer:gung1 cing4 si1 / gung1 cing si1
-electrical engineer:din6 lou6 gung1 cing4 si1 / din lou gung1 cing si
-mechanical engineer:gei1 haai6 gung1 cing4 si1 / gei haai6 gung cing si1
-chemical engineer:faa3 hok6 gung1 cing4 si1 / fa hok6 gung1 cing si1
-chemist:faa3 hok6 gaa1 / faa3 hok6 ga1
+student:hok6 saang1
+trainee:tou4 dai6
+engineer:gung1 cing4 si1
+electrical engineer:din6 lou6 gung1 cing4 si1
+mechanical engineer:gei1 haai6 gung1 cing4 si1
+chemical engineer:faa3 hok6 gung1 cing4 si1
+chemist:faa3 hok6 gaa1
 electrician:din6 gung1
 carpenter:muk6 gung1
-designer:cit3 gai3 si1 / cit3 gai si1
+designer:cit3 gai3 si1
 lawyer:leot6 si1
-accountant:wui6 gai3 si1 / wui gai si1
+accountant:wui6 gai3 si1
