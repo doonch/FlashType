@@ -1566,7 +1566,7 @@ body {
     margin-left: auto;
     cursor: pointer;
     user-select: none;
-    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    transition: background-color 0.45s ease, border-color 0.45s ease, color 0.45s ease, transform 0.1s ease, box-shadow 0.45s ease;
     white-space: nowrap;
 }
 
@@ -1574,6 +1574,21 @@ body {
     background: #e2e8f0;
     border-color: #94a3b8;
     color: #1e293b;
+    transform: translateY(-1px);
+}
+
+/* Light green indicator when answering correctly on current question will gain mastery */
+.first-try-badge.can-gain-mastery {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #047857;
+    box-shadow: 0 1px 3px rgba(16, 185, 129, 0.12);
+}
+
+.first-try-badge.can-gain-mastery:hover {
+    background: #d1fae5;
+    border-color: #6ee7b7;
+    color: #065f46;
     transform: translateY(-1px);
 }
 

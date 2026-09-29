@@ -299,6 +299,7 @@ function startPassiveQuestionTimer() {
 function handlePassiveAnswerReveal() {
     if (!appSettings.passiveMode || typeof lines === "undefined" || !lines || !lines[index]) return;
     currentQuestionAnswerRevealed = true;
+    updateMasteryProgressUI();
     var correctAnswers = transliterate(lines[index]).split(":")[1].split("/");
     var primaryAnswer = correctAnswers[0].trim();
     if (typeof $ !== "undefined") {
@@ -1264,6 +1265,12 @@ $(document).on("keydown", "#active_lesson_banner", function(e) {
         openActiveLanguageLessonsModal();
     }
 });
+$(document).on("keydown", "#first_try_badge", function(e) {
+    if (e.which === 13 || e.which === 32) {
+        e.preventDefault();
+        onMasteryBadgeClick();
+    }
+});
 
 function selectAndStartLesson(lessonIdx) {
     closeLanguageLessonsModal();
@@ -1542,6 +1549,21 @@ function resetFirstTryTracker(total) {
     updateMasteryProgressUI();
 }
 
+function canGainMasteryOnCurrentQuestion() {
+    if (typeof lines === "undefined" || !lines || lines.length === 0) return false;
+    if (typeof index === "undefined" || index < 0 || index >= lines.length) return false;
+    if (typeof firstTryTracker === "undefined") return false;
+    // If already mastered this item, answering will not gain new mastery
+    if (firstTryTracker.mastered && firstTryTracker.mastered[index]) {
+        return false;
+    }
+    // If the answer has already been revealed or user made an error on this question
+    if (currentQuestionAnswerRevealed) {
+        return false;
+    }
+    return true;
+}
+
 function updateMasteryProgressUI() {
     if (typeof $ === "undefined") return;
     var total = (typeof lines !== "undefined" && lines) ? lines.length : (firstTryTracker.totalQuestions || 0);
@@ -1558,10 +1580,17 @@ function updateMasteryProgressUI() {
 
         if (masteredCount === total && total > 0) {
             $badge.addClass("is-mastered");
-            $badge.attr("title", "Lesson Mastered! All " + total + " questions answered without on-screen help. Click to restart counter.");
+            $badge.removeClass("can-gain-mastery");
+            $badge.attr("title", "Lesson Mastered! All " + total + " items mastered.");
         } else {
             $badge.removeClass("is-mastered");
-            $badge.attr("title", "Mastery: " + masteredCount + "/" + total + " answered correctly without on-screen answer. Click to restart counter.");
+            if (canGainMasteryOnCurrentQuestion()) {
+                $badge.addClass("can-gain-mastery");
+                $badge.attr("title", "Mastery: " + masteredCount + "/" + total + " (Answer correctly to gain mastery). Click to jump to next unmastered item.");
+            } else {
+                $badge.removeClass("can-gain-mastery");
+                $badge.attr("title", "Mastery: " + masteredCount + "/" + total + ". Click to jump to next unmastered item.");
+            }
         }
     }
 }
@@ -1605,8 +1634,32 @@ function closeReadySplashModal() {
     }
 }
 
+function skipToNextUnmastered() {
+    clearPassiveTimers();
+    if (typeof lines === "undefined" || !lines || lines.length === 0) return;
+    var total = lines.length;
+    var masteredCount = Object.keys(firstTryTracker.mastered || {}).length;
+    if (masteredCount >= total) {
+        SetFeedback("<span class=\"correct-fb\">All items in this lesson are already mastered! 🎯</span>");
+        return;
+    }
+
+    // Search cyclically starting from (index + 1) for the next unmastered item
+    for (var step = 1; step <= total; step++) {
+        var nextIdx = (index + step) % total;
+        if (!firstTryTracker.mastered || !firstTryTracker.mastered[nextIdx]) {
+            index = nextIdx;
+            lastIndex = nextIdx;
+            $("#answer").val("");
+            SetFeedback("");
+            setQuestion(nextIdx);
+            return;
+        }
+    }
+}
+
 function onMasteryBadgeClick() {
-    resetFirstTryTracker();
+    skipToNextUnmastered();
 }
 
 function restartCurrentLesson() {
@@ -2180,6 +2233,7 @@ function checkAnswer()
     else
     {
         currentQuestionAnswerRevealed = true;
+        updateMasteryProgressUI();
 
         var wrongAnswerToSpeak = correctAnswers[0].trim();
         if (correctAnswers.length > 1) {
@@ -2305,6 +2359,7 @@ function setQuestion(index)
 function tellAnswerAndSkip()
 {
     currentQuestionAnswerRevealed = true;
+    updateMasteryProgressUI();
     var correctAnswers= transliterate(lines[index]).split(":")[1].split("/");
     var answerIdx = Math.floor(Math.random() * correctAnswers.length);
     if (appSettings.speakAnswers) {
