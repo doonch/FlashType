@@ -93,8 +93,9 @@ function buildPrompt({ language, vocabString, numSentences }) {
   // General instructions shared across all languages
   const generalInstructions = `GENERAL INSTRUCTIONS:
 1. STRICT VOCABULARY RESTRICTION: Every content word (verbs, nouns, adjectives, places, pronouns, time words, numbers) in your practice sentences MUST originate from or directly match the vocabulary list above. Do NOT introduce outside nouns, outside food names, outside locations, outside numbers, or outside verbs.
-2. English Prompt: Provide a natural, clear English sentence prompt for flashcard practice in the "english" property.
-3. Alternative Answers: Provide 1-2 valid variations (such as alternative word choice, synonym, or interchangeable phrasing) in the "alternatives" array if naturally acceptable.`;
+2. MAXIMUM VOCABULARY COVERAGE & BALANCED DISTRIBUTION: You must cover as much of the input vocabulary as possible. Do NOT concentrate heavily on words that appear earlier or near the top of the list. Systematically distribute your word choices across the ENTIRE list from top to bottom, ensuring items from middle and later sections are thoroughly represented and actively synthesized with other vocabulary. Aim to touch as many distinct vocabulary items as possible across the ${numSentences} sentences so that no topic or section is neglected.
+3. English Prompt: Provide a natural, clear English sentence prompt for flashcard practice in the "english" property.
+4. Alternative Answers: Provide 1-2 valid variations (such as alternative word choice, synonym, or interchangeable phrasing) in the "alternatives" array if naturally acceptable.`;
 
   let langTitle = 'Cantonese';
   let languageSpecificInstructions = '';
@@ -192,7 +193,7 @@ ${vocabString}
 """
 
 TASK:
-Compose ${numSentences} varied, conversational, and natural practice sentences strictly constrained by the provided vocabulary list.
+Compose ${numSentences} varied, conversational, and natural practice sentences strictly constrained by the provided vocabulary list. Maximize vocabulary coverage across the entire list so that words appearing later are evenly integrated and synthesized with earlier words.
 
 ${generalInstructions}
 
