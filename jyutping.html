@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantonese TTS Demonstration</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+        }
+        button.secondary {
+            background-color: #d9534f;
+        }
+        button:active {
+            opacity: 0.85;
+        }
+        .section-box {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .jyutping {
+            color: #666;
+            font-style: italic;
+        }
+        .hanzi {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Cantonese TTS: Hanzi vs. Jyutping Test</h2>
+        
+        <div class="section-box">
+            <div class="hanzi">
+                <strong>1. Hanzi Input (Works Everywhere):</strong><br>
+                "我嘅興趣係玩鋼琴，不過，我個仔嘅興趣係踢波。"
+            </div>
+            <button id="speakHanziBtn">Speak Hanzi (Success)</button>
+        </div>
+
+        <div>
+            <div class="jyutping">
+                <strong>2. Jyutping Input (Fails on Google/Android TTS):</strong><br>
+                "ngo5 ge3 hing3 ceoi3 hai6 waan2 gong3 kam4, bat1 gwo3, ngo5 go3 zai2 ge3 hing3 ceoi3 hai6 tek3 bo1."
+            </div>
+            <button id="speakJyutpingBtn" class="secondary">Speak Jyutping (Fails / Spells Letters)</button>
+        </div>
+    </div>
+
+    <script>
+        const hanziText = "我嘅興趣係玩鋼琴，不過，我個仔嘅興趣係踢波。";
+        const jyutpingText = "ngo5 ge3 hing3 ceoi3 hai6 waan2 gong3 kam4, bat1 gwo3, ngo5 go3 zai2 ge3 hing3 ceoi3 hai6 tek3 bo1.";
+
+        function speakText(textToSynthesize) {
+            if (!('speechSynthesis' in window)) {
+                alert("Speech synthesis is not supported in this browser.");
+                return;
+            }
+
+            // Cancel any ongoing speech
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(textToSynthesize);
+            utterance.lang = 'zh-HK'; // Target Cantonese
+            utterance.rate = 0.9;
+
+            const voices = window.speechSynthesis.getVoices();
+            const hkVoice = voices.find(v => v.lang === 'zh-HK' || v.lang.toLowerCase().includes('yue'));
+            if (hkVoice) {
+                utterance.voice = hkVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
+        }
+
+        document.getElementById('speakHanziBtn').addEventListener('click', () => {
+            speakText(hanziText);
+        });
+
+        document.getElementById('speakJyutpingBtn').addEventListener('click', () => {
+            speakText(jyutpingText);
+        });
+    </script>
+
+</body>
+</html>
