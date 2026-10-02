@@ -2240,7 +2240,11 @@ function checkAnswer()
             var randIdx = Math.floor(Math.random() * correctAnswers.length);
             wrongAnswerToSpeak = correctAnswers[randIdx].trim();
         }
-        SetFeedback("<span class=\"incorrect-fb\">Wrong!</span> Not \"" + answer + "\", it's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>. Try again!", wrongAnswerToSpeak);
+        if (!answer || !answer.trim()) {
+            SetFeedback("It's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>", wrongAnswerToSpeak);
+        } else {
+            SetFeedback("<span class=\"incorrect-fb\">Wrong!</span> Not \"" + answer + "\", it's: <span class=\"correct\">"+correctAnswers.join("/")+"</span>. Try again!", wrongAnswerToSpeak);
+        }
     }
     $("#answer")[0].value = "";
 }
