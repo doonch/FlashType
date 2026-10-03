@@ -3,10 +3,10 @@ office:משרד
 in the park:בַּפּארק
 morning:בוקר
 night:לילה
-make, do (M):עושֶה
-make, do (F):עושָה
+make, do (M):עושֶׁה
+make, do (F):עושָׂה
 what?:מָה
 good:טוב
 thanks:תודה
-tonight, this evening:הערב
+tonight, this evening:העֶרֶב
 evening:עֶרֶב
