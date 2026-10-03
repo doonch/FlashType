@@ -1,8 +1,8 @@
 I, me:אני
 you (m):אתה
 you (f):אַת
-want (m):רוצָה
-want (f):רוצֶה
+want (f):רוצָה
+want (m):רוצֶה
 eat (m):אוכל
 eat (f):אוכלת
 go (m):הולך
@@ -10,7 +10,7 @@ go (f):הולכת
 to sleep:לישון
 to eat:לאכול
 eggplant:חציל
-apple:תפוח
+apple:תפּוח
 pita bread:פיתה
 with:עִם
 hummus:חומוס
