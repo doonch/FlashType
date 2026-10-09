@@ -3,7 +3,7 @@ cheese:גבינה
 cheese cake:עוגת גבינה
 egg:בֵּיצה
 surprise:הפתעה
-kinder egg:ביצת הפתעה
+Kinder egg:ביצת הפתעה
 chocolate:שוקולד
 sweet (m):מתוק
 sweet (f):מתוקה
