@@ -40,8 +40,10 @@ $(document).ready(function(){
     populateLessons();
     renderFlagButtons();
 
-    if (typeof QueryString.lessonId !== "undefined") {
-        var lessonIdx = parseInt(QueryString.lessonId, 10);
+    var targetLessonParam = (typeof QueryString !== "undefined" && (QueryString.lessonId || QueryString.lesson)) ||
+                            (typeof URLSearchParams !== "undefined" && (new URLSearchParams(window.location.search).get("lessonId") || new URLSearchParams(window.location.search).get("lesson")));
+    if (targetLessonParam) {
+        var lessonIdx = parseInt(targetLessonParam, 10);
         if (!isNaN(lessonIdx) && lessonIdx > 0 && typeof lessonFiles !== "undefined" && lessonFiles[lessonIdx]) {
             selectAndStartLesson(lessonIdx);
         }

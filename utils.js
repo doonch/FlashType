@@ -1062,29 +1062,149 @@ function getLanguageIdForCategory(category) {
     return "";
 }
 
+var flagsRowState = {
+    isExpanded: false
+};
+
+function hasCurrentActiveLesson() {
+    var $banner = $("#active_lesson_banner");
+    if ($banner.length && $banner.is(":visible") && $banner.attr("data-lang-id")) {
+        return true;
+    }
+    if (typeof currentLessonIndex !== "undefined" && currentLessonIndex > 0 && typeof lessonFiles !== "undefined" && !!lessonFiles[currentLessonIndex]) {
+        return true;
+    }
+    if (typeof activeSessionLanguage !== "undefined" && activeSessionLanguage && typeof lines !== "undefined" && lines && lines.length > 0) {
+        return true;
+    }
+    return false;
+}
+
+function getCurrentActiveLanguageId() {
+    var $banner = $("#active_lesson_banner");
+    if ($banner.length && $banner.attr("data-lang-id")) {
+        return $banner.attr("data-lang-id");
+    }
+    if (typeof currentLessonIndex !== "undefined" && currentLessonIndex > 0 && typeof lessonFiles !== "undefined" && lessonFiles[currentLessonIndex]) {
+        return getActiveLanguageId(lessonFiles[currentLessonIndex]);
+    }
+    if (typeof activeSessionLanguage !== "undefined" && activeSessionLanguage) {
+        return getLanguageIdForCategory(activeSessionLanguage);
+    }
+    if (typeof appSettings !== "undefined" && appSettings.selectedLanguage) {
+        return getLanguageIdForCategory(appSettings.selectedLanguage);
+    }
+    return "cantonese";
+}
+
 function renderFlagButtons() {
     if (typeof $ === "undefined") return;
     var $container = $("#flag_buttons_bar");
     if (!$container.length) return;
     $container.empty();
 
-    for (var i = 0; i < LANGUAGE_FLAGS.length; i++) {
-        var lang = LANGUAGE_FLAGS[i];
-        var btn = $('<button>', {
-            type: "button",
-            id: "flag_btn_" + lang.id,
-            class: "flag-btn",
-            "data-lang-id": lang.id,
-            title: lang.name + " (" + lang.country + ")",
-            "aria-label": lang.name + " (" + lang.country + ") lessons"
-        });
-        btn.html(lang.svg + '<span>' + lang.name + '</span>');
-        (function(languageId) {
-            btn.on("click", function() {
-                openLanguageLessonsModal(languageId);
+    var activeLessonExists = hasCurrentActiveLesson();
+
+    // 1. Initial State: No active lesson loaded yet -> All flags visible and expanded
+    if (!activeLessonExists) {
+        flagsRowState.isExpanded = false;
+        $container.removeClass("is-collapsed is-active-lesson-expanded");
+
+        for (var i = 0; i < LANGUAGE_FLAGS.length; i++) {
+            var lang = LANGUAGE_FLAGS[i];
+            var btn = $('<button>', {
+                type: "button",
+                id: "flag_btn_" + lang.id,
+                class: "flag-btn",
+                "data-lang-id": lang.id,
+                title: lang.name + " (" + lang.country + ") lessons",
+                "aria-label": lang.name + " (" + lang.country + ") lessons"
             });
-        })(lang.id);
-        $container.append(btn);
+            btn.html(lang.svg + '<span>' + lang.name + '</span>');
+            (function(languageId) {
+                btn.on("click", function() {
+                    openLanguageLessonsModal(languageId);
+                });
+            })(lang.id);
+            $container.append(btn);
+        }
+        return;
+    }
+
+    // 2. An active lesson exists!
+    var activeLangId = getCurrentActiveLanguageId();
+    var activeLangConfig = getLanguageFlagConfig(activeLangId) || LANGUAGE_FLAGS[0];
+
+    if (!flagsRowState.isExpanded) {
+        // Collapsed state: ONLY the selected language button remains, changed into "select language"
+        $container.addClass("is-collapsed").removeClass("is-active-lesson-expanded");
+
+        var selectLangBtn = $('<button>', {
+            type: "button",
+            id: "flag_btn_" + activeLangConfig.id,
+            class: "flag-btn is-active flag-btn-toggle flag-btn-select-lang",
+            "data-lang-id": activeLangConfig.id,
+            "aria-expanded": "false",
+            title: "Active language: " + activeLangConfig.name + ". Click to expand and select language",
+            "aria-label": "Select language: currently " + activeLangConfig.name
+        });
+        selectLangBtn.html(
+            activeLangConfig.svg +
+            '<span>' + activeLangConfig.name + '</span>' +
+            '<span class="flag-action-pill" aria-hidden="true">Select language ▾</span>'
+        );
+        selectLangBtn.on("click", function(e) {
+            e.preventDefault();
+            flagsRowState.isExpanded = true;
+            renderFlagButtons();
+        });
+        $container.append(selectLangBtn);
+    } else {
+        // Expanded state: Active language is ALWAYS FIRST and acts as a "collapse" button
+        $container.addClass("is-active-lesson-expanded").removeClass("is-collapsed");
+
+        var collapseBtn = $('<button>', {
+            type: "button",
+            id: "flag_btn_" + activeLangConfig.id,
+            class: "flag-btn is-active flag-btn-toggle flag-btn-collapse",
+            "data-lang-id": activeLangConfig.id,
+            "aria-expanded": "true",
+            title: "Click to collapse language buttons",
+            "aria-label": "Collapse language buttons"
+        });
+        collapseBtn.html(
+            activeLangConfig.svg +
+            '<span>' + activeLangConfig.name + '</span>' +
+            '<span class="flag-action-pill flag-action-collapse" aria-hidden="true">Collapse ▴</span>'
+        );
+        collapseBtn.on("click", function(e) {
+            e.preventDefault();
+            flagsRowState.isExpanded = false;
+            renderFlagButtons();
+        });
+        $container.append(collapseBtn);
+
+        // Render all OTHER language flags after the active one
+        for (var j = 0; j < LANGUAGE_FLAGS.length; j++) {
+            var otherLang = LANGUAGE_FLAGS[j];
+            if (otherLang.id === activeLangConfig.id) continue;
+
+            var otherBtn = $('<button>', {
+                type: "button",
+                id: "flag_btn_" + otherLang.id,
+                class: "flag-btn",
+                "data-lang-id": otherLang.id,
+                title: otherLang.name + " (" + otherLang.country + ") lessons",
+                "aria-label": otherLang.name + " (" + otherLang.country + ") lessons"
+            });
+            otherBtn.html(otherLang.svg + '<span>' + otherLang.name + '</span>');
+            (function(languageId) {
+                otherBtn.on("click", function() {
+                    openLanguageLessonsModal(languageId);
+                });
+            })(otherLang.id);
+            $container.append(otherBtn);
+        }
     }
 }
 
@@ -1149,8 +1269,9 @@ function openLanguageLessonsModal(langId) {
                 id: "lesson_pick_" + item.idx,
                 "data-lesson-idx": item.idx
             });
+            var debugIdxBadge = (typeof isDebugMode === "function" && isDebugMode()) ? ' <span class="lesser-text">#' + item.idx + '</span>' : '';
             rowBtn.html(
-                '<span class="lang-lesson-name">' + item.lesson.name + '</span>' +
+                '<span class="lang-lesson-name">' + item.lesson.name + debugIdxBadge + '</span>' +
                 '<span class="lang-lesson-cat">' + item.lesson.category + '</span>'
             );
             (function(idx) {
@@ -1229,6 +1350,8 @@ function updateActiveLessonBanner(curLesson, langId) {
         $("#passive_mode_btn").hide();
         $("#vocabTable").hide();
         $("#vocabTableWrapper").hide();
+        flagsRowState.isExpanded = false;
+        renderFlagButtons();
         return;
     }
     var effectiveLangId = getActiveLanguageId(curLesson, langId);
@@ -1253,6 +1376,10 @@ function updateActiveLessonBanner(curLesson, langId) {
         $("#toggleTable").show();
     }
     $("#passive_mode_btn").show();
+
+    // With an active lesson, collapse the flags row to only the selected language
+    flagsRowState.isExpanded = false;
+    renderFlagButtons();
 }
 
 $(document).on("click", "#active_lesson_banner, .active-badge-label", function(e) {

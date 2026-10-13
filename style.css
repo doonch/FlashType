@@ -1103,6 +1103,39 @@ body {
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
+.flag-btn-toggle {
+    font-weight: 600;
+}
+
+.flag-action-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    margin-left: 2px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.flag-btn:hover .flag-action-pill {
+    background: #bfdbfe;
+    color: #1d4ed8;
+}
+
+.flag-action-collapse {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.flag-btn:hover .flag-action-collapse {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
 .flag-svg {
     width: 24px;
     height: 16px;
