@@ -11,5 +11,5 @@ mouth:hau2
 nose:bei6
 stomach:tou5
 tongue:sit6
-tooth:nga4
+tooth:ngaa4
 waist, small of the back:jiu1

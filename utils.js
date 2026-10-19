@@ -1151,7 +1151,7 @@ function renderFlagButtons() {
         selectLangBtn.html(
             activeLangConfig.svg +
             '<span>' + activeLangConfig.name + '</span>' +
-            '<span class="flag-action-pill" aria-hidden="true">Select language ▾</span>'
+            '<span class="flag-action-pill" aria-hidden="true">▾</span>'
         );
         selectLangBtn.on("click", function(e) {
             e.preventDefault();
@@ -1175,7 +1175,7 @@ function renderFlagButtons() {
         collapseBtn.html(
             activeLangConfig.svg +
             '<span>' + activeLangConfig.name + '</span>' +
-            '<span class="flag-action-pill flag-action-collapse" aria-hidden="true">Collapse ▴</span>'
+            '<span class="flag-action-pill flag-action-collapse" aria-hidden="true">▴</span>'
         );
         collapseBtn.on("click", function(e) {
             e.preventDefault();
