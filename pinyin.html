@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandarin TTS Demonstration</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+        }
+        button.secondary {
+            background-color: #d9534f;
+        }
+        button:active {
+            opacity: 0.85;
+        }
+        .section-box {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .pinyin {
+            color: #666;
+            font-style: italic;
+        }
+        .hanzi {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Mandarin TTS: Hanzi vs. Pinyin Test</h2>
+        
+        <div class="section-box">
+            <div class="hanzi">
+                <strong>1. Hanzi Input:</strong><br>
+                "我的兴趣是弹钢琴，不过，我儿子的兴趣是踢足球。"
+            </div>
+            <button id="speakHanziBtn">Speak Hanzi</button>
+        </div>
+
+        <div>
+            <div class="pinyin">
+                <strong>2. Pinyin Input:</strong><br>
+                "wo3 de5 xing4 qu4 shi4 tan2 gang1 qin2, bu4 guo4, wo3 er2 zi5 de5 xing4 qu4 shi4 ti1 zu2 qiu2."
+            </div>
+            <button id="speakPinyinBtn" class="secondary">Speak Pinyin</button>
+        </div>
+    </div>
+
+    <script>
+        const hanziText = "我的兴趣是弹钢琴，不过，我儿子的兴趣是踢足球。";
+        const pinyinText = "wo3 de5 xing4 qu4 shi4 tan2 gang1 qin2, bu4 guo4, wo3 er2 zi5 de5 xing4 qu4 shi4 ti1 zu2 qiu2.";
+
+        function speakText(textToSynthesize) {
+            if (!('speechSynthesis' in window)) {
+                alert("Speech synthesis is not supported in this browser.");
+                return;
+            }
+
+            // Cancel any ongoing speech
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(textToSynthesize);
+            utterance.lang = 'zh-CN'; // Target Mandarin (Putonghua)
+            utterance.rate = 0.9;
+
+            const voices = window.speechSynthesis.getVoices();
+            const cnVoice = voices.find(v => {
+                const l = (v.lang || '').replace(/_/g, '-').toLowerCase();
+                const n = (v.name || '').toLowerCase();
+                return l === 'zh-cn' || l === 'zh-cmn' || l === 'zh-sg' ||
+                       n.includes('mandarin') || n.includes('putonghua') || n.includes('mainland') ||
+                       l === 'zh';
+            });
+            if (cnVoice) {
+                utterance.voice = cnVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
+        }
+
+        document.getElementById('speakHanziBtn').addEventListener('click', () => {
+            speakText(hanziText);
+        });
+
+        document.getElementById('speakPinyinBtn').addEventListener('click', () => {
+            speakText(pinyinText);
+        });
+    </script>
+
+</body>
+</html>
