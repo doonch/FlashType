@@ -122,8 +122,8 @@ Italian.2.txt
    lessonFiles[lessonFiles.length] = new lesson("Lesson 2: Orientation & travel", "lessons/Italian.2.txt", "Italian", false, false);
    ```
 
-### Step 4: Configure Flags & Voice in `utils.js`
-1. **Add Flag and Metadata to `LANGUAGE_FLAGS`**:
+### Step 4: Configure Flags & Voice in `js/languages.js` and `js/audio.js`
+1. **Add Flag and Metadata to `LANGUAGE_FLAGS` in `js/languages.js`**:
    ```javascript
    {
        id: "italian",
@@ -134,15 +134,41 @@ Italian.2.txt
        svg: '<svg viewBox="0 0 30 20" class="flag-svg" xmlns="http://www.w3.org/2000/svg"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#ffffff"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg>'
    }
    ```
-2. **Map Category ID in `getLanguageIdForCategory()`**:
+2. **Map Category ID in `getLanguageIdForCategory()` in `js/languages.js`**:
    ```javascript
    if (c.indexOf("italian") !== -1) return "italian";
    ```
-3. **Set Web Speech Voice Code in `getAnswerLanguage()`**:
+3. **Set Web Speech Voice Code in `getAnswerLanguage()` in `js/audio.js`**:
    Map the language category to the target BCP 47 language code (e.g., `"it-IT"` for Italian, `"de-DE"` for German, `"fr-FR"` for French, `"ja-JP"` for Japanese):
    ```javascript
    if (cat.indexOf("italian") !== -1) return "it-IT";
    ```
+
+---
+
+## 📂 Codebase & File Structure
+
+The frontend scripts are organized modularly under `js/` for maintainability, zero-build simplicity, and isolated responsibilities:
+
+```
+├── Flash.html                 # Main application UI and markup
+├── server.js                  # Express backend proxy for Gemini AI sentence generation
+├── style.css                  # Core CSS styling and responsive layout
+├── data.js                    # Lesson catalogue metadata and group registries
+├── utils.js                   # Legacy backwards-compatibility facade
+├── js/
+│   ├── translit.js            # Text clean(), Pinyin vowels/tones, Jyutping/Yale transliteration, QueryString
+│   ├── settings.js            # App settings state, localStorage sync, speed & timer controls
+│   ├── audio.js               # Web Speech Synthesis API wrapper, voice detection, speech playback
+│   ├── mastery.js             # First-try mastery tracking, 🎯 opportunity indicator, completion splash
+│   ├── passive.js             # Hands-free passive mode (▶/⏸), countdown timers, animated SVG ring
+│   ├── languages.js           # Country flag configs, collapsible navigation toolbar, lesson picker modal
+│   ├── drill.js               # Core typing drill engine, set() tracking, checkAnswer(), vocab table
+│   ├── ai-generator.js        # Gemini AI sentence synthesis modal, lesson checklist UI, /api/generate-sentences
+│   └── io.js                  # Lesson export (📥 Download) and custom lesson import (📤 Upload) modals
+├── lessons/                   # Plain text lesson curriculum files (.txt)
+└── files.list                 # Manifest of active lesson files
+```
 
 ---
 

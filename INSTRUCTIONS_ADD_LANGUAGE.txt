@@ -379,8 +379,8 @@ When a new language is created, complete these steps to register it in FlashType
      ...
    - Add "<Language>" to the `groups` array in `data.js` so it appears in category pickers.
 
-4. Update `utils.js`:
-   - Add the language configuration to `LANGUAGE_FLAGS`:
+4. Update `js/languages.js` and `js/audio.js`:
+   - In `js/languages.js`, add the language configuration to `LANGUAGE_FLAGS`:
      {
          id: "<language_id>",          // e.g. "italian", "german", "japanese"
          name: "<Language>",           // e.g. "Italian", "German", "Japanese"
@@ -389,9 +389,9 @@ When a new language is created, complete these steps to register it in FlashType
          categories: ["<Language>"],
          svg: '<svg viewBox="0 0 30 20" class="flag-svg" ...>...</svg>'
      }
-   - Update `getLanguageIdForCategory(category)`:
+   - In `js/languages.js`, update `getLanguageIdForCategory(category)`:
      Add: if (c.indexOf("<language_id>") !== -1) return "<language_id>";
-   - Update `getAnswerLanguage(text)` for Web Speech Synthesis:
+   - In `js/audio.js`, update `getAnswerLanguage(text)` for Web Speech Synthesis:
      Add the appropriate BCP 47 speech language code:
      if (cat.indexOf("<language_id>") !== -1) return "<bcp47_code>";
      (e.g., "it-IT" for Italian, "de-DE" for German, "fr-FR" for French, "ja-JP" for Japanese).
