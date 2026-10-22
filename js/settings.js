@@ -14,7 +14,9 @@ var appSettings = {
     decayTimeoutSec: 2.5,
     completedLessons: ["lessons/CP.1.txt"], // default to CP.1.txt if none selected
     completedLessonsByLang: {},
-    aiSentenceCount: 25
+    aiSentenceCount: 25,
+    preferredEnglishVoiceURI: "",
+    preferredTargetVoices: {}
 };
 
 function loadSettings() {
@@ -82,6 +84,19 @@ function loadSettings() {
             if (!isNaN(aiCnt) && aiCnt >= 1 && aiCnt <= 50) {
                 appSettings.aiSentenceCount = aiCnt;
             }
+            var prefEn = localStorage.getItem("flashtype_voice_english");
+            if (prefEn) {
+                appSettings.preferredEnglishVoiceURI = prefEn;
+            }
+            var prefTarget = localStorage.getItem("flashtype_voices_target");
+            if (prefTarget) {
+                try {
+                    var parsedTarget = JSON.parse(prefTarget);
+                    if (parsedTarget && typeof parsedTarget === "object") {
+                        appSettings.preferredTargetVoices = parsedTarget;
+                    }
+                } catch (pe) {}
+            }
         }
     } catch (e) {
         console.warn("Could not load settings from localStorage", e);
@@ -103,6 +118,14 @@ function saveSettings() {
             localStorage.setItem("flashtype_completed_lessons", JSON.stringify(appSettings.completedLessons));
             localStorage.setItem("flashtype_completed_lessons_by_lang", JSON.stringify(appSettings.completedLessonsByLang || {}));
             localStorage.setItem("flashtype_ai_sentence_count", appSettings.aiSentenceCount || 25);
+            if (appSettings.preferredEnglishVoiceURI) {
+                localStorage.setItem("flashtype_voice_english", appSettings.preferredEnglishVoiceURI);
+            } else {
+                localStorage.removeItem("flashtype_voice_english");
+            }
+            if (appSettings.preferredTargetVoices) {
+                localStorage.setItem("flashtype_voices_target", JSON.stringify(appSettings.preferredTargetVoices));
+            }
         }
     } catch (e) {
         console.warn("Could not save settings to localStorage", e);
@@ -174,6 +197,8 @@ function syncSettingsUI() {
     if (typeof renderLessonChecklist === "function") {
         renderLessonChecklist();
     }
+
+    syncDebugVoiceUI();
 }
 
 function onTimerSliderChange(which, val) {
@@ -273,6 +298,174 @@ function closeHelpModal() {
     if (typeof $ !== "undefined") {
         $("#help_modal").fadeOut(150);
     }
+}
+
+function onVoiceSettingChange(which) {
+    if (typeof $ === "undefined") return;
+    if (which === "english") {
+        var enVal = $("#setting_voice_english").val() || "";
+        appSettings.preferredEnglishVoiceURI = enVal;
+    } else if (which === "target") {
+        var targetVal = $("#setting_voice_target").val() || "";
+        var activeLangId = (typeof getCurrentActiveLanguageId === "function") ? getCurrentActiveLanguageId() : (typeof activeSessionLanguage !== "undefined" ? activeSessionLanguage : "");
+        if (activeLangId) {
+            if (!appSettings.preferredTargetVoices) {
+                appSettings.preferredTargetVoices = {};
+            }
+            appSettings.preferredTargetVoices[activeLangId] = targetVal;
+        }
+    }
+    saveSettings();
+}
+
+function filterVoicesForLanguage(voices, langId) {
+    if (!voices || !voices.length || !langId) return [];
+    var lid = langId.toLowerCase();
+
+    if (lid === "cantonese") {
+        return voices.filter(function(v) {
+            var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+            var n = (v.name || "").toLowerCase();
+            return l === "zh-hk" || l.indexOf("yue") !== -1 || n.indexOf("cantonese") !== -1 || n.indexOf("hong kong") !== -1;
+        });
+    }
+    if (lid === "mandarin") {
+        return voices.filter(function(v) {
+            var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+            var n = (v.name || "").toLowerCase();
+            return l === "zh-cn" || l === "zh-sg" || l.indexOf("cmn") !== -1 || n.indexOf("mandarin") !== -1 || n.indexOf("putonghua") !== -1 || n.indexOf("mainland") !== -1;
+        });
+    }
+    if (lid === "hebrew") {
+        return voices.filter(function(v) {
+            var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+            return l.startsWith("he") || l.startsWith("iw");
+        });
+    }
+    if (lid === "greek") {
+        return voices.filter(function(v) {
+            var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+            return l.startsWith("el");
+        });
+    }
+    if (lid === "polish") {
+        return voices.filter(function(v) {
+            var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+            return l.startsWith("pl");
+        });
+    }
+    if (lid === "spanish") {
+        return voices.filter(function(v) {
+            var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+            return l.startsWith("es");
+        });
+    }
+    if (lid === "italian") {
+        return voices.filter(function(v) {
+            var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+            return l.startsWith("it");
+        });
+    }
+    if (lid === "malayalam") {
+        return voices.filter(function(v) {
+            var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+            return l.startsWith("ml");
+        });
+    }
+    var prefix = lid.substring(0, 2);
+    return voices.filter(function(v) {
+        var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+        return l.startsWith(prefix);
+    });
+}
+
+function populateDebugVoiceSelectors() {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    if (typeof isDebugMode !== "function" || !isDebugMode()) return;
+
+    var voices = window.speechSynthesis.getVoices() || [];
+
+    // 1. Target Language Selector (visible only if there's an active lesson)
+    var hasActive = (typeof hasCurrentActiveLesson === "function") ? hasCurrentActiveLesson() : false;
+    var activeLangName = (typeof getActiveLessonLanguage === "function") ? getActiveLessonLanguage() : "";
+    var activeLangId = (typeof getCurrentActiveLanguageId === "function") ? getCurrentActiveLanguageId() : (typeof activeSessionLanguage !== "undefined" ? activeSessionLanguage : "");
+
+    var $targetGroup = $("#debug_target_voice_group");
+    var $targetSelect = $("#setting_voice_target");
+    var $targetLabel = $("#debug_target_voice_label");
+
+    if (hasActive && activeLangId) {
+        var displayName = activeLangName || (activeLangId.charAt(0).toUpperCase() + activeLangId.slice(1));
+        $targetLabel.text(displayName + " Voice (Target)");
+
+        var targetVoices = filterVoicesForLanguage(voices, activeLangId);
+        targetVoices.sort(function(a, b) {
+            if (b.localService !== a.localService) {
+                return Number(b.localService) - Number(a.localService);
+            }
+            return (a.name || "").localeCompare(b.name || "");
+        });
+
+        var savedTargetURI = (appSettings.preferredTargetVoices && appSettings.preferredTargetVoices[activeLangId]) || "";
+        var targetHtml = '<option value="">Default / Auto-detect</option>';
+        for (var i = 0; i < targetVoices.length; i++) {
+            var tv = targetVoices[i];
+            var isSel = (tv.voiceURI === savedTargetURI) ? ' selected' : '';
+            var prefix = tv.localService ? '🟢 [LOCAL] ' : '🟠 [NETWORK] ';
+            targetHtml += '<option value="' + (typeof escapeHtmlAttr === "function" ? escapeHtmlAttr(tv.voiceURI) : tv.voiceURI) + '"' + isSel + '>' +
+                          prefix + tv.name + ' (' + tv.lang + ')' +
+                          '</option>';
+        }
+        $targetSelect.html(targetHtml);
+        $targetGroup.show();
+    } else {
+        $targetGroup.hide();
+    }
+
+    // 2. English Voice Selector (always at the bottom of the voice selection section)
+    var $englishSelect = $("#setting_voice_english");
+    if ($englishSelect.length) {
+        var enVoices = voices.filter(function(v) {
+            return (v.lang || "").toLowerCase().replace(/_/g, "-").startsWith("en");
+        });
+        enVoices.sort(function(a, b) {
+            if (b.localService !== a.localService) {
+                return Number(b.localService) - Number(a.localService);
+            }
+            var aIsUs = (a.lang || "").toLowerCase().replace(/_/g, "-").startsWith("en-us");
+            var bIsUs = (b.lang || "").toLowerCase().replace(/_/g, "-").startsWith("en-us");
+            if (aIsUs !== bIsUs) {
+                return Number(bIsUs) - Number(aIsUs);
+            }
+            return (a.name || "").localeCompare(b.name || "");
+        });
+
+        var savedEnURI = appSettings.preferredEnglishVoiceURI || "";
+        var enHtml = '<option value="">Default / Auto-detect</option>';
+        for (var j = 0; j < enVoices.length; j++) {
+            var ev = enVoices[j];
+            var isEnSel = (ev.voiceURI === savedEnURI) ? ' selected' : '';
+            var enPrefix = ev.localService ? '🟢 [LOCAL] ' : '🟠 [NETWORK] ';
+            enHtml += '<option value="' + (typeof escapeHtmlAttr === "function" ? escapeHtmlAttr(ev.voiceURI) : ev.voiceURI) + '"' + isEnSel + '>' +
+                      enPrefix + ev.name + ' (' + ev.lang + ')' +
+                      '</option>';
+        }
+        $englishSelect.html(enHtml);
+    }
+}
+
+function syncDebugVoiceUI() {
+    if (typeof $ === "undefined") return;
+    var $debugSection = $("#debug_voice_section");
+    if (!$debugSection.length) return;
+
+    if (typeof isDebugMode !== "function" || !isDebugMode()) {
+        $debugSection.hide();
+        return;
+    }
+
+    $debugSection.show();
+    populateDebugVoiceSelectors();
 }
 
 // Initial settings load

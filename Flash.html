@@ -154,6 +154,32 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
+
+            <!-- Debug Voice Selection (visible only when debug=1 is set) -->
+            <div class="setting-section" id="debug_voice_section" style="display: none;">
+                <span class="setting-section-title">🔧 Voice Selection (Debug)</span>
+                <div class="setting-desc" style="margin-left: 0; margin-bottom: 8px;">Select speech synthesis voices:</div>
+
+                <!-- Target Language Voice Selector (shown when there is an active lesson) -->
+                <div id="debug_target_voice_group" style="display: none; margin-bottom: 12px;">
+                    <label for="setting_voice_target" style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 4px;">
+                        <span id="debug_target_voice_label">Target Language Voice</span>:
+                    </label>
+                    <select id="setting_voice_target" class="setting-select" style="width: 100%;" onchange="onVoiceSettingChange('target')">
+                        <option value="">Default / Auto-detect</option>
+                    </select>
+                </div>
+
+                <!-- English Voice Selector (always at the bottom of the voice selection section) -->
+                <div id="debug_english_voice_group" style="margin-bottom: 4px;">
+                    <label for="setting_voice_english" style="font-size: 0.82rem; font-weight: 600; color: #334155; display: block; margin-bottom: 4px;">
+                        English Voice:
+                    </label>
+                    <select id="setting_voice_english" class="setting-select" style="width: 100%;" onchange="onVoiceSettingChange('english')">
+                        <option value="">Default / Auto-detect</option>
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="modal-btn-primary" onclick="closeSettingsModal()">Done</button>

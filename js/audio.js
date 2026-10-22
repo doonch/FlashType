@@ -53,8 +53,31 @@ function speakText(text, lang, speakSourceText, rate) {
             var targetLangPrefix = targetLangLower.split("-")[0];
             var matchedVoice = null;
 
+            // Check user-selected debug voice preferences first
+            if (typeof appSettings !== "undefined") {
+                if (targetLangPrefix === "en" && appSettings.preferredEnglishVoiceURI) {
+                    for (var ev = 0; ev < voices.length; ev++) {
+                        if (voices[ev].voiceURI === appSettings.preferredEnglishVoiceURI) {
+                            matchedVoice = voices[ev];
+                            break;
+                        }
+                    }
+                } else if (targetLangPrefix !== "en" && appSettings.preferredTargetVoices) {
+                    var curLangId = (typeof getCurrentActiveLanguageId === "function") ? getCurrentActiveLanguageId() : (activeSessionLanguage || getLessonCategory());
+                    var preferredURI = curLangId ? appSettings.preferredTargetVoices[curLangId] : "";
+                    if (preferredURI) {
+                        for (var tv = 0; tv < voices.length; tv++) {
+                            if (voices[tv].voiceURI === preferredURI) {
+                                matchedVoice = voices[tv];
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
             // Prioritize Cantonese voice (zh-HK, Cantonese, or Yue)
-            if (targetLangLower === "zh-hk" || targetLangLower.indexOf("cantonese") !== -1) {
+            if (!matchedVoice && (targetLangLower === "zh-hk" || targetLangLower.indexOf("cantonese") !== -1)) {
                 for (var v = 0; v < voices.length; v++) {
                     var vName = (voices[v].name || "").toLowerCase();
                     var vLang = (voices[v].lang || "").replace(/_/g, "-").toLowerCase();
@@ -236,4 +259,12 @@ if (typeof $ !== "undefined") {
             readQuestion(e);
         }
     });
+}
+
+if (typeof window !== "undefined" && "speechSynthesis" in window) {
+    window.speechSynthesis.onvoiceschanged = function() {
+        if (typeof populateDebugVoiceSelectors === "function") {
+            populateDebugVoiceSelectors();
+        }
+    };
 }

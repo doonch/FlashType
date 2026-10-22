@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandarin TTS Demonstration (Defensive Diagnostic Edition)</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 680px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+        button.secondary {
+            background-color: #d9534f;
+        }
+        button.utility {
+            background-color: #555;
+            font-size: 14px;
+            padding: 9px 14px;
+            margin-top: 8px;
+        }
+        button:active {
+            opacity: 0.85;
+        }
+        .section-box {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .pinyin {
+            color: #666;
+            font-style: italic;
+        }
+        .hanzi {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .diag-panel {
+            margin-top: 20px;
+            padding: 14px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 8px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 12.5px;
+            line-height: 1.5;
+        }
+        .diag-panel .status-ok { color: #4ec9b0; }
+        .diag-panel .status-warn { color: #dcdcaa; }
+        .diag-panel .status-err { color: #f44747; font-weight: bold; }
+        .controls-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Mandarin TTS: Hanzi vs. Pinyin Test</h2>
+        
+        <div class="section-box">
+            <div class="hanzi">
+                <strong>1. Hanzi Input:</strong><br>
+                "我的兴趣是弹钢琴，不过，我儿子的兴趣是踢足球。"
+            </div>
+            <button id="speakHanziBtn">Speak Hanzi</button>
+        </div>
+
+        <div class="section-box">
+            <div class="pinyin">
+                <strong>2. Pinyin Input:</strong><br>
+                "wo3 de5 xing4 qu4 shi4 tan2 gang1 qin2, bu4 guo4, wo3 er2 zi5 de5 xing4 qu4 shi4 ti1 zu2 qiu2."
+            </div>
+            <button id="speakPinyinBtn" class="secondary">Speak Pinyin</button>
+        </div>
+
+        <div>
+            <label for="voiceSelect"><strong>Active Voice Selection (Prefers macOS Local Voices):</strong></label>
+            <select id="voiceSelect">
+                <option value="">Loading voices... (check DevTools console)</option>
+            </select>
+            <div class="controls-row">
+                <button id="emergencyResetBtn" class="utility">Emergency Reset Queue</button>
+                <button id="dumpStateBtn" class="utility">Log Full Diagnostic Dump</button>
+            </div>
+        </div>
+
+        <div id="diagStatus" class="diag-panel">
+            Initializing Defensive TTS Engine... Open DevTools Console (Cmd+Option+J) for full trace logs.
+        </div>
+    </div>
+
+    <script>
+        const hanziText = "我的兴趣是弹钢琴，不过，我儿子的兴趣是踢足球。";
+        const pinyinText = "wo3 de5 xing4 qu4 shi4 tan2 gang1 qin2, bu4 guo4, wo3 er2 zi5 de5 xing4 qu4 shi4 ti1 zu2 qiu2.";
+
+        /**
+         * ============================================================================
+         * FORTRESS TTS: Aggressively Defensive Web Speech API Wrapper for macOS Chrome
+         * ============================================================================
+         * Defends against:
+         * 1. V8 Garbage Collection of active SpeechSynthesisUtterance instances
+         * 2. Synchronous cancel() + speak() IPC race condition in macOS speechsynthesisd
+         * 3. Remote "Google ..." network voice timeouts (localService === false hangs)
+         * 4. Pre-existing zombie states ({speaking: true, pending: false, paused: false})
+         * 5. Sticky paused states where Chrome pauses the queue in the background
+         * 6. Missing onstart / onend callbacks (Dead-man's switch + Watchdog timers)
+         * 7. Chrome 15-second utterance cutoff bug (Keep-alive heartbeat)
+         * 8. Apple Audiopeech / Tone-number Pinyin quirks
+         */
+        const FortressTTS = (() => {
+            // DEFENSE 1: Global Anti-GC Vault attached directly to `window`
+            // Prevents V8 from garbage-collecting utterances before native C++ callbacks fire.
+            window.__TTS_ANTI_GC_VAULT__ = new Set();
+
+            const synth = window.speechSynthesis;
+            const diagEl = document.getElementById('diagStatus');
+            const voiceSelect = document.getElementById('voiceSelect');
+
+            let cachedVoices = [];
+            let selectedVoiceURI = null;
+            let cooldownTimer = null;
+            let onStartWatchdog = null;
+            let onEndWatchdog = null;
+            let keepAliveInterval = null;
+            let currentRequestId = 0;
+            let lastCancelTimestamp = 0;
+
+            // Styled Console Logger
+            const log = {
+                info: (msg, ...args) => console.log(`%c[TTS-INFO] ${msg}`, 'color: #0066cc; font-weight: bold;', ...args),
+                ok:   (msg, ...args) => console.log(`%c[TTS-OK]   ${msg}`, 'color: #2da44e; font-weight: bold;', ...args),
+                warn: (msg, ...args) => console.warn(`%c[TTS-WARN] ${msg}`, 'color: #b08800; font-weight: bold;', ...args),
+                err:  (msg, ...args) => console.error(`%c[TTS-FAIL] ${msg}`, 'color: #cf222e; font-weight: bold;', ...args),
+                fix:  (msg, ...args) => console.log(`%c[HOW-TO-PROCEED] 👉 ${msg}`, 'background: #fff3cd; color: #664d03; padding: 2px 6px; border-radius: 4px; font-weight: bold;', ...args)
+            };
+
+            function updateBanner(html) {
+                if (diagEl) diagEl.innerHTML = html;
+            }
+
+            function getEngineSnapshot() {
+                if (!synth) return { supported: false };
+                return {
+                    speaking: synth.speaking,
+                    pending: synth.pending,
+                    paused: synth.paused,
+                    vaultSize: window.__TTS_ANTI_GC_VAULT__.size,
+                    msSinceLastCancel: lastCancelTimestamp ? (Date.now() - lastCancelTimestamp) : 'never'
+                };
+            }
+
+            function clearAllTimers() {
+                clearTimeout(cooldownTimer);
+                clearTimeout(onStartWatchdog);
+                clearTimeout(onEndWatchdog);
+                clearInterval(keepAliveInterval);
+                cooldownTimer = null;
+                onStartWatchdog = null;
+                onEndWatchdog = null;
+                keepAliveInterval = null;
+            }
+
+            // DEFENSE 2: Aggressive Voice Discovery + Local Hardware Voice Filtering
+            function loadAndAuditVoices() {
+                if (!synth) return [];
+                const rawVoices = synth.getVoices() || [];
+                if (!rawVoices.length) return [];
+
+                cachedVoices = rawVoices;
+                const zhVoices = rawVoices.filter(v =>
+                    v.lang.toLowerCase().startsWith('zh') ||
+                    v.lang.toLowerCase().startsWith('cmn') ||
+                    v.lang.toLowerCase().startsWith('yue')
+                );
+
+                console.groupCollapsed(`[TTS-AUDIT] Found ${rawVoices.length} total voices (${zhVoices.length} Chinese voices)`);
+                console.table(zhVoices.map(v => ({
+                    name: v.name,
+                    lang: v.lang,
+                    localService: v.localService,
+                    default: v.default,
+                    riskLevel: v.localService ? 'LOW (macOS Native)' : 'HIGH (Chrome Network TTS - prone to hanging!)'
+                })));
+                console.groupEnd();
+
+                if (zhVoices.length === 0) {
+                    log.err('Zero Chinese voices detected on this system!');
+                    log.fix('Go to macOS System Settings -> Accessibility -> Spoken Content -> System Voice -> Manage Voices... and download "Tingting (Enhanced)" or "Meijia". Then restart Chrome.');
+                } else {
+                    const localZh = zhVoices.filter(v => v.localService);
+                    if (localZh.length === 0) {
+                        log.warn('Only remote network voices (localService: false) were found for Chinese. These frequently hang in Chrome.');
+                        log.fix('Download a native macOS Chinese voice in System Settings -> Accessibility -> Spoken Content so localService: true is available.');
+                    }
+                }
+
+                // Populate dropdown UI
+                voiceSelect.innerHTML = '';
+                // Sort so localService: true voices appear first
+                const sortedZh = [...zhVoices].sort((a, b) => Number(b.localService) - Number(a.localService));
+                sortedZh.forEach(v => {
+                    const opt = document.createElement('option');
+                    opt.value = v.voiceURI;
+                    opt.textContent = `${v.localService ? '🟢 [LOCAL macOS]' : '🟠 [NETWORK]'} ${v.name} (${v.lang})`;
+                    voiceSelect.appendChild(opt);
+                });
+
+                // Pick best default Mandarin voice (Tingting / Meijia localService: true)
+                const bestVoice =
+                    sortedZh.find(v => v.localService && v.lang.replace('_', '-').toLowerCase() === 'zh-cn') ||
+                    sortedZh.find(v => v.localService && v.lang.toLowerCase().startsWith('zh')) ||
+                    sortedZh[0] ||
+                    null;
+
+                if (bestVoice && !selectedVoiceURI) {
+                    selectedVoiceURI = bestVoice.voiceURI;
+                    voiceSelect.value = bestVoice.voiceURI;
+                    log.ok(`Auto-selected safest voice: "${bestVoice.name}" (localService: ${bestVoice.localService})`);
+                }
+
+                updateLiveStatus('Idle / Ready');
+                return cachedVoices;
+            }
+
+            // Poll for voices in case Chrome's onvoiceschanged already fired or never fires
+            function ensureVoicesLoaded(timeoutMs = 3000) {
+                return new Promise((resolve) => {
+                    const existing = synth.getVoices();
+                    if (existing && existing.length > 0) {
+                        if (!cachedVoices.length) loadAndAuditVoices();
+                        return resolve(cachedVoices);
+                    }
+
+                    log.warn('speechSynthesis.getVoices() returned empty array on initial check. Starting async poll...');
+                    const start = Date.now();
+                    const poll = setInterval(() => {
+                        const list = synth.getVoices();
+                        if (list && list.length > 0) {
+                            clearInterval(poll);
+                            log.ok(`Voices populated after ${Date.now() - start}ms.`);
+                            resolve(loadAndAuditVoices());
+                        } else if (Date.now() - start >= timeoutMs) {
+                            clearInterval(poll);
+                            log.err(`Timed out waiting ${timeoutMs}ms for getVoices(). Proceeding with fallback lang tag only.`);
+                            log.fix('If no audio plays, check macOS System Settings -> Accessibility -> Spoken Content, or run `killall speechsynthesisd` in Terminal.');
+                            resolve([]);
+                        }
+                    }, 50);
+                });
+            }
+
+            function updateLiveStatus(phase, isError = false) {
+                const snap = getEngineSnapshot();
+                const voiceObj = cachedVoices.find(v => v.voiceURI === selectedVoiceURI);
+                const voiceLabel = voiceObj ? `${voiceObj.name} (local=${voiceObj.localService})` : 'System Default';
+                updateBanner(`
+                    <div><strong>Phase:</strong> <span class="${isError ? 'status-err' : 'status-ok'}">${phase}</span></div>
+                    <div><strong>Engine State:</strong> speaking=<code>${snap.speaking}</code> | pending=<code>${snap.pending}</code> | paused=<code>${snap.paused}</code> | antiGC_Vault=<code>${snap.vaultSize}</code></div>
+                    <div><strong>Voice:</strong> ${voiceLabel}</div>
+                `);
+            }
+
+            // DEFENSE 3: Safe Teardown with IPC Cooldown
+            function performSafeCancel(reason) {
+                clearAllTimers();
+                // Detach handlers from any previous utterances in the vault so late C++ events don't misfire
+                window.__TTS_ANTI_GC_VAULT__.forEach(u => {
+                    u.onstart = null;
+                    u.onend = null;
+                    u.onerror = null;
+                    u.onboundary = null;
+                });
+                window.__TTS_ANTI_GC_VAULT__.clear();
+
+                if (synth.speaking || synth.pending || synth.paused) {
+                    log.warn(`Calling speechSynthesis.cancel() [Reason: ${reason}]`, getEngineSnapshot());
+                    synth.cancel();
+                    lastCancelTimestamp = Date.now();
+                    return true; // Indicates we touched the native daemon and need a cooldown
+                } else {
+                    log.info(`Skipped cancel() because speaking=false & pending=false [Reason: ${reason}]. Avoiding unnecessary macOS IPC reset.`);
+                    return false;
+                }
+            }
+
+            // DEFENSE 4: Diagnostic Health Check for Zombie State
+            function reportZombieLockup(contextMsg) {
+                const snap = getEngineSnapshot();
+                log.err(`🚨 ZOMBIE LOCKUP DETECTED (${contextMsg})!`, snap);
+                console.group('%c🔧 MACOS CHROME SPEECH SYNTHESIS RECOVERY GUIDE', 'color: #ff5555; font-size: 14px; font-weight: bold;');
+                log.fix('Step 1 (Fastest - No Browser Restart Required): Open macOS Terminal and run:');
+                console.log('%ckillall speechsynthesisd', 'background: #000; color: #0f0; padding: 6px 10px; font-family: monospace; font-size: 13px;');
+                log.fix('Step 2 (If using Apple Siri / Neural voices on macOS Sonoma/Sequoia): Also run:');
+                console.log('%ckillall corespeechd', 'background: #000; color: #0f0; padding: 6px 10px; font-family: monospace; font-size: 13px;');
+                log.fix('Step 3: Ensure you have selected a [LOCAL macOS] voice (localService: true) in the dropdown above, NOT a "Google 普通话" network voice.');
+                console.groupEnd();
+
+                updateLiveStatus('ZOMBIE LOCKUP: Run `killall speechsynthesisd` in macOS Terminal!', true);
+            }
+
+            // DEFENSE 5: Main Defensive Speak Pipeline
+            async function speak(rawText, options = {}) {
+                const requestId = ++currentRequestId;
+                const label = options.label || 'Utterance';
+
+                console.group(`🎙️ [TTS Request #${requestId}] ${label}`);
+                log.info(`Input text (${rawText.length} chars): "${rawText}"`);
+
+                if (!('speechSynthesis' in window)) {
+                    log.err('window.speechSynthesis is not supported in this browser.');
+                    console.groupEnd();
+                    return;
+                }
+
+                // Warn about Pinyin tone numbers with Chinese voices
+                if (options.isPinyin) {
+                    log.warn('Note on Pinyin Input: Standard macOS Chinese voices (like Tingting) expect Hanzi or SSML phonemes, not ASCII tone numbers ("wo3 de5..."). It may read English letters and numbers literally ("W-O-three...").');
+                }
+
+                // Sanitize text Input
+                const cleanText = String(rawText || '').trim();
+                if (!cleanText) {
+                    log.warn('Empty text passed to speak(). Aborting.');
+                    console.groupEnd();
+                    return;
+                }
+
+                // Ensure voices are loaded
+                await ensureVoicesLoaded();
+                if (requestId !== currentRequestId) {
+                    log.warn(`Request #${requestId} superseded while waiting for voices.`);
+                    console.groupEnd();
+                    return;
+                }
+
+                // Check pre-speak engine state
+                const preSnap = getEngineSnapshot();
+                log.info('Pre-speak engine state:', preSnap);
+
+                // If speaking or pending is true, cancel and enforce a mandatory 90ms IPC cooldown
+                const didCancel = performSafeCancel(`Pre-speak cleanup for Request #${requestId}`);
+                const timeSinceCancel = Date.now() - lastCancelTimestamp;
+                const requiredCooldownMs = (didCancel || timeSinceCancel < 90) ? 90 : 0;
+
+                if (requiredCooldownMs > 0) {
+                    log.info(`Enforcing ${requiredCooldownMs}ms macOS AVSpeechSynthesizer teardown cooldown before calling speak()...`);
+                    updateLiveStatus(`Cooldown (${requiredCooldownMs}ms) before speaking...`);
+                }
+
+                console.groupEnd();
+
+                cooldownTimer = setTimeout(() => {
+                    if (requestId !== currentRequestId) return;
+
+                    console.group(`🚀 [TTS Dispatch #${requestId}] ${label}`);
+
+                    // Unwedge sticky paused state
+                    if (synth.paused) {
+                        log.warn('speechSynthesis.paused was TRUE before speak()! Calling speechSynthesis.resume()...');
+                        synth.resume();
+                    }
+
+                    // Check if cancel() failed to clear `speaking: true` after 90ms (classic symptom of the macOS bug)
+                    if (synth.speaking) {
+                        log.warn('⚠️ speechSynthesis.speaking is STILL true 90ms after cancel()! The macOS speech daemon is likely already wedged.');
+                        log.fix('Attempting to force resume() + cancel() once more, but if onstart does not fire within 1.5s, the daemon is locked.');
+                        synth.resume();
+                        synth.cancel();
+                    }
+
+                    const utterance = new SpeechSynthesisUtterance(cleanText);
+
+                    // Pin in global Anti-GC Vault
+                    window.__TTS_ANTI_GC_VAULT__.add(utterance);
+
+                    // Assign selected voice
+                    const chosenVoice = cachedVoices.find(v => v.voiceURI === selectedVoiceURI);
+                    if (chosenVoice) {
+                        utterance.voice = chosenVoice;
+                        utterance.lang = chosenVoice.lang;
+                        log.info(`Assigned voice: "${chosenVoice.name}" [lang=${chosenVoice.lang}, localService=${chosenVoice.localService}]`);
+                        if (!chosenVoice.localService) {
+                            log.warn('You are using a remote network voice (localService: false). If it hangs after the first utterance, switch to a 🟢 [LOCAL macOS] voice.');
+                        }
+                    } else {
+                        utterance.lang = options.lang || 'zh-CN';
+                        log.warn(`No specific voice object matched; falling back to lang="${utterance.lang}".`);
+                    }
+
+                    // Clamp rate & pitch to safe Chromium ranges (rate > 2.0 crashes Chrome TTS)
+                    const safeRate = Math.min(Math.max(Number(options.rate) || 1.0, 0.5), 2.0);
+                    const safePitch = Math.min(Math.max(Number(options.pitch) || 1.0, 0.5), 1.5);
+                    utterance.rate = safeRate;
+                    utterance.pitch = safePitch;
+                    utterance.volume = 1.0;
+
+                    let hasStarted = false;
+                    let hasFinished = false;
+
+                    // Lifecycle callbacks
+                    utterance.onstart = () => {
+                        hasStarted = true;
+                        clearTimeout(onStartWatchdog);
+                        log.ok(`onstart fired for Request #${requestId}! Audio is actively playing.`, getEngineSnapshot());
+                        updateLiveStatus(`Speaking Request #${requestId}...`);
+
+                        // DEFENSE 6: Keep-Alive Heartbeat for long utterances (prevents Chrome 15s cutoff)
+                        keepAliveInterval = setInterval(() => {
+                            if (synth.speaking && !synth.paused) {
+                                synth.pause();
+                                synth.resume();
+                                log.info(`Heartbeat pause()/resume() keep-alive tick for Request #${requestId}`);
+                            }
+                        }, 10000);
+
+                        // DEFENSE 7: Missing `onend` Watchdog (estimates max duration + 4s buffer)
+                        const estimatedMs = Math.max(4000, Math.ceil((cleanText.length * 350) / safeRate) + 4000);
+                        onEndWatchdog = setTimeout(() => {
+                            if (!hasFinished) {
+                                log.err(`onend Watchdog triggered after ${estimatedMs}ms! Chrome never fired onend for Request #${requestId}.`);
+                                log.fix('Forcing speechSynthesis.cancel() to free the queue so subsequent utterances do not block.');
+                                performSafeCancel(`onend Watchdog timeout for #${requestId}`);
+                                updateLiveStatus('Recovered from missing onend via Watchdog');
+                            }
+                        }, estimatedMs);
+                    };
+
+                    utterance.onboundary = (e) => {
+                        log.info(`onboundary [${e.name}] at charIndex=${e.charIndex}`);
+                    };
+
+                    utterance.onpause = () => {
+                        log.warn(`onpause fired on Request #${requestId}`);
+                    };
+
+                    utterance.onresume = () => {
+                        log.info(`onresume fired on Request #${requestId}`);
+                    };
+
+                    utterance.onend = () => {
+                        hasFinished = true;
+                        clearAllTimers();
+                        window.__TTS_ANTI_GC_VAULT__.delete(utterance);
+                        log.ok(`onend fired cleanly for Request #${requestId}.`, getEngineSnapshot());
+                        updateLiveStatus(`Finished Request #${requestId} cleanly`);
+                    };
+
+                    utterance.onerror = (event) => {
+                        hasFinished = true;
+                        clearAllTimers();
+                        window.__TTS_ANTI_GC_VAULT__.delete(utterance);
+
+                        if (event.error === 'interrupted' || event.error === 'canceled') {
+                            log.info(`Utterance #${requestId} ${event.error} (normal when clicking rapidly).`);
+                            return;
+                        }
+
+                        log.err(`onerror fired for Request #${requestId}: error="${event.error}"`, event);
+                        if (event.error === 'not-allowed') {
+                            log.fix('Browser blocked audio autoplay. Ensure speak() is triggered directly inside a user click/keydown gesture.');
+                        } else if (event.error === 'synthesis-failed' || event.error === 'audio-busy') {
+                            log.fix('macOS audio daemon rejected synthesis. Run `killall speechsynthesisd` in Terminal.');
+                        } else if (event.error === 'network') {
+                            log.fix('Network TTS failed. Select a 🟢 [LOCAL macOS] voice in the dropdown.');
+                        }
+                        synth.cancel();
+                        updateLiveStatus(`Error: ${event.error}`, true);
+                    };
+
+                    // Dispatch to browser
+                    synth.speak(utterance);
+                    log.info(`Called speechSynthesis.speak(utterance) for #${requestId}. Immediate state:`, getEngineSnapshot());
+
+                    // DEFENSE 8: Dead-Man's Switch for `onstart`
+                    // If `synth.speaking` is true (or stuck), but `onstart` fails to fire within 1500ms,
+                    // we have hit the exact Chromium macOS zombie lockup!
+                    onStartWatchdog = setTimeout(() => {
+                        if (!hasStarted && !hasFinished) {
+                            reportZombieLockup(`Request #${requestId} failed to fire onstart within 1500ms`);
+                        }
+                    }, 1500);
+
+                    console.groupEnd();
+                }, requiredCooldownMs);
+            }
+
+            // Initialize Event Listeners
+            if (synth) {
+                synth.onvoiceschanged = () => {
+                    log.info('onvoiceschanged event fired by browser.');
+                    loadAndAuditVoices();
+                };
+                loadAndAuditVoices();
+            }
+
+            voiceSelect.addEventListener('change', (e) => {
+                selectedVoiceURI = e.target.value;
+                const v = cachedVoices.find(voice => voice.voiceURI === selectedVoiceURI);
+                log.ok(`User manually selected voice: "${v ? v.name : 'Default'}" (localService=${v ? v.localService : 'unknown'})`);
+                updateLiveStatus('Voice Updated');
+            });
+
+            // Lifecycle cleanup so refreshing the page mid-speech doesn't wedge the macOS daemon
+            window.addEventListener('beforeunload', () => {
+                if (synth && (synth.speaking || synth.pending)) {
+                    synth.cancel();
+                }
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && synth && synth.paused) {
+                    log.warn('Tab became visible and speechSynthesis was paused. Auto-resuming...');
+                    synth.resume();
+                }
+            });
+
+            return {
+                speak,
+                emergencyReset: () => {
+                    log.warn('=== MANUAL EMERGENCY RESET TRIGGERED ===');
+                    performSafeCancel('Manual Emergency Reset Button');
+                    synth.resume();
+                    synth.cancel();
+                    updateLiveStatus('Manual Reset Executed');
+                    setTimeout(() => {
+                        const snap = getEngineSnapshot();
+                        log.info('State 100ms after manual reset:', snap);
+                        if (snap.speaking) {
+                            reportZombieLockup('speaking remained true after Manual Emergency Reset');
+                        }
+                    }, 100);
+                },
+                dumpDiagnostics: () => {
+                    console.group('📊 FULL TTS DIAGNOSTIC DUMP');
+                    console.log('Engine State:', getEngineSnapshot());
+                    console.log('User Agent:', navigator.userAgent);
+                    console.log('Selected Voice URI:', selectedVoiceURI);
+                    console.log('Active Utterances in Anti-GC Vault:', Array.from(window.__TTS_ANTI_GC_VAULT__));
+                    loadAndAuditVoices();
+                    console.groupEnd();
+                }
+            };
+        })();
+
+        // Wire up UI Buttons
+        document.getElementById('speakHanziBtn').addEventListener('click', () => {
+            FortressTTS.speak(hanziText, {
+                label: 'Hanzi Input',
+                lang: 'zh-CN',
+                rate: 1.0,
+                isPinyin: false
+            });
+        });
+
+        document.getElementById('speakPinyinBtn').addEventListener('click', () => {
+            FortressTTS.speak(pinyinText, {
+                label: 'Pinyin Input',
+                lang: 'zh-CN',
+                rate: 1.0,
+                isPinyin: true
+            });
+        });
+
+        document.getElementById('emergencyResetBtn').addEventListener('click', () => {
+            FortressTTS.emergencyReset();
+        });
+
+        document.getElementById('dumpStateBtn').addEventListener('click', () => {
+            FortressTTS.dumpDiagnostics();
+        });
+    </script>
+
+</body>
+</html>

@@ -36,15 +36,17 @@ function set(n)
 
 var seen = new set(2);
 
-function isDebugMode() {
-    try {
-        if (typeof window !== "undefined" && window.location) {
-            if (/(?:[?&])debug=1(?:&|$)/.test(window.location.search || window.location.href)) {
-                return true;
+if (typeof isDebugMode !== "function") {
+    function isDebugMode() {
+        try {
+            if (typeof window !== "undefined" && window.location) {
+                if (/(?:[?&])debug=1(?:&|$)/.test(window.location.search || window.location.href)) {
+                    return true;
+                }
             }
-        }
-    } catch (e) {}
-    return (typeof QueryString !== "undefined" && QueryString && QueryString.debug === "1");
+        } catch (e) {}
+        return (typeof QueryString !== "undefined" && QueryString && QueryString.debug === "1");
+    }
 }
 
 function checkPress(e)

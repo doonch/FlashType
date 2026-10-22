@@ -155,3 +155,14 @@ var QueryString = function () {
     } 
     return query_string;
 } ();
+
+function isDebugMode() {
+    try {
+        if (typeof window !== "undefined" && window.location) {
+            if (/(?:[?&])debug=1(?:&|$)/.test(window.location.search || window.location.href)) {
+                return true;
+            }
+        }
+    } catch (e) {}
+    return (typeof QueryString !== "undefined" && QueryString && QueryString.debug === "1");
+}
