@@ -28,7 +28,7 @@ potato:syu4 zai2
 onion:joeng4 cung1
 rice:faan6
 fried rice:caau2 faan6
-bread:min6 bau1
+bread:min6 baau1
 noodles:min6
 meat:juk6
 chicken:gai1 juk6
@@ -49,7 +49,10 @@ ice cream:syut3 gou1
 yoghurt:syun1 laai5 / syun1 naai5
 garlic:syun3
 oil:jau4
-pepper:wu4 ziu1 fan2
+pepper:ziu1 / wu4 ziu1 fan2
+hot pepper:faa1 ziu1/laat6 ziu1
+green pepper:cing1 ziu1/ceng1 ziu1
+black pepper:hak1 ziu1 / haak1 ziu1
 salt:jim4
 boil:gwan2
 deep fry:zaa3
