@@ -1,0 +1,27 @@
+What is your name?:Comment vous appelez-vous?/Comment tu t'appelles?
+My name is...:Je m'appelle...
+How are you?:Comment allez-vous?/Ça va?
+I am fine:Je vais bien/Ça va bien
+How old are you?:Quel âge avez-vous?/Quel âge as-tu?
+years old:ans
+person:personne
+people:gens/personnes
+man:homme
+woman:femme
+boy:garçon
+girl:fille
+child:enfant
+friend:ami/amie
+family:famille
+father:père/papa
+mother:mère/maman
+brother:frère
+sister:sœur/soeur
+husband:mari
+wife:femme/épouse
+son:fils
+daughter:fille
+student:étudiant/étudiante
+teacher:professeur/enseignant
+doctor:médecin/docteur
+worker:travailleur/ouvrier

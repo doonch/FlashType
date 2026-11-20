@@ -1,0 +1,30 @@
+to want:vouloir
+I want:je veux
+I would like:je voudrais
+to eat:manger
+to drink:boire
+to pay:payer
+The check, please:L'addition, s'il vous plaît
+menu:menu/carte
+delicious:délicieux/délicieuse
+coffee:café
+tea:thé
+water:eau
+beer:bière
+wine:vin
+milk:lait
+juice:jus
+bread:pain
+meat:viande
+chicken:poulet
+fish:poisson
+rice:riz
+soup:soupe
+salad:salade
+fruit:fruit/fruits
+vegetables:légumes
+cheese:fromage
+a little:un peu
+a lot:beaucoup
+with:avec
+without:sans

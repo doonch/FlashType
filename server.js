@@ -44,6 +44,7 @@ function detectLanguage(language, vocabList = [], lessonTitle = "") {
     if (langLower.includes('polish') || langLower === 'pl') return 'polish';
     if (langLower.includes('spanish') || langLower === 'es') return 'spanish';
     if (langLower.includes('italian') || langLower === 'it') return 'italian';
+    if (langLower.includes('french') || langLower === 'fr') return 'french';
     if (langLower.includes('malayalam') || langLower === 'ml') return 'malayalam';
     return langLower;
   }

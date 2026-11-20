@@ -1,0 +1,29 @@
+Hello:bonjour/salut
+Nice to meet you:enchanté/enchantée
+Goodbye:au revoir/salut
+Please:s'il vous plaît/s'il te plaît
+Thank you:merci
+You're welcome:de rien/je vous en prie
+Yes:oui
+No:non
+Excuse me:excusez-moi/pardon
+Sorry:désolé/désolée/pardon
+English:anglais
+America:Amérique
+American:américain/américaine
+French:français
+France:France
+I:je
+you (informal):tu
+you (formal/plural):vous
+he:il
+she:elle
+we:nous/on
+they:ils/elles
+to speak:parler
+I speak:je parle
+Do you speak...?:parlez-vous...?/tu parles...?
+to understand:comprendre
+I understand:je comprends
+I don't understand:je ne comprends pas
+Do you understand?:comprenez-vous?/tu comprends?

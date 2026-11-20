@@ -169,6 +169,7 @@ function getAnswerLanguage(text) {
     if (cat.indexOf("polish") !== -1) return "pl-PL";
     if (cat.indexOf("spanish") !== -1) return "es-ES";
     if (cat.indexOf("italian") !== -1) return "it-IT";
+    if (cat.indexOf("french") !== -1) return "fr-FR";
     if (cat.indexOf("greek") !== -1) return "el-GR";
     if (cat.indexOf("hebrew") !== -1) return "he-IL";
     if (cat.indexOf("mandarin") !== -1) return "zh-CN";

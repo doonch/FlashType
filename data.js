@@ -120,6 +120,14 @@ lessonFiles[lessonFiles.length] = new lesson("Lesson 2: verbs", "lessons/Greek.V
 lessonFiles[lessonFiles.length] = new lesson("Lesson 3: foundation", "lessons/Greek.MT.3.txt", "Greek", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Test", "lessons/test.txt", "TestCategory", false, false);
 lessonFiles[lessonFiles.length] = new lesson("Civics 2008", "lessons/civics.txt", "Civics", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 1: Greetings & identity", "lessons/French.1.txt", "French", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 2: Orientation & travel", "lessons/French.2.txt", "French", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 3: Descriptions & objects", "lessons/French.3.txt", "French", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 4: Food & dining", "lessons/French.4.txt", "French", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 5: Numbers, time & calendar", "lessons/French.5.txt", "French", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 6: People & socializing", "lessons/French.6.txt", "French", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 7: Verbs & daily questions", "lessons/French.7.txt", "French", false, false);
+lessonFiles[lessonFiles.length] = new lesson("Lesson 8: Shopping & emergencies", "lessons/French.8.txt", "French", false, false);
 
 function populateLessons() {
 	var output="<option value=\"0\">Select lesson...</option>\n";
@@ -143,11 +151,14 @@ function populateLessons() {
 	else if (query.search("italian")>=0) {
 		groups = [ "Italian"];
 	}
+	else if (query.search("french")>=0) {
+		groups = [ "French"];
+	}
 	else if (query.search("malayalam")>=0) {
 		groups = [ "Malayalam"];
 	}
 	else {
-		groups = ["Cantonese.Dan", "Cantonese.ca", "Sheik", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Hebrew", "Polish", "Spanish", "Italian", "Mandarin", "Greek", "Malayalam", "Civics"];
+		groups = ["Cantonese.Dan", "Cantonese.ca", "Sheik", "Cantonese 1", "Cantonese 4", "Cantonese 5", "Cantonese 6", "Hebrew", "Polish", "Spanish", "Italian", "French", "Mandarin", "Greek", "Malayalam", "Civics"];
 	}
 	var i;
 	for (i=0; i<groups.length; i++) {

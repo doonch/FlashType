@@ -1,0 +1,27 @@
+who:qui
+what:quoi/que
+where:où
+when:quand
+why:pourquoi
+how:comment
+how much:combien
+which:quel/quelle/lequel
+to do:faire
+I do:je fais
+to have:avoir
+I have:j'ai
+to see:voir
+I see:je vois
+to know:savoir/connaître
+to think:penser
+to buy:acheter
+to work:travailler
+to live:vivre/habiter
+to sleep:dormir
+can:pouvoir/je peux
+must:devoir/je dois
+I need...:J'ai besoin de...
+Can you help me?:Pouvez-vous m'aider?/Tu peux m'aider?
+Why not?:Pourquoi pas?
+everything:tout
+nothing:rien

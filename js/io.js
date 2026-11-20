@@ -254,6 +254,7 @@ function applyUploadedLesson() {
         var fn = lastUploadedFileName.toLowerCase();
         if (fn.indexOf("spanish") !== -1) detectedLangId = "spanish";
         else if (fn.indexOf("italian") !== -1) detectedLangId = "italian";
+        else if (fn.indexOf("french") !== -1) detectedLangId = "french";
         else if (fn.indexOf("malayalam") !== -1) detectedLangId = "malayalam";
         else if (fn.indexOf("polish") !== -1) detectedLangId = "polish";
         else if (fn.indexOf("greek") !== -1) detectedLangId = "greek";

@@ -1,0 +1,30 @@
+near:près/proche
+far:loin
+here:ici
+there:là/là-bas
+left:gauche
+right:droite
+straight ahead:tout droit
+inside:dedans/à l'intérieur
+outside:dehors/à l'extérieur
+big:grand/grande
+small:petit/petite
+fast:rapide/vite
+slow:lent/lente
+good:bon/bonne/bien
+bad:mauvais/mauvaise/mal
+hot:chaud/chaude
+cold:froid/froide
+open:ouvert/ouverte
+closed:fermé/fermée
+easy:facile
+difficult:difficile
+water:eau
+car:voiture
+house:maison
+room:chambre/pièce
+door:porte
+table:table
+phone:téléphone
+bag:sac
+key:clé/clef

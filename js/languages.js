@@ -29,6 +29,14 @@ var LANGUAGE_FLAGS = [
         svg: '<svg viewBox="0 0 30 20" class="flag-svg" aria-hidden="true"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#ffffff"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg>'
     },
     {
+        id: "french",
+        name: "French",
+        country: "France",
+        flagEmoji: "🇫🇷",
+        categories: ["French"],
+        svg: '<svg viewBox="0 0 30 20" class="flag-svg" aria-hidden="true"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#ffffff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg>'
+    },
+    {
         id: "malayalam",
         name: "Malayalam",
         country: "Kerala",
@@ -100,6 +108,7 @@ function getLanguageIdForCategory(category) {
     if (c.indexOf("polish") !== -1) return "polish";
     if (c.indexOf("spanish") !== -1) return "spanish";
     if (c.indexOf("italian") !== -1) return "italian";
+    if (c.indexOf("french") !== -1) return "french";
     if (c.indexOf("malayalam") !== -1) return "malayalam";
     if (c.indexOf("civics") !== -1) return "civics";
     return "";
@@ -116,6 +125,7 @@ function getLanguageFromLesson(l) {
     if (/^Polish/i.test(cat) || /polish/i.test(file)) return "Polish";
     if (/^Spanish/i.test(cat) || /spanish/i.test(file)) return "Spanish";
     if (/^Italian/i.test(cat) || /italian/i.test(file)) return "Italian";
+    if (/^French/i.test(cat) || /french/i.test(file)) return "French";
     if (/^Malayalam/i.test(cat) || /malayalam/i.test(file)) return "Malayalam";
     if (/^Mandarin/i.test(cat) || /mandarin/i.test(file)) return "Mandarin";
     if (/^Civics/i.test(cat) || /civics/i.test(file)) return "Civics";
@@ -125,7 +135,7 @@ function getLanguageFromLesson(l) {
 
 function getAvailableLanguages() {
     var langs = [];
-    var preferredOrder = ["Cantonese", "Hebrew", "Greek", "Polish", "Spanish", "Italian", "Malayalam", "Mandarin", "Civics"];
+    var preferredOrder = ["Cantonese", "Hebrew", "Greek", "Polish", "Spanish", "Italian", "French", "Malayalam", "Mandarin", "Civics"];
     if (typeof lessonFiles !== "undefined") {
         for (var i = 1; i < lessonFiles.length; i++) {
             var lang = getLanguageFromLesson(lessonFiles[i]);
@@ -560,6 +570,9 @@ function selectAndStartLesson(lessonIdx) {
     } else if (cat.indexOf("italian") !== -1) {
         activeSessionLanguage = "italian";
         langId = "italian";
+    } else if (cat.indexOf("french") !== -1) {
+        activeSessionLanguage = "french";
+        langId = "french";
     } else if (cat.indexOf("malayalam") !== -1) {
         activeSessionLanguage = "malayalam";
         langId = "malayalam";

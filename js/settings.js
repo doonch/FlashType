@@ -366,6 +366,12 @@ function filterVoicesForLanguage(voices, langId) {
             return l.startsWith("it");
         });
     }
+    if (lid === "french") {
+        return voices.filter(function(v) {
+            var l = (v.lang || "").replace(/_/g, "-").toLowerCase();
+            return l.startsWith("fr");
+        });
+    }
     if (lid === "malayalam") {
         return voices.filter(function(v) {
             var l = (v.lang || "").replace(/_/g, "-").toLowerCase();

@@ -1,0 +1,26 @@
+to come:venir
+I come:je viens
+to go:aller
+I go:je vais
+to arrive:arriver
+to leave:partir
+hotel:hôtel
+restaurant:restaurant
+airport:aéroport
+train station:gare
+bus stop:arrêt de bus
+subway:métro
+taxi:taxi
+ticket:billet/ticket
+Where is...?:Où est...?
+street:rue
+avenue:avenue
+city:ville
+center:centre/centre-ville
+entrance:entrée
+exit:sortie
+bathroom:toilettes
+passport:passeport
+luggage:bagages/valise
+Eiffel Tower:Tour Eiffel
+Louvre Museum:Musée du Louvre

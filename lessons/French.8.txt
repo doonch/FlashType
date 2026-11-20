@@ -1,0 +1,26 @@
+store:magasin/boutique
+supermarket:supermarché
+pharmacy:pharmacie
+price:prix
+How much is this?:Combien coûte ceci?/C'est combien?
+expensive:cher/chère
+cheap:pas cher/bon marché
+cash:espèces/liquide
+credit card:carte de crédit/carte bancaire
+receipt:reçu/ticket
+shirt:chemise
+shoes:chaussures
+red:rouge
+blue:bleu/bleue
+white:blanc/blanche
+black:noir/noire
+problem:problème
+I am lost:Je suis perdu/Je suis perdue
+broken:cassé/cassée
+help:aide/au secours
+danger:danger
+hospital:hôpital
+police:police
+police station:commissariat
+medicine:médicament
+emergency:urgence
