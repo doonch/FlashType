@@ -9,6 +9,7 @@ var passiveAnimFrameId = null;
 var passiveAnimStartTime = 0;
 var passiveAnimDuration = 0;
 var passiveCircumference = 2 * Math.PI * 11; // ~69.115px (radius 11 in 28x28 viewBox)
+var passiveSuspendedByVisibility = false;
 
 function clearPassiveTimers() {
     if (passiveQuestionTimer) {
@@ -129,6 +130,7 @@ function togglePassiveMode() {
             startPassiveQuestionTimer();
         }
     } else {
+        passiveSuspendedByVisibility = false;
         clearPassiveTimers();
         resetPassiveCircle();
         if (typeof $ !== "undefined") {
@@ -221,4 +223,27 @@ function handlePassiveAnswerReveal() {
 
     startPassiveCountdown(decayMs, "decay", finishDecayPhase);
     passiveDecayTimer = setTimeout(finishDecayPhase, decayMs + 50);
+}
+
+if (typeof document !== "undefined" && document.addEventListener) {
+    document.addEventListener("visibilitychange", function() {
+        if (typeof appSettings === "undefined" || !appSettings.passiveMode) {
+            passiveSuspendedByVisibility = false;
+            return;
+        }
+        if (document.hidden) {
+            if (passiveQuestionTimer || passiveDecayTimer || passiveAnimFrameId) {
+                clearPassiveTimers();
+                passiveSuspendedByVisibility = true;
+                if (typeof $ !== "undefined") {
+                    $("#passive_status").text("Paused while tab is hidden");
+                }
+            }
+        } else if (passiveSuspendedByVisibility) {
+            passiveSuspendedByVisibility = false;
+            if (typeof $ !== "undefined" && $("#stage").is(":visible") && typeof lines !== "undefined" && lines && lines.length > 0 && typeof index !== "undefined" && lines[index]) {
+                startPassiveQuestionTimer();
+            }
+        }
+    });
 }

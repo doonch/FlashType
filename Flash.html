@@ -7,8 +7,7 @@
 <meta property="og:description" content="Language-learning flashcard tool where you type answers with instant feedback and lesson sets">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" type="text/css" href="style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-</script>
+<script src="js/jquery.min.js"></script>
 <script src="data.js"></script>
 <script src="js/translit.js"></script>
 <script src="js/settings.js"></script>
@@ -570,7 +569,7 @@ $(document).ready(function(){
         <div id="interactive_controls" class="interactive-controls-wrap">
             <div class="drill-row answer-row">
                 <span class="prompt-badge answer-badge" aria-label="Answer">A</span>
-                <input type="text" id="answer" class="stage-input-answer" size="30" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Type answer here..." onkeyup="checkPress(event)">
+                <input type="text" id="answer" class="stage-input-answer" size="30" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Type answer here..." onkeydown="checkPress(event)">
                 <button type="button" id="submitButton" class="stage-btn stage-btn-submit" onclick="checkAnswer()">Submit</button>
                 <button type="button" id="skipButton" class="stage-btn stage-btn-skip" onclick="skip()">Skip</button>
             </div>

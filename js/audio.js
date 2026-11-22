@@ -25,13 +25,199 @@ function getSpeechRate() {
     return 0.8; // normal (default)
 }
 
+var ttsUtteranceVault = (typeof window !== "undefined")
+    ? (window.__FLASHTYPE_TTS_VAULT__ = window.__FLASHTYPE_TTS_VAULT__ || [])
+    : [];
+var cachedSpeechVoices = [];
+var ttsKeepAliveTimer = null;
+var ttsPendingSpeakTimer = null;
+var ttsRequestSeq = 0;
+
+var _ttsUA = (typeof navigator !== "undefined" && navigator.userAgent) ? navigator.userAgent : "";
+var _ttsIsIOS = /iPad|iPhone|iPod/.test(_ttsUA) || (typeof navigator !== "undefined" && navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+var _ttsIsAndroid = /Android/i.test(_ttsUA);
+var _ttsIsChromium = /Chrome|Chromium|Edg|CriOS/i.test(_ttsUA) && !/Firefox|FxiOS/i.test(_ttsUA);
+var _ttsIsDesktopChromium = _ttsIsChromium && !_ttsIsIOS && !_ttsIsAndroid;
+
+function retainUtterance(utterance) {
+    if (!utterance) return;
+    if (ttsUtteranceVault.indexOf(utterance) === -1) {
+        ttsUtteranceVault.push(utterance);
+    }
+}
+
+function releaseUtterance(utterance) {
+    if (!utterance) return;
+    var idx = ttsUtteranceVault.indexOf(utterance);
+    if (idx !== -1) {
+        ttsUtteranceVault.splice(idx, 1);
+    }
+}
+
+function clearTtsTimers() {
+    if (ttsKeepAliveTimer) {
+        clearInterval(ttsKeepAliveTimer);
+        ttsKeepAliveTimer = null;
+    }
+    if (ttsPendingSpeakTimer) {
+        clearTimeout(ttsPendingSpeakTimer);
+        ttsPendingSpeakTimer = null;
+    }
+}
+
+function getAvailableVoices() {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+        return [];
+    }
+    var fresh = [];
+    try {
+        fresh = window.speechSynthesis.getVoices() || [];
+    } catch (e) {
+        fresh = [];
+    }
+    if (fresh.length > 0) {
+        cachedSpeechVoices = fresh;
+        return fresh;
+    }
+    return cachedSpeechVoices;
+}
+
+function pickBestVoice(candidates) {
+    if (!candidates || candidates.length === 0) return null;
+    if (candidates.length === 1) return candidates[0];
+
+    var isOnline = (typeof navigator === "undefined" || typeof navigator.onLine !== "boolean") ? true : navigator.onLine;
+    var bestVoice = candidates[0];
+    var bestScore = -1;
+
+    for (var i = 0; i < candidates.length; i++) {
+        var v = candidates[i];
+        var vName = (v.name || "").toLowerCase();
+        var isLocal = (v.localService === true);
+        var isEspeak = (vName.indexOf("espeak") !== -1);
+        var score = 0;
+
+        if (isLocal && !isEspeak) {
+            // Native local voice (e.g. Chrome OS native voice, Apple local voice, Windows local voice)
+            score = 40;
+        } else if (isOnline && !isLocal && !isEspeak) {
+            // Network voice when online (e.g. Google TTS) when no native local voice exists
+            score = 30;
+        } else if (isLocal) {
+            // Local fallback (e.g. eSpeak) — prioritized over remote voices when offline
+            score = isOnline ? 20 : 30;
+        } else {
+            score = 10;
+        }
+
+        if (v.default) {
+            score += 2;
+        }
+
+        if (score > bestScore) {
+            bestScore = score;
+            bestVoice = v;
+        }
+    }
+
+    return bestVoice;
+}
+
+function selectVoiceForLang(voices, lang) {
+    if (!voices || voices.length === 0 || !lang) return null;
+
+    var targetLangLower = lang.replace(/_/g, "-").toLowerCase();
+    var targetLangPrefix = targetLangLower.split("-")[0];
+
+    // 1. Check user-selected debug voice preferences first
+    if (typeof appSettings !== "undefined") {
+        if (targetLangPrefix === "en" && appSettings.preferredEnglishVoiceURI) {
+            for (var ev = 0; ev < voices.length; ev++) {
+                if (voices[ev].voiceURI === appSettings.preferredEnglishVoiceURI) {
+                    return voices[ev];
+                }
+            }
+        } else if (targetLangPrefix !== "en" && appSettings.preferredTargetVoices) {
+            var curLangId = (typeof getCurrentActiveLanguageId === "function") ? getCurrentActiveLanguageId() : (activeSessionLanguage || getLessonCategory());
+            var preferredURI = curLangId ? appSettings.preferredTargetVoices[curLangId] : "";
+            if (preferredURI) {
+                for (var tv = 0; tv < voices.length; tv++) {
+                    if (voices[tv].voiceURI === preferredURI) {
+                        return voices[tv];
+                    }
+                }
+            }
+        }
+    }
+
+    // 2. Prioritize Cantonese voices (zh-HK, Cantonese, or Yue)
+    if (targetLangLower === "zh-hk" || targetLangLower.indexOf("cantonese") !== -1) {
+        var cantoneseCandidates = [];
+        for (var v = 0; v < voices.length; v++) {
+            var vName = (voices[v].name || "").toLowerCase();
+            var vLang = (voices[v].lang || "").replace(/_/g, "-").toLowerCase();
+            if (vLang === "zh-hk" || vName.indexOf("cantonese") !== -1 || vName.indexOf("hong kong") !== -1 || vLang.indexOf("yue") !== -1) {
+                cantoneseCandidates.push(voices[v]);
+            }
+        }
+        if (cantoneseCandidates.length > 0) {
+            return pickBestVoice(cantoneseCandidates);
+        }
+    }
+
+    // 3. Prioritize Mandarin voices (zh-CN, Mandarin, or Putonghua)
+    if (targetLangLower === "zh-cn" || targetLangLower.indexOf("mandarin") !== -1) {
+        var mandarinCandidates = [];
+        for (var m = 0; m < voices.length; m++) {
+            var mName = (voices[m].name || "").toLowerCase();
+            var mLang = (voices[m].lang || "").replace(/_/g, "-").toLowerCase();
+            if (mLang === "zh-cn" || mName.indexOf("mandarin") !== -1 || mName.indexOf("putonghua") !== -1 || mName.indexOf("mainland") !== -1 || mLang === "zh-sg") {
+                mandarinCandidates.push(voices[m]);
+            }
+        }
+        if (mandarinCandidates.length > 0) {
+            return pickBestVoice(mandarinCandidates);
+        }
+    }
+
+    // 4. Exact language match (e.g. es-ES, pl-PL, fr-FR)
+    var exactCandidates = [];
+    for (var i = 0; i < voices.length; i++) {
+        var vLangExact = (voices[i].lang || "").replace(/_/g, "-").toLowerCase();
+        if (vLangExact === targetLangLower) {
+            exactCandidates.push(voices[i]);
+        }
+    }
+    if (exactCandidates.length > 0) {
+        return pickBestVoice(exactCandidates);
+    }
+
+    // 5. Language prefix match (e.g. es, pl, fr)
+    if (targetLangPrefix) {
+        var prefixCandidates = [];
+        for (var k = 0; k < voices.length; k++) {
+            var vLangPrefix = (voices[k].lang || "").replace(/_/g, "-").toLowerCase();
+            if (vLangPrefix === targetLangPrefix || vLangPrefix.indexOf(targetLangPrefix + "-") === 0) {
+                prefixCandidates.push(voices[k]);
+            }
+        }
+        if (prefixCandidates.length > 0) {
+            return pickBestVoice(prefixCandidates);
+        }
+    }
+
+    return null;
+}
+
 function speakText(text, lang, speakSourceText, rate) {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
         return;
     }
     try {
-        window.speechSynthesis.cancel();
+        var synth = window.speechSynthesis;
         var targetText = speakSourceText || text;
+        if (typeof targetText !== "string") return;
+
         var cleanText = targetText.replace(/[\(\)]/g, "");
         if (!speakSourceText) {
             cleanText = (typeof replaceJyutpingTones === "function") ? replaceJyutpingTones(cleanText).trim() : cleanText.trim();
@@ -40,94 +226,97 @@ function speakText(text, lang, speakSourceText, rate) {
         }
         if (!cleanText) return;
 
-        var utterance = new SpeechSynthesisUtterance(cleanText);
-        utterance.rate = (typeof rate === "number" && !isNaN(rate)) ? rate : getSpeechRate();
-        if (lang) {
-            utterance.lang = lang;
+        var requestId = ++ttsRequestSeq;
+        clearTtsTimers();
+
+        var wasActive = Boolean(synth.speaking || synth.pending || synth.paused);
+        if (wasActive) {
+            ttsUtteranceVault.length = 0;
+            synth.cancel();
         }
 
-        // Voice selection: find matching Cantonese or target language voice
-        var voices = window.speechSynthesis.getVoices();
-        if (voices && voices.length > 0 && lang) {
-            var targetLangLower = lang.toLowerCase();
-            var targetLangPrefix = targetLangLower.split("-")[0];
-            var matchedVoice = null;
+        var rawRate = (typeof rate === "number" && !isNaN(rate)) ? rate : getSpeechRate();
+        var clampedRate = Math.max(0.2, Math.min(2.0, rawRate));
 
-            // Check user-selected debug voice preferences first
-            if (typeof appSettings !== "undefined") {
-                if (targetLangPrefix === "en" && appSettings.preferredEnglishVoiceURI) {
-                    for (var ev = 0; ev < voices.length; ev++) {
-                        if (voices[ev].voiceURI === appSettings.preferredEnglishVoiceURI) {
-                            matchedVoice = voices[ev];
-                            break;
+        var dispatchSpeak = function() {
+            if (requestId !== ttsRequestSeq) return;
+            try {
+                if (synth.paused) {
+                    synth.resume();
+                }
+
+                var utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.rate = clampedRate;
+                if (lang) {
+                    utterance.lang = lang;
+                }
+
+                var voices = getAvailableVoices();
+                var matchedVoice = selectVoiceForLang(voices, lang);
+                if (matchedVoice) {
+                    utterance.voice = matchedVoice;
+                }
+
+                retainUtterance(utterance);
+
+                utterance.onstart = function() {
+                    if (requestId !== ttsRequestSeq) return;
+                    // Work around desktop Chromium/ChromeOS ~15s TTS cutoff without affecting mobile engines
+                    if (_ttsIsDesktopChromium) {
+                        if (ttsKeepAliveTimer) {
+                            clearInterval(ttsKeepAliveTimer);
                         }
-                    }
-                } else if (targetLangPrefix !== "en" && appSettings.preferredTargetVoices) {
-                    var curLangId = (typeof getCurrentActiveLanguageId === "function") ? getCurrentActiveLanguageId() : (activeSessionLanguage || getLessonCategory());
-                    var preferredURI = curLangId ? appSettings.preferredTargetVoices[curLangId] : "";
-                    if (preferredURI) {
-                        for (var tv = 0; tv < voices.length; tv++) {
-                            if (voices[tv].voiceURI === preferredURI) {
-                                matchedVoice = voices[tv];
-                                break;
+                        ttsKeepAliveTimer = setInterval(function() {
+                            if (requestId !== ttsRequestSeq || !synth.speaking) {
+                                clearInterval(ttsKeepAliveTimer);
+                                ttsKeepAliveTimer = null;
+                                return;
                             }
-                        }
+                            if (!synth.paused) {
+                                synth.pause();
+                                synth.resume();
+                            }
+                        }, 10000);
                     }
-                }
-            }
+                };
 
-            // Prioritize Cantonese voice (zh-HK, Cantonese, or Yue)
-            if (!matchedVoice && (targetLangLower === "zh-hk" || targetLangLower.indexOf("cantonese") !== -1)) {
-                for (var v = 0; v < voices.length; v++) {
-                    var vName = (voices[v].name || "").toLowerCase();
-                    var vLang = (voices[v].lang || "").replace(/_/g, "-").toLowerCase();
-                    if (vLang === "zh-hk" || vName.indexOf("cantonese") !== -1 || vName.indexOf("hong kong") !== -1 || vLang.indexOf("yue") !== -1) {
-                        matchedVoice = voices[v];
-                        break;
+                utterance.onend = function() {
+                    if (ttsKeepAliveTimer) {
+                        clearInterval(ttsKeepAliveTimer);
+                        ttsKeepAliveTimer = null;
                     }
-                }
-            }
+                    releaseUtterance(utterance);
+                };
 
-            // Prioritize Mandarin voice (zh-CN, Mandarin, or Putonghua)
-            if (!matchedVoice && (targetLangLower === "zh-cn" || targetLangLower.indexOf("mandarin") !== -1)) {
-                for (var m = 0; m < voices.length; m++) {
-                    var mName = (voices[m].name || "").toLowerCase();
-                    var mLang = (voices[m].lang || "").replace(/_/g, "-").toLowerCase();
-                    if (mLang === "zh-cn" || mName.indexOf("mandarin") !== -1 || mName.indexOf("putonghua") !== -1 || mName.indexOf("mainland") !== -1 || mLang === "zh-sg") {
-                        matchedVoice = voices[m];
-                        break;
+                utterance.onerror = function(evt) {
+                    if (ttsKeepAliveTimer) {
+                        clearInterval(ttsKeepAliveTimer);
+                        ttsKeepAliveTimer = null;
                     }
-                }
-            }
-
-            // Exact language match (e.g. es-ES, pl-PL)
-            if (!matchedVoice) {
-                for (var i = 0; i < voices.length; i++) {
-                    var vLangExact = (voices[i].lang || "").replace(/_/g, "-").toLowerCase();
-                    if (vLangExact === targetLangLower) {
-                        matchedVoice = voices[i];
-                        break;
+                    releaseUtterance(utterance);
+                    var errCode = evt && evt.error ? evt.error : "";
+                    if (errCode && errCode !== "interrupted" && errCode !== "canceled" && errCode !== "not-allowed") {
+                        console.warn("Speech synthesis warning:", errCode);
                     }
-                }
-            }
+                };
 
-            // Prefix match (e.g. zh, es, pl)
-            if (!matchedVoice && targetLangPrefix) {
-                for (var k = 0; k < voices.length; k++) {
-                    var vLangPrefix = (voices[k].lang || "").replace(/_/g, "-").toLowerCase();
-                    if (vLangPrefix.indexOf(targetLangPrefix) === 0) {
-                        matchedVoice = voices[k];
-                        break;
-                    }
-                }
+                synth.speak(utterance);
+            } catch (innerErr) {
+                console.error("Speech synthesis error:", innerErr);
             }
+        };
 
-            if (matchedVoice) {
-                utterance.voice = matchedVoice;
-            }
+        // On desktop Chromium/ChromeOS, allow a brief cooldown after cancel() so the OS TTS daemon
+        // does not silently drop the next utterance. Stay synchronous when idle or on iOS Safari to
+        // preserve user gesture activation.
+        if (wasActive && _ttsIsDesktopChromium) {
+            ttsPendingSpeakTimer = setTimeout(function() {
+                ttsPendingSpeakTimer = null;
+                dispatchSpeak();
+            }, 60);
+        } else {
+            dispatchSpeak();
         }
-
-        window.speechSynthesis.speak(utterance);
     } catch (e) {
         console.error("Speech synthesis error:", e);
     }
@@ -263,9 +452,42 @@ if (typeof $ !== "undefined") {
 }
 
 if (typeof window !== "undefined" && "speechSynthesis" in window) {
+    // Prime async voice list loading (required on ChromeOS and desktop Chromium)
+    getAvailableVoices();
+
     window.speechSynthesis.onvoiceschanged = function() {
+        getAvailableVoices();
         if (typeof populateDebugVoiceSelectors === "function") {
             populateDebugVoiceSelectors();
         }
     };
+
+    window.addEventListener("beforeunload", function() {
+        try {
+            ttsRequestSeq++;
+            clearTtsTimers();
+            ttsUtteranceVault.length = 0;
+            if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+                window.speechSynthesis.cancel();
+            }
+        } catch (e) {}
+    });
+
+    if (typeof document !== "undefined" && document.addEventListener) {
+        document.addEventListener("visibilitychange", function() {
+            try {
+                var synth = window.speechSynthesis;
+                if (document.hidden) {
+                    ttsRequestSeq++;
+                    clearTtsTimers();
+                    ttsUtteranceVault.length = 0;
+                    if (synth.speaking || synth.pending || synth.paused) {
+                        synth.cancel();
+                    }
+                } else if (synth.paused) {
+                    synth.resume();
+                }
+            } catch (e) {}
+        });
+    }
 }

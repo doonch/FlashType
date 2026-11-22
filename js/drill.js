@@ -49,14 +49,64 @@ if (typeof isDebugMode !== "function") {
     }
 }
 
+var isAnswerComposing = false;
+var lastCompositionEndTime = 0;
+
+if (typeof document !== "undefined" && document.addEventListener) {
+    document.addEventListener("compositionstart", function(e) {
+        if (e && e.target && e.target.id === "answer") {
+            isAnswerComposing = true;
+        }
+    }, true);
+
+    document.addEventListener("compositionend", function(e) {
+        if (e && e.target && e.target.id === "answer") {
+            isAnswerComposing = false;
+            lastCompositionEndTime = Date.now();
+        }
+    }, true);
+
+    document.addEventListener("blur", function(e) {
+        if (e && e.target && e.target.id === "answer") {
+            isAnswerComposing = false;
+        }
+    }, true);
+}
+
 function checkPress(e)
 {
-    var charCode = (typeof e.which === "number") ? e.which : e.keyCode;
-    if (charCode == 13 && e.ctrlKey)
+    if (!e) return;
+
+    var charCode = (typeof e.which === "number" && e.which) ? e.which : e.keyCode;
+
+    // Ignore key events generated during IME composition (Chinese, Hebrew, Greek, dead keys, etc.)
+    if (e.isComposing || isAnswerComposing || charCode === 229 || e.keyCode === 229 || e.key === "Process")
+    {
+        return;
+    }
+
+    var isEnter = (e.key === "Enter" || charCode === 13);
+    if (!isEnter)
+    {
+        return;
+    }
+
+    // Ignore key auto-repeat on Enter and Safari's Enter keydown fired right after compositionend
+    if (e.repeat || (lastCompositionEndTime && (Date.now() - lastCompositionEndTime) < 50))
+    {
+        return;
+    }
+
+    if (e.preventDefault)
+    {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey)
     {
         showNextUnseen();
     }
-    else if (charCode == 13)
+    else
     {
         checkAnswer();
     }
