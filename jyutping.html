@@ -49,6 +49,26 @@
             font-size: 1.1em;
             font-weight: bold;
         }
+        select, textarea {
+            width: 100%;
+            padding: 9px 12px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            line-height: 1.45;
+            color: #333;
+        }
+        select:focus, textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -64,53 +84,205 @@
             <button id="speakHanziBtn">Speak Hanzi</button>
         </div>
 
-        <div>
+        <div class="section-box">
             <div class="jyutping">
-                <strong>2. Jyutping Input:</strong><br>
-                "ngo5 ge3 hing3 ceoi3 hai6 waan2 gong3 kam4, bat1 gwo3, ngo5 go3 zai2 ge3 hing3 ceoi3 hai6 tek3 bo1."
+                <label for="jyutpingInput"><strong>2. Jyutping Input:</strong></label>
             </div>
+            <textarea id="jyutpingInput" rows="3" spellcheck="false" autocomplete="off" placeholder="Type Jyutping or any text here...">ngo5 ge3 hing3 ceoi3 hai6 waan2 gong3 kam4, bat1 gwo3, ngo5 go3 zai2 ge3 hing3 ceoi3 hai6 tek3 bo1.</textarea>
             <button id="speakJyutpingBtn" class="secondary">Speak Jyutping</button>
+        </div>
+
+        <div>
+            <label for="voiceSelect"><strong>Active Voice Selection (Cantonese Voices Only):</strong></label>
+            <select id="voiceSelect">
+                <option value="">Loading Cantonese voices...</option>
+            </select>
         </div>
     </div>
 
     <script>
         const hanziText = "我嘅興趣係玩鋼琴，不過，我個仔嘅興趣係踢波。";
-        const jyutpingText = "ngo5 ge3 hing3 ceoi3 hai6 waan2 gong3 kam4, bat1 gwo3, ngo5 go3 zai2 ge3 hing3 ceoi3 hai6 tek3 bo1.";
+        const defaultJyutpingText = "ngo5 ge3 hing3 ceoi3 hai6 waan2 gong3 kam4, bat1 gwo3, ngo5 go3 zai2 ge3 hing3 ceoi3 hai6 tek3 bo1.";
+
+        const synth = 'speechSynthesis' in window ? window.speechSynthesis : null;
+        const voiceSelect = document.getElementById('voiceSelect');
+        const jyutpingInput = document.getElementById('jyutpingInput');
+
+        window.__JYUTPING_TTS_VAULT__ = new Set();
+
+        const ua = navigator.userAgent || '';
+        const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const isAndroid = /Android/i.test(ua);
+        const isDesktopChromium = /Chrome|Chromium|Edg|CriOS/i.test(ua) && !/Firefox|FxiOS/i.test(ua) && !isIOS && !isAndroid;
+
+        let cachedVoices = [];
+        let selectedVoiceURI = '';
+        let cooldownTimer = null;
+        let currentRequestId = 0;
+
+        function isCantoneseVoice(v) {
+            const lang = (v.lang || '').replace(/_/g, '-').toLowerCase();
+            const name = (v.name || '').toLowerCase();
+            return (
+                lang === 'zh-hk' ||
+                lang.startsWith('zh-hk-') ||
+                lang === 'yue' ||
+                lang.startsWith('yue-') ||
+                name.includes('cantonese') ||
+                name.includes('hong kong') ||
+                name.includes('廣東話') ||
+                name.includes('粵語') ||
+                name.includes('粤语')
+            );
+        }
+
+        function sortCantoneseVoices(voices) {
+            const isOnline = typeof navigator.onLine === 'boolean' ? navigator.onLine : true;
+            const scoreVoice = (v) => {
+                const name = (v.name || '').toLowerCase();
+                const isLocal = v.localService === true;
+                const isEspeak = name.includes('espeak');
+                let score = 0;
+                if (isLocal && !isEspeak) score = 40;
+                else if (isOnline && !isLocal && !isEspeak) score = 30;
+                else if (isLocal) score = isOnline ? 20 : 30;
+                else score = 10;
+                if (v.default) score += 2;
+                return score;
+            };
+            return [...voices].sort((a, b) => scoreVoice(b) - scoreVoice(a));
+        }
+
+        function loadCantoneseVoices() {
+            if (!synth) {
+                voiceSelect.innerHTML = '<option value="">Speech synthesis not supported in this browser</option>';
+                return [];
+            }
+
+            const rawVoices = synth.getVoices() || [];
+            if (!rawVoices.length) return [];
+
+            cachedVoices = rawVoices;
+            const cantoneseVoices = sortCantoneseVoices(rawVoices.filter(isCantoneseVoice));
+
+            voiceSelect.innerHTML = '';
+            if (cantoneseVoices.length === 0) {
+                const opt = document.createElement('option');
+                opt.value = '';
+                opt.textContent = 'No Cantonese voices found (using zh-HK fallback)';
+                voiceSelect.appendChild(opt);
+                selectedVoiceURI = '';
+                return cantoneseVoices;
+            }
+
+            cantoneseVoices.forEach(v => {
+                const opt = document.createElement('option');
+                opt.value = v.voiceURI;
+                opt.textContent = `${v.localService ? '🟢 [LOCAL]' : '🟠 [NETWORK]'} ${v.name} (${v.lang})`;
+                voiceSelect.appendChild(opt);
+            });
+
+            // Keep previously chosen voice if still present; otherwise auto-select best Cantonese voice
+            const stillExists = selectedVoiceURI && cantoneseVoices.some(v => v.voiceURI === selectedVoiceURI);
+            if (!stillExists) {
+                selectedVoiceURI = cantoneseVoices[0].voiceURI;
+            }
+            voiceSelect.value = selectedVoiceURI;
+
+            return cantoneseVoices;
+        }
 
         function speakText(textToSynthesize) {
-            if (!('speechSynthesis' in window)) {
-                alert("Speech synthesis is not supported in this browser.");
-                return;
+            if (!synth) return;
+
+            const cleanText = String(textToSynthesize || '').trim();
+            if (!cleanText) return;
+
+            const requestId = ++currentRequestId;
+            if (cooldownTimer) {
+                clearTimeout(cooldownTimer);
+                cooldownTimer = null;
             }
 
-            // Cancel any ongoing speech
-            window.speechSynthesis.cancel();
-
-            const utterance = new SpeechSynthesisUtterance(textToSynthesize);
-            utterance.lang = 'zh-HK'; // Target Cantonese
-            utterance.rate = 0.9;
-
-            const voices = window.speechSynthesis.getVoices();
-            const hkVoice = voices.find(v => v.lang === 'zh-HK' || v.lang.toLowerCase().includes('yue'));
-            if (hkVoice) {
-                utterance.voice = hkVoice;
+            const wasActive = Boolean(synth.speaking || synth.pending || synth.paused);
+            if (wasActive) {
+                window.__JYUTPING_TTS_VAULT__.clear();
+                synth.cancel();
             }
 
-            window.speechSynthesis.speak(utterance);
-        }
+            const dispatchSpeak = () => {
+                if (requestId !== currentRequestId) return;
+                if (synth.paused) {
+                    synth.resume();
+                }
 
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = () => {
-                window.speechSynthesis.getVoices();
+                const utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.rate = 0.9;
+
+                const voices = cachedVoices.length ? cachedVoices : (synth.getVoices() || []);
+                const chosenVoice = voices.find(v => v.voiceURI === selectedVoiceURI && isCantoneseVoice(v))
+                    || sortCantoneseVoices(voices.filter(isCantoneseVoice))[0]
+                    || null;
+
+                if (chosenVoice) {
+                    utterance.voice = chosenVoice;
+                    utterance.lang = chosenVoice.lang || 'zh-HK';
+                } else {
+                    utterance.lang = 'zh-HK';
+                }
+
+                window.__JYUTPING_TTS_VAULT__.add(utterance);
+                utterance.onend = () => window.__JYUTPING_TTS_VAULT__.delete(utterance);
+                utterance.onerror = () => window.__JYUTPING_TTS_VAULT__.delete(utterance);
+
+                synth.speak(utterance);
             };
+
+            if (wasActive && isDesktopChromium) {
+                cooldownTimer = setTimeout(() => {
+                    cooldownTimer = null;
+                    dispatchSpeak();
+                }, 60);
+            } else {
+                dispatchSpeak();
+            }
         }
+
+        if (synth) {
+            synth.onvoiceschanged = () => {
+                loadCantoneseVoices();
+            };
+            if (!loadCantoneseVoices().length) {
+                // Poll briefly in case browser populates voices asynchronously without firing onvoiceschanged
+                let attempts = 0;
+                const voicePoll = setInterval(() => {
+                    attempts++;
+                    if (loadCantoneseVoices().length > 0 || attempts >= 40) {
+                        clearInterval(voicePoll);
+                    }
+                }, 75);
+            }
+        } else {
+            loadCantoneseVoices();
+        }
+
+        voiceSelect.addEventListener('change', (e) => {
+            selectedVoiceURI = e.target.value;
+        });
+
+        window.addEventListener('beforeunload', () => {
+            if (synth && (synth.speaking || synth.pending)) {
+                synth.cancel();
+            }
+        });
 
         document.getElementById('speakHanziBtn').addEventListener('click', () => {
             speakText(hanziText);
         });
 
         document.getElementById('speakJyutpingBtn').addEventListener('click', () => {
-            speakText(jyutpingText);
+            const customText = jyutpingInput.value.trim();
+            speakText(customText || defaultJyutpingText);
         });
     </script>
 
